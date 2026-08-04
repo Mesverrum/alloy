@@ -434,51 +434,80 @@ func (s *SeriesRefMappingStore) cleanupStaleRefs() {
 	for {
 		select {
 		case <-ticker.C:
-			cutoffTime := time.Now().Add(-15 * time.Minute).Unix()
-
-			// Hold both locks to prevent race condition where a ref could be
-			// appended after we delete it from uniqueRefCell but before
-			// we delete it from uniqueRefToChildRefs
-			s.timestampTrackingMu.Lock()
-			s.refMappingMu.Lock()
-
-			staleRefCount := 0
-			for ref, ts := range s.uniqueRefTimestamps {
-				if ts < cutoffTime {
-					staleRefCount++
-
-					v, ok := s.uniqueRefToChildRefs[ref]
-					if ok {
-						delete(s.labelHashToUniqueRef, v.labelHash)
-					}
-
-					delete(s.uniqueRefTimestamps, ref)
-					delete(s.uniqueRefToChildRefs, ref)
-				}
-			}
-
-			// Update metrics
-			if staleRefCount > 0 {
-				s.refsCleaned.Add(float64(staleRefCount))
-				s.activeMappings.Sub(float64(staleRefCount))
-				s.trackedRefs.Set(float64(len(s.uniqueRefTimestamps)))
-			}
-
-			s.refMappingMu.Unlock()
-			s.timestampTrackingMu.Unlock()
-
+			s.removeStaleRefs(time.Now().Add(-15 * time.Minute).Unix())
 		case <-s.stopCleanup:
 			return
 		}
 	}
 }
 
+// staleRefDeleteChunk bounds both the refs buffered per flush and the mappings
+// deleted per refMappingMu acquisition. Neither the write lock nor the buffer ever
+// scales with the size of the map.
+const staleRefDeleteChunk = 8192
+
+// removeStaleRefs evicts every ref last appended before cutoff.
+//
+// The whole scan runs under timestampTrackingMu, as it did before, but refMappingMu
+// is taken per batch rather than across the scan. That keeps GetMapping, which reads
+// under refMappingMu.RLock on every append, from convoying behind an O(N) write.
+func (s *SeriesRefMappingStore) removeStaleRefs(cutoff int64) {
+	// At 8192 refs this is exactly 64KiB, the largest implicit variable the compiler
+	// will stack-allocate, so the buffer costs no heap at all. Raising the chunk
+	// moves it to the heap.
+	batch := make([]storage.SeriesRef, 0, staleRefDeleteChunk)
+	cleaned := 0
+
+	s.timestampTrackingMu.Lock()
+	for ref, ts := range s.uniqueRefTimestamps {
+		if ts >= cutoff {
+			continue
+		}
+		batch = append(batch, ref)
+		delete(s.uniqueRefTimestamps, ref)
+		if len(batch) == staleRefDeleteChunk {
+			cleaned += s.deleteMappings(batch)
+			batch = batch[:0]
+		}
+	}
+	cleaned += s.deleteMappings(batch)
+	s.trackedRefs.Set(float64(len(s.uniqueRefTimestamps)))
+	s.timestampTrackingMu.Unlock()
+
+	if cleaned > 0 {
+		s.refsCleaned.Add(float64(cleaned))
+		s.activeMappings.Sub(float64(cleaned))
+	}
+}
+
+// deleteMappings drops refs' mappings under a single refMappingMu write and returns
+// how many it removed. Callers hold timestampTrackingMu; that ordering matches
+// Clear() and must be preserved to avoid deadlock.
+func (s *SeriesRefMappingStore) deleteMappings(refs []storage.SeriesRef) int {
+	if len(refs) == 0 {
+		return 0
+	}
+
+	s.refMappingMu.Lock()
+	defer s.refMappingMu.Unlock()
+
+	cleaned := 0
+	for _, ref := range refs {
+		if v, ok := s.uniqueRefToChildRefs[ref]; ok {
+			delete(s.labelHashToUniqueRef, v.labelHash)
+			delete(s.uniqueRefToChildRefs, ref)
+			cleaned++
+		}
+	}
+	return cleaned
+}
+
 // Clear will clear all internal mappings and stop the cleaner goroutine if it is running.
 // It is safe to re-use the same instance after calling Clear.
 // Returns the generation boundary; any ref below this value is stale.
 func (s *SeriesRefMappingStore) Clear() storage.SeriesRef {
-	// Stop the cleanup goroutine and wait for it to be stopped so we can
-	// avoid a possible deadlock with cleanup that also holds both locks
+	// Stop the cleanup goroutine and wait for it to exit; we reinitialize
+	// stopCleanup below, so no old worker may outlive it.
 	if s.cleanupStarted.Load() {
 		select {
 		case <-s.stopCleanup:
@@ -489,9 +518,9 @@ func (s *SeriesRefMappingStore) Clear() storage.SeriesRef {
 		}
 	}
 
-	// We need to hold both locks to do this safely and we do it in the same order as
-	// cleanupStaleRefs. We stopped and waited for the background worker that calls it
-	// to finish but some extra safety won't hurt.
+	// Clearing all three maps must be atomic against in-flight appends, so hold both
+	// locks. As in removeStaleRefs, timestampTrackingMu comes before refMappingMu; any
+	// path taking both must use that order to avoid deadlock.
 	s.timestampTrackingMu.Lock()
 	defer s.timestampTrackingMu.Unlock()
 
