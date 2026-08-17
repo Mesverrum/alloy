@@ -1,0 +1,138 @@
+# GENERATED. Matcher model aligns with prometheus/snmp_exporter#1468
+# (fingerprint-based module discovery). Applied here at SD time so
+# targets carry module= and auth= labels; the exporter stays stock.
+fingerprinters:
+  network:
+    probe_oids:
+    - 1.3.6.1.2.1.1.2.0
+    - 1.3.6.1.2.1.1.5.0
+    - 1.3.6.1.2.1.1.1.0
+    default_modules:
+    - if_mib
+    matchers:
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.18\.23$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.18.23
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.22$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.22
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.24$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.24
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.29$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.29
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.30$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.30
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.31$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.31
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.32$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.32
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.33$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.33
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.34$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.34
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.35$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.35
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.36$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.36
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.37$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.37
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.38$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.38
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.39$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.39
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.40$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.40
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.41$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.41
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7\.42$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.42
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.6527\.1\.20\.26$
+      modules:
+      - if_mib
+      - nokia_srlinux
+      comment: nokia_srlinux 1.3.6.1.4.1.6527.1.20.26
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.18$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.18
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.19046\.1\.7(\.[0-9]+)+$
+      modules:
+      - if_mib
+      - lenovo_rackswitch
+      comment: lenovo_rackswitch 1.3.6.1.4.1.19046.1.7.*
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.6527\.1\.20(\.[0-9]+)+$
+      modules:
+      - if_mib
+      - nokia_srlinux
+      comment: nokia_srlinux 1.3.6.1.4.1.6527.1.20.*
