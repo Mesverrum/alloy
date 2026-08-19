@@ -144,7 +144,8 @@ class IpAddrModule(unittest.TestCase):
         v6_labels = {lk["labelname"]: lk for lk in v6["lookups"]}
         self.assertEqual(v6_labels["ifIndex"]["oid"], "1.3.6.1.2.1.4.34.1.3")
         self.assertEqual(v6_labels["ipAddressType"]["type"], "EnumAsInfo")
-        self.assertEqual(v6_labels["ipAddressOrigin"]["enum_values"][4], "dhcp")
+        self.assertNotIn("enum_values", v6_labels["ipAddressOrigin"])
+        self.assertNotIn("enum_values", v6_labels["ipAddressStatus"])
 
     def test_partition_adds_ip_addr_with_if_mib(self):
         tiers = partition_module_chain(["device_base", "if_mib"])

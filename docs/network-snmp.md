@@ -2,7 +2,7 @@
 
 Grafana Alloy network-collector fork: a **curated snmp_exporter module library** plus Prometheus-shaped **SNMP service discovery**. Traps and flow are later slices.
 
-This is a fork of [grafana/alloy](https://github.com/grafana/alloy) (Apache-2.0). Device-family OID lists come from [kentik/snmp-profiles](https://github.com/kentik/snmp-profiles) (Apache-2.0); attribution in [`snmp/NOTICE`](snmp/NOTICE).
+This is a fork of [grafana/alloy](https://github.com/grafana/alloy) (Apache-2.0). Device-family OID lists come from [kentik/snmp-profiles](https://github.com/kentik/snmp-profiles) (Apache-2.0). Attribution: [`snmp/NOTICE`](../snmp/NOTICE). License text for that derived tree: [`snmp/LICENSE`](../snmp/LICENSE) (Apache-2.0). This is not a Kentik trademark license and is not a ktranslate `kentik_snmp_*` name-parity contract.
 
 ## Why this shape
 
