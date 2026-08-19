@@ -1,5 +1,6 @@
-# Thin overlay: stock Grafana Alloy + curated SNMP library + snmp-discovery binary.
-# Does not rebuild Alloy from source.
+# Thin overlay: stock Grafana Alloy + curated SNMP library + snmp-discovery CLI.
+# Does NOT include discovery.snmp (that lives in the Alloy binary — use
+# Dockerfile.network-src to build the fork with the component compiled in).
 #
 #   docker build -f Dockerfile.network -t srl-local/alloy:network-dev .
 FROM golang:1.24-bookworm AS snmp-discovery
@@ -9,7 +10,11 @@ RUN go mod tidy && CGO_ENABLED=0 go build -o /snmp-discovery .
 
 FROM grafana/alloy:latest
 COPY --from=snmp-discovery /snmp-discovery /usr/bin/snmp-discovery
+# Concatenated snmp.yml (Alloy config_file is still singular). Split sources live in
+# snmp/modules/ + snmp/auths.yml — regenerate via tools/snmp-profile-convert/convert.py.
 COPY snmp/snmp-network.yml /etc/alloy/snmp-network.yml
+COPY snmp/auths.yml /etc/alloy/auths.yml
+COPY snmp/modules /etc/alloy/modules
 COPY snmp/sysobjectid-index.yaml /etc/alloy/sysobjectid-index.yaml
 COPY snmp/fingerprinters.yml /etc/alloy/fingerprinters.yml
 COPY snmp/NOTICE /etc/alloy/NOTICE.snmp-profiles

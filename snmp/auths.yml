@@ -1,0 +1,8 @@
+# Named SNMP auths (secrets live here — never on SD labels).
+auths:
+  public_v2:
+    community: public
+    security_level: noAuthNoPriv
+    auth_protocol: MD5
+    priv_protocol: DES
+    version: 2

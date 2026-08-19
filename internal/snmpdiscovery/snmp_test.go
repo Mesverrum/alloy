@@ -1,0 +1,173 @@
+package snmpdiscovery
+
+import (
+	"os"
+	"path/filepath"
+	"testing"
+
+	"github.com/gosnmp/gosnmp"
+)
+
+func writeAuthsYAML(t *testing.T, body string) string {
+	t.Helper()
+	dir := t.TempDir()
+	path := filepath.Join(dir, "snmp.yml")
+	if err := os.WriteFile(path, []byte(body), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	return path
+}
+
+func TestLoadAuthsV2Community(t *testing.T) {
+	path := writeAuthsYAML(t, `
+auths:
+  public_v2:
+    community: lab-public
+    version: 2
+`)
+	auths, err := loadAuths(path, []string{"public_v2"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(auths) != 1 {
+		t.Fatalf("len=%d", len(auths))
+	}
+	a := auths[0]
+	if a.Name != "public_v2" || a.Community != "lab-public" || a.Version != gosnmp.Version2c {
+		t.Fatalf("unexpected: %+v", a)
+	}
+}
+
+func TestLoadAuthsV3AuthPriv(t *testing.T) {
+	path := writeAuthsYAML(t, `
+auths:
+  dc1_v3:
+    version: 3
+    security_level: authPriv
+    username: netops
+    password: auth-secret
+    auth_protocol: SHA
+    priv_protocol: AES
+    priv_password: priv-secret
+    context_name: mgmt
+`)
+	auths, err := loadAuths(path, []string{"dc1_v3"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	a := auths[0]
+	if a.Version != gosnmp.Version3 {
+		t.Fatalf("version=%v", a.Version)
+	}
+	if a.Username != "netops" || a.Password != "auth-secret" || a.PrivPassword != "priv-secret" {
+		t.Fatalf("secrets mismatch: %+v", a)
+	}
+	if a.MsgFlags != gosnmp.AuthPriv {
+		t.Fatalf("MsgFlags=%v", a.MsgFlags)
+	}
+	if a.AuthProtocol != gosnmp.SHA || a.PrivProtocol != gosnmp.AES {
+		t.Fatalf("protocols auth=%v priv=%v", a.AuthProtocol, a.PrivProtocol)
+	}
+	if a.ContextName != "mgmt" {
+		t.Fatalf("context=%q", a.ContextName)
+	}
+	if a.Community != "" {
+		t.Fatalf("v3 must not set community, got %q", a.Community)
+	}
+}
+
+func TestLoadAuthsV3AuthNoPriv(t *testing.T) {
+	path := writeAuthsYAML(t, `
+auths:
+  edge_v3:
+    version: 3
+    security_level: authNoPriv
+    username: monitor
+    password: only-auth
+    auth_protocol: SHA256
+`)
+	auths, err := loadAuths(path, []string{"edge_v3"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	a := auths[0]
+	if a.MsgFlags != gosnmp.AuthNoPriv {
+		t.Fatalf("MsgFlags=%v", a.MsgFlags)
+	}
+	if a.AuthProtocol != gosnmp.SHA256 || a.PrivProtocol != gosnmp.NoPriv {
+		t.Fatalf("protocols auth=%v priv=%v", a.AuthProtocol, a.PrivProtocol)
+	}
+}
+
+func TestLoadAuthsV3MissingUsername(t *testing.T) {
+	path := writeAuthsYAML(t, `
+auths:
+  bad:
+    version: 3
+    security_level: noAuthNoPriv
+`)
+	if _, err := loadAuths(path, []string{"bad"}); err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestLoadAuthsV3AuthPrivRequiresPrivPassword(t *testing.T) {
+	path := writeAuthsYAML(t, `
+auths:
+  bad:
+    version: 3
+    security_level: authPriv
+    username: u
+    password: p
+    auth_protocol: SHA
+    priv_protocol: AES
+`)
+	if _, err := loadAuths(path, []string{"bad"}); err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestNewGoSNMPV3ConfiguresUSM(t *testing.T) {
+	auth := snmpAuth{
+		Name:         "dc1_v3",
+		Version:      gosnmp.Version3,
+		Username:     "netops",
+		Password:     "auth-secret",
+		PrivPassword: "priv-secret",
+		ContextName:  "mgmt",
+		MsgFlags:     gosnmp.AuthPriv,
+		AuthProtocol: gosnmp.SHA,
+		PrivProtocol: gosnmp.AES,
+	}
+	g := newGoSNMP("10.0.0.1", 161, 0, 0, auth)
+	if g.Version != gosnmp.Version3 || g.SecurityModel != gosnmp.UserSecurityModel {
+		t.Fatalf("version/model: %v %v", g.Version, g.SecurityModel)
+	}
+	if g.MsgFlags != gosnmp.AuthPriv || g.ContextName != "mgmt" {
+		t.Fatalf("flags/context: %v %q", g.MsgFlags, g.ContextName)
+	}
+	usp, ok := g.SecurityParameters.(*gosnmp.UsmSecurityParameters)
+	if !ok || usp == nil {
+		t.Fatal("expected UsmSecurityParameters")
+	}
+	if usp.UserName != "netops" || usp.AuthenticationPassphrase != "auth-secret" || usp.PrivacyPassphrase != "priv-secret" {
+		t.Fatalf("usp secrets: %+v", usp)
+	}
+	if usp.AuthenticationProtocol != gosnmp.SHA || usp.PrivacyProtocol != gosnmp.AES {
+		t.Fatalf("usp protocols: %+v", usp)
+	}
+	if g.Community != "" {
+		t.Fatalf("community should be empty for v3, got %q", g.Community)
+	}
+}
+
+func TestNewGoSNMPV2UsesCommunity(t *testing.T) {
+	auth := snmpAuth{Name: "public_v2", Community: "public", Version: gosnmp.Version2c}
+	g := newGoSNMP("10.0.0.1", 161, 0, 0, auth)
+	if g.Community != "public" || g.Version != gosnmp.Version2c {
+		t.Fatalf("%+v", g)
+	}
+	if g.SecurityParameters != nil {
+		t.Fatal("v2 must not set SecurityParameters")
+	}
+}

@@ -11,17 +11,35 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// snmpAuth is a named snmp_exporter auth (secrets stay here — never on SD labels).
 type snmpAuth struct {
-	Name      string
-	Community string
-	Version   gosnmp.SnmpVersion
+	Name         string
+	Community    string
+	Version      gosnmp.SnmpVersion
+	Username     string
+	Password     string
+	PrivPassword string
+	ContextName  string
+	MsgFlags     gosnmp.SnmpV3MsgFlags
+	AuthProtocol gosnmp.SnmpV3AuthProtocol
+	PrivProtocol gosnmp.SnmpV3PrivProtocol
+}
+
+// snmpAuthYAML mirrors prometheus/snmp_exporter config.Auth fields we need.
+type snmpAuthYAML struct {
+	Community     string `yaml:"community"`
+	Version       int    `yaml:"version"`
+	Username      string `yaml:"username"`
+	Password      string `yaml:"password"`
+	PrivPassword  string `yaml:"priv_password"`
+	ContextName   string `yaml:"context_name"`
+	SecurityLevel string `yaml:"security_level"`
+	AuthProtocol  string `yaml:"auth_protocol"`
+	PrivProtocol  string `yaml:"priv_protocol"`
 }
 
 type snmpFile struct {
-	Auths map[string]struct {
-		Community string `yaml:"community"`
-		Version   int    `yaml:"version"`
-	} `yaml:"auths"`
+	Auths map[string]snmpAuthYAML `yaml:"auths"`
 }
 
 func loadAuths(path string, names []string) ([]snmpAuth, error) {
@@ -45,20 +63,171 @@ func loadAuths(path string, names []string) ([]snmpAuth, error) {
 		if !ok {
 			return nil, fmt.Errorf("auth %q not in %s", n, path)
 		}
-		ver := gosnmp.Version2c
-		if a.Version == 1 {
-			ver = gosnmp.Version1
+		parsed, err := parseAuth(n, a)
+		if err != nil {
+			return nil, err
 		}
-		comm := a.Community
-		if comm == "" {
-			comm = "public"
-		}
-		out = append(out, snmpAuth{Name: n, Community: comm, Version: ver})
+		out = append(out, parsed)
 	}
 	if len(out) == 0 {
 		return nil, fmt.Errorf("no auths to try")
 	}
 	return out, nil
+}
+
+func parseAuth(name string, a snmpAuthYAML) (snmpAuth, error) {
+	out := snmpAuth{Name: name, ContextName: a.ContextName}
+	switch a.Version {
+	case 1:
+		out.Version = gosnmp.Version1
+	case 3:
+		out.Version = gosnmp.Version3
+	case 0, 2:
+		out.Version = gosnmp.Version2c
+	default:
+		return snmpAuth{}, fmt.Errorf("auth %q: unsupported version %d", name, a.Version)
+	}
+
+	if out.Version != gosnmp.Version3 {
+		out.Community = a.Community
+		if out.Community == "" {
+			out.Community = "public"
+		}
+		return out, nil
+	}
+
+	out.Username = a.Username
+	out.Password = a.Password
+	out.PrivPassword = a.PrivPassword
+	if out.Username == "" {
+		return snmpAuth{}, fmt.Errorf("auth %q: version 3 requires username", name)
+	}
+
+	flags, err := parseSecurityLevel(a.SecurityLevel)
+	if err != nil {
+		return snmpAuth{}, fmt.Errorf("auth %q: %w", name, err)
+	}
+	out.MsgFlags = flags
+
+	authProto, err := parseAuthProtocol(a.AuthProtocol)
+	if err != nil {
+		return snmpAuth{}, fmt.Errorf("auth %q: %w", name, err)
+	}
+	privProto, err := parsePrivProtocol(a.PrivProtocol)
+	if err != nil {
+		return snmpAuth{}, fmt.Errorf("auth %q: %w", name, err)
+	}
+
+	switch flags {
+	case gosnmp.NoAuthNoPriv:
+		out.AuthProtocol = gosnmp.NoAuth
+		out.PrivProtocol = gosnmp.NoPriv
+	case gosnmp.AuthNoPriv:
+		if out.Password == "" {
+			return snmpAuth{}, fmt.Errorf("auth %q: authNoPriv requires password", name)
+		}
+		out.AuthProtocol = authProto
+		if out.AuthProtocol == gosnmp.NoAuth {
+			out.AuthProtocol = gosnmp.SHA
+		}
+		out.PrivProtocol = gosnmp.NoPriv
+	case gosnmp.AuthPriv:
+		if out.Password == "" {
+			return snmpAuth{}, fmt.Errorf("auth %q: authPriv requires password", name)
+		}
+		if out.PrivPassword == "" {
+			return snmpAuth{}, fmt.Errorf("auth %q: authPriv requires priv_password", name)
+		}
+		out.AuthProtocol = authProto
+		if out.AuthProtocol == gosnmp.NoAuth {
+			out.AuthProtocol = gosnmp.SHA
+		}
+		out.PrivProtocol = privProto
+		if out.PrivProtocol == gosnmp.NoPriv {
+			out.PrivProtocol = gosnmp.AES
+		}
+	}
+	return out, nil
+}
+
+func parseSecurityLevel(s string) (gosnmp.SnmpV3MsgFlags, error) {
+	switch strings.ToLower(strings.TrimSpace(s)) {
+	case "", "noauthnopriv":
+		return gosnmp.NoAuthNoPriv, nil
+	case "authnopriv":
+		return gosnmp.AuthNoPriv, nil
+	case "authpriv":
+		return gosnmp.AuthPriv, nil
+	default:
+		return 0, fmt.Errorf("unknown security_level %q (want noAuthNoPriv|authNoPriv|authPriv)", s)
+	}
+}
+
+func parseAuthProtocol(s string) (gosnmp.SnmpV3AuthProtocol, error) {
+	switch strings.ToUpper(strings.TrimSpace(s)) {
+	case "", "MD5":
+		return gosnmp.MD5, nil
+	case "SHA", "SHA1":
+		return gosnmp.SHA, nil
+	case "SHA224":
+		return gosnmp.SHA224, nil
+	case "SHA256":
+		return gosnmp.SHA256, nil
+	case "SHA384":
+		return gosnmp.SHA384, nil
+	case "SHA512":
+		return gosnmp.SHA512, nil
+	case "NOAUTH":
+		return gosnmp.NoAuth, nil
+	default:
+		return 0, fmt.Errorf("unknown auth_protocol %q", s)
+	}
+}
+
+func parsePrivProtocol(s string) (gosnmp.SnmpV3PrivProtocol, error) {
+	switch strings.ToUpper(strings.TrimSpace(s)) {
+	case "", "DES":
+		return gosnmp.DES, nil
+	case "AES", "AES128":
+		return gosnmp.AES, nil
+	case "AES192":
+		return gosnmp.AES192, nil
+	case "AES256":
+		return gosnmp.AES256, nil
+	case "AES192C":
+		return gosnmp.AES192C, nil
+	case "AES256C":
+		return gosnmp.AES256C, nil
+	case "NOPRIV":
+		return gosnmp.NoPriv, nil
+	default:
+		return 0, fmt.Errorf("unknown priv_protocol %q", s)
+	}
+}
+
+func newGoSNMP(addr string, port uint16, timeout time.Duration, retries int, auth snmpAuth) *gosnmp.GoSNMP {
+	g := &gosnmp.GoSNMP{
+		Target:  addr,
+		Port:    port,
+		Timeout: timeout,
+		Retries: retries,
+		Version: auth.Version,
+	}
+	if auth.Version == gosnmp.Version3 {
+		g.SecurityModel = gosnmp.UserSecurityModel
+		g.MsgFlags = auth.MsgFlags
+		g.ContextName = auth.ContextName
+		g.SecurityParameters = &gosnmp.UsmSecurityParameters{
+			UserName:                 auth.Username,
+			AuthenticationProtocol:   auth.AuthProtocol,
+			AuthenticationPassphrase: auth.Password,
+			PrivacyProtocol:          auth.PrivProtocol,
+			PrivacyPassphrase:        auth.PrivPassword,
+		}
+		return g
+	}
+	g.Community = auth.Community
+	return g
 }
 
 type probeResult struct {
@@ -75,14 +244,7 @@ func probe(addr string, port uint16, timeout time.Duration, retries int, auths [
 	}
 	var last error
 	for _, auth := range auths {
-		g := &gosnmp.GoSNMP{
-			Target:    addr,
-			Port:      port,
-			Community: auth.Community,
-			Version:   auth.Version,
-			Timeout:   timeout,
-			Retries:   retries,
-		}
+		g := newGoSNMP(addr, port, timeout, retries, auth)
 		if err := g.Connect(); err != nil {
 			last = err
 			continue

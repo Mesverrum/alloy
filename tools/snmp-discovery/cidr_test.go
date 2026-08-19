@@ -46,9 +46,79 @@ func TestExpandCIDR24SkipsNetworkBroadcast(t *testing.T) {
 	}
 }
 
+func TestExpandAllows22Rejects21(t *testing.T) {
+	if _, err := expandCIDRs([]string{"10.0.0.0/22"}, false); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := expandCIDRs([]string{"10.0.0.0/21"}, false); err == nil {
+		t.Fatal("expected /21 to require allow_large")
+	}
+}
+
 func TestExpandRejectsLargeCIDR(t *testing.T) {
 	_, err := expandCIDRs([]string{"10.0.0.0/16"}, false)
 	if err == nil {
 		t.Fatal("expected --allow-large error")
 	}
 }
+
+func TestCanonIPAcceptsBracketsAndPort(t *testing.T) {
+	got, err := canonIP("[2001:db8::1]:161")
+	if err != nil || got != "2001:db8::1" {
+		t.Fatalf("got %q err=%v", got, err)
+	}
+	got, err = canonIP("2001:db8::1")
+	if err != nil || got != "2001:db8::1" {
+		t.Fatalf("got %q err=%v", got, err)
+	}
+}
+
+func TestExpandIPv6BareAnd128(t *testing.T) {
+	ips, err := expandCIDRs([]string{"2001:db8::5"}, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(ips) != 1 || ips[0] != "2001:db8::5" {
+		t.Fatalf("got %v", ips)
+	}
+	ips, err = expandCIDRs([]string{"2001:db8::a/128"}, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(ips) != 1 || ips[0] != "2001:db8::a" {
+		t.Fatalf("got %v", ips)
+	}
+}
+
+func TestExpandIPv6Allows118Rejects117(t *testing.T) {
+	if _, err := expandCIDRs([]string{"2001:db8::/118"}, false); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := expandCIDRs([]string{"2001:db8::/117"}, false); err == nil {
+		t.Fatal("expected /117 to require allow_large")
+	}
+}
+
+func TestParseIPNetsBareIPv6Is128(t *testing.T) {
+	nets, err := parseIPNets([]string{"2001:db8::1"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	ones, bits := nets[0].Mask.Size()
+	if bits != 128 || ones != 128 {
+		t.Fatalf("want /128, got /%d bits=%d", ones, bits)
+	}
+	if !ipInNets("2001:db8::1", nets) {
+		t.Fatal("should contain")
+	}
+	if ipInNets("2001:db8::2", nets) {
+		t.Fatal("should not contain sibling")
+	}
+}
+
+func TestNameAddrSuffixStripsColons(t *testing.T) {
+	if s := nameAddrSuffix("2001:db8::1"); s != "2001-db8--1" {
+		t.Fatalf("got %q", s)
+	}
+}
+

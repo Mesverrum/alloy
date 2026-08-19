@@ -6,12 +6,16 @@ import (
 	"fmt"
 	"reflect"
 	"sync"
+	"sync/atomic"
 
+	"github.com/prometheus/prometheus/model/labels"
 	"github.com/prometheus/prometheus/model/relabel"
 
 	"github.com/grafana/alloy/internal/component"
+	"github.com/grafana/alloy/internal/component/common/devicejoin"
 	"github.com/grafana/alloy/internal/component/common/loki"
 	alloy_relabel "github.com/grafana/alloy/internal/component/common/relabel"
+	"github.com/grafana/alloy/internal/component/discovery"
 	scrapeconfig "github.com/grafana/alloy/internal/component/loki/source/syslog/config"
 	st "github.com/grafana/alloy/internal/component/loki/source/syslog/internal/syslogtarget"
 	"github.com/grafana/alloy/internal/featuregate"
@@ -37,6 +41,10 @@ type Arguments struct {
 	SyslogListeners []ListenerConfig    `alloy:"listener,block"`
 	ForwardTo       []loki.LogsReceiver `alloy:"forward_to,attr"`
 	RelabelRules    alloy_relabel.Rules `alloy:"relabel_rules,attr,optional"`
+	// Targets is an optional discovery catalog (typically discovery.snmp.targets
+	// or a file-SD YAML with address / device_name). Source IP, then hostname,
+	// is joined to device_name at receive time without restarting listeners.
+	Targets []discovery.Target `alloy:"targets,attr,optional"`
 }
 
 // Component implements the loki.source.syslog component.
@@ -52,6 +60,7 @@ type Component struct {
 	liveDbgListener st.DebugListener
 
 	targetsUpdated chan struct{}
+	join           atomic.Pointer[devicejoin.Index]
 }
 
 // LiveDebugging implements component.LiveDebugging.
@@ -126,6 +135,7 @@ func (c *Component) Update(args component.Arguments) error {
 	}
 
 	c.fanout.UpdateChildren(newArgs.ForwardTo)
+	c.join.Store(devicejoin.NewIndex(newArgs.Targets))
 
 	prevArgs := c.args
 	c.args = newArgs
@@ -197,6 +207,7 @@ func (c *Component) reloadTargets() {
 			Relabel:       rcs,
 			Config:        promtailCfg,
 			DebugListener: c.liveDbgListener,
+			EnrichLabels:  c.enrichLabels,
 		})
 		if err != nil {
 			c.opts.Logger.Error("failed to create syslog listener with provided config", "err", err)
@@ -230,6 +241,34 @@ type listenerInfo struct {
 	Ready         bool   `alloy:"ready,attr"`
 	ListenAddress string `alloy:"listen_address,attr"`
 	Labels        string `alloy:"labels,attr"`
+}
+
+func (c *Component) enrichLabels(lb *labels.Builder) {
+	if c == nil || lb == nil {
+		return
+	}
+	idx := c.join.Load()
+	if idx.Len() == 0 {
+		return
+	}
+	ip := lb.Get("__syslog_connection_ip_address")
+	host := lb.Get("__syslog_message_hostname")
+	id, ok := idx.Lookup(ip, host)
+	if ok {
+		if id.DeviceName != "" {
+			lb.Set("device_name", id.DeviceName)
+		}
+		if id.Group != "" {
+			lb.Set("snmp_group", id.Group)
+		}
+		if c.metrics != nil && c.metrics.Joined() != nil {
+			c.metrics.Joined().Inc()
+		}
+		return
+	}
+	if c.metrics != nil && c.metrics.Unjoined() != nil {
+		c.metrics.Unjoined().Inc()
+	}
 }
 
 func listenersChanged(prev, next []ListenerConfig) bool {

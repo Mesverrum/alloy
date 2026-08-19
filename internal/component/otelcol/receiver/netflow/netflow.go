@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/grafana/alloy/internal/component"
+	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/component/otelcol"
 	otelcolConfig "github.com/grafana/alloy/internal/component/otelcol/config"
 	"github.com/grafana/alloy/internal/component/otelcol/receiver"
@@ -20,8 +21,7 @@ func init() {
 		Stability: featuregate.StabilityExperimental,
 		Args:      Arguments{},
 		Build: func(opts component.Options, args component.Arguments) (component.Component, error) {
-			factory := netflowreceiver.NewFactory()
-			return receiver.New(opts, factory, args.(Arguments))
+			return New(opts, args.(Arguments))
 		},
 	})
 }
@@ -33,8 +33,9 @@ var (
 )
 
 // Arguments configures otelcol.receiver.netflow.
-// The component is a thin wrap of the upstream contrib netflow receiver
-// (logs only — NetFlow/IPFIX or sFlow).
+// The component wraps the upstream contrib netflow receiver (logs only —
+// NetFlow/IPFIX or sFlow) and optionally joins flow.sampler_address to a
+// discovery catalog without restarting the UDP listener.
 type Arguments struct {
 	// Scheme is the flow protocol: "netflow" (NetFlow v5/v9 + IPFIX) or "sflow".
 	Scheme string `alloy:"scheme,attr,optional"`
@@ -51,6 +52,11 @@ type Arguments struct {
 	// SendRaw forwards the undecoded goflow2 message as the log body
 	// instead of parsed attributes.
 	SendRaw bool `alloy:"send_raw,attr,optional"`
+
+	// Targets is an optional discovery catalog (typically discovery.snmp.targets
+	// or file-SD YAML with address / device_name / snmp_aliases). flow.sampler_address
+	// is joined to device_name at receive time without restarting the UDP listener.
+	Targets []discovery.Target `alloy:"targets,attr,optional"`
 
 	// DebugMetrics configures component internal metrics. Optional.
 	DebugMetrics otelcolConfig.DebugMetricsArguments `alloy:"debug_metrics,block,optional"`

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"gopkg.in/yaml.v3"
@@ -11,18 +12,59 @@ import (
 
 // AlloyTarget is what prometheus.exporter.snmp targets = encoding.from_yaml(...) expects.
 type AlloyTarget struct {
-	Name        string `yaml:"name" json:"name"`
-	Address     string `yaml:"address" json:"address"`
-	Module      string `yaml:"module" json:"module"`
-	Auth        string `yaml:"auth" json:"auth"`
-	DeviceName  string `yaml:"device_name" json:"device_name"`
-	SysObjectID string `yaml:"sysObjectID,omitempty" json:"sysObjectID,omitempty"`
+	Name             string `yaml:"name" json:"name"`
+	Address          string `yaml:"address" json:"address"`
+	Module           string `yaml:"module" json:"module"` // hot tier (60s)
+	ModuleCold       string `yaml:"module_cold,omitempty" json:"module_cold,omitempty"`
+	ModuleTopology   string `yaml:"module_topology,omitempty" json:"module_topology,omitempty"`
+	Auth             string `yaml:"auth" json:"auth"`
+	DeviceName       string `yaml:"device_name" json:"device_name"`
+	SysObjectID      string `yaml:"sysObjectID,omitempty" json:"sysObjectID,omitempty"`
+	SnmpGroup        string `yaml:"snmp_group,omitempty" json:"snmp_group,omitempty"`
 }
 
 // FileSDGroup is Prometheus file_sd / HTTP SD.
 type FileSDGroup struct {
 	Targets []string          `json:"targets"`
 	Labels  map[string]string `json:"labels"`
+}
+
+// writeFileAtomic writes b to path via a same-dir temp file + rename so
+// Alloy/local.file never observes a truncated catalog mid-write.
+func writeFileAtomic(path string, b []byte, mode os.FileMode) error {
+	dir := filepath.Dir(path)
+	base := filepath.Base(path)
+	tmp, err := os.CreateTemp(dir, "."+base+".tmp-*")
+	if err != nil {
+		return err
+	}
+	tmpName := tmp.Name()
+	ok := false
+	defer func() {
+		if !ok {
+			_ = os.Remove(tmpName)
+		}
+	}()
+	if _, err := tmp.Write(b); err != nil {
+		_ = tmp.Close()
+		return err
+	}
+	if err := tmp.Chmod(mode); err != nil {
+		_ = tmp.Close()
+		return err
+	}
+	if err := tmp.Sync(); err != nil {
+		_ = tmp.Close()
+		return err
+	}
+	if err := tmp.Close(); err != nil {
+		return err
+	}
+	if err := os.Rename(tmpName, path); err != nil {
+		return err
+	}
+	ok = true
+	return nil
 }
 
 func writeAlloyYAML(path string, targets []AlloyTarget) error {
@@ -33,22 +75,46 @@ func writeAlloyYAML(path string, targets []AlloyTarget) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path, b, 0o644)
+	return writeFileAtomic(path, b, 0o644)
 }
 
-func writeFileSD(path string, targets []AlloyTarget) error {
+func readAlloyYAML(path string) ([]AlloyTarget, error) {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	var targets []AlloyTarget
+	if err := yaml.Unmarshal(b, &targets); err != nil {
+		return nil, err
+	}
+	return targets, nil
+}
+
+// httpSDGroups is Prometheus HTTP/file SD. prometheusParams=true writes
+// __param_module / __param_auth (classic snmp_exporter). false writes
+// name / module / auth / address for Alloy prometheus.exporter.snmp.
+// Community is never written. Do not mix the two: __param_* on the Alloy
+// path is not in ignoredLabels and would leak onto series.
+func httpSDGroups(targets []AlloyTarget, prometheusParams bool) []FileSDGroup {
 	groups := make([]FileSDGroup, 0, len(targets))
 	for _, t := range targets {
-		// Prometheus + snmp_exporter contract: module/auth as __param_* so
-		// they become /snmp query params, not series labels. Community is
-		// never written. Same named-auth model as snmp.yml `auths:`.
-		labels := map[string]string{
-			"__param_module": t.Module,
-			"__param_auth":   t.Auth,
-			"device_name":    t.DeviceName,
+		labels := map[string]string{}
+		if prometheusParams {
+			labels["__param_module"] = t.Module
+			labels["__param_auth"] = t.Auth
+			labels["device_name"] = t.DeviceName
+		} else {
+			labels["name"] = t.Name
+			labels["module"] = t.Module
+			labels["auth"] = t.Auth
+			labels["address"] = t.Address
+			labels["device_name"] = t.DeviceName
 		}
 		if t.SysObjectID != "" {
 			labels["sysObjectID"] = t.SysObjectID
+		}
+		if t.SnmpGroup != "" {
+			labels["snmp_group"] = t.SnmpGroup
 		}
 		groups = append(groups, FileSDGroup{
 			Targets: []string{t.Address},
@@ -58,24 +124,51 @@ func writeFileSD(path string, targets []AlloyTarget) error {
 	if groups == nil {
 		groups = []FileSDGroup{}
 	}
+	return groups
+}
+
+func writeFileSD(path string, targets []AlloyTarget) error {
+	groups := httpSDGroups(targets, true)
 	b, err := json.MarshalIndent(groups, "", "  ")
 	if err != nil {
 		return err
 	}
 	b = append(b, '\n')
-	return os.WriteFile(path, b, 0o644)
+	return writeFileAtomic(path, b, 0o644)
 }
 
-func targetName(sysName, addr string) string {
+// targetNames returns Alloy name (must be unique across targets) and device_name
+// (human/sysName for joins — may duplicate).
+func targetNames(sysName, addr string) (name, deviceName string) {
+	addr = mustCanonIP(addr)
 	n := strings.TrimSpace(sysName)
 	if n == "" || n == addr {
-		return addr
+		return nameAddrSuffix(addr), addr
 	}
-	// sysName can be FQDN; take first label for the Alloy target name.
 	if i := strings.IndexByte(n, '.'); i > 0 {
 		n = n[:i]
 	}
-	return n
+	return n, n
+}
+
+// uniquifyNames ensures prometheus.exporter.snmp `name` is unique. On collision,
+// suffixes with -<address>. device_name is left as the friendly sysName.
+func uniquifyNames(targets []AlloyTarget) {
+	used := map[string]string{} // name -> address that owns it
+	for i := range targets {
+		name := strings.TrimSpace(targets[i].Name)
+		if name == "" {
+			name = targets[i].Address
+		}
+		if owner, ok := used[name]; ok && owner != targets[i].Address {
+			name = name + "-" + nameAddrSuffix(targets[i].Address)
+		}
+		if owner, ok := used[name]; ok && owner != targets[i].Address {
+			name = nameAddrSuffix(targets[i].Address)
+		}
+		used[name] = targets[i].Address
+		targets[i].Name = name
+	}
 }
 
 func joinModules(mods []string) string {

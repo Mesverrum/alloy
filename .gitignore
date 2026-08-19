@@ -46,6 +46,12 @@ collector/otel_engine.exe
 CLAUDE.local.md
 .codex/
 
+# Optional local leftover from an abandoned MIB-corpus experiment.
+/snmp/mibs/
+snmp/*.missing
+tools/snmp-profile-convert/__pycache__/
+tools/snmp-profile-convert/tmp-*.sh
+
 # Beyla embedded binaries (downloaded at build time)
 internal/component/beyla/ebpf/binaries/amd64/beyla
 internal/component/beyla/ebpf/binaries/arm64/beyla

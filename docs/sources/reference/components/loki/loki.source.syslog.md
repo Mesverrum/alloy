@@ -52,6 +52,7 @@ You can use the following arguments with `loki.source.syslog`:
 | --------------- | -------------------- | ----------------------------------------- | ------- | -------- |
 | `forward_to`    | `list(LogsReceiver)` | List of receivers to send log entries to. |         | yes      |
 | `relabel_rules` | `RelabelRules`       | Relabel rules for log entries.            | `{}`    | no       |
+| `targets`       | `list(map(string))`  | Optional discovery catalog (typically [`discovery.snmp`](../../discovery/discovery.snmp.md) `.targets`). Joins UDP/TCP source IP, then `__syslog_message_hostname`, to `device_name`. Catalog refresh does not restart listeners. | | no |
 
 The `relabel_rules` field accepts the `rules` export from a [`loki.relabel`][loki.relabel] component.
 It applies the rules to log entries before `loki.source.syslog` forwards them to `forward_to`.
@@ -74,6 +75,8 @@ It applies the rules to log entries before `loki.source.syslog` forwards them to
 
 If `label_structured_data` is `true` and the parsed message has [RFC5424](https://www.rfc-editor.org/rfc/rfc5424) structured data, the component adds labels with the prefix `__syslog_message_sd_` to the log entry.
 For example, structured data of `[example@99999 test="value"]` produces the label `__syslog_message_sd_example_99999_test` with a value of `value`.
+
+When `targets` is set, a matching catalog IP (or hostname equal to `device_name`) stamps `device_name` and `snmp_group` as **kept** labels. Collapsed extra IPs are on `snmp_aliases`. `loki_source_syslog_joined_total` / `unjoined_total` increment only while a catalog is set.
 
 The syslog source removes all labels with a `__` prefix before it passes log entries to the next component in the pipeline.
 To keep the `__syslog_` labels, use rules in the `relabel_rules` argument to move them to labels that don't have a `__` prefix.
@@ -288,6 +291,8 @@ configuration.
 - `loki_source_syslog_empty_messages_total` `counter`: Total number of empty messages the syslog component received.
 - `loki_source_syslog_entries_total` `counter`: Total number of successful entries the syslog component sent.
 - `loki_source_syslog_parsing_errors_total` `counter`: Total number of parse errors from the syslog component.
+- `loki_source_syslog_joined_total` `counter`: Messages whose source IP or hostname matched a `targets` identity. Only increments when `targets` is set.
+- `loki_source_syslog_unjoined_total` `counter`: Messages received while `targets` was set but the source was unknown.
 
 ## Example
 

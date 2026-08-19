@@ -1,0 +1,108 @@
+# GENERATED from kentik/snmp-profiles — module entity_sensor_mib
+# Discovery chain is if_mib + vendor; SNMPv2 identity is inlined as snmp_device_info.
+modules:
+  entity_sensor_mib:
+    walk:
+    - 1.3.6.1.2.1.99.1.1
+    metrics:
+    - name: snmp_entPhySensorValue
+      oid: 1.3.6.1.2.1.99.1.1.1.4
+      type: gauge
+      help: entPhySensorValue (ENTITY-SENSOR-MIB) - 1.3.6.1.2.1.99.1.1.1.4
+      indexes:
+      - labelname: entPhysicalIndex
+        type: gauge
+      lookups:
+      - labels: &id001
+        - entPhysicalIndex
+        labelname: sensor_type
+        oid: 1.3.6.1.2.1.99.1.1.1.1
+        type: EnumAsInfo
+      - labels: &id002
+        - entPhysicalIndex
+        labelname: sensor_scale
+        oid: 1.3.6.1.2.1.99.1.1.1.2
+        type: EnumAsInfo
+      - labels: &id003
+        - entPhysicalIndex
+        labelname: sensor_precision
+        oid: 1.3.6.1.2.1.99.1.1.1.3
+        type: DisplayString
+      - labels: &id004
+        - entPhysicalIndex
+        labelname: sensor_units
+        oid: 1.3.6.1.2.1.99.1.1.1.6
+        type: DisplayString
+      - labels: &id005
+        - entPhysicalIndex
+        labelname: entity_description
+        oid: 1.3.6.1.2.1.47.1.1.1.1.2
+        type: DisplayString
+      - labels: &id006
+        - entPhysicalIndex
+        labelname: entity_class
+        oid: 1.3.6.1.2.1.47.1.1.1.1.5
+        type: EnumAsInfo
+      - labels: &id007
+        - entPhysicalIndex
+        labelname: entity_name
+        oid: 1.3.6.1.2.1.47.1.1.1.1.7
+        type: DisplayString
+      - labels: &id008
+        - entPhysicalIndex
+        labelname: entity_serial
+        oid: 1.3.6.1.2.1.47.1.1.1.1.11
+        type: DisplayString
+      - labels: &id009
+        - entPhysicalIndex
+        labelname: entity_model
+        oid: 1.3.6.1.2.1.47.1.1.1.1.13
+        type: DisplayString
+    - name: snmp_entPhySensorOperStatus
+      oid: 1.3.6.1.2.1.99.1.1.1.5
+      type: gauge
+      help: entPhySensorOperStatus (ENTITY-SENSOR-MIB) - 1.3.6.1.2.1.99.1.1.1.5
+      indexes:
+      - labelname: entPhysicalIndex
+        type: gauge
+      lookups:
+      - labels: *id001
+        labelname: sensor_type
+        oid: 1.3.6.1.2.1.99.1.1.1.1
+        type: EnumAsInfo
+      - labels: *id002
+        labelname: sensor_scale
+        oid: 1.3.6.1.2.1.99.1.1.1.2
+        type: EnumAsInfo
+      - labels: *id003
+        labelname: sensor_precision
+        oid: 1.3.6.1.2.1.99.1.1.1.3
+        type: DisplayString
+      - labels: *id004
+        labelname: sensor_units
+        oid: 1.3.6.1.2.1.99.1.1.1.6
+        type: DisplayString
+      - labels: *id005
+        labelname: entity_description
+        oid: 1.3.6.1.2.1.47.1.1.1.1.2
+        type: DisplayString
+      - labels: *id006
+        labelname: entity_class
+        oid: 1.3.6.1.2.1.47.1.1.1.1.5
+        type: EnumAsInfo
+      - labels: *id007
+        labelname: entity_name
+        oid: 1.3.6.1.2.1.47.1.1.1.1.7
+        type: DisplayString
+      - labels: *id008
+        labelname: entity_serial
+        oid: 1.3.6.1.2.1.47.1.1.1.1.11
+        type: DisplayString
+      - labels: *id009
+        labelname: entity_model
+        oid: 1.3.6.1.2.1.47.1.1.1.1.13
+        type: DisplayString
+      enum_values:
+        1: ok
+        2: unavailable
+        3: nonoperational

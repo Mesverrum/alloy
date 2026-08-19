@@ -31,6 +31,10 @@ Parsed log attributes follow the upstream receiver (OpenTelemetry semantic conve
 * `network.transport`, `network.type`
 * `flow.io.bytes`, `flow.io.packets`, `flow.sampler_address`, `flow.type`, `flow.sampling_rate`
 
+When `targets` is set, a matching catalog IP (primary `address` or `snmp_aliases`) stamps `device_name` and `snmp_group` on the log record. Catalog refreshes do **not** restart the UDP listener — only listen settings (`scheme`, `hostname`, `port`, sockets/workers/queue, `send_raw`) or `output` do.
+
+`otelcol_receiver_netflow_joined_total` / `unjoined_total` increment only while a catalog is set.
+
 ## Usage
 
 ```alloy
@@ -57,6 +61,7 @@ You can use the following arguments with `otelcol.receiver.netflow`:
 | `workers`    | `number` | Decode workers.                                                             | `2`         | no       |
 | `queue_size` | `number` | Inbound packet queue depth.                                                 | `1000`      | no       |
 | `send_raw`   | `bool`   | Forward the undecoded message as the log body instead of parsed attributes. | `false`     | no       |
+| `targets`    | `list(map(string))` | Optional discovery catalog (typically [`discovery.snmp`](../../discovery/discovery.snmp.md) `.targets` or file-SD with `address` / `device_name` / `snmp_aliases`). Joins `flow.sampler_address` to `device_name` without restarting the UDP listener. Matching `source.address` / `destination.address` stamp `src_device` / `dst_device`. | | no |
 
 ## Blocks
 
@@ -98,7 +103,10 @@ You can use the following blocks with `otelcol.receiver.netflow`:
 
 ## Debug metrics
 
-`otelcol.receiver.netflow` doesn't expose any component-specific debug metrics.
+* `otelcol_receiver_netflow_joined_total` `counter`: Flow records whose `flow.sampler_address` matched a `targets` identity. Only increments when `targets` is set.
+* `otelcol_receiver_netflow_unjoined_total` `counter`: Flow records received while `targets` was set but the sampler address was unknown.
+
+`otelcol.receiver.netflow` also exposes the usual [`debug_metrics`](#debug_metrics) for the wrapped contrib receiver.
 
 ## Example
 
@@ -108,8 +116,9 @@ The sums are **cumulative**. Use `rate()` in PromQL. Do not treat them as ktrans
 
 ```alloy
 otelcol.receiver.netflow "ipfix" {
-  scheme = "netflow"
-  port   = 2055
+  scheme  = "netflow"
+  port    = 2055
+  targets = discovery.snmp.fabric.targets
 
   output {
     logs = [
@@ -144,6 +153,15 @@ otelcol.connector.signaltometrics "netflow" {
     attributes {
       key = "flow.sampler_address"
     }
+    attributes {
+      key = "device_name"
+    }
+    attributes {
+      key = "src_device"
+    }
+    attributes {
+      key = "dst_device"
+    }
     sum {
       value = "Int(attributes[\"flow.io.bytes\"])"
     }
@@ -170,6 +188,15 @@ otelcol.connector.signaltometrics "netflow" {
     }
     attributes {
       key = "flow.sampler_address"
+    }
+    attributes {
+      key = "device_name"
+    }
+    attributes {
+      key = "src_device"
+    }
+    attributes {
+      key = "dst_device"
     }
     sum {
       value = "Int(attributes[\"flow.io.packets\"])"

@@ -59,3 +59,24 @@ func TestConfigInvalidScheme(t *testing.T) {
 	args.Scheme = "ipfix"
 	assert.Error(t, args.Validate())
 }
+
+func TestConfigTargets(t *testing.T) {
+	alloyCfg := `
+		scheme = "netflow"
+		port   = 2055
+		targets = [
+			{
+				address     = "10.0.0.2",
+				device_name = "spine1",
+				snmp_group  = "hq",
+			},
+		]
+		output {}
+	`
+	var args netflow.Arguments
+	err := syntax.Unmarshal([]byte(alloyCfg), &args)
+	require.NoError(t, err)
+	require.Len(t, args.Targets, 1)
+	dn, _ := args.Targets[0].Get("device_name")
+	require.Equal(t, "spine1", dn)
+}
