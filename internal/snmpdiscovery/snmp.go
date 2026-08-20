@@ -75,6 +75,45 @@ func loadAuths(path string, names []string) ([]snmpAuth, error) {
 	return out, nil
 }
 
+func loadModuleNames(path string) (map[string]struct{}, error) {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	var root yaml.Node
+	if err := yaml.Unmarshal(b, &root); err != nil {
+		return nil, err
+	}
+	doc := root
+	if root.Kind == yaml.DocumentNode && len(root.Content) > 0 {
+		doc = *root.Content[0]
+	}
+	if doc.Kind != yaml.MappingNode {
+		return nil, fmt.Errorf("snmp config %s: expected mapping", path)
+	}
+	for i := 0; i+1 < len(doc.Content); i += 2 {
+		if doc.Content[i].Value != "modules" {
+			continue
+		}
+		return mappingKeys(doc.Content[i+1]), nil
+	}
+	return nil, nil
+}
+
+func mappingKeys(n *yaml.Node) map[string]struct{} {
+	out := map[string]struct{}{}
+	if n == nil || n.Kind != yaml.MappingNode {
+		return out
+	}
+	for i := 0; i+1 < len(n.Content); i += 2 {
+		k := strings.TrimSpace(n.Content[i].Value)
+		if k != "" {
+			out[k] = struct{}{}
+		}
+	}
+	return out
+}
+
 func parseAuth(name string, a snmpAuthYAML) (snmpAuth, error) {
 	out := snmpAuth{Name: name, ContextName: a.ContextName}
 	switch a.Version {

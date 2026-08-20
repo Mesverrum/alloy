@@ -52,10 +52,12 @@ func NewIndex(targets []discovery.Target) *Index {
 		if id.Address != "" {
 			idx.byAddr[id.Address] = id
 		}
-		if aliases, ok := t.Get("snmp_aliases"); ok {
-			for _, a := range strings.Split(aliases, ",") {
-				if c := canon(a); c != "" {
-					idx.byAddr[c] = id
+		for _, key := range []string{"snmp_aliases", "aliases"} {
+			if aliases, ok := t.Get(key); ok {
+				for _, a := range strings.Split(aliases, ",") {
+					if c := canon(a); c != "" {
+						idx.byAddr[c] = id
+					}
 				}
 			}
 		}
@@ -111,5 +113,5 @@ func canon(raw string) string {
 	if err != nil {
 		return raw
 	}
-	return addr.String()
+	return addr.Unmap().String()
 }

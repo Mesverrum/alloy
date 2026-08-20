@@ -24,7 +24,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -64,22 +65,22 @@ modules:
       - labelname: cucsComputeBoardInstanceId
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.6
         type: DisplayString
-      - labels: &id003
+      - labels:
         - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.14
         type: DisplayString
-      - labels: &id004
+      - labels:
         - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.16
@@ -106,19 +107,23 @@ modules:
       - labelname: cucsComputeBoardInstanceId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.14
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.16
         type: DisplayString
@@ -163,19 +168,23 @@ modules:
       - labelname: cucsComputeBoardInstanceId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.14
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.16
         type: DisplayString
@@ -220,19 +229,23 @@ modules:
       - labelname: cucsComputeBoardInstanceId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.14
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.16
         type: DisplayString
@@ -254,19 +267,23 @@ modules:
       - labelname: cucsComputeBoardInstanceId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.14
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.16
         type: DisplayString
@@ -292,19 +309,23 @@ modules:
       - labelname: cucsComputeBoardInstanceId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.14
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.16
         type: DisplayString
@@ -337,19 +358,23 @@ modules:
       - labelname: cucsComputeBoardInstanceId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.14
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.16
         type: DisplayString
@@ -371,19 +396,23 @@ modules:
       - labelname: cucsComputeBoardInstanceId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.14
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - cucsComputeBoardInstanceId
         labelname: cucsComputeBoardVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.6.1.16
         type: DisplayString
@@ -406,7 +435,7 @@ modules:
       - labelname: cucsComputeMbPowerStatsInstanceId
         type: gauge
       lookups:
-      - labels: &id005
+      - labels:
         - cucsComputeMbPowerStatsInstanceId
         labelname: cucsComputeMbPowerStatsDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.14.1.2
@@ -420,7 +449,8 @@ modules:
       - labelname: cucsComputeMbPowerStatsInstanceId
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - cucsComputeMbPowerStatsInstanceId
         labelname: cucsComputeMbPowerStatsDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.14.1.2
         type: DisplayString
@@ -433,7 +463,8 @@ modules:
       - labelname: cucsComputeMbPowerStatsInstanceId
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - cucsComputeMbPowerStatsInstanceId
         labelname: cucsComputeMbPowerStatsDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.14.1.2
         type: DisplayString
@@ -446,47 +477,47 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: &id007
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: &id008
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: &id009
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: &id010
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: &id011
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: &id012
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: &id013
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: &id014
+      - labels:
         - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
@@ -514,39 +545,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -563,39 +603,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -615,39 +664,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -663,39 +721,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -708,39 +775,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -758,39 +834,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -816,39 +901,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -895,39 +989,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -972,39 +1075,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -1034,39 +1146,48 @@ modules:
       - labelname: cucsComputeRackUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.32
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitName
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.33
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCores
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.35
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfCpus
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.36
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitNumOfThreads
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.39
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitSerial
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.47
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitUuid
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.50
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cucsComputeRackUnitInstanceId
         labelname: cucsComputeRackUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.9.35.1.51
         type: DisplayString
@@ -1079,7 +1200,7 @@ modules:
       - labelname: cucsComputeRackUnitMbTempStatsInstanceId
         type: gauge
       lookups:
-      - labels: &id015
+      - labels:
         - cucsComputeRackUnitMbTempStatsInstanceId
         labelname: cucsComputeRackUnitMbTempStatsDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.44.1.2
@@ -1093,7 +1214,8 @@ modules:
       - labelname: cucsComputeRackUnitMbTempStatsInstanceId
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - cucsComputeRackUnitMbTempStatsInstanceId
         labelname: cucsComputeRackUnitMbTempStatsDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.44.1.2
         type: DisplayString
@@ -1106,7 +1228,8 @@ modules:
       - labelname: cucsComputeRackUnitMbTempStatsInstanceId
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - cucsComputeRackUnitMbTempStatsInstanceId
         labelname: cucsComputeRackUnitMbTempStatsDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.44.1.2
         type: DisplayString
@@ -1119,7 +1242,8 @@ modules:
       - labelname: cucsComputeRackUnitMbTempStatsInstanceId
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - cucsComputeRackUnitMbTempStatsInstanceId
         labelname: cucsComputeRackUnitMbTempStatsDn
         oid: 1.3.6.1.4.1.9.9.719.1.9.44.1.2
         type: DisplayString
@@ -1131,12 +1255,12 @@ modules:
       - labelname: cucsEquipmentFanInstanceId
         type: gauge
       lookups:
-      - labels: &id016
+      - labels:
         - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.2
         type: DisplayString
-      - labels: &id017
+      - labels:
         - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanIntType
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.6
@@ -1183,11 +1307,13 @@ modules:
       - labelname: cucsEquipmentFanInstanceId
         type: gauge
       lookups:
-      - labels: *id016
+      - labels:
+        - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.2
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanIntType
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.6
         type: EnumAsInfo
@@ -1232,11 +1358,13 @@ modules:
       - labelname: cucsEquipmentFanInstanceId
         type: gauge
       lookups:
-      - labels: *id016
+      - labels:
+        - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.2
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanIntType
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.6
         type: EnumAsInfo
@@ -1258,11 +1386,13 @@ modules:
       - labelname: cucsEquipmentFanInstanceId
         type: gauge
       lookups:
-      - labels: *id016
+      - labels:
+        - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.2
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanIntType
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.6
         type: EnumAsInfo
@@ -1288,11 +1418,13 @@ modules:
       - labelname: cucsEquipmentFanInstanceId
         type: gauge
       lookups:
-      - labels: *id016
+      - labels:
+        - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.2
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - cucsEquipmentFanInstanceId
         labelname: cucsEquipmentFanIntType
         oid: 1.3.6.1.4.1.9.9.719.1.15.12.1.6
         type: EnumAsInfo
@@ -1325,22 +1457,22 @@ modules:
       - labelname: cucsEquipmentPsuInstanceId
         type: gauge
       lookups:
-      - labels: &id018
+      - labels:
         - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.2
         type: DisplayString
-      - labels: &id019
+      - labels:
         - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuModel
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.6
         type: DisplayString
-      - labels: &id020
+      - labels:
         - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuRevision
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.12
         type: DisplayString
-      - labels: &id021
+      - labels:
         - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuSerial
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.13
@@ -1387,19 +1519,23 @@ modules:
       - labelname: cucsEquipmentPsuInstanceId
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuModel
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.6
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuRevision
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.12
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuSerial
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.13
         type: DisplayString
@@ -1444,19 +1580,23 @@ modules:
       - labelname: cucsEquipmentPsuInstanceId
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuModel
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.6
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuRevision
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.12
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuSerial
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.13
         type: DisplayString
@@ -1478,19 +1618,23 @@ modules:
       - labelname: cucsEquipmentPsuInstanceId
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuModel
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.6
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuRevision
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.12
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuSerial
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.13
         type: DisplayString
@@ -1516,19 +1660,23 @@ modules:
       - labelname: cucsEquipmentPsuInstanceId
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuModel
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.6
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuRevision
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.12
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - cucsEquipmentPsuInstanceId
         labelname: cucsEquipmentPsuSerial
         oid: 1.3.6.1.4.1.9.9.719.1.15.56.1.13
         type: DisplayString
@@ -1562,7 +1710,7 @@ modules:
       - labelname: cucsEquipmentHealthLedInstanceId
         type: gauge
       lookups:
-      - labels: &id022
+      - labels:
         - cucsEquipmentHealthLedInstanceId
         labelname: cucsEquipmentHealthLedDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.114.1.2
@@ -1582,7 +1730,8 @@ modules:
       - labelname: cucsEquipmentHealthLedInstanceId
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - cucsEquipmentHealthLedInstanceId
         labelname: cucsEquipmentHealthLedDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.114.1.2
         type: DisplayString
@@ -1599,7 +1748,8 @@ modules:
       - labelname: cucsEquipmentHealthLedInstanceId
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - cucsEquipmentHealthLedInstanceId
         labelname: cucsEquipmentHealthLedDn
         oid: 1.3.6.1.4.1.9.9.719.1.15.114.1.2
         type: DisplayString
@@ -1618,17 +1768,17 @@ modules:
       - labelname: cucsMemoryUnitInstanceId
         type: gauge
       lookups:
-      - labels: &id023
+      - labels:
         - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.2
         type: DisplayString
-      - labels: &id024
+      - labels:
         - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitLocation
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.11
         type: DisplayString
-      - labels: &id025
+      - labels:
         - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitType
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.23
@@ -1641,15 +1791,18 @@ modules:
       - labelname: cucsMemoryUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id023
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.2
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitLocation
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.11
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitType
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.23
         type: EnumAsInfo
@@ -1694,15 +1847,18 @@ modules:
       - labelname: cucsMemoryUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id023
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.2
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitLocation
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.11
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitType
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.23
         type: EnumAsInfo
@@ -1747,15 +1903,18 @@ modules:
       - labelname: cucsMemoryUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id023
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.2
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitLocation
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.11
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitType
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.23
         type: EnumAsInfo
@@ -1777,15 +1936,18 @@ modules:
       - labelname: cucsMemoryUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id023
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.2
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitLocation
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.11
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitType
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.23
         type: EnumAsInfo
@@ -1811,15 +1973,18 @@ modules:
       - labelname: cucsMemoryUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id023
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.2
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitLocation
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.11
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - cucsMemoryUnitInstanceId
         labelname: cucsMemoryUnitType
         oid: 1.3.6.1.4.1.9.9.719.1.30.11.1.23
         type: EnumAsInfo
@@ -1880,37 +2045,37 @@ modules:
       - labelname: cucsProcessorUnitInstanceId
         type: gauge
       lookups:
-      - labels: &id026
+      - labels:
         - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.2
         type: DisplayString
-      - labels: &id027
+      - labels:
         - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitArch
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.4
         type: EnumAsInfo
-      - labels: &id028
+      - labels:
         - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCores
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.5
         type: DisplayString
-      - labels: &id029
+      - labels:
         - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCoresEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.6
         type: DisplayString
-      - labels: &id030
+      - labels:
         - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.8
         type: DisplayString
-      - labels: &id031
+      - labels:
         - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitThreads
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.20
         type: DisplayString
-      - labels: &id032
+      - labels:
         - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.21
@@ -1957,31 +2122,38 @@ modules:
       - labelname: cucsProcessorUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id026
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.2
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitArch
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.4
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCores
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.5
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCoresEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.6
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.8
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitThreads
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.20
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.21
         type: DisplayString
@@ -2026,31 +2198,38 @@ modules:
       - labelname: cucsProcessorUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id026
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.2
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitArch
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.4
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCores
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.5
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCoresEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.6
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.8
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitThreads
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.20
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.21
         type: DisplayString
@@ -2072,31 +2251,38 @@ modules:
       - labelname: cucsProcessorUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id026
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.2
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitArch
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.4
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCores
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.5
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCoresEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.6
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.8
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitThreads
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.20
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.21
         type: DisplayString
@@ -2122,31 +2308,38 @@ modules:
       - labelname: cucsProcessorUnitInstanceId
         type: gauge
       lookups:
-      - labels: *id026
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitDn
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.2
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitArch
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.4
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCores
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.5
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitCoresEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.6
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitModel
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.8
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitThreads
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.20
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - cucsProcessorUnitInstanceId
         labelname: cucsProcessorUnitVendor
         oid: 1.3.6.1.4.1.9.9.719.1.41.9.1.21
         type: DisplayString
@@ -2334,37 +2527,37 @@ modules:
       - labelname: cucsStorageFlexFlashCardInstanceId
         type: gauge
       lookups:
-      - labels: &id033
+      - labels:
         - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.2
         type: DisplayString
-      - labels: &id034
+      - labels:
         - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardMode
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.6
         type: EnumAsInfo
-      - labels: &id035
+      - labels:
         - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardType
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.7
         type: DisplayString
-      - labels: &id036
+      - labels:
         - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.8
         type: EnumAsInfo
-      - labels: &id037
+      - labels:
         - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardRevision
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.20
         type: DisplayString
-      - labels: &id038
+      - labels:
         - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.21
         type: DisplayString
-      - labels: &id039
+      - labels:
         - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDrivesEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.29
@@ -2385,31 +2578,38 @@ modules:
       - labelname: cucsStorageFlexFlashCardInstanceId
         type: gauge
       lookups:
-      - labels: *id033
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.2
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardMode
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.6
         type: EnumAsInfo
-      - labels: *id035
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardType
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.7
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.8
         type: EnumAsInfo
-      - labels: *id037
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardRevision
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.20
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.21
         type: DisplayString
-      - labels: *id039
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDrivesEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.29
         type: DisplayString
@@ -2455,31 +2655,38 @@ modules:
       - labelname: cucsStorageFlexFlashCardInstanceId
         type: gauge
       lookups:
-      - labels: *id033
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.2
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardMode
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.6
         type: EnumAsInfo
-      - labels: *id035
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardType
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.7
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.8
         type: EnumAsInfo
-      - labels: *id037
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardRevision
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.20
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.21
         type: DisplayString
-      - labels: *id039
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDrivesEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.29
         type: DisplayString
@@ -2513,31 +2720,38 @@ modules:
       - labelname: cucsStorageFlexFlashCardInstanceId
         type: gauge
       lookups:
-      - labels: *id033
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.2
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardMode
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.6
         type: EnumAsInfo
-      - labels: *id035
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardType
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.7
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.8
         type: EnumAsInfo
-      - labels: *id037
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardRevision
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.20
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.21
         type: DisplayString
-      - labels: *id039
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDrivesEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.29
         type: DisplayString
@@ -2549,31 +2763,38 @@ modules:
       - labelname: cucsStorageFlexFlashCardInstanceId
         type: gauge
       lookups:
-      - labels: *id033
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.2
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardMode
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.6
         type: EnumAsInfo
-      - labels: *id035
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardType
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.7
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.8
         type: EnumAsInfo
-      - labels: *id037
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardRevision
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.20
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.21
         type: DisplayString
-      - labels: *id039
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDrivesEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.29
         type: DisplayString
@@ -2586,31 +2807,38 @@ modules:
       - labelname: cucsStorageFlexFlashCardInstanceId
         type: gauge
       lookups:
-      - labels: *id033
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.2
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardMode
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.6
         type: EnumAsInfo
-      - labels: *id035
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardType
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.7
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.8
         type: EnumAsInfo
-      - labels: *id037
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardRevision
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.20
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.21
         type: DisplayString
-      - labels: *id039
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDrivesEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.29
         type: DisplayString
@@ -2623,31 +2851,38 @@ modules:
       - labelname: cucsStorageFlexFlashCardInstanceId
         type: gauge
       lookups:
-      - labels: *id033
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.2
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardMode
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.6
         type: EnumAsInfo
-      - labels: *id035
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardType
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.7
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.8
         type: EnumAsInfo
-      - labels: *id037
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardRevision
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.20
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.21
         type: DisplayString
-      - labels: *id039
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDrivesEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.29
         type: DisplayString
@@ -2668,31 +2903,38 @@ modules:
       - labelname: cucsStorageFlexFlashCardInstanceId
         type: gauge
       lookups:
-      - labels: *id033
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.2
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardMode
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.6
         type: EnumAsInfo
-      - labels: *id035
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardType
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.7
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.8
         type: EnumAsInfo
-      - labels: *id037
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardRevision
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.20
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardSerial
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.21
         type: DisplayString
-      - labels: *id039
+      - labels:
+        - cucsStorageFlexFlashCardInstanceId
         labelname: cucsStorageFlexFlashCardDrivesEnabled
         oid: 1.3.6.1.4.1.9.9.719.1.45.34.1.29
         type: DisplayString
@@ -2710,37 +2952,37 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: &id040
+      - labels:
         - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: &id041
+      - labels:
         - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: &id042
+      - labels:
         - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: &id043
+      - labels:
         - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: &id044
+      - labels:
         - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: &id045
+      - labels:
         - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: &id046
+      - labels:
         - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
@@ -2780,31 +3022,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -2829,31 +3078,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -2899,31 +3155,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -2969,31 +3232,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -3016,31 +3286,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -3067,31 +3344,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -3125,31 +3409,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -3165,31 +3456,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -3206,31 +3504,38 @@ modules:
       - labelname: cucsStorageFlexFlashControllerInstanceId
         type: gauge
       lookups:
-      - labels: *id040
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerFlexFlashType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.6
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.8
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerPhysicalDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.15
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerType
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.24
         type: EnumAsInfo
-      - labels: *id045
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVendor
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.25
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - cucsStorageFlexFlashControllerInstanceId
         labelname: cucsStorageFlexFlashControllerVirtualDriveCount
         oid: 1.3.6.1.4.1.9.9.719.1.45.35.1.26
         type: DisplayString
@@ -3247,42 +3552,42 @@ modules:
       - labelname: cucsStorageFlexFlashDriveInstanceId
         type: gauge
       lookups:
-      - labels: &id047
+      - labels:
         - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.2
         type: DisplayString
-      - labels: &id048
+      - labels:
         - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.5
         type: EnumAsInfo
-      - labels: &id049
+      - labels:
         - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDriveType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.8
         type: EnumAsInfo
-      - labels: &id050
+      - labels:
         - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.10
         type: DisplayString
-      - labels: &id051
+      - labels:
         - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveName
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.11
         type: DisplayString
-      - labels: &id052
+      - labels:
         - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveVisible
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.21
         type: EnumAsInfo
-      - labels: &id053
+      - labels:
         - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRemovable
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.22
         type: EnumAsInfo
-      - labels: &id054
+      - labels:
         - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRWType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.23
@@ -3299,35 +3604,43 @@ modules:
       - labelname: cucsStorageFlexFlashDriveInstanceId
         type: gauge
       lookups:
-      - labels: *id047
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.2
         type: DisplayString
-      - labels: *id048
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.5
         type: EnumAsInfo
-      - labels: *id049
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDriveType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.8
         type: EnumAsInfo
-      - labels: *id050
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.10
         type: DisplayString
-      - labels: *id051
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveName
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.11
         type: DisplayString
-      - labels: *id052
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveVisible
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.21
         type: EnumAsInfo
-      - labels: *id053
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRemovable
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.22
         type: EnumAsInfo
-      - labels: *id054
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRWType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.23
         type: EnumAsInfo
@@ -3373,35 +3686,43 @@ modules:
       - labelname: cucsStorageFlexFlashDriveInstanceId
         type: gauge
       lookups:
-      - labels: *id047
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.2
         type: DisplayString
-      - labels: *id048
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.5
         type: EnumAsInfo
-      - labels: *id049
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDriveType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.8
         type: EnumAsInfo
-      - labels: *id050
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.10
         type: DisplayString
-      - labels: *id051
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveName
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.11
         type: DisplayString
-      - labels: *id052
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveVisible
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.21
         type: EnumAsInfo
-      - labels: *id053
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRemovable
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.22
         type: EnumAsInfo
-      - labels: *id054
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRWType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.23
         type: EnumAsInfo
@@ -3435,35 +3756,43 @@ modules:
       - labelname: cucsStorageFlexFlashDriveInstanceId
         type: gauge
       lookups:
-      - labels: *id047
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.2
         type: DisplayString
-      - labels: *id048
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.5
         type: EnumAsInfo
-      - labels: *id049
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDriveType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.8
         type: EnumAsInfo
-      - labels: *id050
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.10
         type: DisplayString
-      - labels: *id051
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveName
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.11
         type: DisplayString
-      - labels: *id052
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveVisible
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.21
         type: EnumAsInfo
-      - labels: *id053
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRemovable
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.22
         type: EnumAsInfo
-      - labels: *id054
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRWType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.23
         type: EnumAsInfo
@@ -3476,35 +3805,43 @@ modules:
       - labelname: cucsStorageFlexFlashDriveInstanceId
         type: gauge
       lookups:
-      - labels: *id047
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDn
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.2
         type: DisplayString
-      - labels: *id048
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveConnectionProtocol
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.5
         type: EnumAsInfo
-      - labels: *id049
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveDriveType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.8
         type: EnumAsInfo
-      - labels: *id050
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveModel
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.10
         type: DisplayString
-      - labels: *id051
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveName
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.11
         type: DisplayString
-      - labels: *id052
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveVisible
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.21
         type: EnumAsInfo
-      - labels: *id053
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRemovable
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.22
         type: EnumAsInfo
-      - labels: *id054
+      - labels:
+        - cucsStorageFlexFlashDriveInstanceId
         labelname: cucsStorageFlexFlashDriveRWType
         oid: 1.3.6.1.4.1.9.9.719.1.45.36.1.23
         type: EnumAsInfo

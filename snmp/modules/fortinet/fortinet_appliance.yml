@@ -32,7 +32,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -68,31 +69,38 @@ modules:
       oid: 1.3.6.1.4.1.12356.103.2.1.1
       type: gauge
       help: fmSysCpuUsage (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.2.1.1.0
+      lookups: []
     - name: snmp_MemoryUsed
       oid: 1.3.6.1.4.1.12356.103.2.1.2
       type: gauge
       help: fmSysMemUsed (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.2.1.2.0
+      lookups: []
     - name: snmp_MemoryTotal
       oid: 1.3.6.1.4.1.12356.103.2.1.3
       type: gauge
       help: fmSysMemCapacity (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.2.1.3.0
+      lookups: []
     - name: snmp_fmSysDiskUsage
       oid: 1.3.6.1.4.1.12356.103.2.1.4
       type: gauge
       help: fmSysDiskUsage (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.2.1.4.0
+      lookups: []
     - name: snmp_fmSysDiskCapacity
       oid: 1.3.6.1.4.1.12356.103.2.1.5
       type: gauge
       help: fmSysDiskCapacity (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.2.1.5.0
+      lookups: []
     - name: snmp_fmSysCpuUsageExcludedNice
       oid: 1.3.6.1.4.1.12356.103.2.1.6
       type: gauge
       help: fmSysCpuUsageExcludedNice (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) -
         1.3.6.1.4.1.12356.103.2.1.6.0
+      lookups: []
     - name: snmp_fmLogRate
       oid: 1.3.6.1.4.1.12356.103.2.1.9
       type: gauge
       help: fmLogRate (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.2.1.9.0
+      lookups: []
     - name: snmp_fmRaidLevel
       oid: 1.3.6.1.4.1.12356.103.7.1.1
       type: gauge
@@ -113,6 +121,7 @@ modules:
         12: raid-50s
         13: raid-60
         14: raid-60s
+      lookups: []
     - name: snmp_fmRaidState
       oid: 1.3.6.1.4.1.12356.103.7.1.2
       type: gauge
@@ -125,14 +134,17 @@ modules:
         4: background-initializing
         5: background-verifying
         6: background-rebuilding
+      lookups: []
     - name: snmp_fmRaidSize (GB)
       oid: 1.3.6.1.4.1.12356.103.7.1.3
       type: gauge
       help: fmRaidSize (GB) (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.7.1.3.0
+      lookups: []
     - name: snmp_fmRaidDiskNumber
       oid: 1.3.6.1.4.1.12356.103.7.1.4
       type: gauge
       help: fmRaidDiskNumber (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.7.1.4.0
+      lookups: []
     - name: snmp_fmHaMode
       oid: 1.3.6.1.4.1.12356.103.9.1.1
       type: gauge
@@ -141,14 +153,17 @@ modules:
         0: standalone
         1: master
         2: slave
+      lookups: []
     - name: snmp_fmHaClusterId
       oid: 1.3.6.1.4.1.12356.103.9.1.2
       type: gauge
       help: fmHaClusterId (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.9.1.2.0
+      lookups: []
     - name: snmp_fmHaPeerNumber
       oid: 1.3.6.1.4.1.12356.103.9.1.3
       type: gauge
       help: fmHaPeerNumber (FORTINET-FORTIMANAGER-FORTIANALYZER-MIB) - 1.3.6.1.4.1.12356.103.9.1.3.0
+      lookups: []
     - name: snmp_fmDeviceEntConnectState
       oid: 1.3.6.1.4.1.12356.103.6.2.1.12
       type: gauge
@@ -157,42 +172,42 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - index
         labelname: fmDeviceEntName
         oid: 1.3.6.1.4.1.12356.103.6.2.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - index
         labelname: fmDeviceEntSn
         oid: 1.3.6.1.4.1.12356.103.6.2.1.3
         type: DisplayString
-      - labels: &id003
+      - labels:
         - index
         labelname: fmDeviceEntMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.4
         type: EnumAsInfo
-      - labels: &id004
+      - labels:
         - index
         labelname: fmDeviceEntAdom
         oid: 1.3.6.1.4.1.12356.103.6.2.1.5
         type: DisplayString
-      - labels: &id005
+      - labels:
         - index
         labelname: fmDeviceEntIp
         oid: 1.3.6.1.4.1.12356.103.6.2.1.6
         type: DisplayString
-      - labels: &id006
+      - labels:
         - index
         labelname: fmDeviceEntHaMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.10
         type: EnumAsInfo
-      - labels: &id007
+      - labels:
         - index
         labelname: fmDeviceEntHaGroup
         oid: 1.3.6.1.4.1.12356.103.6.2.1.11
         type: DisplayString
-      - labels: &id008
+      - labels:
         - index
         labelname: fmDeviceEntDesc
         oid: 1.3.6.1.4.1.12356.103.6.2.1.24
@@ -209,35 +224,43 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: fmDeviceEntName
         oid: 1.3.6.1.4.1.12356.103.6.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: fmDeviceEntSn
         oid: 1.3.6.1.4.1.12356.103.6.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: fmDeviceEntMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.4
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - index
         labelname: fmDeviceEntAdom
         oid: 1.3.6.1.4.1.12356.103.6.2.1.5
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: fmDeviceEntIp
         oid: 1.3.6.1.4.1.12356.103.6.2.1.6
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: fmDeviceEntHaMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.10
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - index
         labelname: fmDeviceEntHaGroup
         oid: 1.3.6.1.4.1.12356.103.6.2.1.11
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: fmDeviceEntDesc
         oid: 1.3.6.1.4.1.12356.103.6.2.1.24
         type: DisplayString
@@ -253,35 +276,43 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: fmDeviceEntName
         oid: 1.3.6.1.4.1.12356.103.6.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: fmDeviceEntSn
         oid: 1.3.6.1.4.1.12356.103.6.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: fmDeviceEntMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.4
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - index
         labelname: fmDeviceEntAdom
         oid: 1.3.6.1.4.1.12356.103.6.2.1.5
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: fmDeviceEntIp
         oid: 1.3.6.1.4.1.12356.103.6.2.1.6
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: fmDeviceEntHaMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.10
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - index
         labelname: fmDeviceEntHaGroup
         oid: 1.3.6.1.4.1.12356.103.6.2.1.11
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: fmDeviceEntDesc
         oid: 1.3.6.1.4.1.12356.103.6.2.1.24
         type: DisplayString
@@ -297,35 +328,43 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: fmDeviceEntName
         oid: 1.3.6.1.4.1.12356.103.6.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: fmDeviceEntSn
         oid: 1.3.6.1.4.1.12356.103.6.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: fmDeviceEntMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.4
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - index
         labelname: fmDeviceEntAdom
         oid: 1.3.6.1.4.1.12356.103.6.2.1.5
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: fmDeviceEntIp
         oid: 1.3.6.1.4.1.12356.103.6.2.1.6
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: fmDeviceEntHaMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.10
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - index
         labelname: fmDeviceEntHaGroup
         oid: 1.3.6.1.4.1.12356.103.6.2.1.11
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: fmDeviceEntDesc
         oid: 1.3.6.1.4.1.12356.103.6.2.1.24
         type: DisplayString
@@ -353,35 +392,43 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: fmDeviceEntName
         oid: 1.3.6.1.4.1.12356.103.6.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: fmDeviceEntSn
         oid: 1.3.6.1.4.1.12356.103.6.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: fmDeviceEntMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.4
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - index
         labelname: fmDeviceEntAdom
         oid: 1.3.6.1.4.1.12356.103.6.2.1.5
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: fmDeviceEntIp
         oid: 1.3.6.1.4.1.12356.103.6.2.1.6
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: fmDeviceEntHaMode
         oid: 1.3.6.1.4.1.12356.103.6.2.1.10
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - index
         labelname: fmDeviceEntHaGroup
         oid: 1.3.6.1.4.1.12356.103.6.2.1.11
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: fmDeviceEntDesc
         oid: 1.3.6.1.4.1.12356.103.6.2.1.24
         type: DisplayString
@@ -402,6 +449,7 @@ modules:
         3: rebuilding
         4: failed
         5: spare
+      lookups: []
     - name: snmp_fmRaidDiskEntSize
       oid: 1.3.6.1.4.1.12356.103.7.2.1.3
       type: gauge
@@ -409,6 +457,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_fmSensorEntVal
       oid: 1.3.6.1.4.1.12356.103.8.2.1.3
       type: gauge
@@ -417,12 +466,12 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id009
+      - labels:
         - index
         labelname: fmSensorEntName
         oid: 1.3.6.1.4.1.12356.103.8.2.1.2
         type: DisplayString
-      - labels: &id010
+      - labels:
         - index
         labelname: fmSensorEntType
         oid: 1.3.6.1.4.1.12356.103.8.2.1.4
@@ -435,11 +484,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - index
         labelname: fmSensorEntName
         oid: 1.3.6.1.4.1.12356.103.8.2.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - index
         labelname: fmSensorEntType
         oid: 1.3.6.1.4.1.12356.103.8.2.1.4
         type: EnumAsInfo
@@ -459,17 +510,17 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id011
+      - labels:
         - index
         labelname: fmHaPeerEntIp
         oid: 1.3.6.1.4.1.12356.103.9.2.1.2
         type: DisplayString
-      - labels: &id012
+      - labels:
         - index
         labelname: fmHaPeerEntSn
         oid: 1.3.6.1.4.1.12356.103.9.2.1.3
         type: DisplayString
-      - labels: &id013
+      - labels:
         - index
         labelname: fmHaPeerEntHostName
         oid: 1.3.6.1.4.1.12356.103.9.2.1.5
@@ -485,15 +536,18 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - index
         labelname: fmHaPeerEntIp
         oid: 1.3.6.1.4.1.12356.103.9.2.1.2
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - index
         labelname: fmHaPeerEntSn
         oid: 1.3.6.1.4.1.12356.103.9.2.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - index
         labelname: fmHaPeerEntHostName
         oid: 1.3.6.1.4.1.12356.103.9.2.1.5
         type: DisplayString

@@ -72,7 +72,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -123,54 +124,67 @@ modules:
       oid: 1.3.6.1.2.1.25.3.3.1.2.196608
       type: gauge
       help: hrProcessorLoadCombined (HOST-RESOURCES-MIB) - 1.3.6.1.2.1.25.3.3.1.2.196608
+      lookups: []
     - name: snmp_sfosMemoryPercentUsage
       oid: 1.3.6.1.4.1.2604.5.1.2.5.2
       type: gauge
       help: sfosMemoryPercentUsage (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.5.2.0
+      lookups: []
     - name: snmp_MemoryTotal
       oid: 1.3.6.1.4.1.2604.5.1.2.5.1
       type: gauge
       help: sfosMemoryCapacity (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.5.1.0
+      lookups: []
     - name: snmp_sfosDiskCapacity
       oid: 1.3.6.1.4.1.2604.5.1.2.4.1
       type: gauge
       help: sfosDiskCapacity (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.4.1.0
+      lookups: []
     - name: snmp_sfosDiskPercentUsage
       oid: 1.3.6.1.4.1.2604.5.1.2.4.2
       type: gauge
       help: sfosDiskPercentUsage (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.4.2.0
+      lookups: []
     - name: snmp_sfosSwapCapacity
       oid: 1.3.6.1.4.1.2604.5.1.2.5.3
       type: gauge
       help: sfosSwapCapacity (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.5.3.0
+      lookups: []
     - name: snmp_sfosSwapPercentUsage
       oid: 1.3.6.1.4.1.2604.5.1.2.5.4
       type: gauge
       help: sfosSwapPercentUsage (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.5.4.0
+      lookups: []
     - name: snmp_sfosLiveUsersCount
       oid: 1.3.6.1.4.1.2604.5.1.2.6
       type: gauge
       help: sfosLiveUsersCount (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.6.0
+      lookups: []
     - name: snmp_sfosHTTPHits
       oid: 1.3.6.1.4.1.2604.5.1.2.7
       type: counter
       help: sfosHTTPHits (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.7.0
+      lookups: []
     - name: snmp_sfosFTPHits
       oid: 1.3.6.1.4.1.2604.5.1.2.8
       type: counter
       help: sfosFTPHits (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.8.0
+      lookups: []
     - name: snmp_sfosPOP3Hits
       oid: 1.3.6.1.4.1.2604.5.1.2.9.1
       type: counter
       help: sfosPOP3Hits (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.9.1.0
+      lookups: []
     - name: snmp_sfosImapHits
       oid: 1.3.6.1.4.1.2604.5.1.2.9.2
       type: counter
       help: sfosImapHits (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.9.2.0
+      lookups: []
     - name: snmp_sfosSmtpHits
       oid: 1.3.6.1.4.1.2604.5.1.2.9.3
       type: counter
       help: sfosSmtpHits (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.2.9.3.0
+      lookups: []
     - name: snmp_sfosPoP3Service
       oid: 1.3.6.1.4.1.2604.5.1.3.1
       type: gauge
@@ -184,6 +198,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosImap4Service
       oid: 1.3.6.1.4.1.2604.5.1.3.2
       type: gauge
@@ -197,6 +212,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosSmtpService
       oid: 1.3.6.1.4.1.2604.5.1.3.3
       type: gauge
@@ -210,6 +226,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosFtpService
       oid: 1.3.6.1.4.1.2604.5.1.3.4
       type: gauge
@@ -223,6 +240,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosHttpService
       oid: 1.3.6.1.4.1.2604.5.1.3.5
       type: gauge
@@ -236,6 +254,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosAVService
       oid: 1.3.6.1.4.1.2604.5.1.3.6
       type: gauge
@@ -249,6 +268,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosASService
       oid: 1.3.6.1.4.1.2604.5.1.3.7
       type: gauge
@@ -262,6 +282,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosDNSService
       oid: 1.3.6.1.4.1.2604.5.1.3.8
       type: gauge
@@ -275,6 +296,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosHAService
       oid: 1.3.6.1.4.1.2604.5.1.3.9
       type: gauge
@@ -288,6 +310,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosIPSService
       oid: 1.3.6.1.4.1.2604.5.1.3.10
       type: gauge
@@ -301,6 +324,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosApacheService
       oid: 1.3.6.1.4.1.2604.5.1.3.11
       type: gauge
@@ -314,6 +338,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosNtpService
       oid: 1.3.6.1.4.1.2604.5.1.3.12
       type: gauge
@@ -327,6 +352,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosTomcatService
       oid: 1.3.6.1.4.1.2604.5.1.3.13
       type: gauge
@@ -340,6 +366,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosSSLVpnService
       oid: 1.3.6.1.4.1.2604.5.1.3.14
       type: gauge
@@ -353,6 +380,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosIPSecVpnService
       oid: 1.3.6.1.4.1.2604.5.1.3.15
       type: gauge
@@ -366,6 +394,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosDatabaseService
       oid: 1.3.6.1.4.1.2604.5.1.3.16
       type: gauge
@@ -379,6 +408,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosNetworkService
       oid: 1.3.6.1.4.1.2604.5.1.3.17
       type: gauge
@@ -392,6 +422,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosGarnerService
       oid: 1.3.6.1.4.1.2604.5.1.3.18
       type: gauge
@@ -405,6 +436,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosDroutingService
       oid: 1.3.6.1.4.1.2604.5.1.3.19
       type: gauge
@@ -418,6 +450,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosSSHdService
       oid: 1.3.6.1.4.1.2604.5.1.3.20
       type: gauge
@@ -431,6 +464,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosDgdService
       oid: 1.3.6.1.4.1.2604.5.1.3.21
       type: gauge
@@ -444,6 +478,7 @@ modules:
         5: dead
         6: frozen
         7: unregistered
+      lookups: []
     - name: snmp_sfosHAStatus
       oid: 1.3.6.1.4.1.2604.5.1.4.1
       type: gauge
@@ -451,6 +486,7 @@ modules:
       enum_values:
         0: disabled
         1: enabled
+      lookups: []
     - name: snmp_sfosDeviceCurrentHAState
       oid: 1.3.6.1.4.1.2604.5.1.4.4
       type: gauge
@@ -462,6 +498,7 @@ modules:
         3: primary
         4: faulty
         5: ready
+      lookups: []
     - name: snmp_sfosDevicePeerHAState
       oid: 1.3.6.1.4.1.2604.5.1.4.5
       type: gauge
@@ -473,6 +510,7 @@ modules:
         3: primary
         4: faulty
         5: ready
+      lookups: []
     - name: snmp_sfosBaseFWLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.1.1
       type: gauge
@@ -482,10 +520,12 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosBaseFWLicExpiryDate
       oid: 1.3.6.1.4.1.2604.5.1.5.1.2
       type: gauge
       help: sfosBaseFWLicExpiryDate (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.5.1.2.0
+      lookups: []
     - name: snmp_sfosNetProtectionLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.2.1
       type: gauge
@@ -495,10 +535,12 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosNetProtectionLicExpiryDate
       oid: 1.3.6.1.4.1.2604.5.1.5.2.2
       type: gauge
       help: sfosNetProtectionLicExpiryDate (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.5.2.2.0
+      lookups: []
     - name: snmp_sfosWebProtectionLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.3.1
       type: gauge
@@ -508,10 +550,12 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosWebProtectionLicExpiryDate
       oid: 1.3.6.1.4.1.2604.5.1.5.3.2
       type: gauge
       help: sfosWebProtectionLicExpiryDate (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.5.3.2.0
+      lookups: []
     - name: snmp_sfosMailProtectionLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.4.1
       type: gauge
@@ -521,10 +565,12 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosMailProtectionLicExpiryDate
       oid: 1.3.6.1.4.1.2604.5.1.5.4.2
       type: gauge
       help: sfosMailProtectionLicExpiryDate (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.5.4.2.0
+      lookups: []
     - name: snmp_sfosWebServerProtectionLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.5.1
       type: gauge
@@ -534,10 +580,12 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosWebServerProtectionLicExpiryDate
       oid: 1.3.6.1.4.1.2604.5.1.5.5.2
       type: gauge
       help: sfosWebServerProtectionLicExpiryDate (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.5.5.2.0
+      lookups: []
     - name: snmp_sfosSandstromLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.6.1
       type: gauge
@@ -547,6 +595,7 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosEnhancedSupportLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.7.1
       type: gauge
@@ -556,10 +605,12 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosEnhancedSupportLicExpiryDate
       oid: 1.3.6.1.4.1.2604.5.1.5.7.2
       type: gauge
       help: sfosEnhancedSupportLicExpiryDate (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.5.7.2.0
+      lookups: []
     - name: snmp_sfosEnhancedPlusLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.8.1
       type: gauge
@@ -569,10 +620,12 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosEnhancedPlusLicExpiryDate
       oid: 1.3.6.1.4.1.2604.5.1.5.8.2
       type: gauge
       help: sfosEnhancedPlusLicExpiryDate (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.5.8.2.0
+      lookups: []
     - name: snmp_sfosCentralOrchestrationLicRegStatus
       oid: 1.3.6.1.4.1.2604.5.1.5.9.1
       type: gauge
@@ -582,10 +635,12 @@ modules:
         2: unsubscribed
         3: subscribed
         4: expired
+      lookups: []
     - name: snmp_sfosCentralOrchestrationLicExpiryDate
       oid: 1.3.6.1.4.1.2604.5.1.5.9.2
       type: gauge
       help: sfosCentralOrchestrationLicExpiryDate (SFOS-FIREWALL-MIB) - 1.3.6.1.4.1.2604.5.1.5.9.2.0
+      lookups: []
     - name: snmp_sfosIPSecVpnConnMode
       oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.5
       type: gauge
@@ -594,17 +649,17 @@ modules:
       - labelname: sfosIPSecVpnConnId
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnConnName
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnConnDes
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.3
         type: DisplayString
-      - labels: &id003
+      - labels:
         - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnPolicyName
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.4
@@ -617,15 +672,18 @@ modules:
       - labelname: sfosIPSecVpnConnId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnConnName
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnConnDes
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnPolicyName
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.4
         type: DisplayString
@@ -640,15 +698,18 @@ modules:
       - labelname: sfosIPSecVpnConnId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnConnName
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnConnDes
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnPolicyName
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.4
         type: DisplayString
@@ -660,15 +721,18 @@ modules:
       - labelname: sfosIPSecVpnConnId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnConnName
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnConnDes
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - sfosIPSecVpnConnId
         labelname: sfosIPSecVpnPolicyName
         oid: 1.3.6.1.4.1.2604.5.1.6.1.1.1.1.4
         type: DisplayString

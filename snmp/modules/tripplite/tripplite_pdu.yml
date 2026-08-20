@@ -22,7 +22,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -117,7 +118,7 @@ modules:
       - labelname: tlpDeviceIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - tlpDeviceIndex
         labelname: tlpPduDeviceOutputCurrentPrecision
         oid: 1.3.6.1.4.1.850.1.1.3.2.2.1.1.11
@@ -134,7 +135,8 @@ modules:
       - labelname: tlpDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - tlpDeviceIndex
         labelname: tlpPduDeviceOutputCurrentPrecision
         oid: 1.3.6.1.4.1.850.1.1.3.2.2.1.1.11
         type: EnumAsInfo
@@ -146,7 +148,8 @@ modules:
       - labelname: tlpDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - tlpDeviceIndex
         labelname: tlpPduDeviceOutputCurrentPrecision
         oid: 1.3.6.1.4.1.850.1.1.3.2.2.1.1.11
         type: EnumAsInfo
@@ -158,7 +161,8 @@ modules:
       - labelname: tlpDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - tlpDeviceIndex
         labelname: tlpPduDeviceOutputCurrentPrecision
         oid: 1.3.6.1.4.1.850.1.1.3.2.2.1.1.11
         type: EnumAsInfo
@@ -170,7 +174,8 @@ modules:
       - labelname: tlpDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - tlpDeviceIndex
         labelname: tlpPduDeviceOutputCurrentPrecision
         oid: 1.3.6.1.4.1.850.1.1.3.2.2.1.1.11
         type: EnumAsInfo
@@ -184,13 +189,13 @@ modules:
       - labelname: tlpPduOutputIndex
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - tlpDeviceIndex
         - tlpPduOutputIndex
         labelname: tlpPduOutputPhase
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.2.1.1.2
         type: EnumAsInfo
-      - labels: &id003
+      - labels:
         - tlpDeviceIndex
         - tlpPduOutputIndex
         labelname: tlpPduOutputPhaseType
@@ -206,11 +211,15 @@ modules:
       - labelname: tlpPduOutputIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutputIndex
         labelname: tlpPduOutputPhase
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.2.1.1.2
         type: EnumAsInfo
-      - labels: *id003
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutputIndex
         labelname: tlpPduOutputPhaseType
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.2.1.1.3
         type: EnumAsInfo
@@ -224,11 +233,15 @@ modules:
       - labelname: tlpPduOutputIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutputIndex
         labelname: tlpPduOutputPhase
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.2.1.1.2
         type: EnumAsInfo
-      - labels: *id003
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutputIndex
         labelname: tlpPduOutputPhaseType
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.2.1.1.3
         type: EnumAsInfo
@@ -242,11 +255,15 @@ modules:
       - labelname: tlpPduOutputIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutputIndex
         labelname: tlpPduOutputPhase
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.2.1.1.2
         type: EnumAsInfo
-      - labels: *id003
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutputIndex
         labelname: tlpPduOutputPhaseType
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.2.1.1.3
         type: EnumAsInfo
@@ -260,13 +277,13 @@ modules:
       - labelname: tlpPduOutletIndex
         type: gauge
       lookups:
-      - labels: &id004
+      - labels:
         - tlpDeviceIndex
         - tlpPduOutletIndex
         labelname: tlpPduOutletName
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.3.1.1.2
         type: DisplayString
-      - labels: &id005
+      - labels:
         - tlpDeviceIndex
         - tlpPduOutletIndex
         labelname: tlpPduOutletDescription
@@ -282,11 +299,15 @@ modules:
       - labelname: tlpPduOutletIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutletIndex
         labelname: tlpPduOutletName
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.3.1.1.2
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutletIndex
         labelname: tlpPduOutletDescription
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.3.1.1.3
         type: DisplayString
@@ -300,11 +321,15 @@ modules:
       - labelname: tlpPduOutletIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutletIndex
         labelname: tlpPduOutletName
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.3.1.1.2
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutletIndex
         labelname: tlpPduOutletDescription
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.3.1.1.3
         type: DisplayString
@@ -318,11 +343,15 @@ modules:
       - labelname: tlpPduOutletIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutletIndex
         labelname: tlpPduOutletName
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.3.1.1.2
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - tlpDeviceIndex
+        - tlpPduOutletIndex
         labelname: tlpPduOutletDescription
         oid: 1.3.6.1.4.1.850.1.1.3.2.3.3.1.1.3
         type: DisplayString
@@ -339,10 +368,12 @@ modules:
         0: open
         1: closed
         2: notInstalled
+      lookups: []
     - name: snmp_tlpAlarmsPresent
       oid: 1.3.6.1.4.1.850.1.3.1
       type: gauge
       help: tlpAlarmsPresent (TRIPPLITE-PRODUCTS) - 1.3.6.1.4.1.850.1.3.1.0
+      lookups: []
     - name: snmp_tlpAlarmState
       oid: 1.3.6.1.4.1.850.1.3.2.1.8
       type: gauge
@@ -351,17 +382,17 @@ modules:
       - labelname: tlpAlarmId
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - tlpAlarmId
         labelname: tlpAlarmDescr
         oid: 1.3.6.1.4.1.850.1.3.2.1.2
         type: DisplayString
-      - labels: &id007
+      - labels:
         - tlpAlarmId
         labelname: tlpAlarmTime
         oid: 1.3.6.1.4.1.850.1.3.2.1.3
         type: DisplayString
-      - labels: &id008
+      - labels:
         - tlpAlarmId
         labelname: tlpAlarmDetail
         oid: 1.3.6.1.4.1.850.1.3.2.1.6
@@ -377,15 +408,18 @@ modules:
       - labelname: tlpAlarmId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - tlpAlarmId
         labelname: tlpAlarmDescr
         oid: 1.3.6.1.4.1.850.1.3.2.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - tlpAlarmId
         labelname: tlpAlarmTime
         oid: 1.3.6.1.4.1.850.1.3.2.1.3
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - tlpAlarmId
         labelname: tlpAlarmDetail
         oid: 1.3.6.1.4.1.850.1.3.2.1.6
         type: DisplayString

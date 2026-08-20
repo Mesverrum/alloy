@@ -22,7 +22,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -58,14 +59,17 @@ modules:
       oid: 1.3.6.1.4.1.19046.2.7.24.1.2.2.9
       type: gauge
       help: mpCpuStatsUtil1MinuteRev (LENOVO-TOR-MIBS) - 1.3.6.1.4.1.19046.2.7.24.1.2.2.9.0
+      lookups: []
     - name: snmp_MemoryTotal
       oid: 1.3.6.1.4.1.19046.2.7.24.1.2.12.1
       type: counter
       help: totalMemoryStats (LENOVO-TOR-MIBS) - 1.3.6.1.4.1.19046.2.7.24.1.2.12.1.0
+      lookups: []
     - name: snmp_MemoryFree
       oid: 1.3.6.1.4.1.19046.2.7.24.1.2.12.2
       type: counter
       help: memoryFreeStats (LENOVO-TOR-MIBS) - 1.3.6.1.4.1.19046.2.7.24.1.2.12.2.0
+      lookups: []
     - name: snmp_hwGlobalHealthStatus
       oid: 1.3.6.1.4.1.19046.2.7.24.1.3.1.15
       type: gauge
@@ -74,6 +78,7 @@ modules:
         1: ok
         2: noncritical
         3: critical
+      lookups: []
     - name: snmp_lenovoEnvMibPowerSupplyState
       oid: 1.3.6.1.4.1.19046.2.3.11.1.1.1.5
       type: gauge
@@ -105,17 +110,17 @@ modules:
       - labelname: lenovoEnvMibFanIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - lenovoEnvMibFanIndex
         labelname: fan_name
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.4
         type: DisplayString
-      - labels: &id002
+      - labels:
         - lenovoEnvMibFanIndex
         labelname: fan_desc
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.3
         type: DisplayString
-      - labels: &id003
+      - labels:
         - lenovoEnvMibFanIndex
         labelname: fan_module
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.7
@@ -132,15 +137,18 @@ modules:
       - labelname: lenovoEnvMibFanIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - lenovoEnvMibFanIndex
         labelname: fan_name
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - lenovoEnvMibFanIndex
         labelname: fan_desc
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - lenovoEnvMibFanIndex
         labelname: fan_module
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.7
         type: DisplayString
@@ -152,15 +160,18 @@ modules:
       - labelname: lenovoEnvMibFanIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - lenovoEnvMibFanIndex
         labelname: fan_name
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - lenovoEnvMibFanIndex
         labelname: fan_desc
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - lenovoEnvMibFanIndex
         labelname: fan_module
         oid: 1.3.6.1.4.1.19046.2.3.11.1.2.1.7
         type: DisplayString
@@ -172,12 +183,12 @@ modules:
       - labelname: lenovoEnvMibTempSensorIndex
         type: gauge
       lookups:
-      - labels: &id004
+      - labels:
         - lenovoEnvMibTempSensorIndex
         labelname: sensor_name
         oid: 1.3.6.1.4.1.19046.2.3.11.1.3.1.4
         type: DisplayString
-      - labels: &id005
+      - labels:
         - lenovoEnvMibTempSensorIndex
         labelname: sensor_desc
         oid: 1.3.6.1.4.1.19046.2.3.11.1.3.1.3
@@ -193,11 +204,13 @@ modules:
       - labelname: lenovoEnvMibTempSensorIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - lenovoEnvMibTempSensorIndex
         labelname: sensor_name
         oid: 1.3.6.1.4.1.19046.2.3.11.1.3.1.4
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - lenovoEnvMibTempSensorIndex
         labelname: sensor_desc
         oid: 1.3.6.1.4.1.19046.2.3.11.1.3.1.3
         type: DisplayString
@@ -205,3 +218,4 @@ modules:
       oid: 1.3.6.1.4.1.19046.2.3.11.1.4.1
       type: gauge
       help: lenovoEnvMibTempSensorWarning (LENOVO-ENV-MIB) - 1.3.6.1.4.1.19046.2.3.11.1.4.1.0
+      lookups: []

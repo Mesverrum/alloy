@@ -26,7 +26,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -62,22 +63,27 @@ modules:
       oid: 1.3.6.1.4.1.41263.508
       type: counter
       help: clusterIOBandwidth (NUTANIX-MIB) - 1.3.6.1.4.1.41263.508
+      lookups: []
     - name: snmp_clusterIops
       oid: 1.3.6.1.4.1.41263.506
       type: counter
       help: clusterIops (NUTANIX-MIB) - 1.3.6.1.4.1.41263.506
+      lookups: []
     - name: snmp_clusterLatency
       oid: 1.3.6.1.4.1.41263.507
       type: counter
       help: clusterLatency (NUTANIX-MIB) - 1.3.6.1.4.1.41263.507
+      lookups: []
     - name: snmp_clusterTotalStorageCapacity
       oid: 1.3.6.1.4.1.41263.504
       type: counter
       help: clusterTotalStorageCapacity (NUTANIX-MIB) - 1.3.6.1.4.1.41263.504
+      lookups: []
     - name: snmp_clusterUsedStorageCapacity
       oid: 1.3.6.1.4.1.41263.505
       type: counter
       help: clusterUsedStorageCapacity (NUTANIX-MIB) - 1.3.6.1.4.1.41263.505
+      lookups: []
     - name: snmp_citIOBandwidth
       oid: 1.3.6.1.4.1.41263.8.1.8
       type: counter
@@ -86,22 +92,22 @@ modules:
       - labelname: citIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - citIndex
         labelname: citContainerId
         oid: 1.3.6.1.4.1.41263.8.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - citIndex
         labelname: citIOPerSecond
         oid: 1.3.6.1.4.1.41263.8.1.6
         type: DisplayString
-      - labels: &id003
+      - labels:
         - citIndex
         labelname: citContainerName
         oid: 1.3.6.1.4.1.41263.8.1.3
         type: DisplayString
-      - labels: &id004
+      - labels:
         - citIndex
         labelname: citIndex
         oid: 1.3.6.1.4.1.41263.8.1.1
@@ -114,19 +120,23 @@ modules:
       - labelname: citIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - citIndex
         labelname: citContainerId
         oid: 1.3.6.1.4.1.41263.8.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - citIndex
         labelname: citIOPerSecond
         oid: 1.3.6.1.4.1.41263.8.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - citIndex
         labelname: citContainerName
         oid: 1.3.6.1.4.1.41263.8.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - citIndex
         labelname: citIndex
         oid: 1.3.6.1.4.1.41263.8.1.1
         type: gauge
@@ -138,19 +148,23 @@ modules:
       - labelname: citIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - citIndex
         labelname: citContainerId
         oid: 1.3.6.1.4.1.41263.8.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - citIndex
         labelname: citIOPerSecond
         oid: 1.3.6.1.4.1.41263.8.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - citIndex
         labelname: citContainerName
         oid: 1.3.6.1.4.1.41263.8.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - citIndex
         labelname: citIndex
         oid: 1.3.6.1.4.1.41263.8.1.1
         type: gauge
@@ -162,19 +176,23 @@ modules:
       - labelname: citIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - citIndex
         labelname: citContainerId
         oid: 1.3.6.1.4.1.41263.8.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - citIndex
         labelname: citIOPerSecond
         oid: 1.3.6.1.4.1.41263.8.1.6
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - citIndex
         labelname: citContainerName
         oid: 1.3.6.1.4.1.41263.8.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - citIndex
         labelname: citIndex
         oid: 1.3.6.1.4.1.41263.8.1.1
         type: gauge
@@ -214,27 +232,27 @@ modules:
       - labelname: dstIndex
         type: gauge
       lookups:
-      - labels: &id005
+      - labels:
         - dstIndex
         labelname: dstDiskId
         oid: 1.3.6.1.4.1.41263.3.1.2
         type: DisplayString
-      - labels: &id006
+      - labels:
         - dstIndex
         labelname: dstSerial
         oid: 1.3.6.1.4.1.41263.3.1.4
         type: DisplayString
-      - labels: &id007
+      - labels:
         - dstIndex
         labelname: dstState
         oid: 1.3.6.1.4.1.41263.3.1.13
         type: DisplayString
-      - labels: &id008
+      - labels:
         - dstIndex
         labelname: dstIndex
         oid: 1.3.6.1.4.1.41263.3.1.1
         type: gauge
-      - labels: &id009
+      - labels:
         - dstIndex
         labelname: dstControllerVMId
         oid: 1.3.6.1.4.1.41263.3.1.3
@@ -247,23 +265,28 @@ modules:
       - labelname: dstIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dstIndex
         labelname: dstDiskId
         oid: 1.3.6.1.4.1.41263.3.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dstIndex
         labelname: dstSerial
         oid: 1.3.6.1.4.1.41263.3.1.4
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dstIndex
         labelname: dstState
         oid: 1.3.6.1.4.1.41263.3.1.13
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - dstIndex
         labelname: dstIndex
         oid: 1.3.6.1.4.1.41263.3.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - dstIndex
         labelname: dstControllerVMId
         oid: 1.3.6.1.4.1.41263.3.1.3
         type: DisplayString
@@ -275,23 +298,28 @@ modules:
       - labelname: dstIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dstIndex
         labelname: dstDiskId
         oid: 1.3.6.1.4.1.41263.3.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dstIndex
         labelname: dstSerial
         oid: 1.3.6.1.4.1.41263.3.1.4
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dstIndex
         labelname: dstState
         oid: 1.3.6.1.4.1.41263.3.1.13
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - dstIndex
         labelname: dstIndex
         oid: 1.3.6.1.4.1.41263.3.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - dstIndex
         labelname: dstControllerVMId
         oid: 1.3.6.1.4.1.41263.3.1.3
         type: DisplayString
@@ -303,23 +331,28 @@ modules:
       - labelname: dstIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dstIndex
         labelname: dstDiskId
         oid: 1.3.6.1.4.1.41263.3.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dstIndex
         labelname: dstSerial
         oid: 1.3.6.1.4.1.41263.3.1.4
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dstIndex
         labelname: dstState
         oid: 1.3.6.1.4.1.41263.3.1.13
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - dstIndex
         labelname: dstIndex
         oid: 1.3.6.1.4.1.41263.3.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - dstIndex
         labelname: dstControllerVMId
         oid: 1.3.6.1.4.1.41263.3.1.3
         type: DisplayString
@@ -331,23 +364,28 @@ modules:
       - labelname: dstIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dstIndex
         labelname: dstDiskId
         oid: 1.3.6.1.4.1.41263.3.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dstIndex
         labelname: dstSerial
         oid: 1.3.6.1.4.1.41263.3.1.4
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dstIndex
         labelname: dstState
         oid: 1.3.6.1.4.1.41263.3.1.13
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - dstIndex
         labelname: dstIndex
         oid: 1.3.6.1.4.1.41263.3.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - dstIndex
         labelname: dstControllerVMId
         oid: 1.3.6.1.4.1.41263.3.1.3
         type: DisplayString
@@ -359,23 +397,28 @@ modules:
       - labelname: dstIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dstIndex
         labelname: dstDiskId
         oid: 1.3.6.1.4.1.41263.3.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dstIndex
         labelname: dstSerial
         oid: 1.3.6.1.4.1.41263.3.1.4
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dstIndex
         labelname: dstState
         oid: 1.3.6.1.4.1.41263.3.1.13
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - dstIndex
         labelname: dstIndex
         oid: 1.3.6.1.4.1.41263.3.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - dstIndex
         labelname: dstControllerVMId
         oid: 1.3.6.1.4.1.41263.3.1.3
         type: DisplayString
@@ -387,23 +430,28 @@ modules:
       - labelname: dstIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dstIndex
         labelname: dstDiskId
         oid: 1.3.6.1.4.1.41263.3.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dstIndex
         labelname: dstSerial
         oid: 1.3.6.1.4.1.41263.3.1.4
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dstIndex
         labelname: dstState
         oid: 1.3.6.1.4.1.41263.3.1.13
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - dstIndex
         labelname: dstIndex
         oid: 1.3.6.1.4.1.41263.3.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - dstIndex
         labelname: dstControllerVMId
         oid: 1.3.6.1.4.1.41263.3.1.3
         type: DisplayString
@@ -415,23 +463,28 @@ modules:
       - labelname: dstIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dstIndex
         labelname: dstDiskId
         oid: 1.3.6.1.4.1.41263.3.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dstIndex
         labelname: dstSerial
         oid: 1.3.6.1.4.1.41263.3.1.4
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dstIndex
         labelname: dstState
         oid: 1.3.6.1.4.1.41263.3.1.13
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - dstIndex
         labelname: dstIndex
         oid: 1.3.6.1.4.1.41263.3.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - dstIndex
         labelname: dstControllerVMId
         oid: 1.3.6.1.4.1.41263.3.1.3
         type: DisplayString
@@ -443,57 +496,57 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: &id010
+      - labels:
         - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: &id011
+      - labels:
         - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: &id012
+      - labels:
         - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: &id013
+      - labels:
         - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: &id014
+      - labels:
         - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: &id015
+      - labels:
         - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: &id016
+      - labels:
         - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: &id017
+      - labels:
         - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: &id018
+      - labels:
         - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: &id019
+      - labels:
         - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: &id020
+      - labels:
         - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
@@ -506,47 +559,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -558,47 +622,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -610,47 +685,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -662,47 +748,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -714,47 +811,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -766,47 +874,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -818,47 +937,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -870,47 +1000,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -922,47 +1063,58 @@ modules:
       - labelname: hypervisorIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityUuid
         oid: 1.3.6.1.4.1.41263.999.8
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityName
         oid: 1.3.6.1.4.1.41263.999.9
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorName
         oid: 1.3.6.1.4.1.41263.9.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertTitle
         oid: 1.3.6.1.4.1.41263.999.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorId
         oid: 1.3.6.1.4.1.41263.9.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertSourceEntityType
         oid: 1.3.6.1.4.1.41263.999.10
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertUuid
         oid: 1.3.6.1.4.1.41263.999.5
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - hypervisorIndex
         labelname: hypervisorIndex
         oid: 1.3.6.1.4.1.41263.9.1.1
         type: gauge
-      - labels: *id018
+      - labels:
+        - hypervisorIndex
         labelname: ntxTrapName
         oid: 1.3.6.1.4.1.41263.992
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertClusterName
         oid: 1.3.6.1.4.1.41263.999.7
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - hypervisorIndex
         labelname: ntxAlertDisplayMsg
         oid: 1.3.6.1.4.1.41263.999.2
         type: DisplayString
@@ -974,67 +1126,67 @@ modules:
       - labelname: svtIndex
         type: gauge
       lookups:
-      - labels: &id021
+      - labels:
         - svtIndex
         labelname: cstControllerVMId
         oid: 1.3.6.1.4.1.41263.11.1.2
         type: DisplayString
-      - labels: &id022
+      - labels:
         - svtIndex
         labelname: svtNutanixCore
         oid: 1.3.6.1.4.1.41263.1.1.5
         type: DisplayString
-      - labels: &id023
+      - labels:
         - svtIndex
         labelname: svtNutanixToolchain
         oid: 1.3.6.1.4.1.41263.1.1.6
         type: DisplayString
-      - labels: &id024
+      - labels:
         - svtIndex
         labelname: svtNutanixServiceability
         oid: 1.3.6.1.4.1.41263.1.1.7
         type: DisplayString
-      - labels: &id025
+      - labels:
         - svtIndex
         labelname: cstControllerVMStatus
         oid: 1.3.6.1.4.1.41263.11.1.3
         type: DisplayString
-      - labels: &id026
+      - labels:
         - svtIndex
         labelname: vmHypervisorId
         oid: 1.3.6.1.4.1.41263.10.1.4
         type: DisplayString
-      - labels: &id027
+      - labels:
         - svtIndex
         labelname: svtIndex
         oid: 1.3.6.1.4.1.41263.1.1.1
         type: gauge
-      - labels: &id028
+      - labels:
         - svtIndex
         labelname: vmName
         oid: 1.3.6.1.4.1.41263.10.1.3
         type: DisplayString
-      - labels: &id029
+      - labels:
         - svtIndex
         labelname: svtNutanixBootstrap
         oid: 1.3.6.1.4.1.41263.1.1.3
         type: DisplayString
-      - labels: &id030
+      - labels:
         - svtIndex
         labelname: svtNutanixInfrastructure
         oid: 1.3.6.1.4.1.41263.1.1.4
         type: DisplayString
-      - labels: &id031
+      - labels:
         - svtIndex
         labelname: svtControllerVMId
         oid: 1.3.6.1.4.1.41263.1.1.2
         type: DisplayString
-      - labels: &id032
+      - labels:
         - svtIndex
         labelname: svtLinuxKernel
         oid: 1.3.6.1.4.1.41263.1.1.8
         type: DisplayString
-      - labels: &id033
+      - labels:
         - svtIndex
         labelname: cstMetadataServiceStatus
         oid: 1.3.6.1.4.1.41263.11.1.5
@@ -1047,55 +1199,68 @@ modules:
       - labelname: svtIndex
         type: gauge
       lookups:
-      - labels: *id021
+      - labels:
+        - svtIndex
         labelname: cstControllerVMId
         oid: 1.3.6.1.4.1.41263.11.1.2
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - svtIndex
         labelname: svtNutanixCore
         oid: 1.3.6.1.4.1.41263.1.1.5
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - svtIndex
         labelname: svtNutanixToolchain
         oid: 1.3.6.1.4.1.41263.1.1.6
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - svtIndex
         labelname: svtNutanixServiceability
         oid: 1.3.6.1.4.1.41263.1.1.7
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - svtIndex
         labelname: cstControllerVMStatus
         oid: 1.3.6.1.4.1.41263.11.1.3
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - svtIndex
         labelname: vmHypervisorId
         oid: 1.3.6.1.4.1.41263.10.1.4
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - svtIndex
         labelname: svtIndex
         oid: 1.3.6.1.4.1.41263.1.1.1
         type: gauge
-      - labels: *id028
+      - labels:
+        - svtIndex
         labelname: vmName
         oid: 1.3.6.1.4.1.41263.10.1.3
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - svtIndex
         labelname: svtNutanixBootstrap
         oid: 1.3.6.1.4.1.41263.1.1.3
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - svtIndex
         labelname: svtNutanixInfrastructure
         oid: 1.3.6.1.4.1.41263.1.1.4
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - svtIndex
         labelname: svtControllerVMId
         oid: 1.3.6.1.4.1.41263.1.1.2
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - svtIndex
         labelname: svtLinuxKernel
         oid: 1.3.6.1.4.1.41263.1.1.8
         type: DisplayString
-      - labels: *id033
+      - labels:
+        - svtIndex
         labelname: cstMetadataServiceStatus
         oid: 1.3.6.1.4.1.41263.11.1.5
         type: DisplayString
@@ -1107,55 +1272,68 @@ modules:
       - labelname: svtIndex
         type: gauge
       lookups:
-      - labels: *id021
+      - labels:
+        - svtIndex
         labelname: cstControllerVMId
         oid: 1.3.6.1.4.1.41263.11.1.2
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - svtIndex
         labelname: svtNutanixCore
         oid: 1.3.6.1.4.1.41263.1.1.5
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - svtIndex
         labelname: svtNutanixToolchain
         oid: 1.3.6.1.4.1.41263.1.1.6
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - svtIndex
         labelname: svtNutanixServiceability
         oid: 1.3.6.1.4.1.41263.1.1.7
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - svtIndex
         labelname: cstControllerVMStatus
         oid: 1.3.6.1.4.1.41263.11.1.3
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - svtIndex
         labelname: vmHypervisorId
         oid: 1.3.6.1.4.1.41263.10.1.4
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - svtIndex
         labelname: svtIndex
         oid: 1.3.6.1.4.1.41263.1.1.1
         type: gauge
-      - labels: *id028
+      - labels:
+        - svtIndex
         labelname: vmName
         oid: 1.3.6.1.4.1.41263.10.1.3
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - svtIndex
         labelname: svtNutanixBootstrap
         oid: 1.3.6.1.4.1.41263.1.1.3
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - svtIndex
         labelname: svtNutanixInfrastructure
         oid: 1.3.6.1.4.1.41263.1.1.4
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - svtIndex
         labelname: svtControllerVMId
         oid: 1.3.6.1.4.1.41263.1.1.2
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - svtIndex
         labelname: svtLinuxKernel
         oid: 1.3.6.1.4.1.41263.1.1.8
         type: DisplayString
-      - labels: *id033
+      - labels:
+        - svtIndex
         labelname: cstMetadataServiceStatus
         oid: 1.3.6.1.4.1.41263.11.1.5
         type: DisplayString
@@ -1167,22 +1345,22 @@ modules:
       - labelname: spitIndex
         type: gauge
       lookups:
-      - labels: &id034
+      - labels:
         - spitIndex
         labelname: spitIOPerSecond
         oid: 1.3.6.1.4.1.41263.7.1.6
         type: DisplayString
-      - labels: &id035
+      - labels:
         - spitIndex
         labelname: spitStoragePoolId
         oid: 1.3.6.1.4.1.41263.7.1.2
         type: DisplayString
-      - labels: &id036
+      - labels:
         - spitIndex
         labelname: spitStoragePoolName
         oid: 1.3.6.1.4.1.41263.7.1.3
         type: DisplayString
-      - labels: &id037
+      - labels:
         - spitIndex
         labelname: spitIndex
         oid: 1.3.6.1.4.1.41263.7.1.1
@@ -1195,19 +1373,23 @@ modules:
       - labelname: spitIndex
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - spitIndex
         labelname: spitIOPerSecond
         oid: 1.3.6.1.4.1.41263.7.1.6
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - spitIndex
         labelname: spitStoragePoolId
         oid: 1.3.6.1.4.1.41263.7.1.2
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - spitIndex
         labelname: spitStoragePoolName
         oid: 1.3.6.1.4.1.41263.7.1.3
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - spitIndex
         labelname: spitIndex
         oid: 1.3.6.1.4.1.41263.7.1.1
         type: gauge
@@ -1219,19 +1401,23 @@ modules:
       - labelname: spitIndex
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - spitIndex
         labelname: spitIOPerSecond
         oid: 1.3.6.1.4.1.41263.7.1.6
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - spitIndex
         labelname: spitStoragePoolId
         oid: 1.3.6.1.4.1.41263.7.1.2
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - spitIndex
         labelname: spitStoragePoolName
         oid: 1.3.6.1.4.1.41263.7.1.3
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - spitIndex
         labelname: spitIndex
         oid: 1.3.6.1.4.1.41263.7.1.1
         type: gauge
@@ -1243,19 +1429,23 @@ modules:
       - labelname: spitIndex
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - spitIndex
         labelname: spitIOPerSecond
         oid: 1.3.6.1.4.1.41263.7.1.6
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - spitIndex
         labelname: spitStoragePoolId
         oid: 1.3.6.1.4.1.41263.7.1.2
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - spitIndex
         labelname: spitStoragePoolName
         oid: 1.3.6.1.4.1.41263.7.1.3
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - spitIndex
         labelname: spitIndex
         oid: 1.3.6.1.4.1.41263.7.1.1
         type: gauge
@@ -1267,17 +1457,17 @@ modules:
       - labelname: vmIndex
         type: gauge
       lookups:
-      - labels: &id038
+      - labels:
         - vmIndex
         labelname: vmIndex
         oid: 1.3.6.1.4.1.41263.10.1.1
         type: gauge
-      - labels: &id039
+      - labels:
         - vmIndex
         labelname: vmPowerState
         oid: 1.3.6.1.4.1.41263.10.1.5
         type: DisplayString
-      - labels: &id040
+      - labels:
         - vmIndex
         labelname: vmId
         oid: 1.3.6.1.4.1.41263.10.1.2
@@ -1290,15 +1480,18 @@ modules:
       - labelname: vmIndex
         type: gauge
       lookups:
-      - labels: *id038
+      - labels:
+        - vmIndex
         labelname: vmIndex
         oid: 1.3.6.1.4.1.41263.10.1.1
         type: gauge
-      - labels: *id039
+      - labels:
+        - vmIndex
         labelname: vmPowerState
         oid: 1.3.6.1.4.1.41263.10.1.5
         type: DisplayString
-      - labels: *id040
+      - labels:
+        - vmIndex
         labelname: vmId
         oid: 1.3.6.1.4.1.41263.10.1.2
         type: DisplayString
@@ -1310,15 +1503,18 @@ modules:
       - labelname: vmIndex
         type: gauge
       lookups:
-      - labels: *id038
+      - labels:
+        - vmIndex
         labelname: vmIndex
         oid: 1.3.6.1.4.1.41263.10.1.1
         type: gauge
-      - labels: *id039
+      - labels:
+        - vmIndex
         labelname: vmPowerState
         oid: 1.3.6.1.4.1.41263.10.1.5
         type: DisplayString
-      - labels: *id040
+      - labels:
+        - vmIndex
         labelname: vmId
         oid: 1.3.6.1.4.1.41263.10.1.2
         type: DisplayString
@@ -1330,15 +1526,18 @@ modules:
       - labelname: vmIndex
         type: gauge
       lookups:
-      - labels: *id038
+      - labels:
+        - vmIndex
         labelname: vmIndex
         oid: 1.3.6.1.4.1.41263.10.1.1
         type: gauge
-      - labels: *id039
+      - labels:
+        - vmIndex
         labelname: vmPowerState
         oid: 1.3.6.1.4.1.41263.10.1.5
         type: DisplayString
-      - labels: *id040
+      - labels:
+        - vmIndex
         labelname: vmId
         oid: 1.3.6.1.4.1.41263.10.1.2
         type: DisplayString

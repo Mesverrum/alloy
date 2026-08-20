@@ -22,7 +22,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -72,7 +73,7 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - ifIndex
         labelname: ifName
         oid: 1.3.6.1.2.1.2.2.1.2
@@ -85,7 +86,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: ifName
         oid: 1.3.6.1.2.1.2.2.1.2
         type: DisplayString
@@ -97,7 +99,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: ifName
         oid: 1.3.6.1.2.1.2.2.1.2
         type: DisplayString
@@ -109,7 +112,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: ifName
         oid: 1.3.6.1.2.1.2.2.1.2
         type: DisplayString
@@ -121,7 +125,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: ifName
         oid: 1.3.6.1.2.1.2.2.1.2
         type: DisplayString
@@ -133,7 +138,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: ifName
         oid: 1.3.6.1.2.1.2.2.1.2
         type: DisplayString
@@ -141,6 +147,7 @@ modules:
       oid: 1.3.6.1.2.1.43.10.2.1.4.1.1
       type: gauge
       help: printerPagesTotalLifetime (PRINTER-MIB) - 1.3.6.1.2.1.43.10.2.1.4.1.1
+      lookups: []
     - name: snmp_prtSupplyLevel
       oid: 1.3.6.1.2.1.43.11.1.1.9
       type: gauge
@@ -151,7 +158,7 @@ modules:
       - labelname: prtMarkerSuppliesIndex
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - hrDeviceIndex
         - prtMarkerSuppliesIndex
         labelname: prtSupplyDescription
@@ -167,7 +174,9 @@ modules:
       - labelname: prtMarkerSuppliesIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - hrDeviceIndex
+        - prtMarkerSuppliesIndex
         labelname: prtSupplyDescription
         oid: 1.3.6.1.2.1.43.11.1.1.6
         type: DisplayString
@@ -181,7 +190,7 @@ modules:
       - labelname: prtInputIndex
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - hrDeviceIndex
         - prtInputIndex
         labelname: prtInputName
@@ -197,7 +206,9 @@ modules:
       - labelname: prtInputIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - hrDeviceIndex
+        - prtInputIndex
         labelname: prtInputName
         oid: 1.3.6.1.2.1.43.8.2.1.13
         type: DisplayString
@@ -211,7 +222,7 @@ modules:
       - labelname: prtOutputIndex
         type: gauge
       lookups:
-      - labels: &id004
+      - labels:
         - hrDeviceIndex
         - prtOutputIndex
         labelname: prtOutputName
@@ -227,7 +238,9 @@ modules:
       - labelname: prtOutputIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - hrDeviceIndex
+        - prtOutputIndex
         labelname: prtOutputName
         oid: 1.3.6.1.2.1.43.9.2.1.12
         type: DisplayString

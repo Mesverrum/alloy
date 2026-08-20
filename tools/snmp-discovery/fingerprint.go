@@ -174,6 +174,35 @@ func (f Fingerprinter) Match(labels map[string]string) []string {
 	return uniqueModules(out)
 }
 
+// filterTiersToKnown drops fingerprinter module names that are not in snmp.yml.
+// A nil or empty catalog means "do not filter" (tests / auths-only files).
+func filterTiersToKnown(t ModuleTiers, known map[string]struct{}) (ModuleTiers, []string) {
+	if len(known) == 0 {
+		return t, nil
+	}
+	var dropped []string
+	keep := func(in []string) []string {
+		var out []string
+		for _, m := range in {
+			m = strings.TrimSpace(m)
+			if m == "" {
+				continue
+			}
+			if _, ok := known[m]; ok {
+				out = append(out, m)
+				continue
+			}
+			dropped = append(dropped, m)
+		}
+		return out
+	}
+	return ModuleTiers{
+		Hot:      keep(t.Hot),
+		Cold:     keep(t.Cold),
+		Topology: keep(t.Topology),
+	}, uniqueModules(dropped)
+}
+
 func uniqueModules(in []string) []string {
 	seen := map[string]struct{}{}
 	var out []string

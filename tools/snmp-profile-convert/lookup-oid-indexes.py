@@ -163,7 +163,7 @@ def index_exporter_type(syntax: str, name: str) -> str:
     if n.endswith("Address") and "Type" not in n and "Prefix" not in n:
         return "InetAddress"
     if "PHYSADDRESS" in s or "MACADDRESS" in s or n.endswith("PhysAddress") or n.endswith("MacAddress"):
-        return "PhysAddress"
+        return "PhysAddress48"
     if "IPADDRESS" in s:
         return "InetAddress"
     if any(x in s for x in ("DISPLAYSTRING", "SNMPADMINSTRING", "OCTETSTRING", "OPAQUE", "DATEANDTIME")):

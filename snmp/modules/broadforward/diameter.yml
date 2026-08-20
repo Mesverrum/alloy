@@ -8,7 +8,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -48,47 +49,47 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: &id002
+      - labels:
         - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: &id003
+      - labels:
         - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: &id004
+      - labels:
         - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: &id005
+      - labels:
         - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: &id006
+      - labels:
         - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: &id007
+      - labels:
         - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: &id008
+      - labels:
         - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: &id009
+      - labels:
         - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
@@ -104,39 +105,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -163,39 +173,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -210,39 +229,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -258,39 +286,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -305,39 +342,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -349,39 +395,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -393,39 +448,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -437,39 +501,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -481,39 +554,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -525,39 +607,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -569,39 +660,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -613,39 +713,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -657,39 +766,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -701,39 +819,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -745,39 +872,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -789,39 +925,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -833,39 +978,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -877,39 +1031,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -921,39 +1084,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -965,39 +1137,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1009,39 +1190,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1053,39 +1243,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1097,39 +1296,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1141,39 +1349,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1185,39 +1402,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1229,39 +1455,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1273,39 +1508,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1317,39 +1561,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1361,39 +1614,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1405,39 +1667,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1449,39 +1720,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1493,39 +1773,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1537,39 +1826,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1581,39 +1879,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1625,39 +1932,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1669,39 +1985,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1713,39 +2038,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1757,39 +2091,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1801,39 +2144,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1845,39 +2197,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1889,39 +2250,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1933,39 +2303,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -1977,39 +2356,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -2021,39 +2409,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -2065,39 +2462,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -2109,39 +2515,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString
@@ -2153,39 +2568,48 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dmtrPeerDiameterId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.3
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - index
         labelname: dmtrPeerRemoteId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.21
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - index
         labelname: dmtrPeerRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.22
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginId
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.23
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - index
         labelname: dmtrPeerLocalOriginRealm
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.24
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: dmtrPeerRemoteEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.121
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - index
         labelname: dmtrPeerLocalEndPoint
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.122
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - index
         labelname: dmtrPeerLabel1
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.206
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: dmtrPeerProductName
         oid: 1.3.6.1.4.1.39216.1.50.1.2.1.402
         type: DisplayString

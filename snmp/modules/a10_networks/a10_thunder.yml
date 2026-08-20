@@ -69,7 +69,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -120,158 +121,197 @@ modules:
       oid: 1.3.6.1.4.1.22610.2.4.1.2.1
       type: gauge
       help: axSysMemoryTotal (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.2.1.0
+      lookups: []
     - name: snmp_MemoryUsed
       oid: 1.3.6.1.4.1.22610.2.4.1.2.2
       type: gauge
       help: axSysMemoryUsage (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.2.2.0
+      lookups: []
     - name: snmp_CPU
       oid: 1.3.6.1.4.1.22610.2.4.1.3.3
       type: gauge
       help: axSysAverageCpuUsage (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.3.3.0
+      lookups: []
     - name: snmp_axSysAverageCtlCpuUsage
       oid: 1.3.6.1.4.1.22610.2.4.1.3.4
       type: gauge
       help: axSysAverageCtlCpuUsage (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.3.4.0
+      lookups: []
     - name: snmp_axSysAverageDataCpuUsage
       oid: 1.3.6.1.4.1.22610.2.4.1.3.5
       type: gauge
       help: axSysAverageDataCpuUsage (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.3.5.0
+      lookups: []
     - name: snmp_axSysDiskTotalSpace
       oid: 1.3.6.1.4.1.22610.2.4.1.4.1
       type: gauge
       help: axSysDiskTotalSpace (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.4.1.0
+      lookups: []
     - name: snmp_axSysDiskFreeSpace
       oid: 1.3.6.1.4.1.22610.2.4.1.4.2
       type: gauge
       help: axSysDiskFreeSpace (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.4.2.0
+      lookups: []
     - name: snmp_axSysHwPhySystemTemp
       oid: 1.3.6.1.4.1.22610.2.4.1.5.1
       type: gauge
       help: axSysHwPhySystemTemp (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.5.1.0
+      lookups: []
     - name: snmp_axPowerSupplyVoltageTotal
       oid: 1.3.6.1.4.1.22610.2.4.1.5.10
       type: gauge
       help: axPowerSupplyVoltageTotal (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.1.5.10.0
+      lookups: []
     - name: snmp_axAppGlobalTotalCurrentConnections
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.1
       type: counter
       help: axAppGlobalTotalCurrentConnections (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.1.0
+      lookups: []
     - name: snmp_axAppGlobalTotalNewConnections
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.2
       type: counter
       help: axAppGlobalTotalNewConnections (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.2.0
+      lookups: []
     - name: snmp_axAppGlobalTotalNewL4Connections
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.3
       type: counter
       help: axAppGlobalTotalNewL4Connections (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.3.0
+      lookups: []
     - name: snmp_axAppGlobalTotalNewL7Connections
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.4
       type: counter
       help: axAppGlobalTotalNewL7Connections (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.4.0
+      lookups: []
     - name: snmp_axAppGlobalTotalNewIPNatConnections
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.5
       type: counter
       help: axAppGlobalTotalNewIPNatConnections (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.5.0
+      lookups: []
     - name: snmp_axAppGlobalTotalSSLConnections
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.6
       type: counter
       help: axAppGlobalTotalSSLConnections (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.6.0
+      lookups: []
     - name: snmp_axAppGlobalTotalL7Requests
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.7
       type: counter
       help: axAppGlobalTotalL7Requests (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.7.0
+      lookups: []
     - name: snmp_axAppGlobalAppPacketDrop
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.8
       type: gauge
       help: axAppGlobalAppPacketDrop (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.8.0
+      lookups: []
     - name: snmp_axAppGlobalTotalAppPacketDrop
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.9
       type: counter
       help: axAppGlobalTotalAppPacketDrop (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.9.0
+      lookups: []
     - name: snmp_axAppGlobalTotalL4Session
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.10
       type: counter
       help: axAppGlobalTotalL4Session (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.10.0
+      lookups: []
     - name: snmp_axAppGlobalTotalThroughput
       oid: 1.3.6.1.4.1.22610.2.4.3.1.2.13
       type: counter
       help: axAppGlobalTotalThroughput (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.2.13.0
+      lookups: []
     - name: snmp_axAppGlobalBufferConfigLimit
       oid: 1.3.6.1.4.1.22610.2.4.3.1.3.1
       type: gauge
       help: axAppGlobalBufferConfigLimit (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.3.1.0
+      lookups: []
     - name: snmp_axAppGlobalBufferCurrentUsage
       oid: 1.3.6.1.4.1.22610.2.4.3.1.3.2
       type: gauge
       help: axAppGlobalBufferCurrentUsage (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.1.3.2.0
+      lookups: []
     - name: snmp_axConnReuseStatTotalOpenPersist
       oid: 1.3.6.1.4.1.22610.2.4.3.5.1
       type: gauge
       help: axConnReuseStatTotalOpenPersist (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.5.1.0
+      lookups: []
     - name: snmp_axConnReuseStatTotalActivePersist
       oid: 1.3.6.1.4.1.22610.2.4.3.5.2
       type: gauge
       help: axConnReuseStatTotalActivePersist (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.5.2.0
+      lookups: []
     - name: snmp_axConnReuseStatTotalEstablished
       oid: 1.3.6.1.4.1.22610.2.4.3.5.3
       type: gauge
       help: axConnReuseStatTotalEstablished (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.5.3.0
+      lookups: []
     - name: snmp_axConnReuseStatTotalTerminated
       oid: 1.3.6.1.4.1.22610.2.4.3.5.4
       type: gauge
       help: axConnReuseStatTotalTerminated (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.5.4.0
+      lookups: []
     - name: snmp_axSessionGlobalStatTCPEstablished
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.1
       type: gauge
       help: axSessionGlobalStatTCPEstablished (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.1.0
+      lookups: []
     - name: snmp_axSessionGlobalStatTCPHalfOpen
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.2
       type: gauge
       help: axSessionGlobalStatTCPHalfOpen (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.2.0
+      lookups: []
     - name: snmp_axSessionGlobalStatUDP
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.3
       type: gauge
       help: axSessionGlobalStatUDP (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.3.0
+      lookups: []
     - name: snmp_axSessionGlobalStatNonTdpIPSession
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.4
       type: gauge
       help: axSessionGlobalStatNonTdpIPSession (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.4.0
+      lookups: []
     - name: snmp_axSessionGlobalStatOther
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.5
       type: gauge
       help: axSessionGlobalStatOther (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.5.0
+      lookups: []
     - name: snmp_axSessionGlobalStatReverseNATTCP
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.6
       type: gauge
       help: axSessionGlobalStatReverseNATTCP (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.6.0
+      lookups: []
     - name: snmp_axSessionGlobalStatReverseNATUDP
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.7
       type: gauge
       help: axSessionGlobalStatReverseNATUDP (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.7.0
+      lookups: []
     - name: snmp_axSessionGlobalStatFreeCurrentConns
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.9
       type: gauge
       help: axSessionGlobalStatFreeCurrentConns (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.9.0
+      lookups: []
     - name: snmp_axSessionGlobalStatConnCount
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.10
       type: gauge
       help: axSessionGlobalStatConnCount (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.10.0
+      lookups: []
     - name: snmp_axSessionGlobalStatConnFree
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.11
       type: gauge
       help: axSessionGlobalStatConnFree (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.11.0
+      lookups: []
     - name: snmp_axSessionGlobalStatTCPSynHalfOpen
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.12
       type: gauge
       help: axSessionGlobalStatTCPSynHalfOpen (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.12.0
+      lookups: []
     - name: snmp_axSessionGlobalStatConnSMPAllocated
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.13
       type: gauge
       help: axSessionGlobalStatConnSMPAllocated (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.13.0
+      lookups: []
     - name: snmp_axSessionGlobalStatConnSMPFree
       oid: 1.3.6.1.4.1.22610.2.4.3.19.1.14
       type: gauge
       help: axSessionGlobalStatConnSMPFree (A10-AX-MIB) - 1.3.6.1.4.1.22610.2.4.3.19.1.14.0
+      lookups: []
     - name: snmp_axFanStatus
       oid: 1.3.6.1.4.1.22610.2.4.1.5.9.1.3
       type: gauge
@@ -280,7 +320,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - index
         labelname: axFanName
         oid: 1.3.6.1.4.1.22610.2.4.1.5.9.1.2
@@ -301,7 +341,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: axFanName
         oid: 1.3.6.1.4.1.22610.2.4.1.5.9.1.2
         type: DisplayString
@@ -348,7 +389,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - index
         labelname: axAppGlobalSystemResourceName
         oid: 1.3.6.1.4.1.22610.2.4.3.1.1.1.1.2
@@ -361,7 +402,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - index
         labelname: axAppGlobalSystemResourceName
         oid: 1.3.6.1.4.1.22610.2.4.3.1.1.1.1.2
         type: DisplayString
@@ -373,7 +415,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - index
         labelname: axServerName
         oid: 1.3.6.1.4.1.22610.2.4.3.2.1.2.1.1
@@ -389,7 +431,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - index
         labelname: axServerName
         oid: 1.3.6.1.4.1.22610.2.4.3.2.1.2.1.1
         type: DisplayString
@@ -405,7 +448,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id004
+      - labels:
         - index
         labelname: axServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.2.2.2.1.2
@@ -418,7 +461,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - index
         labelname: axServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.2.2.2.1.2
         type: DisplayString
@@ -434,7 +478,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - index
         labelname: axServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.2.2.2.1.2
         type: DisplayString
@@ -474,12 +519,12 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id005
+      - labels:
         - index
         labelname: axVirtualServerName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.1.2.1.1
         type: DisplayString
-      - labels: &id006
+      - labels:
         - index
         labelname: axVirtualServerHAGroup
         oid: 1.3.6.1.4.1.22610.2.4.3.4.1.2.1.4
@@ -495,11 +540,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - index
         labelname: axVirtualServerName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.1.2.1.1
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - index
         labelname: axVirtualServerHAGroup
         oid: 1.3.6.1.4.1.22610.2.4.3.4.1.2.1.4
         type: DisplayString
@@ -517,7 +564,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id007
+      - labels:
         - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
@@ -530,7 +577,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -542,7 +590,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -554,7 +603,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -566,7 +616,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -578,7 +629,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -590,7 +642,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -602,7 +655,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -618,7 +672,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -636,7 +691,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -648,7 +704,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -660,7 +717,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - index
         labelname: axVirtualServerStatDisplayName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.5.1.1.1
         type: DisplayString
@@ -672,12 +730,12 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id008
+      - labels:
         - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: &id009
+      - labels:
         - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
@@ -690,11 +748,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -706,11 +766,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -722,11 +784,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -738,11 +802,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -754,11 +820,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -770,11 +838,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -786,11 +856,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -806,11 +878,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -828,11 +902,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -844,11 +920,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -860,11 +938,13 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - index
         labelname: axVirtualServerStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.1
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - index
         labelname: axVirtualServerStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.2.1.1.2
         type: DisplayString
@@ -876,22 +956,22 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id010
+      - labels:
         - index
         labelname: axVirtualServerPortStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.1
         type: DisplayString
-      - labels: &id011
+      - labels:
         - index
         labelname: axVirtualServerStatPortType
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.2
         type: EnumAsInfo
-      - labels: &id012
+      - labels:
         - index
         labelname: axVirtualServerStatPortNum
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.3
         type: DisplayString
-      - labels: &id013
+      - labels:
         - index
         labelname: axVirtualServerPortStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.4
@@ -908,19 +988,23 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - index
         labelname: axVirtualServerPortStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.1
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - index
         labelname: axVirtualServerStatPortType
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.2
         type: EnumAsInfo
-      - labels: *id012
+      - labels:
+        - index
         labelname: axVirtualServerStatPortNum
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - index
         labelname: axVirtualServerPortStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.4
         type: DisplayString
@@ -932,19 +1016,23 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - index
         labelname: axVirtualServerPortStatAddress
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.1
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - index
         labelname: axVirtualServerStatPortType
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.2
         type: EnumAsInfo
-      - labels: *id012
+      - labels:
+        - index
         labelname: axVirtualServerStatPortNum
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.3
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - index
         labelname: axVirtualServerPortStatName
         oid: 1.3.6.1.4.1.22610.2.4.3.4.4.1.1.4
         type: DisplayString
@@ -961,7 +1049,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id014
+      - labels:
         - index
         labelname: axHAGroupID
         oid: 1.3.6.1.4.1.22610.2.4.3.17.2.2.1.1
@@ -978,7 +1066,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - index
         labelname: axHAGroupID
         oid: 1.3.6.1.4.1.22610.2.4.3.17.2.2.1.1
         type: DisplayString
@@ -990,7 +1079,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - index
         labelname: axHAGroupID
         oid: 1.3.6.1.4.1.22610.2.4.3.17.2.2.1.1
         type: DisplayString
@@ -1006,7 +1096,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - index
         labelname: axHAGroupID
         oid: 1.3.6.1.4.1.22610.2.4.3.17.2.2.1.1
         type: DisplayString
@@ -1017,3 +1108,4 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []

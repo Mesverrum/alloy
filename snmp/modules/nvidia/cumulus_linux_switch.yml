@@ -52,7 +52,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -89,126 +90,157 @@ modules:
       type: gauge
       help: laLoadInt (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.10.1.5.1 [Unix load average,
         not utilization %]
+      lookups: []
     - name: snmp_MemoryTotal
       oid: 1.3.6.1.4.1.2021.4.5
       type: gauge
       help: memTotalReal (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.5.0
+      lookups: []
     - name: snmp_MemoryFree
       oid: 1.3.6.1.4.1.2021.4.11
       type: gauge
       help: memTotalFree (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.11.0
+      lookups: []
     - name: snmp_memBuffer
       oid: 1.3.6.1.4.1.2021.4.14
       type: gauge
       help: memBuffer (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.14.0
+      lookups: []
     - name: snmp_memCached
       oid: 1.3.6.1.4.1.2021.4.15
       type: gauge
       help: memCached (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.15.0
+      lookups: []
     - name: snmp_l3HostTableCurrentEntries
       oid: 1.3.6.1.4.1.40310.1.1.1
       type: gauge
       help: l3HostTableCurrentEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.1.0
+      lookups: []
     - name: snmp_l3HostTableMaxEntries
       oid: 1.3.6.1.4.1.40310.1.1.2
       type: gauge
       help: l3HostTableMaxEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.2.0
+      lookups: []
     - name: snmp_l3RoutingTableCurrentEntries
       oid: 1.3.6.1.4.1.40310.1.1.3
       type: gauge
       help: l3RoutingTableCurrentEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.3.0
+      lookups: []
     - name: snmp_l3RoutingTableMaxEntries
       oid: 1.3.6.1.4.1.40310.1.1.4
       type: gauge
       help: l3RoutingTableMaxEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.4.0
+      lookups: []
     - name: snmp_l3NextHopTableCurrentEntries
       oid: 1.3.6.1.4.1.40310.1.1.5
       type: gauge
       help: l3NextHopTableCurrentEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.5.0
+      lookups: []
     - name: snmp_l3NextHopTableMaxEntries
       oid: 1.3.6.1.4.1.40310.1.1.6
       type: gauge
       help: l3NextHopTableMaxEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.6.0
+      lookups: []
     - name: snmp_l3EcmpNextHopTableCurrentEntries
       oid: 1.3.6.1.4.1.40310.1.1.9
       type: gauge
       help: l3EcmpNextHopTableCurrentEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.9.0
+      lookups: []
     - name: snmp_l3EcmpNextHopTableMaxEntries
       oid: 1.3.6.1.4.1.40310.1.1.10
       type: gauge
       help: l3EcmpNextHopTableMaxEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.10.0
+      lookups: []
     - name: snmp_ingressAclCurrentEntries
       oid: 1.3.6.1.4.1.40310.1.1.11
       type: gauge
       help: ingressAclCurrentEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.11.0
+      lookups: []
     - name: snmp_ingressAclMaxEntries
       oid: 1.3.6.1.4.1.40310.1.1.12
       type: gauge
       help: ingressAclMaxEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.12.0
+      lookups: []
     - name: snmp_ingressAclCurrentCounters
       oid: 1.3.6.1.4.1.40310.1.1.13
       type: gauge
       help: ingressAclCurrentCounters (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.13.0
+      lookups: []
     - name: snmp_ingressAclMaxCounters
       oid: 1.3.6.1.4.1.40310.1.1.14
       type: gauge
       help: ingressAclMaxCounters (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.14.0
+      lookups: []
     - name: snmp_ingressAclCurrentMeters
       oid: 1.3.6.1.4.1.40310.1.1.15
       type: gauge
       help: ingressAclCurrentMeters (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.15.0
+      lookups: []
     - name: snmp_ingressAclMaxMeters
       oid: 1.3.6.1.4.1.40310.1.1.16
       type: gauge
       help: ingressAclMaxMeters (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.16.0
+      lookups: []
     - name: snmp_ingressAclCurrentSlices
       oid: 1.3.6.1.4.1.40310.1.1.17
       type: gauge
       help: ingressAclCurrentSlices (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.17.0
+      lookups: []
     - name: snmp_ingressAclMaxSlices
       oid: 1.3.6.1.4.1.40310.1.1.18
       type: gauge
       help: ingressAclMaxSlices (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.18.0
+      lookups: []
     - name: snmp_egressAclCurrentEntries
       oid: 1.3.6.1.4.1.40310.1.1.19
       type: gauge
       help: egressAclCurrentEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.19.0
+      lookups: []
     - name: snmp_egressAclMaxEntries
       oid: 1.3.6.1.4.1.40310.1.1.20
       type: gauge
       help: egressAclMaxEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.20.0
+      lookups: []
     - name: snmp_egressAclCurrentCounters
       oid: 1.3.6.1.4.1.40310.1.1.21
       type: gauge
       help: egressAclCurrentCounters (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.21.0
+      lookups: []
     - name: snmp_egressAclMaxCounters
       oid: 1.3.6.1.4.1.40310.1.1.22
       type: gauge
       help: egressAclMaxCounters (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.22.0
+      lookups: []
     - name: snmp_egressAclCurrentMeters
       oid: 1.3.6.1.4.1.40310.1.1.23
       type: gauge
       help: egressAclCurrentMeters (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.23.0
+      lookups: []
     - name: snmp_egressAclMaxMeters
       oid: 1.3.6.1.4.1.40310.1.1.24
       type: gauge
       help: egressAclMaxMeters (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.24.0
+      lookups: []
     - name: snmp_egressAclCurrentSlices
       oid: 1.3.6.1.4.1.40310.1.1.25
       type: gauge
       help: egressAclCurrentSlices (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.25.0
+      lookups: []
     - name: snmp_egressAclMaxSlices
       oid: 1.3.6.1.4.1.40310.1.1.26
       type: gauge
       help: egressAclMaxSlices (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.1.26.0
+      lookups: []
     - name: snmp_l2MacTableCurrentEntries
       oid: 1.3.6.1.4.1.40310.1.2.1
       type: gauge
       help: l2MacTableCurrentEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.2.1.0
+      lookups: []
     - name: snmp_l2MacTableMaxEntries
       oid: 1.3.6.1.4.1.40310.1.2.2
       type: gauge
       help: l2MacTableMaxEntries (CUMULUS-RESOURCE-QUERY-MIB) - 1.3.6.1.4.1.40310.1.2.2.0
+      lookups: []
     - name: snmp_clL3v4InDiscards
       oid: 1.3.6.1.4.1.40310.2.1.2.1.2
       type: counter
@@ -217,7 +249,7 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - ifIndex
         labelname: clPortName
         oid: 1.3.6.1.4.1.40310.2.1.2.1.1
@@ -230,7 +262,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: clPortName
         oid: 1.3.6.1.4.1.40310.2.1.2.1.1
         type: DisplayString
@@ -242,7 +275,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: clPortName
         oid: 1.3.6.1.4.1.40310.2.1.2.1.1
         type: DisplayString
@@ -254,7 +288,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: clPortName
         oid: 1.3.6.1.4.1.40310.2.1.2.1.1
         type: DisplayString
@@ -266,7 +301,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: clPortName
         oid: 1.3.6.1.4.1.40310.2.1.2.1.1
         type: DisplayString
@@ -278,7 +314,7 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - ifIndex
         labelname: clIntPortName
         oid: 1.3.6.1.4.1.40310.2.2.2.1.1
@@ -291,7 +327,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ifIndex
         labelname: clIntPortName
         oid: 1.3.6.1.4.1.40310.2.2.2.1.1
         type: DisplayString
@@ -303,7 +340,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ifIndex
         labelname: clIntPortName
         oid: 1.3.6.1.4.1.40310.2.2.2.1.1
         type: DisplayString
@@ -315,7 +353,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ifIndex
         labelname: clIntPortName
         oid: 1.3.6.1.4.1.40310.2.2.2.1.1
         type: DisplayString
@@ -327,7 +366,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ifIndex
         labelname: clIntPortName
         oid: 1.3.6.1.4.1.40310.2.2.2.1.1
         type: DisplayString
@@ -339,7 +379,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ifIndex
         labelname: clIntPortName
         oid: 1.3.6.1.4.1.40310.2.2.2.1.1
         type: DisplayString
@@ -351,7 +392,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ifIndex
         labelname: clIntPortName
         oid: 1.3.6.1.4.1.40310.2.2.2.1.1
         type: DisplayString
@@ -363,7 +405,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ifIndex
         labelname: clIntPortName
         oid: 1.3.6.1.4.1.40310.2.2.2.1.1
         type: DisplayString
@@ -375,7 +418,7 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
@@ -388,7 +431,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -400,7 +444,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -412,7 +457,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -424,7 +470,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -436,7 +483,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -448,7 +496,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -460,7 +509,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -472,7 +522,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -484,7 +535,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -496,7 +548,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -508,7 +561,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -520,7 +574,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -532,7 +587,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -544,7 +600,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -556,7 +613,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -568,7 +626,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -580,7 +639,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - ifIndex
         labelname: clIntPfcPortName
         oid: 1.3.6.1.4.1.40310.2.2.3.1.1
         type: DisplayString
@@ -588,15 +648,19 @@ modules:
       oid: 1.3.6.1.4.1.40310.3.1.1
       type: gauge
       help: poeTotalSystemPower (CUMULUS-POE-MIB) - 1.3.6.1.4.1.40310.3.1.1.0
+      lookups: []
     - name: snmp_poeTotalUsedPower
       oid: 1.3.6.1.4.1.40310.3.1.2
       type: gauge
       help: poeTotalUsedPower (CUMULUS-POE-MIB) - 1.3.6.1.4.1.40310.3.1.2.0
+      lookups: []
     - name: snmp_poeTotalAvailablePower
       oid: 1.3.6.1.4.1.40310.3.1.3
       type: gauge
       help: poeTotalAvailablePower (CUMULUS-POE-MIB) - 1.3.6.1.4.1.40310.3.1.3.0
+      lookups: []
     - name: snmp_poeLastUpdateTime
       oid: 1.3.6.1.4.1.40310.3.1.4
       type: gauge
       help: poeLastUpdateTime (CUMULUS-POE-MIB) - 1.3.6.1.4.1.40310.3.1.4.0
+      lookups: []

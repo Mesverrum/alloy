@@ -33,6 +33,10 @@ type ScanParams struct {
 	// one identity per hostname, lowest IP wins.
 	AllowDuplicateSysName bool
 	Observer              ProbeObserver
+	// KnownModules, when set, is the snmp.yml module catalog used to drop
+	// fingerprinter names that do not exist. RunScan loads it from SnmpCfg
+	// when this field is nil.
+	KnownModules map[string]struct{}
 }
 
 // ScanStats is filled by a successful RunScan (and zero on error).
@@ -78,6 +82,16 @@ func RunScan(cfg DiscoveryFile, p ScanParams) (ScanStats, error) {
 	fpRaw, err := LoadFingerprinters(p.FpPath)
 	if err != nil {
 		return ScanStats{}, err
+	}
+	if p.KnownModules == nil && strings.TrimSpace(p.SnmpCfg) != "" {
+		names, err := loadModuleNames(p.SnmpCfg)
+		if err != nil {
+			p.logger().Warn("snmp.yml module catalog unavailable; emitting fingerprinter names unchecked",
+				"path", p.SnmpCfg, "err", err)
+		} else if len(names) > 0 {
+			p.KnownModules = names
+			p.logger().Debug("loaded snmp.yml modules", "count", len(names), "path", p.SnmpCfg)
+		}
 	}
 
 	prev := []AlloyTarget{}
@@ -465,7 +479,13 @@ func probeAll(jobs []probeJob, p ScanParams) ([]AlloyTarget, probeBatchStats) {
 					"sysName":     res.SysName,
 					"sysDescr":    res.SysDescr,
 				}
-				tiers := j.fp.MatchTiers(labels)
+				tiers, dropped := filterTiersToKnown(j.fp.MatchTiers(labels), p.KnownModules)
+				if len(dropped) > 0 {
+					p.logger().Warn("dropping fingerprinter modules missing from snmp.yml",
+						"address", j.ip,
+						"dropped", dropped,
+					)
+				}
 				name, deviceName := targetNames(res.SysName, res.Addr)
 				t := AlloyTarget{
 					Name:           name,

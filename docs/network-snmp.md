@@ -20,6 +20,8 @@ The discovery contract is the one snmp_exporter already documents:
 - Targets carry `module=` and `auth=` (Alloy) or `__param_module` / `__param_auth` (Prometheus `file_sd`).
 - `sysObjectID` → module via SuperQ **fingerprinters** ([snmp_exporter#1468](https://github.com/prometheus/snmp_exporter/issues/1468)), applied at **SD time** so the exporter stays stock until that PR lands.
 
+**One catalog.** Fingerprinter `module=` names and `snmp.yml` `modules:` keys are the same set. snmp_exporter does not fail closed on an unknown name — it walks an empty module (`up=1`, no samples) or can panic on an index type the collector cannot render. Convert never invents sidecar names (`nokia_srlinux_hot`) unless that file exists in the converted library. Discovery intersects matcher lists with the live `config_file` and drops leftovers (logged as a warning). Ship `snmp-network.yml` and `fingerprinters.yml` from the **same convert** (same image). Do not mix a newer image library with older lab fixtures.
+
 Fleet can only push config for modules that exist in the running binary — so the library lives **in the image** at `/etc/alloy/snmp-network.yml`.
 
 ## Build the overlay image
@@ -56,8 +58,8 @@ Profiles are partitioned so Alloy can stagger walks:
 
 | Tier | Interval (lab) | Contents |
 |------|----------------|----------|
-| **hot** | ~60s | `if_mib` / `if32_mib` counters + `ifOperStatus` + `snmp_ifHighSpeed` (Mbps) + `if_interface_name` lookup; `device_base` or inlined `snmp_device_info` + `snmp_Uptime`; Nokia CPU/mem/chassis |
-| **cold** | ~30m | `if_mib_meta` / `if32_mib_meta` (names/descr/`if_MAC`), `ip_addr` (IPv4/IPv6 → ifIndex), vendor tables (identity is already on the fingerprint module, not a sibling `system_mib`) |
+| **hot** | ~60s | `if_mib` / `if32_mib` **octets / oper / ifHighSpeed** + `if_interface_name` lookup; `device_base` or inlined `snmp_device_info` + `snmp_Uptime`; Nokia CPU/mem/chassis |
+| **cold** | ~30m | `if_mib_meta` / `if32_mib_meta` (names/descr/`if_MAC` + **packet counters** + **errors** + **discards**), `ip_addr` (IPv4/IPv6 → ifIndex), vendor tables (identity is already on the fingerprint module, not a sibling `system_mib`) |
 | **topology** | ~15m (optional) | `lldp_mib`, `bgp4_mib`, `ospf_mib` (+ name match `lldp\|cdp\|bgp\|ospf\|isis`) |
 
 Fingerprinters emit `modules_hot` / `modules_cold` / `modules_topology`. Discovery writes three Alloy target files. Lab toggle: `LAB_ALLOY_SNMP_TOPOLOGY=1` for topology; hot+cold always on when `LAB_ALLOY_SNMP=1`.
@@ -112,7 +114,7 @@ Interface counters are Prometheus **counters**: `rate(snmp_ifHCInOctets[$__rate_
 
 ## if_mib / device_base (our library, not stock)
 
-Converted from kentik `_general/` plus a generated **`device_base`** (SNMPv2 identity for unknown sysObjectID) and an authored **`ip_addr`** (IP-MIB address tables). **Hot** scrape uses `if_mib` (counters + oper) and the fingerprint module’s inlined `snmp_device_info`. **Cold** uses `if_mib_meta` (incl. `if_MAC`) + `ip_addr` (+ vendor tables that are not on hot). There is no sibling `system_mib` scrape — two `snmp_device_info` families in one `module=` list collide. Alloy must load `snmp-network.yml` with **`config_merge_strategy = "replace"`** so stock embedded modules are not mixed in.
+Converted from kentik `_general/` plus a generated **`device_base`** (SNMPv2 identity for unknown sysObjectID) and an authored **`ip_addr`** (IP-MIB address tables). **Hot** scrape uses `if_mib` (octets / oper / ifHighSpeed) and the fingerprint module’s inlined `snmp_device_info`. **Cold** uses `if_mib_meta` (names, `if_MAC` as snmp_exporter `PhysAddress48` — MIB `PhysAddress` panics the collector, packet counters, errors, discards) + `ip_addr` (+ vendor tables that are not on hot). There is no sibling `system_mib` scrape — two `snmp_device_info` families in one `module=` list collide. Alloy must load `snmp-network.yml` with **`config_merge_strategy = "replace"`** so stock embedded modules are not mixed in.
 
 **Dashboard join (IP → interface):** snmp_exporter lookups cannot stamp addresses onto `ifHCInOctets` (address-table INDEX is the IP, not ifIndex). Cold gauges carry `ifIndex` as a **label**:
 

@@ -17,7 +17,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -53,10 +54,12 @@ modules:
       oid: 1.3.6.1.4.1.6889.2.1.11.1.1.1.1.6.1
       type: gauge
       help: genCpuCurrentUtilization (UTILIZATION-MANAGEMENT-MIB) - 1.3.6.1.4.1.6889.2.1.11.1.1.1.1.6.1
+      lookups: []
     - name: snmp_genMemUtilizationPercentUsed
       oid: 1.3.6.1.4.1.6889.2.1.11.1.2.6.1.3.1
       type: gauge
       help: genMemUtilizationPercentUsed (UTILIZATION-MANAGEMENT-MIB) - 1.3.6.1.4.1.6889.2.1.11.1.2.6.1.3.1
+      lookups: []
     - name: snmp_genPortAdminStatus
       oid: 1.3.6.1.4.1.81.9.1.1.10
       type: gauge
@@ -67,49 +70,49 @@ modules:
       - labelname: genPortId
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - genPortGroupId
         - genPortId
         labelname: genPortId
         oid: 1.3.6.1.4.1.81.9.1.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - genPortGroupId
         - genPortId
         labelname: genPortFunctionality
         oid: 1.3.6.1.4.1.81.9.1.1.3
         type: EnumAsInfo
-      - labels: &id003
+      - labels:
         - genPortGroupId
         - genPortId
         labelname: genPortType
         oid: 1.3.6.1.4.1.81.9.1.1.4
         type: EnumAsInfo
-      - labels: &id004
+      - labels:
         - genPortGroupId
         - genPortId
         labelname: genPortDescr
         oid: 1.3.6.1.4.1.81.9.1.1.5
         type: DisplayString
-      - labels: &id005
+      - labels:
         - genPortGroupId
         - genPortId
         labelname: genPortName
         oid: 1.3.6.1.4.1.81.9.1.1.21
         type: DisplayString
-      - labels: &id006
+      - labels:
         - genPortGroupId
         - genPortId
         labelname: genPortClassification
         oid: 1.3.6.1.4.1.81.9.1.1.22
         type: EnumAsInfo
-      - labels: &id007
+      - labels:
         - genPortGroupId
         - genPortId
         labelname: scEthPortMode
         oid: 1.3.6.1.4.1.81.28.2.1.1.1.28
         type: EnumAsInfo
-      - labels: &id008
+      - labels:
         - genPortGroupId
         - genPortId
         labelname: scEthPortSpeed
@@ -128,35 +131,51 @@ modules:
       - labelname: genPortId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - genPortGroupId
+        - genPortId
         labelname: genPortId
         oid: 1.3.6.1.4.1.81.9.1.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - genPortGroupId
+        - genPortId
         labelname: genPortFunctionality
         oid: 1.3.6.1.4.1.81.9.1.1.3
         type: EnumAsInfo
-      - labels: *id003
+      - labels:
+        - genPortGroupId
+        - genPortId
         labelname: genPortType
         oid: 1.3.6.1.4.1.81.9.1.1.4
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - genPortGroupId
+        - genPortId
         labelname: genPortDescr
         oid: 1.3.6.1.4.1.81.9.1.1.5
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - genPortGroupId
+        - genPortId
         labelname: genPortName
         oid: 1.3.6.1.4.1.81.9.1.1.21
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - genPortGroupId
+        - genPortId
         labelname: genPortClassification
         oid: 1.3.6.1.4.1.81.9.1.1.22
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - genPortGroupId
+        - genPortId
         labelname: scEthPortMode
         oid: 1.3.6.1.4.1.81.28.2.1.1.1.28
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - genPortGroupId
+        - genPortId
         labelname: scEthPortSpeed
         oid: 1.3.6.1.4.1.81.28.2.1.1.1.29
         type: EnumAsInfo

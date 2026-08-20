@@ -84,7 +84,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -150,14 +151,17 @@ modules:
         2: alpha
         3: mips
         4: sparc
+      lookups: []
     - name: snmp_CPU
       oid: 1.3.6.1.4.1.789.1.2.1.3
       type: gauge
       help: cpuBusyTimePerCent (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.1.3.0
+      lookups: []
     - name: snmp_cpuCount
       oid: 1.3.6.1.4.1.789.1.2.1.6
       type: gauge
       help: cpuCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.1.6.0
+      lookups: []
     - name: snmp_cDOTCpuBusyTimePerCent
       oid: 1.3.6.1.4.1.789.1.2.1.14.1.4
       type: gauge
@@ -166,12 +170,12 @@ modules:
       - labelname: IMPLIEDcDOTCpuNodeName
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - IMPLIEDcDOTCpuNodeName
         labelname: cDOTCpuNodeName
         oid: 1.3.6.1.4.1.789.1.2.1.14.1.1
         type: DisplayString
-      - labels: &id002
+      - labels:
         - IMPLIEDcDOTCpuNodeName
         labelname: cDOTCpuCount
         oid: 1.3.6.1.4.1.789.1.2.1.14.1.7
@@ -184,11 +188,13 @@ modules:
       - labelname: IMPLIEDcDOTCpuNodeName
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - IMPLIEDcDOTCpuNodeName
         labelname: cDOTCpuNodeName
         oid: 1.3.6.1.4.1.789.1.2.1.14.1.1
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - IMPLIEDcDOTCpuNodeName
         labelname: cDOTCpuCount
         oid: 1.3.6.1.4.1.789.1.2.1.14.1.7
         type: DisplayString
@@ -203,14 +209,17 @@ modules:
         4: nonCritical
         5: critical
         6: nonRecoverable
+      lookups: []
     - name: snmp_miscCacheAge
       oid: 1.3.6.1.4.1.789.1.2.2.23
       type: gauge
       help: miscCacheAge (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.2.23.0
+      lookups: []
     - name: snmp_miscGlobalStatusMessage
       oid: 1.3.6.1.4.1.789.1.2.2.25
       type: gauge
       help: miscGlobalStatusMessage (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.2.25.0
+      lookups: []
     - name: snmp_cfState
       oid: 1.3.6.1.4.1.789.1.2.3.2
       type: gauge
@@ -220,6 +229,7 @@ modules:
         2: canTakeover
         3: cannotTakeover
         4: takeover
+      lookups: []
     - name: snmp_cfPartnerStatus
       oid: 1.3.6.1.4.1.789.1.2.3.4
       type: gauge
@@ -228,10 +238,12 @@ modules:
         1: maybeDown
         2: ok
         3: dead
+      lookups: []
     - name: snmp_cfPartnerName
       oid: 1.3.6.1.4.1.789.1.2.3.6
       type: gauge
       help: cfPartnerName (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.3.6.0
+      lookups: []
     - name: snmp_cfInterconnectStatus
       oid: 1.3.6.1.4.1.789.1.2.3.8
       type: gauge
@@ -241,50 +253,62 @@ modules:
         2: down
         3: partialFailure
         4: up
+      lookups: []
     - name: snmp_cpFromTimerOps
       oid: 1.3.6.1.4.1.789.1.2.6.2
       type: counter
       help: cpFromTimerOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.2.0
+      lookups: []
     - name: snmp_cpFromSnapshotOps
       oid: 1.3.6.1.4.1.789.1.2.6.3
       type: counter
       help: cpFromSnapshotOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.3.0
+      lookups: []
     - name: snmp_cpFromLowWaterOps
       oid: 1.3.6.1.4.1.789.1.2.6.4
       type: counter
       help: cpFromLowWaterOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.4.0
+      lookups: []
     - name: snmp_cpFromHighWaterOps
       oid: 1.3.6.1.4.1.789.1.2.6.5
       type: counter
       help: cpFromHighWaterOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.5.0
+      lookups: []
     - name: snmp_cpFromLogFullOps
       oid: 1.3.6.1.4.1.789.1.2.6.6
       type: counter
       help: cpFromLogFullOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.6.0
+      lookups: []
     - name: snmp_cpFromCpOps
       oid: 1.3.6.1.4.1.789.1.2.6.7
       type: counter
       help: cpFromCpOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.7.0
+      lookups: []
     - name: snmp_cpTotalOps
       oid: 1.3.6.1.4.1.789.1.2.6.8
       type: counter
       help: cpTotalOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.8.0
+      lookups: []
     - name: snmp_cpFromFlushOps
       oid: 1.3.6.1.4.1.789.1.2.6.9
       type: counter
       help: cpFromFlushOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.9.0
+      lookups: []
     - name: snmp_cpFromSyncOps
       oid: 1.3.6.1.4.1.789.1.2.6.10
       type: counter
       help: cpFromSyncOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.10.0
+      lookups: []
     - name: snmp_cpFromCpDeferredOps
       oid: 1.3.6.1.4.1.789.1.2.6.12
       type: counter
       help: cpFromCpDeferredOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.12.0
+      lookups: []
     - name: snmp_cpFromLowDatavecsOps
       oid: 1.3.6.1.4.1.789.1.2.6.13
       type: counter
       help: cpFromLowDatavecsOps (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.6.13.0
+      lookups: []
     - name: snmp_autosupportStatus
       oid: 1.3.6.1.4.1.789.1.2.7.1
       type: gauge
@@ -295,106 +319,132 @@ modules:
         3: postFailure
         4: smtp-postFailure
         5: unknown
+      lookups: []
     - name: snmp_autosupportStatusMessage
       oid: 1.3.6.1.4.1.789.1.2.7.2
       type: gauge
       help: autosupportStatusMessage (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.7.2.0
+      lookups: []
     - name: snmp_autosupportSuccessfulSends
       oid: 1.3.6.1.4.1.789.1.2.7.3
       type: counter
       help: autosupportSuccessfulSends (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.7.3.0
+      lookups: []
     - name: snmp_autosupportFailedSends
       oid: 1.3.6.1.4.1.789.1.2.7.4
       type: counter
       help: autosupportFailedSends (NETAPP-MIB) - 1.3.6.1.4.1.789.1.2.7.4.0
+      lookups: []
     - name: snmp_dfNumber
       oid: 1.3.6.1.4.1.789.1.5.6
       type: gauge
       help: dfNumber (NETAPP-MIB) - 1.3.6.1.4.1.789.1.5.6.0
+      lookups: []
     - name: snmp_volNumber
       oid: 1.3.6.1.4.1.789.1.5.9
       type: gauge
       help: volNumber (NETAPP-MIB) - 1.3.6.1.4.1.789.1.5.9.0
+      lookups: []
     - name: snmp_aggrNumber
       oid: 1.3.6.1.4.1.789.1.5.12
       type: gauge
       help: aggrNumber (NETAPP-MIB) - 1.3.6.1.4.1.789.1.5.12.0
+      lookups: []
     - name: snmp_diskTotalCount
       oid: 1.3.6.1.4.1.789.1.6.4.1
       type: gauge
       help: diskTotalCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.1.0
+      lookups: []
     - name: snmp_diskActiveCount
       oid: 1.3.6.1.4.1.789.1.6.4.2
       type: gauge
       help: diskActiveCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.2.0
+      lookups: []
     - name: snmp_diskReconstructingCount
       oid: 1.3.6.1.4.1.789.1.6.4.3
       type: gauge
       help: diskReconstructingCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.3.0
+      lookups: []
     - name: snmp_diskReconstructingParityCount
       oid: 1.3.6.1.4.1.789.1.6.4.4
       type: gauge
       help: diskReconstructingParityCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.4.0
+      lookups: []
     - name: snmp_diskVerifyingParityCount
       oid: 1.3.6.1.4.1.789.1.6.4.5
       type: gauge
       help: diskVerifyingParityCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.5.0
+      lookups: []
     - name: snmp_diskScrubbingCount
       oid: 1.3.6.1.4.1.789.1.6.4.6
       type: gauge
       help: diskScrubbingCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.6.0
+      lookups: []
     - name: snmp_diskFailedCount
       oid: 1.3.6.1.4.1.789.1.6.4.7
       type: gauge
       help: diskFailedCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.7.0
+      lookups: []
     - name: snmp_diskSpareCount
       oid: 1.3.6.1.4.1.789.1.6.4.8
       type: gauge
       help: diskSpareCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.8.0
+      lookups: []
     - name: snmp_diskAddingSpareCount
       oid: 1.3.6.1.4.1.789.1.6.4.9
       type: gauge
       help: diskAddingSpareCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.9.0
+      lookups: []
     - name: snmp_diskFailedMessage
       oid: 1.3.6.1.4.1.789.1.6.4.10
       type: gauge
       help: diskFailedMessage (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.10.0
+      lookups: []
     - name: snmp_diskPrefailedCount
       oid: 1.3.6.1.4.1.789.1.6.4.11
       type: gauge
       help: diskPrefailedCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.4.11.0
+      lookups: []
     - name: snmp_raidVNumber
       oid: 1.3.6.1.4.1.789.1.6.5
       type: gauge
       help: raidVNumber (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.5.0
+      lookups: []
     - name: snmp_spareNumber
       oid: 1.3.6.1.4.1.789.1.6.6
       type: gauge
       help: spareNumber (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.6.0
+      lookups: []
     - name: snmp_otherDiskNumber
       oid: 1.3.6.1.4.1.789.1.6.7
       type: gauge
       help: otherDiskNumber (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.7.0
+      lookups: []
     - name: snmp_raidPNumber
       oid: 1.3.6.1.4.1.789.1.6.8
       type: gauge
       help: raidPNumber (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.8.0
+      lookups: []
     - name: snmp_outOfDateDiskCount
       oid: 1.3.6.1.4.1.789.1.6.12
       type: gauge
       help: outOfDateDiskCount (NETAPP-MIB) - 1.3.6.1.4.1.789.1.6.12.0
+      lookups: []
     - name: snmp_ncHttpActiveCliConns
       oid: 1.3.6.1.4.1.789.1.8.3.6.36
       type: gauge
       help: ncHttpActiveCliConns (NETAPP-MIB) - 1.3.6.1.4.1.789.1.8.3.6.36.0
+      lookups: []
     - name: snmp_enclNumber
       oid: 1.3.6.1.4.1.789.1.21.1.1
       type: gauge
       help: enclNumber (NETAPP-MIB) - 1.3.6.1.4.1.789.1.21.1.1.0
+      lookups: []
     - name: snmp_extcache64Hits
       oid: 1.3.6.1.4.1.789.1.26.8
       type: counter
       help: extcache64Hits (NETAPP-MIB) - 1.3.6.1.4.1.789.1.26.8.0
+      lookups: []
     - name: snmp_qvStateStat
       oid: 1.3.6.1.4.1.789.1.4.4.1.3
       type: gauge
@@ -403,12 +453,12 @@ modules:
       - labelname: qvStateVolume
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - qvStateVolume
         labelname: qvStateName
         oid: 1.3.6.1.4.1.789.1.4.4.1.2
         type: DisplayString
-      - labels: &id004
+      - labels:
         - qvStateVolume
         labelname: qvStateVserver
         oid: 1.3.6.1.4.1.789.1.4.4.1.5
@@ -426,11 +476,13 @@ modules:
       - labelname: qvStateVolume
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - qvStateVolume
         labelname: qvStateName
         oid: 1.3.6.1.4.1.789.1.4.4.1.2
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - qvStateVolume
         labelname: qvStateVserver
         oid: 1.3.6.1.4.1.789.1.4.4.1.5
         type: DisplayString
@@ -442,22 +494,22 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: &id005
+      - labels:
         - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: &id006
+      - labels:
         - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: &id007
+      - labels:
         - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: &id008
+      - labels:
         - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
@@ -470,19 +522,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -494,19 +550,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -518,19 +578,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -542,19 +606,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -566,19 +634,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -590,19 +662,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -626,19 +702,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -662,19 +742,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -686,19 +770,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -710,19 +798,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -734,19 +826,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -758,19 +854,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -782,19 +882,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -809,19 +913,23 @@ modules:
       - labelname: dfIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - dfIndex
         labelname: dfFileSys
         oid: 1.3.6.1.4.1.789.1.5.4.1.2
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - dfIndex
         labelname: dfMountedOn
         oid: 1.3.6.1.4.1.789.1.5.4.1.10
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - dfIndex
         labelname: dfType
         oid: 1.3.6.1.4.1.789.1.5.4.1.23
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - dfIndex
         labelname: dfVserver
         oid: 1.3.6.1.4.1.789.1.5.4.1.34
         type: DisplayString
@@ -833,27 +941,27 @@ modules:
       - labelname: volIndex
         type: gauge
       lookups:
-      - labels: &id009
+      - labels:
         - volIndex
         labelname: volName
         oid: 1.3.6.1.4.1.789.1.5.8.1.2
         type: DisplayString
-      - labels: &id010
+      - labels:
         - volIndex
         labelname: volFSID
         oid: 1.3.6.1.4.1.789.1.5.8.1.3
         type: DisplayString
-      - labels: &id011
+      - labels:
         - volIndex
         labelname: volOptions
         oid: 1.3.6.1.4.1.789.1.5.8.1.7
         type: DisplayString
-      - labels: &id012
+      - labels:
         - volIndex
         labelname: volUUID
         oid: 1.3.6.1.4.1.789.1.5.8.1.8
         type: DisplayString
-      - labels: &id013
+      - labels:
         - volIndex
         labelname: volAggrName
         oid: 1.3.6.1.4.1.789.1.5.8.1.9
@@ -866,23 +974,28 @@ modules:
       - labelname: volIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - volIndex
         labelname: volName
         oid: 1.3.6.1.4.1.789.1.5.8.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - volIndex
         labelname: volFSID
         oid: 1.3.6.1.4.1.789.1.5.8.1.3
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - volIndex
         labelname: volOptions
         oid: 1.3.6.1.4.1.789.1.5.8.1.7
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - volIndex
         labelname: volUUID
         oid: 1.3.6.1.4.1.789.1.5.8.1.8
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - volIndex
         labelname: volAggrName
         oid: 1.3.6.1.4.1.789.1.5.8.1.9
         type: DisplayString
@@ -894,23 +1007,28 @@ modules:
       - labelname: volIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - volIndex
         labelname: volName
         oid: 1.3.6.1.4.1.789.1.5.8.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - volIndex
         labelname: volFSID
         oid: 1.3.6.1.4.1.789.1.5.8.1.3
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - volIndex
         labelname: volOptions
         oid: 1.3.6.1.4.1.789.1.5.8.1.7
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - volIndex
         labelname: volUUID
         oid: 1.3.6.1.4.1.789.1.5.8.1.8
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - volIndex
         labelname: volAggrName
         oid: 1.3.6.1.4.1.789.1.5.8.1.9
         type: DisplayString
@@ -928,23 +1046,28 @@ modules:
       - labelname: volIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - volIndex
         labelname: volName
         oid: 1.3.6.1.4.1.789.1.5.8.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - volIndex
         labelname: volFSID
         oid: 1.3.6.1.4.1.789.1.5.8.1.3
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - volIndex
         labelname: volOptions
         oid: 1.3.6.1.4.1.789.1.5.8.1.7
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - volIndex
         labelname: volUUID
         oid: 1.3.6.1.4.1.789.1.5.8.1.8
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - volIndex
         labelname: volAggrName
         oid: 1.3.6.1.4.1.789.1.5.8.1.9
         type: DisplayString
@@ -961,25 +1084,25 @@ modules:
       - labelname: qtreeIndex
         type: gauge
       lookups:
-      - labels: &id014
+      - labels:
         - qtreeVolume
         - qtreeIndex
         labelname: qtreeVolume
         oid: 1.3.6.1.4.1.789.1.5.10.1.2
         type: DisplayString
-      - labels: &id015
+      - labels:
         - qtreeVolume
         - qtreeIndex
         labelname: qtreeVolumeName
         oid: 1.3.6.1.4.1.789.1.5.10.1.3
         type: DisplayString
-      - labels: &id016
+      - labels:
         - qtreeVolume
         - qtreeIndex
         labelname: qtreeId
         oid: 1.3.6.1.4.1.789.1.5.10.1.4
         type: DisplayString
-      - labels: &id017
+      - labels:
         - qtreeVolume
         - qtreeIndex
         labelname: qtreeName
@@ -999,19 +1122,27 @@ modules:
       - labelname: qtreeIndex
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - qtreeVolume
+        - qtreeIndex
         labelname: qtreeVolume
         oid: 1.3.6.1.4.1.789.1.5.10.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - qtreeVolume
+        - qtreeIndex
         labelname: qtreeVolumeName
         oid: 1.3.6.1.4.1.789.1.5.10.1.3
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - qtreeVolume
+        - qtreeIndex
         labelname: qtreeId
         oid: 1.3.6.1.4.1.789.1.5.10.1.4
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - qtreeVolume
+        - qtreeIndex
         labelname: qtreeName
         oid: 1.3.6.1.4.1.789.1.5.10.1.5
         type: DisplayString
@@ -1029,19 +1160,27 @@ modules:
       - labelname: qtreeIndex
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - qtreeVolume
+        - qtreeIndex
         labelname: qtreeVolume
         oid: 1.3.6.1.4.1.789.1.5.10.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - qtreeVolume
+        - qtreeIndex
         labelname: qtreeVolumeName
         oid: 1.3.6.1.4.1.789.1.5.10.1.3
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - qtreeVolume
+        - qtreeIndex
         labelname: qtreeId
         oid: 1.3.6.1.4.1.789.1.5.10.1.4
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - qtreeVolume
+        - qtreeIndex
         labelname: qtreeName
         oid: 1.3.6.1.4.1.789.1.5.10.1.5
         type: DisplayString
@@ -1056,22 +1195,22 @@ modules:
       - labelname: aggrIndex
         type: gauge
       lookups:
-      - labels: &id018
+      - labels:
         - aggrIndex
         labelname: aggrName
         oid: 1.3.6.1.4.1.789.1.5.11.1.2
         type: DisplayString
-      - labels: &id019
+      - labels:
         - aggrIndex
         labelname: aggrFSID
         oid: 1.3.6.1.4.1.789.1.5.11.1.3
         type: DisplayString
-      - labels: &id020
+      - labels:
         - aggrIndex
         labelname: aggrOptions
         oid: 1.3.6.1.4.1.789.1.5.11.1.7
         type: DisplayString
-      - labels: &id021
+      - labels:
         - aggrIndex
         labelname: aggrUUID
         oid: 1.3.6.1.4.1.789.1.5.11.1.8
@@ -1084,19 +1223,23 @@ modules:
       - labelname: aggrIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - aggrIndex
         labelname: aggrName
         oid: 1.3.6.1.4.1.789.1.5.11.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - aggrIndex
         labelname: aggrFSID
         oid: 1.3.6.1.4.1.789.1.5.11.1.3
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - aggrIndex
         labelname: aggrOptions
         oid: 1.3.6.1.4.1.789.1.5.11.1.7
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - aggrIndex
         labelname: aggrUUID
         oid: 1.3.6.1.4.1.789.1.5.11.1.8
         type: DisplayString
@@ -1108,19 +1251,23 @@ modules:
       - labelname: aggrIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - aggrIndex
         labelname: aggrName
         oid: 1.3.6.1.4.1.789.1.5.11.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - aggrIndex
         labelname: aggrFSID
         oid: 1.3.6.1.4.1.789.1.5.11.1.3
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - aggrIndex
         labelname: aggrOptions
         oid: 1.3.6.1.4.1.789.1.5.11.1.7
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - aggrIndex
         labelname: aggrUUID
         oid: 1.3.6.1.4.1.789.1.5.11.1.8
         type: DisplayString
@@ -1141,140 +1288,140 @@ modules:
       - labelname: raidVIndex
         type: gauge
       lookups:
-      - labels: &id022
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskName
         oid: 1.3.6.1.4.1.789.1.6.2.1.2
         type: DisplayString
-      - labels: &id023
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVVol
         oid: 1.3.6.1.4.1.789.1.6.2.1.12
         type: DisplayString
-      - labels: &id024
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVGroup
         oid: 1.3.6.1.4.1.789.1.6.2.1.13
         type: DisplayString
-      - labels: &id025
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.14
         type: DisplayString
-      - labels: &id026
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVGroupNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.15
         type: DisplayString
-      - labels: &id027
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVShelf
         oid: 1.3.6.1.4.1.789.1.6.2.1.19
         type: DisplayString
-      - labels: &id028
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVBay
         oid: 1.3.6.1.4.1.789.1.6.2.1.20
         type: DisplayString
-      - labels: &id029
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVPlex
         oid: 1.3.6.1.4.1.789.1.6.2.1.21
         type: DisplayString
-      - labels: &id030
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVPlexGroup
         oid: 1.3.6.1.4.1.789.1.6.2.1.22
         type: DisplayString
-      - labels: &id031
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVPlexNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.23
         type: DisplayString
-      - labels: &id032
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVPlexName
         oid: 1.3.6.1.4.1.789.1.6.2.1.24
         type: DisplayString
-      - labels: &id033
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVSectorSize
         oid: 1.3.6.1.4.1.789.1.6.2.1.25
         type: DisplayString
-      - labels: &id034
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.26
         type: DisplayString
-      - labels: &id035
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.2.1.27
         type: DisplayString
-      - labels: &id036
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskModel
         oid: 1.3.6.1.4.1.789.1.6.2.1.28
         type: DisplayString
-      - labels: &id037
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.2.1.29
         type: DisplayString
-      - labels: &id038
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.2.1.30
         type: gauge
-      - labels: &id039
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskType
         oid: 1.3.6.1.4.1.789.1.6.2.1.31
         type: DisplayString
-      - labels: &id040
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
         labelname: raidVDiskPool
         oid: 1.3.6.1.4.1.789.1.6.2.1.32
         type: DisplayString
-      - labels: &id041
+      - labels:
         - raidVVol
         - raidVGroup
         - raidVIndex
@@ -1302,83 +1449,143 @@ modules:
       - labelname: raidVIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskName
         oid: 1.3.6.1.4.1.789.1.6.2.1.2
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVVol
         oid: 1.3.6.1.4.1.789.1.6.2.1.12
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVGroup
         oid: 1.3.6.1.4.1.789.1.6.2.1.13
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.14
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVGroupNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.15
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVShelf
         oid: 1.3.6.1.4.1.789.1.6.2.1.19
         type: DisplayString
-      - labels: *id028
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVBay
         oid: 1.3.6.1.4.1.789.1.6.2.1.20
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlex
         oid: 1.3.6.1.4.1.789.1.6.2.1.21
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexGroup
         oid: 1.3.6.1.4.1.789.1.6.2.1.22
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.23
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexName
         oid: 1.3.6.1.4.1.789.1.6.2.1.24
         type: DisplayString
-      - labels: *id033
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVSectorSize
         oid: 1.3.6.1.4.1.789.1.6.2.1.25
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.26
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.2.1.27
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskModel
         oid: 1.3.6.1.4.1.789.1.6.2.1.28
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.2.1.29
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.2.1.30
         type: gauge
-      - labels: *id039
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskType
         oid: 1.3.6.1.4.1.789.1.6.2.1.31
         type: DisplayString
-      - labels: *id040
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskPool
         oid: 1.3.6.1.4.1.789.1.6.2.1.32
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskCopyDestDiskName
         oid: 1.3.6.1.4.1.789.1.6.2.1.33
         type: DisplayString
@@ -1394,83 +1601,143 @@ modules:
       - labelname: raidVIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskName
         oid: 1.3.6.1.4.1.789.1.6.2.1.2
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVVol
         oid: 1.3.6.1.4.1.789.1.6.2.1.12
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVGroup
         oid: 1.3.6.1.4.1.789.1.6.2.1.13
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.14
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVGroupNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.15
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVShelf
         oid: 1.3.6.1.4.1.789.1.6.2.1.19
         type: DisplayString
-      - labels: *id028
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVBay
         oid: 1.3.6.1.4.1.789.1.6.2.1.20
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlex
         oid: 1.3.6.1.4.1.789.1.6.2.1.21
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexGroup
         oid: 1.3.6.1.4.1.789.1.6.2.1.22
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.23
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexName
         oid: 1.3.6.1.4.1.789.1.6.2.1.24
         type: DisplayString
-      - labels: *id033
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVSectorSize
         oid: 1.3.6.1.4.1.789.1.6.2.1.25
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.26
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.2.1.27
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskModel
         oid: 1.3.6.1.4.1.789.1.6.2.1.28
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.2.1.29
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.2.1.30
         type: gauge
-      - labels: *id039
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskType
         oid: 1.3.6.1.4.1.789.1.6.2.1.31
         type: DisplayString
-      - labels: *id040
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskPool
         oid: 1.3.6.1.4.1.789.1.6.2.1.32
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskCopyDestDiskName
         oid: 1.3.6.1.4.1.789.1.6.2.1.33
         type: DisplayString
@@ -1486,83 +1753,143 @@ modules:
       - labelname: raidVIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskName
         oid: 1.3.6.1.4.1.789.1.6.2.1.2
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVVol
         oid: 1.3.6.1.4.1.789.1.6.2.1.12
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVGroup
         oid: 1.3.6.1.4.1.789.1.6.2.1.13
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.14
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVGroupNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.15
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVShelf
         oid: 1.3.6.1.4.1.789.1.6.2.1.19
         type: DisplayString
-      - labels: *id028
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVBay
         oid: 1.3.6.1.4.1.789.1.6.2.1.20
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlex
         oid: 1.3.6.1.4.1.789.1.6.2.1.21
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexGroup
         oid: 1.3.6.1.4.1.789.1.6.2.1.22
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.23
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVPlexName
         oid: 1.3.6.1.4.1.789.1.6.2.1.24
         type: DisplayString
-      - labels: *id033
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVSectorSize
         oid: 1.3.6.1.4.1.789.1.6.2.1.25
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.2.1.26
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.2.1.27
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskModel
         oid: 1.3.6.1.4.1.789.1.6.2.1.28
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.2.1.29
         type: DisplayString
-      - labels: *id038
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.2.1.30
         type: gauge
-      - labels: *id039
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskType
         oid: 1.3.6.1.4.1.789.1.6.2.1.31
         type: DisplayString
-      - labels: *id040
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskPool
         oid: 1.3.6.1.4.1.789.1.6.2.1.32
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - raidVVol
+        - raidVGroup
+        - raidVIndex
         labelname: raidVDiskCopyDestDiskName
         oid: 1.3.6.1.4.1.789.1.6.2.1.33
         type: DisplayString
@@ -1574,57 +1901,57 @@ modules:
       - labelname: spareIndex
         type: gauge
       lookups:
-      - labels: &id042
+      - labels:
         - spareIndex
         labelname: spareDiskName
         oid: 1.3.6.1.4.1.789.1.6.3.1.2
         type: DisplayString
-      - labels: &id043
+      - labels:
         - spareIndex
         labelname: spareShelf
         oid: 1.3.6.1.4.1.789.1.6.3.1.12
         type: DisplayString
-      - labels: &id044
+      - labels:
         - spareIndex
         labelname: spareBay
         oid: 1.3.6.1.4.1.789.1.6.3.1.13
         type: DisplayString
-      - labels: &id045
+      - labels:
         - spareIndex
         labelname: sparePool
         oid: 1.3.6.1.4.1.789.1.6.3.1.14
         type: DisplayString
-      - labels: &id046
+      - labels:
         - spareIndex
         labelname: spareSectorSize
         oid: 1.3.6.1.4.1.789.1.6.3.1.15
         type: DisplayString
-      - labels: &id047
+      - labels:
         - spareIndex
         labelname: spareDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.3.1.16
         type: DisplayString
-      - labels: &id048
+      - labels:
         - spareIndex
         labelname: spareDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.3.1.17
         type: DisplayString
-      - labels: &id049
+      - labels:
         - spareIndex
         labelname: spareDiskModel
         oid: 1.3.6.1.4.1.789.1.6.3.1.18
         type: DisplayString
-      - labels: &id050
+      - labels:
         - spareIndex
         labelname: spareDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.3.1.19
         type: DisplayString
-      - labels: &id051
+      - labels:
         - spareIndex
         labelname: spareDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.3.1.20
         type: gauge
-      - labels: &id052
+      - labels:
         - spareIndex
         labelname: spareDiskType
         oid: 1.3.6.1.4.1.789.1.6.3.1.21
@@ -1643,47 +1970,58 @@ modules:
       - labelname: spareIndex
         type: gauge
       lookups:
-      - labels: *id042
+      - labels:
+        - spareIndex
         labelname: spareDiskName
         oid: 1.3.6.1.4.1.789.1.6.3.1.2
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - spareIndex
         labelname: spareShelf
         oid: 1.3.6.1.4.1.789.1.6.3.1.12
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - spareIndex
         labelname: spareBay
         oid: 1.3.6.1.4.1.789.1.6.3.1.13
         type: DisplayString
-      - labels: *id045
+      - labels:
+        - spareIndex
         labelname: sparePool
         oid: 1.3.6.1.4.1.789.1.6.3.1.14
         type: DisplayString
-      - labels: *id046
+      - labels:
+        - spareIndex
         labelname: spareSectorSize
         oid: 1.3.6.1.4.1.789.1.6.3.1.15
         type: DisplayString
-      - labels: *id047
+      - labels:
+        - spareIndex
         labelname: spareDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.3.1.16
         type: DisplayString
-      - labels: *id048
+      - labels:
+        - spareIndex
         labelname: spareDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.3.1.17
         type: DisplayString
-      - labels: *id049
+      - labels:
+        - spareIndex
         labelname: spareDiskModel
         oid: 1.3.6.1.4.1.789.1.6.3.1.18
         type: DisplayString
-      - labels: *id050
+      - labels:
+        - spareIndex
         labelname: spareDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.3.1.19
         type: DisplayString
-      - labels: *id051
+      - labels:
+        - spareIndex
         labelname: spareDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.3.1.20
         type: gauge
-      - labels: *id052
+      - labels:
+        - spareIndex
         labelname: spareDiskType
         oid: 1.3.6.1.4.1.789.1.6.3.1.21
         type: DisplayString
@@ -1701,7 +2039,7 @@ modules:
       - labelname: raidPIndex
         type: gauge
       lookups:
-      - labels: &id053
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1709,7 +2047,7 @@ modules:
         labelname: raidPVol
         oid: 1.3.6.1.4.1.789.1.6.10.1.3
         type: DisplayString
-      - labels: &id054
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1717,7 +2055,7 @@ modules:
         labelname: raidPPlex
         oid: 1.3.6.1.4.1.789.1.6.10.1.4
         type: DisplayString
-      - labels: &id055
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1725,7 +2063,7 @@ modules:
         labelname: raidPGroup
         oid: 1.3.6.1.4.1.789.1.6.10.1.5
         type: DisplayString
-      - labels: &id056
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1733,7 +2071,7 @@ modules:
         labelname: raidPPlexNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.6
         type: DisplayString
-      - labels: &id057
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1741,7 +2079,7 @@ modules:
         labelname: raidPGroupNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.7
         type: DisplayString
-      - labels: &id058
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1749,7 +2087,7 @@ modules:
         labelname: raidPDiskNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.8
         type: DisplayString
-      - labels: &id059
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1757,7 +2095,7 @@ modules:
         labelname: raidPPlexName
         oid: 1.3.6.1.4.1.789.1.6.10.1.9
         type: DisplayString
-      - labels: &id060
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1765,7 +2103,7 @@ modules:
         labelname: raidPDiskName
         oid: 1.3.6.1.4.1.789.1.6.10.1.10
         type: DisplayString
-      - labels: &id061
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1773,7 +2111,7 @@ modules:
         labelname: raidPShelf
         oid: 1.3.6.1.4.1.789.1.6.10.1.17
         type: DisplayString
-      - labels: &id062
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1781,7 +2119,7 @@ modules:
         labelname: raidPBay
         oid: 1.3.6.1.4.1.789.1.6.10.1.18
         type: DisplayString
-      - labels: &id063
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1789,7 +2127,7 @@ modules:
         labelname: raidPSectorSize
         oid: 1.3.6.1.4.1.789.1.6.10.1.19
         type: DisplayString
-      - labels: &id064
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1797,7 +2135,7 @@ modules:
         labelname: raidPDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.25
         type: DisplayString
-      - labels: &id065
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1805,7 +2143,7 @@ modules:
         labelname: raidPDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.10.1.26
         type: DisplayString
-      - labels: &id066
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1813,7 +2151,7 @@ modules:
         labelname: raidPDiskModel
         oid: 1.3.6.1.4.1.789.1.6.10.1.27
         type: DisplayString
-      - labels: &id067
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1821,7 +2159,7 @@ modules:
         labelname: raidPDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.10.1.28
         type: DisplayString
-      - labels: &id068
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1829,7 +2167,7 @@ modules:
         labelname: raidPDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.10.1.29
         type: gauge
-      - labels: &id069
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1837,7 +2175,7 @@ modules:
         labelname: raidPDiskType
         oid: 1.3.6.1.4.1.789.1.6.10.1.30
         type: DisplayString
-      - labels: &id070
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1845,7 +2183,7 @@ modules:
         labelname: raidPDiskPool
         oid: 1.3.6.1.4.1.789.1.6.10.1.31
         type: DisplayString
-      - labels: &id071
+      - labels:
         - raidPVol
         - raidPPlex
         - raidPGroup
@@ -1876,79 +2214,155 @@ modules:
       - labelname: raidPIndex
         type: gauge
       lookups:
-      - labels: *id053
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPVol
         oid: 1.3.6.1.4.1.789.1.6.10.1.3
         type: DisplayString
-      - labels: *id054
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlex
         oid: 1.3.6.1.4.1.789.1.6.10.1.4
         type: DisplayString
-      - labels: *id055
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPGroup
         oid: 1.3.6.1.4.1.789.1.6.10.1.5
         type: DisplayString
-      - labels: *id056
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlexNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.6
         type: DisplayString
-      - labels: *id057
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPGroupNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.7
         type: DisplayString
-      - labels: *id058
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.8
         type: DisplayString
-      - labels: *id059
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlexName
         oid: 1.3.6.1.4.1.789.1.6.10.1.9
         type: DisplayString
-      - labels: *id060
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskName
         oid: 1.3.6.1.4.1.789.1.6.10.1.10
         type: DisplayString
-      - labels: *id061
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPShelf
         oid: 1.3.6.1.4.1.789.1.6.10.1.17
         type: DisplayString
-      - labels: *id062
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPBay
         oid: 1.3.6.1.4.1.789.1.6.10.1.18
         type: DisplayString
-      - labels: *id063
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPSectorSize
         oid: 1.3.6.1.4.1.789.1.6.10.1.19
         type: DisplayString
-      - labels: *id064
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.25
         type: DisplayString
-      - labels: *id065
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.10.1.26
         type: DisplayString
-      - labels: *id066
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskModel
         oid: 1.3.6.1.4.1.789.1.6.10.1.27
         type: DisplayString
-      - labels: *id067
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.10.1.28
         type: DisplayString
-      - labels: *id068
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.10.1.29
         type: gauge
-      - labels: *id069
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskType
         oid: 1.3.6.1.4.1.789.1.6.10.1.30
         type: DisplayString
-      - labels: *id070
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskPool
         oid: 1.3.6.1.4.1.789.1.6.10.1.31
         type: DisplayString
-      - labels: *id071
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskCopyDestDiskName
         oid: 1.3.6.1.4.1.789.1.6.10.1.32
         type: DisplayString
@@ -1966,79 +2380,155 @@ modules:
       - labelname: raidPIndex
         type: gauge
       lookups:
-      - labels: *id053
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPVol
         oid: 1.3.6.1.4.1.789.1.6.10.1.3
         type: DisplayString
-      - labels: *id054
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlex
         oid: 1.3.6.1.4.1.789.1.6.10.1.4
         type: DisplayString
-      - labels: *id055
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPGroup
         oid: 1.3.6.1.4.1.789.1.6.10.1.5
         type: DisplayString
-      - labels: *id056
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlexNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.6
         type: DisplayString
-      - labels: *id057
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPGroupNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.7
         type: DisplayString
-      - labels: *id058
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.8
         type: DisplayString
-      - labels: *id059
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlexName
         oid: 1.3.6.1.4.1.789.1.6.10.1.9
         type: DisplayString
-      - labels: *id060
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskName
         oid: 1.3.6.1.4.1.789.1.6.10.1.10
         type: DisplayString
-      - labels: *id061
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPShelf
         oid: 1.3.6.1.4.1.789.1.6.10.1.17
         type: DisplayString
-      - labels: *id062
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPBay
         oid: 1.3.6.1.4.1.789.1.6.10.1.18
         type: DisplayString
-      - labels: *id063
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPSectorSize
         oid: 1.3.6.1.4.1.789.1.6.10.1.19
         type: DisplayString
-      - labels: *id064
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.25
         type: DisplayString
-      - labels: *id065
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.10.1.26
         type: DisplayString
-      - labels: *id066
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskModel
         oid: 1.3.6.1.4.1.789.1.6.10.1.27
         type: DisplayString
-      - labels: *id067
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.10.1.28
         type: DisplayString
-      - labels: *id068
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.10.1.29
         type: gauge
-      - labels: *id069
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskType
         oid: 1.3.6.1.4.1.789.1.6.10.1.30
         type: DisplayString
-      - labels: *id070
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskPool
         oid: 1.3.6.1.4.1.789.1.6.10.1.31
         type: DisplayString
-      - labels: *id071
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskCopyDestDiskName
         oid: 1.3.6.1.4.1.789.1.6.10.1.32
         type: DisplayString
@@ -2056,79 +2546,155 @@ modules:
       - labelname: raidPIndex
         type: gauge
       lookups:
-      - labels: *id053
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPVol
         oid: 1.3.6.1.4.1.789.1.6.10.1.3
         type: DisplayString
-      - labels: *id054
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlex
         oid: 1.3.6.1.4.1.789.1.6.10.1.4
         type: DisplayString
-      - labels: *id055
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPGroup
         oid: 1.3.6.1.4.1.789.1.6.10.1.5
         type: DisplayString
-      - labels: *id056
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlexNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.6
         type: DisplayString
-      - labels: *id057
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPGroupNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.7
         type: DisplayString
-      - labels: *id058
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.8
         type: DisplayString
-      - labels: *id059
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPPlexName
         oid: 1.3.6.1.4.1.789.1.6.10.1.9
         type: DisplayString
-      - labels: *id060
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskName
         oid: 1.3.6.1.4.1.789.1.6.10.1.10
         type: DisplayString
-      - labels: *id061
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPShelf
         oid: 1.3.6.1.4.1.789.1.6.10.1.17
         type: DisplayString
-      - labels: *id062
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPBay
         oid: 1.3.6.1.4.1.789.1.6.10.1.18
         type: DisplayString
-      - labels: *id063
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPSectorSize
         oid: 1.3.6.1.4.1.789.1.6.10.1.19
         type: DisplayString
-      - labels: *id064
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskSerialNumber
         oid: 1.3.6.1.4.1.789.1.6.10.1.25
         type: DisplayString
-      - labels: *id065
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskVendor
         oid: 1.3.6.1.4.1.789.1.6.10.1.26
         type: DisplayString
-      - labels: *id066
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskModel
         oid: 1.3.6.1.4.1.789.1.6.10.1.27
         type: DisplayString
-      - labels: *id067
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskFirmwareRevision
         oid: 1.3.6.1.4.1.789.1.6.10.1.28
         type: DisplayString
-      - labels: *id068
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskRPM
         oid: 1.3.6.1.4.1.789.1.6.10.1.29
         type: gauge
-      - labels: *id069
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskType
         oid: 1.3.6.1.4.1.789.1.6.10.1.30
         type: DisplayString
-      - labels: *id070
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskPool
         oid: 1.3.6.1.4.1.789.1.6.10.1.31
         type: DisplayString
-      - labels: *id071
+      - labels:
+        - raidPVol
+        - raidPPlex
+        - raidPGroup
+        - raidPIndex
         labelname: raidPDiskCopyDestDiskName
         oid: 1.3.6.1.4.1.789.1.6.10.1.32
         type: DisplayString
@@ -2140,12 +2706,12 @@ modules:
       - labelname: plexIndex
         type: gauge
       lookups:
-      - labels: &id072
+      - labels:
         - plexIndex
         labelname: plexName
         oid: 1.3.6.1.4.1.789.1.6.11.1.2
         type: DisplayString
-      - labels: &id073
+      - labels:
         - plexIndex
         labelname: plexVolName
         oid: 1.3.6.1.4.1.789.1.6.11.1.3
@@ -2162,11 +2728,13 @@ modules:
       - labelname: plexIndex
         type: gauge
       lookups:
-      - labels: *id072
+      - labels:
+        - plexIndex
         labelname: plexName
         oid: 1.3.6.1.4.1.789.1.6.11.1.2
         type: DisplayString
-      - labels: *id073
+      - labels:
+        - plexIndex
         labelname: plexVolName
         oid: 1.3.6.1.4.1.789.1.6.11.1.3
         type: DisplayString
@@ -2178,12 +2746,12 @@ modules:
       - labelname: svIndex
         type: gauge
       lookups:
-      - labels: &id074
+      - labels:
         - svIndex
         labelname: svSrc
         oid: 1.3.6.1.4.1.789.1.19.11.1.2
         type: DisplayString
-      - labels: &id075
+      - labels:
         - svIndex
         labelname: svDst
         oid: 1.3.6.1.4.1.789.1.19.11.1.3
@@ -2196,11 +2764,13 @@ modules:
       - labelname: svIndex
         type: gauge
       lookups:
-      - labels: *id074
+      - labels:
+        - svIndex
         labelname: svSrc
         oid: 1.3.6.1.4.1.789.1.19.11.1.2
         type: DisplayString
-      - labels: *id075
+      - labels:
+        - svIndex
         labelname: svDst
         oid: 1.3.6.1.4.1.789.1.19.11.1.3
         type: DisplayString
@@ -2220,22 +2790,22 @@ modules:
       - labelname: snapmirrorIndex
         type: gauge
       lookups:
-      - labels: &id076
+      - labels:
         - snapmirrorIndex
         labelname: snapmirrorSrc
         oid: 1.3.6.1.4.1.789.1.9.20.1.2
         type: DisplayString
-      - labels: &id077
+      - labels:
         - snapmirrorIndex
         labelname: snapmirrorDst
         oid: 1.3.6.1.4.1.789.1.9.20.1.3
         type: DisplayString
-      - labels: &id078
+      - labels:
         - snapmirrorIndex
         labelname: snapmirrorMirrorTimestamp
         oid: 1.3.6.1.4.1.789.1.9.20.1.14
         type: DisplayString
-      - labels: &id079
+      - labels:
         - snapmirrorIndex
         labelname: snapmirrorLastTransType
         oid: 1.3.6.1.4.1.789.1.9.20.1.16
@@ -2259,19 +2829,23 @@ modules:
       - labelname: snapmirrorIndex
         type: gauge
       lookups:
-      - labels: *id076
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorSrc
         oid: 1.3.6.1.4.1.789.1.9.20.1.2
         type: DisplayString
-      - labels: *id077
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorDst
         oid: 1.3.6.1.4.1.789.1.9.20.1.3
         type: DisplayString
-      - labels: *id078
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorMirrorTimestamp
         oid: 1.3.6.1.4.1.789.1.9.20.1.14
         type: DisplayString
-      - labels: *id079
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorLastTransType
         oid: 1.3.6.1.4.1.789.1.9.20.1.16
         type: DisplayString
@@ -2290,19 +2864,23 @@ modules:
       - labelname: snapmirrorIndex
         type: gauge
       lookups:
-      - labels: *id076
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorSrc
         oid: 1.3.6.1.4.1.789.1.9.20.1.2
         type: DisplayString
-      - labels: *id077
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorDst
         oid: 1.3.6.1.4.1.789.1.9.20.1.3
         type: DisplayString
-      - labels: *id078
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorMirrorTimestamp
         oid: 1.3.6.1.4.1.789.1.9.20.1.14
         type: DisplayString
-      - labels: *id079
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorLastTransType
         oid: 1.3.6.1.4.1.789.1.9.20.1.16
         type: DisplayString
@@ -2314,19 +2892,23 @@ modules:
       - labelname: snapmirrorIndex
         type: gauge
       lookups:
-      - labels: *id076
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorSrc
         oid: 1.3.6.1.4.1.789.1.9.20.1.2
         type: DisplayString
-      - labels: *id077
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorDst
         oid: 1.3.6.1.4.1.789.1.9.20.1.3
         type: DisplayString
-      - labels: *id078
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorMirrorTimestamp
         oid: 1.3.6.1.4.1.789.1.9.20.1.14
         type: DisplayString
-      - labels: *id079
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorLastTransType
         oid: 1.3.6.1.4.1.789.1.9.20.1.16
         type: DisplayString
@@ -2338,19 +2920,23 @@ modules:
       - labelname: snapmirrorIndex
         type: gauge
       lookups:
-      - labels: *id076
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorSrc
         oid: 1.3.6.1.4.1.789.1.9.20.1.2
         type: DisplayString
-      - labels: *id077
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorDst
         oid: 1.3.6.1.4.1.789.1.9.20.1.3
         type: DisplayString
-      - labels: *id078
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorMirrorTimestamp
         oid: 1.3.6.1.4.1.789.1.9.20.1.14
         type: DisplayString
-      - labels: *id079
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorLastTransType
         oid: 1.3.6.1.4.1.789.1.9.20.1.16
         type: DisplayString
@@ -2362,19 +2948,23 @@ modules:
       - labelname: snapmirrorIndex
         type: gauge
       lookups:
-      - labels: *id076
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorSrc
         oid: 1.3.6.1.4.1.789.1.9.20.1.2
         type: DisplayString
-      - labels: *id077
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorDst
         oid: 1.3.6.1.4.1.789.1.9.20.1.3
         type: DisplayString
-      - labels: *id078
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorMirrorTimestamp
         oid: 1.3.6.1.4.1.789.1.9.20.1.14
         type: DisplayString
-      - labels: *id079
+      - labels:
+        - snapmirrorIndex
         labelname: snapmirrorLastTransType
         oid: 1.3.6.1.4.1.789.1.9.20.1.16
         type: DisplayString
@@ -2386,52 +2976,52 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: &id080
+      - labels:
         - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: &id081
+      - labels:
         - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: &id082
+      - labels:
         - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: &id083
+      - labels:
         - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: &id084
+      - labels:
         - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: &id085
+      - labels:
         - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: &id086
+      - labels:
         - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: &id087
+      - labels:
         - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: &id088
+      - labels:
         - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: &id089
+      - labels:
         - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
@@ -2451,43 +3041,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2499,43 +3099,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2547,43 +3157,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2595,43 +3215,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2643,43 +3273,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2691,43 +3331,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2739,43 +3389,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2787,43 +3447,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2835,43 +3505,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2883,43 +3563,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2931,43 +3621,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -2979,43 +3679,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -3027,43 +3737,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -3075,43 +3795,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -3123,43 +3853,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -3171,43 +3911,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -3219,43 +3969,53 @@ modules:
       - labelname: enclIndex
         type: gauge
       lookups:
-      - labels: *id080
+      - labels:
+        - enclIndex
         labelname: enclChannelShelfAddr
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.3
         type: DisplayString
-      - labels: *id081
+      - labels:
+        - enclIndex
         labelname: enclProductLogicalID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.4
         type: DisplayString
-      - labels: *id082
+      - labels:
+        - enclIndex
         labelname: enclProductID
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.5
         type: DisplayString
-      - labels: *id083
+      - labels:
+        - enclIndex
         labelname: enclProductVendor
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.6
         type: DisplayString
-      - labels: *id084
+      - labels:
+        - enclIndex
         labelname: enclProductModel
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.7
         type: DisplayString
-      - labels: *id085
+      - labels:
+        - enclIndex
         labelname: enclProductRevision
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.8
         type: DisplayString
-      - labels: *id086
+      - labels:
+        - enclIndex
         labelname: enclProductSerialNo
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.9
         type: DisplayString
-      - labels: *id087
+      - labels:
+        - enclIndex
         labelname: enclNumberDiskBays
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.10
         type: DisplayString
-      - labels: *id088
+      - labels:
+        - enclIndex
         labelname: enclDisksPresent
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.11
         type: DisplayString
-      - labels: *id089
+      - labels:
+        - enclIndex
         labelname: enclNodeName
         oid: 1.3.6.1.4.1.789.1.21.1.2.1.65
         type: DisplayString
@@ -3268,12 +4028,12 @@ modules:
         type: DisplayString
         implied: true
       lookups:
-      - labels: &id090
+      - labels:
         - haNodeName
         labelname: haNodeName
         oid: 1.3.6.1.4.1.789.1.21.2.1.1
         type: DisplayString
-      - labels: &id091
+      - labels:
         - haNodeName
         labelname: haPartnerName
         oid: 1.3.6.1.4.1.789.1.21.2.1.8
@@ -3293,11 +4053,13 @@ modules:
         type: DisplayString
         implied: true
       lookups:
-      - labels: *id090
+      - labels:
+        - haNodeName
         labelname: haNodeName
         oid: 1.3.6.1.4.1.789.1.21.2.1.1
         type: DisplayString
-      - labels: *id091
+      - labels:
+        - haNodeName
         labelname: haPartnerName
         oid: 1.3.6.1.4.1.789.1.21.2.1.8
         type: DisplayString
@@ -3330,11 +4092,13 @@ modules:
         type: DisplayString
         implied: true
       lookups:
-      - labels: *id090
+      - labels:
+        - haNodeName
         labelname: haNodeName
         oid: 1.3.6.1.4.1.789.1.21.2.1.1
         type: DisplayString
-      - labels: *id091
+      - labels:
+        - haNodeName
         labelname: haPartnerName
         oid: 1.3.6.1.4.1.789.1.21.2.1.8
         type: DisplayString
@@ -3351,11 +4115,13 @@ modules:
         type: DisplayString
         implied: true
       lookups:
-      - labels: *id090
+      - labels:
+        - haNodeName
         labelname: haNodeName
         oid: 1.3.6.1.4.1.789.1.21.2.1.1
         type: DisplayString
-      - labels: *id091
+      - labels:
+        - haNodeName
         labelname: haPartnerName
         oid: 1.3.6.1.4.1.789.1.21.2.1.8
         type: DisplayString
@@ -3372,7 +4138,7 @@ modules:
       - labelname: netifIndex
         type: gauge
       lookups:
-      - labels: &id092
+      - labels:
         - netifIndex
         labelname: netifDesc
         oid: 1.3.6.1.4.1.789.1.22.1.2.1.2
@@ -3385,7 +4151,8 @@ modules:
       - labelname: netifIndex
         type: gauge
       lookups:
-      - labels: *id092
+      - labels:
+        - netifIndex
         labelname: netifDesc
         oid: 1.3.6.1.4.1.789.1.22.1.2.1.2
         type: DisplayString
@@ -3397,7 +4164,8 @@ modules:
       - labelname: netifIndex
         type: gauge
       lookups:
-      - labels: *id092
+      - labels:
+        - netifIndex
         labelname: netifDesc
         oid: 1.3.6.1.4.1.789.1.22.1.2.1.2
         type: DisplayString
@@ -3409,7 +4177,8 @@ modules:
       - labelname: netifIndex
         type: gauge
       lookups:
-      - labels: *id092
+      - labels:
+        - netifIndex
         labelname: netifDesc
         oid: 1.3.6.1.4.1.789.1.22.1.2.1.2
         type: DisplayString
@@ -3421,7 +4190,8 @@ modules:
       - labelname: netifIndex
         type: gauge
       lookups:
-      - labels: *id092
+      - labels:
+        - netifIndex
         labelname: netifDesc
         oid: 1.3.6.1.4.1.789.1.22.1.2.1.2
         type: DisplayString
@@ -3433,7 +4203,8 @@ modules:
       - labelname: netifIndex
         type: gauge
       lookups:
-      - labels: *id092
+      - labels:
+        - netifIndex
         labelname: netifDesc
         oid: 1.3.6.1.4.1.789.1.22.1.2.1.2
         type: DisplayString
@@ -3470,12 +4241,12 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: &id093
+      - labels:
         - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: &id094
+      - labels:
         - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
@@ -3488,11 +4259,13 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: *id093
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: *id094
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
         type: DisplayString
@@ -3507,11 +4280,13 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: *id093
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: *id094
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
         type: DisplayString
@@ -3523,11 +4298,13 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: *id093
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: *id094
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
         type: DisplayString
@@ -3549,11 +4326,13 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: *id093
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: *id094
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
         type: DisplayString
@@ -3568,11 +4347,13 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: *id093
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: *id094
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
         type: DisplayString
@@ -3584,11 +4365,13 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: *id093
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: *id094
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
         type: DisplayString
@@ -3600,11 +4383,13 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: *id093
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: *id094
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
         type: DisplayString
@@ -3616,11 +4401,13 @@ modules:
       - labelname: IMPLIEDnodeName
         type: gauge
       lookups:
-      - labels: *id093
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeName
         oid: 1.3.6.1.4.1.789.1.25.2.1.1
         type: DisplayString
-      - labels: *id094
+      - labels:
+        - IMPLIEDnodeName
         labelname: nodeProductVersion
         oid: 1.3.6.1.4.1.789.1.25.2.1.23
         type: DisplayString
@@ -3632,17 +4419,17 @@ modules:
       - labelname: snapmirrorRelIndex
         type: gauge
       lookups:
-      - labels: &id095
+      - labels:
         - snapmirrorRelIndex
         labelname: snapmirrorRelSrcPath
         oid: 1.3.6.1.4.1.789.1.29.1.1.2
         type: DisplayString
-      - labels: &id096
+      - labels:
         - snapmirrorRelIndex
         labelname: snapmirrorRelDestPath
         oid: 1.3.6.1.4.1.789.1.29.1.1.3
         type: DisplayString
-      - labels: &id097
+      - labels:
         - snapmirrorRelIndex
         labelname: snapmirrorRelType
         oid: 1.3.6.1.4.1.789.1.29.1.1.4
@@ -3669,15 +4456,18 @@ modules:
       - labelname: snapmirrorRelIndex
         type: gauge
       lookups:
-      - labels: *id095
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelSrcPath
         oid: 1.3.6.1.4.1.789.1.29.1.1.2
         type: DisplayString
-      - labels: *id096
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelDestPath
         oid: 1.3.6.1.4.1.789.1.29.1.1.3
         type: DisplayString
-      - labels: *id097
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelType
         oid: 1.3.6.1.4.1.789.1.29.1.1.4
         type: EnumAsInfo
@@ -3693,15 +4483,18 @@ modules:
       - labelname: snapmirrorRelIndex
         type: gauge
       lookups:
-      - labels: *id095
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelSrcPath
         oid: 1.3.6.1.4.1.789.1.29.1.1.2
         type: DisplayString
-      - labels: *id096
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelDestPath
         oid: 1.3.6.1.4.1.789.1.29.1.1.3
         type: DisplayString
-      - labels: *id097
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelType
         oid: 1.3.6.1.4.1.789.1.29.1.1.4
         type: EnumAsInfo
@@ -3716,15 +4509,18 @@ modules:
       - labelname: snapmirrorRelIndex
         type: gauge
       lookups:
-      - labels: *id095
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelSrcPath
         oid: 1.3.6.1.4.1.789.1.29.1.1.2
         type: DisplayString
-      - labels: *id096
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelDestPath
         oid: 1.3.6.1.4.1.789.1.29.1.1.3
         type: DisplayString
-      - labels: *id097
+      - labels:
+        - snapmirrorRelIndex
         labelname: snapmirrorRelType
         oid: 1.3.6.1.4.1.789.1.29.1.1.4
         type: EnumAsInfo

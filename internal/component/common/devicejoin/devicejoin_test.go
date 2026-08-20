@@ -34,6 +34,23 @@ func TestLookupPrimaryAndAlias(t *testing.T) {
 	id, ok = idx.Lookup("8.8.8.8", "spine1")
 	require.True(t, ok)
 	require.Equal(t, "spine1", id.DeviceName)
+
+	id, ok = idx.Lookup("::ffff:10.0.0.2")
+	require.True(t, ok)
+	require.Equal(t, "spine1", id.DeviceName)
+}
+
+func TestLookupYamlAliasesKey(t *testing.T) {
+	idx := NewIndex([]discovery.Target{
+		discovery.NewTargetFromMap(map[string]string{
+			"address":     "10.0.0.9",
+			"device_name": "client1",
+			"aliases":     "172.17.0.1",
+		}),
+	})
+	id, ok := idx.Lookup("172.17.0.1")
+	require.True(t, ok)
+	require.Equal(t, "client1", id.DeviceName)
 }
 
 func TestEmptyIndex(t *testing.T) {

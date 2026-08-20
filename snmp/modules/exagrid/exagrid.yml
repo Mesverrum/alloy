@@ -13,7 +13,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -52,6 +53,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egLandingSpaceConfiguredFractionalGigabytes
       oid: 1.3.6.1.4.1.14941.4.1.2.0
       type: gauge
@@ -59,6 +61,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egLandingSpaceAvailableWholeGigabytes
       oid: 1.3.6.1.4.1.14941.4.1.3.0
       type: gauge
@@ -66,6 +69,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egLandingSpaceAvailableFractionalGigabytes
       oid: 1.3.6.1.4.1.14941.4.1.4.0
       type: gauge
@@ -73,6 +77,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egRetentionSpaceConfiguredWholeGigabytes
       oid: 1.3.6.1.4.1.14941.4.2.1.0
       type: gauge
@@ -80,6 +85,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egRetentionSpaceConfiguredFractionalGigabytes
       oid: 1.3.6.1.4.1.14941.4.2.2.0
       type: gauge
@@ -87,6 +93,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egRetentionSpaceAvailableWholeGigabytes
       oid: 1.3.6.1.4.1.14941.4.2.3.0
       type: gauge
@@ -94,6 +101,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egRetentionSpaceAvailableFractionalGigabytes
       oid: 1.3.6.1.4.1.14941.4.2.4.0
       type: gauge
@@ -101,6 +109,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egBackupDataAvailableWholeGigabytes
       oid: 1.3.6.1.4.1.14941.4.3.1.0
       type: gauge
@@ -108,6 +117,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egBackupDataAvailableFractionalGigabytes
       oid: 1.3.6.1.4.1.14941.4.3.2.0
       type: gauge
@@ -115,6 +125,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egBackupDataSpaceConsumedWholeGigabytes
       oid: 1.3.6.1.4.1.14941.4.3.3.0
       type: gauge
@@ -122,6 +133,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egBackupDataSpaceConsumedFractionalGigabytes
       oid: 1.3.6.1.4.1.14941.4.3.4.0
       type: gauge
@@ -129,6 +141,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egPendingDeduplicationWholeGigabytes
       oid: 1.3.6.1.4.1.14941.4.4.1.0
       type: gauge
@@ -136,6 +149,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egPendingDeduplicationFractionalGigabytes
       oid: 1.3.6.1.4.1.14941.4.4.2.0
       type: gauge
@@ -143,6 +157,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egPendingDeduplicationAge
       oid: 1.3.6.1.4.1.14941.4.4.3.0
       type: gauge
@@ -150,6 +165,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egPendingReplicationWholeGigabytes
       oid: 1.3.6.1.4.1.14941.4.5.1.0
       type: gauge
@@ -157,6 +173,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egPendingReplicationFractionalGigabytes
       oid: 1.3.6.1.4.1.14941.4.5.2.0
       type: gauge
@@ -164,6 +181,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egPendingReplicationAge
       oid: 1.3.6.1.4.1.14941.4.5.3.0
       type: gauge
@@ -171,6 +189,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_egServerAlarmState
       oid: 1.3.6.1.4.1.14941.4.6.1.0
       type: gauge
@@ -182,6 +201,7 @@ modules:
         1: noAlarm
         2: warningAlarm
         3: errorAlarm
+      lookups: []
     get:
     - 1.3.6.1.2.1.1.1.0
     - 1.3.6.1.2.1.1.2.0

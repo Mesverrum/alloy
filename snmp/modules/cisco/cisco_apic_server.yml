@@ -25,7 +25,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -61,6 +62,7 @@ modules:
       oid: 1.3.6.1.4.1.9.9.109.1.1.1.1.7.1
       type: gauge
       help: cpmCPUTotal1minRev (CISCO-PROCESS-MIB) - 1.3.6.1.4.1.9.9.109.1.1.1.1.7.1
+      lookups: []
     - name: snmp_cefcTotalAvailableCurrent
       oid: 1.3.6.1.4.1.9.9.117.1.1.1.1.3
       type: gauge
@@ -69,37 +71,37 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - entPhysicalIndex
         labelname: redundancy_admin_mode
         oid: 1.3.6.1.4.1.9.9.117.1.1.1.1.1
         type: EnumAsInfo
-      - labels: &id002
+      - labels:
         - entPhysicalIndex
         labelname: power_units
         oid: 1.3.6.1.4.1.9.9.117.1.1.1.1.2
         type: DisplayString
-      - labels: &id003
+      - labels:
         - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: &id004
+      - labels:
         - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: &id005
+      - labels:
         - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: &id006
+      - labels:
         - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: &id007
+      - labels:
         - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
@@ -112,31 +114,38 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: redundancy_admin_mode
         oid: 1.3.6.1.4.1.9.9.117.1.1.1.1.1
         type: EnumAsInfo
-      - labels: *id002
+      - labels:
+        - entPhysicalIndex
         labelname: power_units
         oid: 1.3.6.1.4.1.9.9.117.1.1.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -148,31 +157,38 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: redundancy_admin_mode
         oid: 1.3.6.1.4.1.9.9.117.1.1.1.1.1
         type: EnumAsInfo
-      - labels: *id002
+      - labels:
+        - entPhysicalIndex
         labelname: power_units
         oid: 1.3.6.1.4.1.9.9.117.1.1.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -192,32 +208,32 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: &id008
+      - labels:
         - entPhysicalIndex
         labelname: fru_power_admin_status
         oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.1
         type: EnumAsInfo
-      - labels: &id009
+      - labels:
         - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: &id010
+      - labels:
         - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: &id011
+      - labels:
         - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: &id012
+      - labels:
         - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: &id013
+      - labels:
         - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
@@ -230,27 +246,33 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - entPhysicalIndex
         labelname: fru_power_admin_status
         oid: 1.3.6.1.4.1.9.9.117.1.1.2.1.1
         type: EnumAsInfo
-      - labels: *id009
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id011
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -275,27 +297,27 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: &id014
+      - labels:
         - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: &id015
+      - labels:
         - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: &id016
+      - labels:
         - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: &id017
+      - labels:
         - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: &id018
+      - labels:
         - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
@@ -314,23 +336,28 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -370,23 +397,28 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -423,23 +455,28 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -451,23 +488,28 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -517,27 +559,27 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: &id019
+      - labels:
         - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: &id020
+      - labels:
         - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: &id021
+      - labels:
         - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: &id022
+      - labels:
         - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: &id023
+      - labels:
         - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
@@ -550,23 +592,28 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id019
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id021
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -578,42 +625,42 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: &id024
+      - labels:
         - entPhysicalIndex
         labelname: entity_sensor_type
         oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.1
         type: EnumAsInfo
-      - labels: &id025
+      - labels:
         - entPhysicalIndex
         labelname: entity_sensor_scale
         oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.2
         type: EnumAsInfo
-      - labels: &id026
+      - labels:
         - entPhysicalIndex
         labelname: entity_sensor_precision
         oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.3
         type: DisplayString
-      - labels: &id027
+      - labels:
         - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: &id028
+      - labels:
         - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: &id029
+      - labels:
         - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: &id030
+      - labels:
         - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: &id031
+      - labels:
         - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
@@ -626,35 +673,43 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id024
+      - labels:
+        - entPhysicalIndex
         labelname: entity_sensor_type
         oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.1
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - entPhysicalIndex
         labelname: entity_sensor_scale
         oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.2
         type: EnumAsInfo
-      - labels: *id026
+      - labels:
+        - entPhysicalIndex
         labelname: entity_sensor_precision
         oid: 1.3.6.1.4.1.9.9.91.1.1.1.1.3
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - entPhysicalIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id028
+      - labels:
+        - entPhysicalIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id029
+      - labels:
+        - entPhysicalIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - entPhysicalIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - entPhysicalIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -670,32 +725,32 @@ modules:
       - labelname: ciscoEnvMonVoltageStatusIndex
         type: gauge
       lookups:
-      - labels: &id032
+      - labels:
         - ciscoEnvMonVoltageStatusIndex
         labelname: voltage_descr
         oid: 1.3.6.1.4.1.9.9.13.1.2.1.2
         type: DisplayString
-      - labels: &id033
+      - labels:
         - ciscoEnvMonVoltageStatusIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: &id034
+      - labels:
         - ciscoEnvMonVoltageStatusIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: &id035
+      - labels:
         - ciscoEnvMonVoltageStatusIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: &id036
+      - labels:
         - ciscoEnvMonVoltageStatusIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: &id037
+      - labels:
         - ciscoEnvMonVoltageStatusIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
@@ -708,27 +763,33 @@ modules:
       - labelname: ciscoEnvMonVoltageStatusIndex
         type: gauge
       lookups:
-      - labels: *id032
+      - labels:
+        - ciscoEnvMonVoltageStatusIndex
         labelname: voltage_descr
         oid: 1.3.6.1.4.1.9.9.13.1.2.1.2
         type: DisplayString
-      - labels: *id033
+      - labels:
+        - ciscoEnvMonVoltageStatusIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id034
+      - labels:
+        - ciscoEnvMonVoltageStatusIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id035
+      - labels:
+        - ciscoEnvMonVoltageStatusIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - ciscoEnvMonVoltageStatusIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - ciscoEnvMonVoltageStatusIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString
@@ -747,37 +808,37 @@ modules:
       - labelname: ciscoEnvMonTemperatureStatusIndex
         type: gauge
       lookups:
-      - labels: &id038
+      - labels:
         - ciscoEnvMonTemperatureStatusIndex
         labelname: temp_descr
         oid: 1.3.6.1.4.1.9.9.13.1.3.1.2
         type: DisplayString
-      - labels: &id039
+      - labels:
         - ciscoEnvMonTemperatureStatusIndex
         labelname: temp_threshold
         oid: 1.3.6.1.4.1.9.9.13.1.3.1.4
         type: gauge
-      - labels: &id040
+      - labels:
         - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: &id041
+      - labels:
         - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: &id042
+      - labels:
         - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: &id043
+      - labels:
         - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: &id044
+      - labels:
         - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
@@ -790,31 +851,38 @@ modules:
       - labelname: ciscoEnvMonTemperatureStatusIndex
         type: gauge
       lookups:
-      - labels: *id038
+      - labels:
+        - ciscoEnvMonTemperatureStatusIndex
         labelname: temp_descr
         oid: 1.3.6.1.4.1.9.9.13.1.3.1.2
         type: DisplayString
-      - labels: *id039
+      - labels:
+        - ciscoEnvMonTemperatureStatusIndex
         labelname: temp_threshold
         oid: 1.3.6.1.4.1.9.9.13.1.3.1.4
         type: gauge
-      - labels: *id040
+      - labels:
+        - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_description
         oid: 1.3.6.1.2.1.47.1.1.1.1.2
         type: DisplayString
-      - labels: *id041
+      - labels:
+        - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_class
         oid: 1.3.6.1.2.1.47.1.1.1.1.5
         type: EnumAsInfo
-      - labels: *id042
+      - labels:
+        - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_name
         oid: 1.3.6.1.2.1.47.1.1.1.1.7
         type: DisplayString
-      - labels: *id043
+      - labels:
+        - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_serial
         oid: 1.3.6.1.2.1.47.1.1.1.1.11
         type: DisplayString
-      - labels: *id044
+      - labels:
+        - ciscoEnvMonTemperatureStatusIndex
         labelname: entity_model
         oid: 1.3.6.1.2.1.47.1.1.1.1.13
         type: DisplayString

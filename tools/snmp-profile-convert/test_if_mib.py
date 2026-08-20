@@ -8,11 +8,14 @@ from convert import (
     IF_HIGHSPEED_METRIC,
     IF_PHYSADDRESS_OID,
     apply_if_admin_up_filter,
+    exporter_safe_type,
     inject_ip_addr_into_cold_lists,
     ip_addr_module,
     lookup_type,
     partition_module_chain,
+    rewrite_exporter_types,
     split_if_mib_family,
+    _ensure_if_mac_lookup,
 )
 
 IF_NAME_OID = "1.3.6.1.2.1.31.1.1.1.1"
@@ -94,6 +97,8 @@ class SplitIfMibFamily(unittest.TestCase):
         hot_names = [m["name"] for m in hot["metrics"]]
         self.assertIn("snmp_ifHCInOctets", hot_names)
         self.assertIn(IF_HIGHSPEED_METRIC, hot_names)
+        self.assertNotIn("snmp_ifInErrors", hot_names)
+        self.assertIn("snmp_ifHCInUcastPkts", [m["name"] for m in cold["metrics"]])
         hs = next(m for m in hot["metrics"] if m["name"] == IF_HIGHSPEED_METRIC)
         self.assertEqual(hs["type"], "gauge")
         self.assertEqual(hs["oid"], IF_HIGHSPEED_OID)
@@ -117,8 +122,99 @@ class SplitIfMibFamily(unittest.TestCase):
             if lk.get("labelname") == "if_MAC"
         ]
         self.assertTrue(mac)
-        self.assertEqual(mac[0]["type"], "PhysAddress")
+        self.assertEqual(mac[0]["type"], "PhysAddress48")
         self.assertEqual(mac[0]["oid"], IF_PHYSADDRESS_OID)
+
+    def test_errors_and_discards_land_on_cold(self):
+        module = {
+            "metrics": [
+                _octets_metric(),
+                {
+                    "name": "snmp_ifInErrors",
+                    "oid": "1.3.6.1.2.1.2.2.1.14",
+                    "type": "counter",
+                    "indexes": [{"labelname": "ifIndex", "type": "gauge"}],
+                    "lookups": _octets_metric()["lookups"],
+                },
+                {
+                    "name": "snmp_ifOutErrors",
+                    "oid": "1.3.6.1.2.1.2.2.1.20",
+                    "type": "counter",
+                    "indexes": [{"labelname": "ifIndex", "type": "gauge"}],
+                    "lookups": _octets_metric()["lookups"],
+                },
+                {
+                    "name": "snmp_ifInDiscards",
+                    "oid": "1.3.6.1.2.1.2.2.1.13",
+                    "type": "counter",
+                    "indexes": [{"labelname": "ifIndex", "type": "gauge"}],
+                    "lookups": _octets_metric()["lookups"],
+                },
+                {
+                    "name": "snmp_ifOutDiscards",
+                    "oid": "1.3.6.1.2.1.2.2.1.19",
+                    "type": "counter",
+                    "indexes": [{"labelname": "ifIndex", "type": "gauge"}],
+                    "lookups": _octets_metric()["lookups"],
+                },
+                {
+                    "name": "snmp_ifHCInUcastPkts",
+                    "oid": "1.3.6.1.2.1.31.1.1.1.7",
+                    "type": "counter",
+                    "indexes": [{"labelname": "ifIndex", "type": "gauge"}],
+                    "lookups": _octets_metric()["lookups"],
+                },
+            ]
+        }
+        parts = split_if_mib_family("if_mib", module)
+        hot_names = [m["name"] for m in parts["if_mib"]["metrics"]]
+        cold_names = [m["name"] for m in parts["if_mib_meta"]["metrics"]]
+        for name in (
+            "snmp_ifInErrors",
+            "snmp_ifOutErrors",
+            "snmp_ifInDiscards",
+            "snmp_ifOutDiscards",
+        ):
+            self.assertNotIn(name, hot_names)
+            self.assertIn(name, cold_names)
+        self.assertIn("snmp_ifHCInOctets", hot_names)
+        self.assertNotIn("1.3.6.1.2.1.2.2.1.14", parts["if_mib"].get("walk") or [])
+        self.assertNotIn("1.3.6.1.2.1.2.2.1.13", parts["if_mib"].get("walk") or [])
+
+    def test_exporter_safe_type_maps_physaddress(self):
+        self.assertEqual(exporter_safe_type("PhysAddress"), "PhysAddress48")
+        self.assertEqual(exporter_safe_type("DisplayString"), "DisplayString")
+        rewritten = rewrite_exporter_types(
+            {"indexes": [{"labelname": "devMac", "type": "PhysAddress"}]}
+        )
+        self.assertEqual(rewritten["indexes"][0]["type"], "PhysAddress48")
+        coerced = _ensure_if_mac_lookup(
+            {
+                "name": "snmp_ifAlias",
+                "lookups": [
+                    {
+                        "labels": ["ifIndex"],
+                        "labelname": "if_MAC",
+                        "oid": IF_PHYSADDRESS_OID,
+                        "type": "PhysAddress",
+                    }
+                ],
+            }
+        )
+        self.assertEqual(coerced["lookups"][0]["type"], "PhysAddress48")
+        collapsed = rewrite_exporter_types(
+            {
+                "indexes": [
+                    {"labelname": "vRtrID", "type": "gauge"},
+                    {"labelname": "tBgpPeerNgAddressType", "type": "InetAddressType"},
+                    {"labelname": "tBgpPeerNgAddress", "type": "InetAddress"},
+                ]
+            }
+        )
+        self.assertEqual(
+            [(x["labelname"], x["type"]) for x in collapsed["indexes"]],
+            [("vRtrID", "gauge"), ("tBgpPeerNgAddress", "InetAddress")],
+        )
 
 
 class IpAddrModule(unittest.TestCase):
@@ -139,8 +235,9 @@ class IpAddrModule(unittest.TestCase):
         v6 = mod["metrics"][1]
         self.assertEqual(
             [x["labelname"] for x in v6["indexes"]],
-            ["ipAddressAddrType", "ipAddressAddr"],
+            ["ipAddressAddr"],
         )
+        self.assertEqual(v6["indexes"][0]["type"], "InetAddress")
         v6_labels = {lk["labelname"]: lk for lk in v6["lookups"]}
         self.assertEqual(v6_labels["ifIndex"]["oid"], "1.3.6.1.2.1.4.34.1.3")
         self.assertEqual(v6_labels["ipAddressType"]["type"], "EnumAsInfo")
@@ -151,6 +248,24 @@ class IpAddrModule(unittest.TestCase):
         tiers = partition_module_chain(["device_base", "if_mib"])
         self.assertEqual(tiers["hot"], ["device_base", "if_mib"])
         self.assertEqual(tiers["cold"], ["if_mib_meta", "ip_addr"])
+
+    def test_partition_does_not_invent_missing_nokia_hot_sidecar(self):
+        known = {"if_mib", "if_mib_meta", "ip_addr", "nokia_srlinux"}
+        tiers = partition_module_chain(["if_mib", "nokia_srlinux"], known)
+        self.assertNotIn("nokia_srlinux_hot", tiers["hot"])
+        self.assertIn("nokia_srlinux", tiers["hot"])
+        self.assertIn("if_mib", tiers["hot"])
+
+    def test_partition_keeps_nokia_hot_sidecar_when_present(self):
+        known = {"if_mib", "if_mib_meta", "ip_addr", "nokia_srlinux", "nokia_srlinux_hot"}
+        tiers = partition_module_chain(["if_mib", "nokia_srlinux"], known)
+        self.assertEqual(tiers["hot"][:3], ["if_mib", "nokia_srlinux_hot", "nokia_srlinux"])
+
+    def test_partition_drops_ip_addr_when_module_absent(self):
+        known = {"if_mib", "if_mib_meta", "nokia_srlinux"}
+        tiers = partition_module_chain(["if_mib", "nokia_srlinux"], known)
+        self.assertNotIn("ip_addr", tiers["cold"])
+        self.assertIn("if_mib_meta", tiers["cold"])
 
     def test_fingerprinter_inject_is_idempotent(self):
         src = (

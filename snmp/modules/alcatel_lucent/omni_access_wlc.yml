@@ -21,7 +21,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -84,12 +85,12 @@ modules:
       - labelname: sysXStorageIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - sysXStorageIndex
         labelname: sysXStorageType
         oid: 1.3.6.1.4.1.14823.2.2.1.1.1.10.1.2
         type: EnumAsInfo
-      - labels: &id002
+      - labels:
         - sysXStorageIndex
         labelname: sysXStorageName
         oid: 1.3.6.1.4.1.14823.2.2.1.1.1.10.1.5
@@ -102,11 +103,13 @@ modules:
       - labelname: sysXStorageIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - sysXStorageIndex
         labelname: sysXStorageType
         oid: 1.3.6.1.4.1.14823.2.2.1.1.1.10.1.2
         type: EnumAsInfo
-      - labels: *id002
+      - labels:
+        - sysXStorageIndex
         labelname: sysXStorageName
         oid: 1.3.6.1.4.1.14823.2.2.1.1.1.10.1.5
         type: DisplayString
@@ -117,6 +120,7 @@ modules:
       indexes:
       - labelname: sysXMemoryIndex
         type: gauge
+      lookups: []
     - name: snmp_MemoryUsed
       oid: 1.3.6.1.4.1.14823.2.2.1.1.1.11.1.3
       type: gauge
@@ -124,6 +128,7 @@ modules:
       indexes:
       - labelname: sysXMemoryIndex
         type: gauge
+      lookups: []
     - name: snmp_MemoryFree
       oid: 1.3.6.1.4.1.14823.2.2.1.1.1.11.1.4
       type: gauge
@@ -131,11 +136,14 @@ modules:
       indexes:
       - labelname: sysXMemoryIndex
         type: gauge
+      lookups: []
     - name: snmp_wlsxSwitchTotalNumAccessPoints
       oid: 1.3.6.1.4.1.14823.2.2.1.1.3.1
       type: gauge
       help: wlsxSwitchTotalNumAccessPoints () - 1.3.6.1.4.1.14823.2.2.1.1.3.1.0
+      lookups: []
     - name: snmp_wlsxSwitchTotalNumStationsAssociated
       oid: 1.3.6.1.4.1.14823.2.2.1.1.3.2
       type: gauge
       help: wlsxSwitchTotalNumStationsAssociated () - 1.3.6.1.4.1.14823.2.2.1.1.3.2.0
+      lookups: []

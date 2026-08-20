@@ -20,12 +20,13 @@ modules:
       - labelname: ipAdEntAddr
         type: InetAddressIPv4
       lookups:
-      - labels: &id001
+      - labels:
         - ipAdEntAddr
         labelname: ifIndex
         oid: 1.3.6.1.2.1.4.20.1.2
         type: gauge
-      - labels: *id001
+      - labels:
+        - ipAdEntAddr
         labelname: ipAdEntNetMask
         oid: 1.3.6.1.2.1.4.20.1.3
         type: InetAddressIPv4
@@ -40,26 +41,26 @@ modules:
       help: "ipAddressIfIndex (IP-MIB ipAddressTable) \u2014 IPv4/IPv6 address \u2192\
         \ ifIndex. Join IF-MIB on (device_name, ifIndex)."
       indexes:
-      - labelname: ipAddressAddrType
-        type: InetAddressType
       - labelname: ipAddressAddr
         type: InetAddress
       lookups:
-      - labels: &id002
-        - ipAddressAddrType
+      - labels:
         - ipAddressAddr
         labelname: ifIndex
         oid: 1.3.6.1.2.1.4.34.1.3
         type: gauge
-      - labels: *id002
+      - labels:
+        - ipAddressAddr
         labelname: ipAddressType
         oid: 1.3.6.1.2.1.4.34.1.4
         type: EnumAsInfo
-      - labels: *id002
+      - labels:
+        - ipAddressAddr
         labelname: ipAddressOrigin
         oid: 1.3.6.1.2.1.4.34.1.6
         type: EnumAsInfo
-      - labels: *id002
+      - labels:
+        - ipAddressAddr
         labelname: ipAddressStatus
         oid: 1.3.6.1.2.1.4.34.1.7
         type: EnumAsInfo

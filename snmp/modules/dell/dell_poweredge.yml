@@ -19,7 +19,7 @@ modules:
       - labelname: operatingSystemMemorychassisIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - operatingSystemMemorychassisIndex
         labelname: operatingSystemMemorychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.400.20.1.1
@@ -32,7 +32,8 @@ modules:
       - labelname: operatingSystemMemorychassisIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - operatingSystemMemorychassisIndex
         labelname: operatingSystemMemorychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.400.20.1.1
         type: gauge
@@ -44,7 +45,8 @@ modules:
       - labelname: operatingSystemMemorychassisIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - operatingSystemMemorychassisIndex
         labelname: operatingSystemMemorychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.400.20.1.1
         type: gauge
@@ -56,7 +58,8 @@ modules:
       - labelname: operatingSystemMemorychassisIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - operatingSystemMemorychassisIndex
         labelname: operatingSystemMemorychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.400.20.1.1
         type: gauge
@@ -68,7 +71,8 @@ modules:
       - labelname: operatingSystemMemorychassisIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - operatingSystemMemorychassisIndex
         labelname: operatingSystemMemorychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.400.20.1.1
         type: gauge
@@ -82,13 +86,13 @@ modules:
       - labelname: powerSupplyIndex
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - powerSupplychassisIndex
         - powerSupplyIndex
         labelname: powerSupplychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.600.12.1.1
         type: gauge
-      - labels: &id003
+      - labels:
         - powerSupplychassisIndex
         - powerSupplyIndex
         labelname: powerSupplyIndex
@@ -111,11 +115,15 @@ modules:
       - labelname: powerSupplyIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - powerSupplychassisIndex
+        - powerSupplyIndex
         labelname: powerSupplychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.600.12.1.1
         type: gauge
-      - labels: *id003
+      - labels:
+        - powerSupplychassisIndex
+        - powerSupplyIndex
         labelname: powerSupplyIndex
         oid: 1.3.6.1.4.1.674.10892.1.600.12.1.2
         type: gauge
@@ -129,11 +137,15 @@ modules:
       - labelname: powerSupplyIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - powerSupplychassisIndex
+        - powerSupplyIndex
         labelname: powerSupplychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.600.12.1.1
         type: gauge
-      - labels: *id003
+      - labels:
+        - powerSupplychassisIndex
+        - powerSupplyIndex
         labelname: powerSupplyIndex
         oid: 1.3.6.1.4.1.674.10892.1.600.12.1.2
         type: gauge
@@ -147,11 +159,15 @@ modules:
       - labelname: powerSupplyIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - powerSupplychassisIndex
+        - powerSupplyIndex
         labelname: powerSupplychassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.600.12.1.1
         type: gauge
-      - labels: *id003
+      - labels:
+        - powerSupplychassisIndex
+        - powerSupplyIndex
         labelname: powerSupplyIndex
         oid: 1.3.6.1.4.1.674.10892.1.600.12.1.2
         type: gauge
@@ -165,13 +181,13 @@ modules:
       - labelname: temperatureProbeIndex
         type: gauge
       lookups:
-      - labels: &id004
+      - labels:
         - temperatureProbechassisIndex
         - temperatureProbeIndex
         labelname: temperatureProbechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.700.20.1.1
         type: gauge
-      - labels: &id005
+      - labels:
         - temperatureProbechassisIndex
         - temperatureProbeIndex
         labelname: temperatureProbeIndex
@@ -198,11 +214,15 @@ modules:
       - labelname: temperatureProbeIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - temperatureProbechassisIndex
+        - temperatureProbeIndex
         labelname: temperatureProbechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.700.20.1.1
         type: gauge
-      - labels: *id005
+      - labels:
+        - temperatureProbechassisIndex
+        - temperatureProbeIndex
         labelname: temperatureProbeIndex
         oid: 1.3.6.1.4.1.674.10892.1.700.20.1.2
         type: gauge
@@ -216,13 +236,13 @@ modules:
       - labelname: processorDeviceIndex
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - processorDevicechassisIndex
         - processorDeviceIndex
         labelname: processorDevicechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.30.1.1
         type: gauge
-      - labels: &id007
+      - labels:
         - processorDevicechassisIndex
         - processorDeviceIndex
         labelname: processorDeviceIndex
@@ -245,11 +265,15 @@ modules:
       - labelname: processorDeviceIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - processorDevicechassisIndex
+        - processorDeviceIndex
         labelname: processorDevicechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.30.1.1
         type: gauge
-      - labels: *id007
+      - labels:
+        - processorDevicechassisIndex
+        - processorDeviceIndex
         labelname: processorDeviceIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.30.1.2
         type: gauge
@@ -263,13 +287,13 @@ modules:
       - labelname: cacheDeviceIndex
         type: gauge
       lookups:
-      - labels: &id008
+      - labels:
         - cacheDevicechassisIndex
         - cacheDeviceIndex
         labelname: cacheDevicechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.40.1.1
         type: gauge
-      - labels: &id009
+      - labels:
         - cacheDevicechassisIndex
         - cacheDeviceIndex
         labelname: cacheDeviceIndex
@@ -292,11 +316,15 @@ modules:
       - labelname: cacheDeviceIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - cacheDevicechassisIndex
+        - cacheDeviceIndex
         labelname: cacheDevicechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.40.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - cacheDevicechassisIndex
+        - cacheDeviceIndex
         labelname: cacheDeviceIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.40.1.2
         type: gauge
@@ -310,11 +338,15 @@ modules:
       - labelname: cacheDeviceIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - cacheDevicechassisIndex
+        - cacheDeviceIndex
         labelname: cacheDevicechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.40.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - cacheDevicechassisIndex
+        - cacheDeviceIndex
         labelname: cacheDeviceIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.40.1.2
         type: gauge
@@ -328,19 +360,19 @@ modules:
       - labelname: memoryDeviceIndex
         type: gauge
       lookups:
-      - labels: &id010
+      - labels:
         - memoryDevicechassisIndex
         - memoryDeviceIndex
         labelname: memoryDevicechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.50.1.1
         type: gauge
-      - labels: &id011
+      - labels:
         - memoryDevicechassisIndex
         - memoryDeviceIndex
         labelname: memoryDeviceIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.50.1.2
         type: gauge
-      - labels: &id012
+      - labels:
         - memoryDevicechassisIndex
         - memoryDeviceIndex
         labelname: memoryDeviceSerialNumberName
@@ -363,15 +395,21 @@ modules:
       - labelname: memoryDeviceIndex
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - memoryDevicechassisIndex
+        - memoryDeviceIndex
         labelname: memoryDevicechassisIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.50.1.1
         type: gauge
-      - labels: *id011
+      - labels:
+        - memoryDevicechassisIndex
+        - memoryDeviceIndex
         labelname: memoryDeviceIndex
         oid: 1.3.6.1.4.1.674.10892.1.1100.50.1.2
         type: gauge
-      - labels: *id012
+      - labels:
+        - memoryDevicechassisIndex
+        - memoryDeviceIndex
         labelname: memoryDeviceSerialNumberName
         oid: 1.3.6.1.4.1.674.10892.1.1100.50.1.23
         type: DisplayString

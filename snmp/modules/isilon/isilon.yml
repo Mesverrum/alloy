@@ -29,7 +29,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -65,14 +66,17 @@ modules:
       oid: 1.3.6.1.4.1.12124.1.2.3.5
       type: gauge
       help: clusterCPUIdlePct (ISILON-MIB) - 1.3.6.1.4.1.12124.1.2.3.5.0
+      lookups: []
     - name: snmp_MemoryTotal
       oid: 1.3.6.1.4.1.2021.4.5
       type: gauge
       help: memTotalReal (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.5.0
+      lookups: []
     - name: snmp_MemoryFree
       oid: 1.3.6.1.4.1.2021.4.6
       type: gauge
       help: memAvailReal (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.6.0
+      lookups: []
     - name: snmp_clusterHealth
       oid: 1.3.6.1.4.1.12124.1.1.2
       type: gauge
@@ -82,22 +86,27 @@ modules:
         1: attn
         2: down
         3: invalid
+      lookups: []
     - name: snmp_clusterIfsInBytes
       oid: 1.3.6.1.4.1.12124.1.2.1.1
       type: counter
       help: clusterIfsInBytes (ISILON-MIB) - 1.3.6.1.4.1.12124.1.2.1.1.0
+      lookups: []
     - name: snmp_clusterIfsOutBytes
       oid: 1.3.6.1.4.1.12124.1.2.1.3
       type: counter
       help: clusterIfsOutBytes (ISILON-MIB) - 1.3.6.1.4.1.12124.1.2.1.3.0
+      lookups: []
     - name: snmp_ifsTotalBytes
       oid: 1.3.6.1.4.1.12124.1.3.1
       type: counter
       help: ifsTotalBytes (ISILON-MIB) - 1.3.6.1.4.1.12124.1.3.1.0
+      lookups: []
     - name: snmp_ifsUsedBytes
       oid: 1.3.6.1.4.1.12124.1.3.2
       type: counter
       help: ifsUsedBytes (ISILON-MIB) - 1.3.6.1.4.1.12124.1.3.2.0
+      lookups: []
     - name: snmp_nodeHealth
       oid: 1.3.6.1.4.1.12124.2.1.2
       type: gauge
@@ -107,14 +116,17 @@ modules:
         1: attn
         2: down
         3: invalid
+      lookups: []
     - name: snmp_nodeIfsInBytes
       oid: 1.3.6.1.4.1.12124.2.2.1.1
       type: counter
       help: nodeIfsInBytes (ISILON-MIB) - 1.3.6.1.4.1.12124.2.2.1.1.0
+      lookups: []
     - name: snmp_nodeIfsOutBytes
       oid: 1.3.6.1.4.1.12124.2.2.1.3
       type: counter
       help: nodeIfsOutBytes (ISILON-MIB) - 1.3.6.1.4.1.12124.2.2.1.3.0
+      lookups: []
     - name: snmp_quotaHardThreshold
       oid: 1.3.6.1.4.1.12124.1.12.1.1.7
       type: counter
@@ -123,12 +135,12 @@ modules:
       - labelname: quotaDomainID
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - quotaDomainID
         labelname: quotaType
         oid: 1.3.6.1.4.1.12124.1.12.1.1.2
         type: EnumAsInfo
-      - labels: &id002
+      - labels:
         - quotaDomainID
         labelname: quotaID
         oid: 1.3.6.1.4.1.12124.1.12.1.1.3
@@ -141,11 +153,13 @@ modules:
       - labelname: quotaDomainID
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - quotaDomainID
         labelname: quotaType
         oid: 1.3.6.1.4.1.12124.1.12.1.1.2
         type: EnumAsInfo
-      - labels: *id002
+      - labels:
+        - quotaDomainID
         labelname: quotaID
         oid: 1.3.6.1.4.1.12124.1.12.1.1.3
         type: DisplayString
@@ -157,11 +171,13 @@ modules:
       - labelname: quotaDomainID
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - quotaDomainID
         labelname: quotaType
         oid: 1.3.6.1.4.1.12124.1.12.1.1.2
         type: EnumAsInfo
-      - labels: *id002
+      - labels:
+        - quotaDomainID
         labelname: quotaID
         oid: 1.3.6.1.4.1.12124.1.12.1.1.3
         type: DisplayString
@@ -173,11 +189,13 @@ modules:
       - labelname: quotaDomainID
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - quotaDomainID
         labelname: quotaType
         oid: 1.3.6.1.4.1.12124.1.12.1.1.2
         type: EnumAsInfo
-      - labels: *id002
+      - labels:
+        - quotaDomainID
         labelname: quotaID
         oid: 1.3.6.1.4.1.12124.1.12.1.1.3
         type: DisplayString
@@ -189,27 +207,27 @@ modules:
       - labelname: diskBay
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - diskBay
         labelname: diskBay
         oid: 1.3.6.1.4.1.12124.2.52.1.1
         type: DisplayString
-      - labels: &id004
+      - labels:
         - diskBay
         labelname: diskDeviceName
         oid: 1.3.6.1.4.1.12124.2.52.1.4
         type: DisplayString
-      - labels: &id005
+      - labels:
         - diskBay
         labelname: diskModel
         oid: 1.3.6.1.4.1.12124.2.52.1.6
         type: DisplayString
-      - labels: &id006
+      - labels:
         - diskBay
         labelname: diskSerialNumber
         oid: 1.3.6.1.4.1.12124.2.52.1.7
         type: DisplayString
-      - labels: &id007
+      - labels:
         - diskBay
         labelname: diskFirmwareVersion
         oid: 1.3.6.1.4.1.12124.2.52.1.8
@@ -222,23 +240,28 @@ modules:
       - labelname: diskBay
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - diskBay
         labelname: diskBay
         oid: 1.3.6.1.4.1.12124.2.52.1.1
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - diskBay
         labelname: diskDeviceName
         oid: 1.3.6.1.4.1.12124.2.52.1.4
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - diskBay
         labelname: diskModel
         oid: 1.3.6.1.4.1.12124.2.52.1.6
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - diskBay
         labelname: diskSerialNumber
         oid: 1.3.6.1.4.1.12124.2.52.1.7
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - diskBay
         labelname: diskFirmwareVersion
         oid: 1.3.6.1.4.1.12124.2.52.1.8
         type: DisplayString
@@ -269,7 +292,7 @@ modules:
         type: gauge
         implied: true
       lookups:
-      - labels: &id008
+      - labels:
         - protocolName
         labelname: protocolName
         oid: 1.3.6.1.4.1.12124.2.2.10.1.1
@@ -283,7 +306,8 @@ modules:
         type: gauge
         implied: true
       lookups:
-      - labels: *id008
+      - labels:
+        - protocolName
         labelname: protocolName
         oid: 1.3.6.1.4.1.12124.2.2.10.1.1
         type: DisplayString

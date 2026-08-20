@@ -12,7 +12,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -52,22 +53,22 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - pdug5IdentIndex
         labelname: pdug5InputPhaseCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.11
         type: DisplayString
-      - labels: &id002
+      - labels:
         - pdug5IdentIndex
         labelname: pdug5OutletCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.13
         type: DisplayString
-      - labels: &id003
+      - labels:
         - pdug5IdentIndex
         labelname: pdug5IPv4Address
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.15
         type: DisplayString
-      - labels: &id004
+      - labels:
         - pdug5IdentIndex
         labelname: pdug5IdentIndex
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.1
@@ -80,19 +81,23 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputPhaseCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.11
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5OutletCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.13
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IPv4Address
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.15
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IdentIndex
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.1
         type: gauge
@@ -104,19 +109,23 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputPhaseCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.11
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5OutletCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.13
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IPv4Address
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.15
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IdentIndex
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.1
         type: gauge
@@ -128,19 +137,23 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputPhaseCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.11
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5OutletCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.13
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IPv4Address
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.15
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IdentIndex
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.1
         type: gauge
@@ -152,19 +165,23 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputPhaseCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.11
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5OutletCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.13
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IPv4Address
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.15
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IdentIndex
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.1
         type: gauge
@@ -181,19 +198,23 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputPhaseCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.11
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5OutletCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.13
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IPv4Address
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.15
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IdentIndex
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.1
         type: gauge
@@ -205,19 +226,23 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputPhaseCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.11
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5OutletCount
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.13
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IPv4Address
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.15
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5IdentIndex
         oid: 1.3.6.1.4.1.19536.10.1.1.2.1.1
         type: gauge
@@ -229,7 +254,7 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: &id005
+      - labels:
         - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
@@ -242,7 +267,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -257,7 +283,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -269,7 +296,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -281,7 +309,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -293,7 +322,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -305,7 +335,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -317,7 +348,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -329,7 +361,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -341,7 +374,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -353,7 +387,8 @@ modules:
       - labelname: pdug5IdentIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - pdug5IdentIndex
         labelname: pdug5InputType
         oid: 1.3.6.1.4.1.19536.10.1.2.1.1.1
         type: EnumAsInfo
@@ -367,13 +402,13 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - pdug5IdentIndex
         - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: &id007
+      - labels:
         - pdug5IdentIndex
         - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
@@ -389,11 +424,15 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.1
         type: gauge
@@ -407,11 +446,15 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.1
         type: gauge
@@ -425,11 +468,15 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.1
         type: gauge
@@ -443,11 +490,15 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.1
         type: gauge
@@ -461,11 +512,15 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.1
         type: gauge
@@ -479,11 +534,15 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.1
         type: gauge
@@ -497,11 +556,15 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.1
         type: gauge
@@ -515,11 +578,15 @@ modules:
       - labelname: pdug5InputPhaseIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseCurrentMeasType
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.9
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - pdug5IdentIndex
+        - pdug5InputPhaseIndex
         labelname: pdug5InputPhaseIndex
         oid: 1.3.6.1.4.1.19536.10.1.2.2.1.1
         type: gauge
@@ -533,7 +600,7 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: &id008
+      - labels:
         - pdug5IdentIndex
         - pdug5GroupIndex
         labelname: pdug5GroupIndex
@@ -549,7 +616,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -563,7 +632,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -577,7 +648,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -591,7 +664,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -605,7 +680,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -628,7 +705,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -642,7 +721,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -656,7 +737,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -675,7 +758,9 @@ modules:
       - labelname: pdug5GroupIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - pdug5IdentIndex
+        - pdug5GroupIndex
         labelname: pdug5GroupIndex
         oid: 1.3.6.1.4.1.19536.10.1.3.1.1.1
         type: gauge
@@ -689,19 +774,19 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: &id009
+      - labels:
         - pdug5IdentIndex
         - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: &id010
+      - labels:
         - pdug5IdentIndex
         - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: &id011
+      - labels:
         - pdug5IdentIndex
         - pdug5OutletIndex
         labelname: pdug5OutletIndex
@@ -717,15 +802,21 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletIndex
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.1
         type: gauge
@@ -739,15 +830,21 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletIndex
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.1
         type: gauge
@@ -761,15 +858,21 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletIndex
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.1
         type: gauge
@@ -783,15 +886,21 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletIndex
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.1
         type: gauge
@@ -805,15 +914,21 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletIndex
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.1
         type: gauge
@@ -827,15 +942,21 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletIndex
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.1
         type: gauge
@@ -849,15 +970,21 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletIndex
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.1
         type: gauge
@@ -871,15 +998,21 @@ modules:
       - labelname: pdug5OutletIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletName
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.2
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletBranch
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.18
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - pdug5IdentIndex
+        - pdug5OutletIndex
         labelname: pdug5OutletIndex
         oid: 1.3.6.1.4.1.19536.10.1.5.1.1.1
         type: gauge

@@ -30,7 +30,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -66,18 +67,22 @@ modules:
       oid: 1.3.6.1.2.1.25.2.3.1.5.1
       type: gauge
       help: hrStorageSize (HOST-RESOURCES-MIB) - 1.3.6.1.2.1.25.2.3.1.5.1
+      lookups: []
     - name: snmp_MemoryUsed
       oid: 1.3.6.1.2.1.25.2.3.1.6.1
       type: gauge
       help: hrStorageUsed (HOST-RESOURCES-MIB) - 1.3.6.1.2.1.25.2.3.1.6.1
+      lookups: []
     - name: snmp_hrStorageUsed
       oid: 1.3.6.1.2.1.25.2.3.1.6.6
       type: gauge
       help: hrStorageUsed (HOST-RESOURCES-MIB) - 1.3.6.1.2.1.25.2.3.1.6.6
+      lookups: []
     - name: snmp_hrStorageUsed
       oid: 1.3.6.1.2.1.25.2.3.1.6.7
       type: gauge
       help: hrStorageUsed (HOST-RESOURCES-MIB) - 1.3.6.1.2.1.25.2.3.1.6.7
+      lookups: []
     - name: snmp_fileSystemStatus
       oid: 1.3.6.1.4.1.19746.1.3.1.1
       type: gauge
@@ -89,18 +94,22 @@ modules:
         4: unknown
         5: error
         6: cleaning
+      lookups: []
     - name: snmp_fileSystemVirtualSpace
       oid: 1.3.6.1.4.1.19746.1.3.1.2
       type: gauge
       help: fileSystemVirtualSpace (DATA-DOMAIN-MIB) - 1.3.6.1.4.1.19746.1.3.1.2.0
+      lookups: []
     - name: snmp_fileSystemUptime
       oid: 1.3.6.1.4.1.19746.1.3.1.3
       type: gauge
       help: fileSystemUptime (DATA-DOMAIN-MIB) - 1.3.6.1.4.1.19746.1.3.1.3.0
+      lookups: []
     - name: snmp_fileSystemStatusMessage
       oid: 1.3.6.1.4.1.19746.1.3.1.4
       type: gauge
       help: fileSystemStatusMessage (DATA-DOMAIN-MIB) - 1.3.6.1.4.1.19746.1.3.1.4.0
+      lookups: []
     - name: snmp_powerModuleStatus
       oid: 1.3.6.1.4.1.19746.1.1.1.1.1.1.4
       type: gauge
@@ -134,7 +143,7 @@ modules:
       - labelname: tempSensorIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - tempEnclosureID
         - tempSensorIndex
         labelname: tempSensorDescription
@@ -150,7 +159,9 @@ modules:
       - labelname: tempSensorIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - tempEnclosureID
+        - tempSensorIndex
         labelname: tempSensorDescription
         oid: 1.3.6.1.4.1.19746.1.1.2.1.1.1.4
         type: DisplayString
@@ -170,7 +181,7 @@ modules:
       - labelname: fanIndex
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - fanEnclosureID
         - fanIndex
         labelname: fanDescription
@@ -191,7 +202,9 @@ modules:
       - labelname: fanIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fanEnclosureID
+        - fanIndex
         labelname: fanDescription
         oid: 1.3.6.1.4.1.19746.1.1.3.1.1.1.4
         type: DisplayString
@@ -207,12 +220,12 @@ modules:
       - labelname: fileSystemResourceIndex
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - fileSystemResourceIndex
         labelname: fileSystemResourceName
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.3
         type: DisplayString
-      - labels: &id004
+      - labels:
         - fileSystemResourceIndex
         labelname: fileSystemResourceTier
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.9
@@ -225,11 +238,13 @@ modules:
       - labelname: fileSystemResourceIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fileSystemResourceIndex
         labelname: fileSystemResourceName
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - fileSystemResourceIndex
         labelname: fileSystemResourceTier
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.9
         type: DisplayString
@@ -241,11 +256,13 @@ modules:
       - labelname: fileSystemResourceIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fileSystemResourceIndex
         labelname: fileSystemResourceName
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - fileSystemResourceIndex
         labelname: fileSystemResourceTier
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.9
         type: DisplayString
@@ -257,11 +274,13 @@ modules:
       - labelname: fileSystemResourceIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fileSystemResourceIndex
         labelname: fileSystemResourceName
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - fileSystemResourceIndex
         labelname: fileSystemResourceTier
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.9
         type: DisplayString
@@ -273,11 +292,13 @@ modules:
       - labelname: fileSystemResourceIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fileSystemResourceIndex
         labelname: fileSystemResourceName
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - fileSystemResourceIndex
         labelname: fileSystemResourceTier
         oid: 1.3.6.1.4.1.19746.1.3.2.1.1.9
         type: DisplayString
@@ -289,7 +310,7 @@ modules:
       - labelname: fileSystemCompressionIndex
         type: gauge
       lookups:
-      - labels: &id005
+      - labels:
         - fileSystemCompressionIndex
         labelname: fileSystemCompressionPeriod
         oid: 1.3.6.1.4.1.19746.1.3.3.1.1.2
@@ -302,7 +323,8 @@ modules:
       - labelname: fileSystemCompressionIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - fileSystemCompressionIndex
         labelname: fileSystemCompressionPeriod
         oid: 1.3.6.1.4.1.19746.1.3.3.1.1.2
         type: DisplayString
@@ -314,7 +336,8 @@ modules:
       - labelname: fileSystemCompressionIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - fileSystemCompressionIndex
         labelname: fileSystemCompressionPeriod
         oid: 1.3.6.1.4.1.19746.1.3.3.1.1.2
         type: DisplayString
@@ -326,7 +349,8 @@ modules:
       - labelname: fileSystemCompressionIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - fileSystemCompressionIndex
         labelname: fileSystemCompressionPeriod
         oid: 1.3.6.1.4.1.19746.1.3.3.1.1.2
         type: DisplayString
@@ -338,7 +362,8 @@ modules:
       - labelname: fileSystemCompressionIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - fileSystemCompressionIndex
         labelname: fileSystemCompressionPeriod
         oid: 1.3.6.1.4.1.19746.1.3.3.1.1.2
         type: DisplayString
@@ -350,7 +375,8 @@ modules:
       - labelname: fileSystemCompressionIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - fileSystemCompressionIndex
         labelname: fileSystemCompressionPeriod
         oid: 1.3.6.1.4.1.19746.1.3.3.1.1.2
         type: DisplayString
@@ -362,7 +388,8 @@ modules:
       - labelname: fileSystemCompressionIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - fileSystemCompressionIndex
         labelname: fileSystemCompressionPeriod
         oid: 1.3.6.1.4.1.19746.1.3.3.1.1.2
         type: DisplayString
@@ -374,7 +401,8 @@ modules:
       - labelname: fileSystemCompressionIndex
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - fileSystemCompressionIndex
         labelname: fileSystemCompressionPeriod
         oid: 1.3.6.1.4.1.19746.1.3.3.1.1.2
         type: DisplayString
@@ -385,6 +413,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_cpuMaxPercentageBusy
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.3
       type: gauge
@@ -392,6 +421,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_nfsOpsPerSecond
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.4
       type: gauge
@@ -399,6 +429,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_nfsIdlePercentage
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.5
       type: gauge
@@ -406,6 +437,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_nfsProcPercentage
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.6
       type: gauge
@@ -413,6 +445,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_nfsSendPercentage
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.7
       type: gauge
@@ -420,6 +453,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_nfsReceivePercentage
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.8
       type: gauge
@@ -427,6 +461,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_cifsOpsPerSecond
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.9
       type: gauge
@@ -434,6 +469,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_diskReadKBytesPerSecond
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.10
       type: gauge
@@ -441,6 +477,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_diskWriteKBytesPerSecond
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.11
       type: gauge
@@ -448,6 +485,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_diskBusyPercentage
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.12
       type: gauge
@@ -455,6 +493,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_nvramReadKBytesPerSecond
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.13
       type: gauge
@@ -462,6 +501,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_nvramWriteKBytesPerSecond
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.14
       type: gauge
@@ -469,6 +509,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_replInKBytesPerSecond
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.15
       type: gauge
@@ -476,6 +517,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_relOutKBytesPerSecond
       oid: 1.3.6.1.4.1.19746.1.5.1.1.1.16
       type: gauge
@@ -483,6 +525,7 @@ modules:
       indexes:
       - labelname: systemStatsIndex
         type: gauge
+      lookups: []
     - name: snmp_diskPropState
       oid: 1.3.6.1.4.1.19746.1.6.1.1.1.8
       type: gauge
@@ -493,37 +536,37 @@ modules:
       - labelname: diskPropIndex
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - diskPropEnclosureID
         - diskPropIndex
         labelname: diskPropEnclosureID
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.1
         type: DisplayString
-      - labels: &id007
+      - labels:
         - diskPropEnclosureID
         - diskPropIndex
         labelname: diskPropIndex
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.2
         type: gauge
-      - labels: &id008
+      - labels:
         - diskPropEnclosureID
         - diskPropIndex
         labelname: diskModel
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.4
         type: DisplayString
-      - labels: &id009
+      - labels:
         - diskPropEnclosureID
         - diskPropIndex
         labelname: diskFirmwareVersion
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.5
         type: DisplayString
-      - labels: &id010
+      - labels:
         - diskPropEnclosureID
         - diskPropIndex
         labelname: diskSerialNumber
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.6
         type: DisplayString
-      - labels: &id011
+      - labels:
         - diskPropEnclosureID
         - diskPropIndex
         labelname: diskCapacity
@@ -546,27 +589,39 @@ modules:
       - labelname: diskPropIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - diskPropEnclosureID
+        - diskPropIndex
         labelname: diskPropEnclosureID
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.1
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - diskPropEnclosureID
+        - diskPropIndex
         labelname: diskPropIndex
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.2
         type: gauge
-      - labels: *id008
+      - labels:
+        - diskPropEnclosureID
+        - diskPropIndex
         labelname: diskModel
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.4
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - diskPropEnclosureID
+        - diskPropIndex
         labelname: diskFirmwareVersion
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.5
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - diskPropEnclosureID
+        - diskPropIndex
         labelname: diskSerialNumber
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.6
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - diskPropEnclosureID
+        - diskPropIndex
         labelname: diskCapacity
         oid: 1.3.6.1.4.1.19746.1.6.1.1.1.7
         type: DisplayString
@@ -585,6 +640,7 @@ modules:
         type: gauge
       - labelname: diskPerfIndex
         type: gauge
+      lookups: []
     - name: snmp_diskSectorsWritten
       oid: 1.3.6.1.4.1.19746.1.6.2.1.1.4
       type: gauge
@@ -594,6 +650,7 @@ modules:
         type: gauge
       - labelname: diskPerfIndex
         type: gauge
+      lookups: []
     - name: snmp_diskTotalKBytes
       oid: 1.3.6.1.4.1.19746.1.6.2.1.1.5
       type: gauge
@@ -603,6 +660,7 @@ modules:
         type: gauge
       - labelname: diskPerfIndex
         type: gauge
+      lookups: []
     - name: snmp_diskBusy
       oid: 1.3.6.1.4.1.19746.1.6.2.1.1.6
       type: gauge
@@ -612,6 +670,7 @@ modules:
         type: gauge
       - labelname: diskPerfIndex
         type: gauge
+      lookups: []
     - name: snmp_diskPerfState
       oid: 1.3.6.1.4.1.19746.1.6.2.1.1.7
       type: gauge
@@ -628,3 +687,4 @@ modules:
         4: failed
         5: spare
         6: available
+      lookups: []

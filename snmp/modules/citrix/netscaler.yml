@@ -75,7 +75,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -126,10 +127,12 @@ modules:
       oid: 1.3.6.1.4.1.5951.4.1.1.41.1
       type: gauge
       help: resCpuUsage (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.41.1.0
+      lookups: []
     - name: snmp_resMemUsage
       oid: 1.3.6.1.4.1.5951.4.1.1.41.2
       type: gauge
       help: resMemUsage (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.41.2.0
+      lookups: []
     - name: snmp_sysHighAvailabilityMode
       oid: 1.3.6.1.4.1.5951.4.1.1.6
       type: gauge
@@ -139,6 +142,7 @@ modules:
         1: primary
         2: secondary
         3: unknown
+      lookups: []
     - name: snmp_haPeerState
       oid: 1.3.6.1.4.1.5951.4.1.1.23.3
       type: gauge
@@ -148,14 +152,17 @@ modules:
         1: primary
         2: secondary
         3: unknown
+      lookups: []
     - name: snmp_haTotStateTransitions
       oid: 1.3.6.1.4.1.5951.4.1.1.23.4
       type: counter
       help: haTotStateTransitions (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.23.4.0
+      lookups: []
     - name: snmp_haTimeofLastStateTransition
       oid: 1.3.6.1.4.1.5951.4.1.1.23.5
       type: gauge
       help: haTimeofLastStateTransition (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.23.5.0
+      lookups: []
     - name: snmp_haCurStatus
       oid: 1.3.6.1.4.1.5951.4.1.1.23.23
       type: gauge
@@ -163,6 +170,7 @@ modules:
       enum_values:
         0: 'off'
         1: 'on'
+      lookups: []
     - name: snmp_haCurState
       oid: 1.3.6.1.4.1.5951.4.1.1.23.24
       type: gauge
@@ -180,154 +188,192 @@ modules:
         9: disabled
         10: partialFailSsl
         11: routemonitorFail
+      lookups: []
     - name: snmp_svcCount
       oid: 1.3.6.1.4.1.5951.4.1.2.6.1
       type: gauge
       help: svcCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.6.1.0
+      lookups: []
     - name: snmp_serverCount
       oid: 1.3.6.1.4.1.5951.4.1.2.6.2
       type: gauge
       help: serverCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.6.2.0
+      lookups: []
     - name: snmp_svcgroupCount
       oid: 1.3.6.1.4.1.5951.4.1.2.6.3
       type: gauge
       help: svcgroupCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.6.3.0
+      lookups: []
     - name: snmp_svcgroupmemCount
       oid: 1.3.6.1.4.1.5951.4.1.2.6.4
       type: gauge
       help: svcgroupmemCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.6.4.0
+      lookups: []
     - name: snmp_syssvcCount
       oid: 1.3.6.1.4.1.5951.4.1.2.6.5
       type: gauge
       help: syssvcCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.6.5.0
+      lookups: []
     - name: snmp_sysupsvcCount
       oid: 1.3.6.1.4.1.5951.4.1.2.6.6
       type: gauge
       help: sysupsvcCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.6.6.0
+      lookups: []
     - name: snmp_sysupvcitmCount
       oid: 1.3.6.1.4.1.5951.4.1.2.6.7
       type: gauge
       help: sysupvcitmCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.6.7.0
+      lookups: []
     - name: snmp_curConfigVservers
       oid: 1.3.6.1.4.1.5951.4.1.3.5.1
       type: gauge
       help: curConfigVservers (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.3.5.1.0
+      lookups: []
     - name: snmp_vsvrBindCount
       oid: 1.3.6.1.4.1.5951.4.1.3.5.2
       type: gauge
       help: vsvrBindCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.3.5.2.0
+      lookups: []
     - name: snmp_vsvrSvcGroupBindCount
       oid: 1.3.6.1.4.1.5951.4.1.3.5.3
       type: gauge
       help: vsvrSvcGroupBindCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.3.5.3.0
+      lookups: []
     - name: snmp_curConfigLbVservers
       oid: 1.3.6.1.4.1.5951.4.1.3.5.4
       type: gauge
       help: curConfigLbVservers (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.3.5.4.0
+      lookups: []
     - name: snmp_curConfigGslbVservers
       oid: 1.3.6.1.4.1.5951.4.1.3.5.5
       type: gauge
       help: curConfigGslbVservers (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.3.5.5.0
+      lookups: []
     - name: snmp_totSpilloverCount
       oid: 1.3.6.1.4.1.5951.4.1.3.5.6
       type: counter
       help: totSpilloverCount (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.3.5.6.0
+      lookups: []
     - name: snmp_sslCurSessions
       oid: 1.3.6.1.4.1.5951.4.1.1.47.296
       type: gauge
       help: sslCurSessions (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.47.296.0
+      lookups: []
     - name: snmp_sslSessionsPerSec
       oid: 1.3.6.1.4.1.5951.4.1.1.47.3
       type: gauge
       help: sslSessionsPerSec (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.47.3.0
+      lookups: []
     - name: snmp_tcpCurClientEstablished
       oid: 1.3.6.1.4.1.5951.4.1.1.46.12
       type: gauge
       help: tcpCurClientEstablished (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.46.12.0
+      lookups: []
     - name: snmp_tcpErrAnyPortFail
       oid: 1.3.6.1.4.1.5951.4.1.1.46.69
       type: counter
       help: tcpErrAnyPortFail (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.46.69.0
+      lookups: []
     - name: snmp_tcpErrIpPortFail
       oid: 1.3.6.1.4.1.5951.4.1.1.46.70
       type: counter
       help: tcpErrIpPortFail (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.46.70.0
+      lookups: []
     - name: snmp_tcpErrRetransmit
       oid: 1.3.6.1.4.1.5951.4.1.1.46.59
       type: counter
       help: tcpErrRetransmit (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.46.59.0
+      lookups: []
     - name: snmp_tcpTotRxPkts
       oid: 1.3.6.1.4.1.5951.4.1.1.46.61
       type: counter
       help: tcpTotRxPkts (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.46.61.0
+      lookups: []
     - name: snmp_tcpTotTxPkts
       oid: 1.3.6.1.4.1.5951.4.1.1.46.63
       type: counter
       help: tcpTotTxPkts (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.46.63.0
+      lookups: []
     - name: snmp_httpTotGets
       oid: 1.3.6.1.4.1.5951.4.1.1.48.45
       type: counter
       help: httpTotGets (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.45.0
+      lookups: []
     - name: snmp_httpTotPosts
       oid: 1.3.6.1.4.1.5951.4.1.1.48.46
       type: counter
       help: httpTotPosts (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.46.0
+      lookups: []
     - name: snmp_httpTotOthers
       oid: 1.3.6.1.4.1.5951.4.1.1.48.47
       type: counter
       help: httpTotOthers (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.47.0
+      lookups: []
     - name: snmp_httpTotRxRequestBytes
       oid: 1.3.6.1.4.1.5951.4.1.1.48.48
       type: counter
       help: httpTotRxRequestBytes (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.48.0
+      lookups: []
     - name: snmp_httpTotRxResponseBytes
       oid: 1.3.6.1.4.1.5951.4.1.1.48.49
       type: counter
       help: httpTotRxResponseBytes (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.49.0
+      lookups: []
     - name: snmp_httpTotTxRequestBytes
       oid: 1.3.6.1.4.1.5951.4.1.1.48.50
       type: counter
       help: httpTotTxRequestBytes (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.50.0
+      lookups: []
     - name: snmp_httpTotTxResponseBytes
       oid: 1.3.6.1.4.1.5951.4.1.1.48.51
       type: counter
       help: httpTotTxResponseBytes (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.51.0
+      lookups: []
     - name: snmp_httpTot10Requests
       oid: 1.3.6.1.4.1.5951.4.1.1.48.52
       type: counter
       help: httpTot10Requests (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.52.0
+      lookups: []
     - name: snmp_httpTotResponses
       oid: 1.3.6.1.4.1.5951.4.1.1.48.53
       type: counter
       help: httpTotResponses (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.53.0
+      lookups: []
     - name: snmp_httpTot10Responses
       oid: 1.3.6.1.4.1.5951.4.1.1.48.54
       type: counter
       help: httpTot10Responses (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.54.0
+      lookups: []
     - name: snmp_httpErrIncompleteRequests
       oid: 1.3.6.1.4.1.5951.4.1.1.48.57
       type: counter
       help: httpErrIncompleteRequests (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.57.0
+      lookups: []
     - name: snmp_httpErrIncompleteResponses
       oid: 1.3.6.1.4.1.5951.4.1.1.48.58
       type: counter
       help: httpErrIncompleteResponses (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.58.0
+      lookups: []
     - name: snmp_httpErrIncompleteHeaders
       oid: 1.3.6.1.4.1.5951.4.1.1.48.60
       type: counter
       help: httpErrIncompleteHeaders (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.60.0
+      lookups: []
     - name: snmp_httpErrServerBusy
       oid: 1.3.6.1.4.1.5951.4.1.1.48.61
       type: counter
       help: httpErrServerBusy (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.48.61.0
+      lookups: []
     - name: snmp_svcTotalClients
       oid: 1.3.6.1.4.1.5951.4.1.2.1.1.48
       type: counter
       help: svcTotalClients (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.1.1.48.0
+      lookups: []
     - name: snmp_svcTotalServers
       oid: 1.3.6.1.4.1.5951.4.1.2.1.1.49
       type: counter
       help: svcTotalServers (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.2.1.1.49.0
+      lookups: []
     - name: snmp_vsvrState
       oid: 1.3.6.1.4.1.5951.4.1.3.1.1.5
       type: gauge
@@ -336,22 +382,22 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - vsvrName
         labelname: vsvrName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.1
         type: DisplayString
-      - labels: &id002
+      - labels:
         - vsvrName
         labelname: vsvrIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.2
         type: DisplayString
-      - labels: &id003
+      - labels:
         - vsvrName
         labelname: vsvrPort
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.3
         type: DisplayString
-      - labels: &id004
+      - labels:
         - vsvrName
         labelname: vsvrType
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.4
@@ -372,19 +418,23 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - vsvrName
         labelname: vsvrName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.1
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - vsvrName
         labelname: vsvrIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - vsvrName
         labelname: vsvrPort
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - vsvrName
         labelname: vsvrType
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.4
         type: EnumAsInfo
@@ -396,7 +446,7 @@ modules:
       - labelname: sysHealthDiskName
         type: gauge
       lookups:
-      - labels: &id005
+      - labels:
         - sysHealthDiskName
         labelname: sysHealthDiskName
         oid: 1.3.6.1.4.1.5951.4.1.1.41.8.1.1
@@ -409,7 +459,8 @@ modules:
       - labelname: sysHealthDiskName
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - sysHealthDiskName
         labelname: sysHealthDiskName
         oid: 1.3.6.1.4.1.5951.4.1.1.41.8.1.1
         type: DisplayString
@@ -421,7 +472,8 @@ modules:
       - labelname: sysHealthDiskName
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - sysHealthDiskName
         labelname: sysHealthDiskName
         oid: 1.3.6.1.4.1.5951.4.1.1.41.8.1.1
         type: DisplayString
@@ -433,7 +485,8 @@ modules:
       - labelname: sysHealthDiskName
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - sysHealthDiskName
         labelname: sysHealthDiskName
         oid: 1.3.6.1.4.1.5951.4.1.1.41.8.1.1
         type: DisplayString
@@ -445,12 +498,12 @@ modules:
       - labelname: ifName
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - ifName
         labelname: if_interface_name
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.1
         type: DisplayString
-      - labels: &id007
+      - labels:
         - ifName
         labelname: if_Media
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.2
@@ -463,11 +516,13 @@ modules:
       - labelname: ifName
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - ifName
         labelname: if_interface_name
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.1
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - ifName
         labelname: if_Media
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.2
         type: DisplayString
@@ -479,11 +534,13 @@ modules:
       - labelname: ifName
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - ifName
         labelname: if_interface_name
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.1
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - ifName
         labelname: if_Media
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.2
         type: DisplayString
@@ -495,11 +552,13 @@ modules:
       - labelname: ifName
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - ifName
         labelname: if_interface_name
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.1
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - ifName
         labelname: if_Media
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.2
         type: DisplayString
@@ -511,11 +570,13 @@ modules:
       - labelname: ifName
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - ifName
         labelname: if_interface_name
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.1
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - ifName
         labelname: if_Media
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.2
         type: DisplayString
@@ -527,11 +588,13 @@ modules:
       - labelname: ifName
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - ifName
         labelname: if_interface_name
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.1
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - ifName
         labelname: if_Media
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.2
         type: DisplayString
@@ -543,11 +606,13 @@ modules:
       - labelname: ifName
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - ifName
         labelname: if_interface_name
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.1
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - ifName
         labelname: if_Media
         oid: 1.3.6.1.4.1.5951.4.1.1.54.1.2
         type: DisplayString
@@ -561,19 +626,19 @@ modules:
       - labelname: vsvrServiceName
         type: gauge
       lookups:
-      - labels: &id008
+      - labels:
         - vsvrName
         - vsvrServiceName
         labelname: vsvrServiceName
         oid: 1.3.6.1.4.1.5951.4.1.3.2.1.8
         type: DisplayString
-      - labels: &id009
+      - labels:
         - vsvrName
         - vsvrServiceName
         labelname: vsvrServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.2.1.9
         type: DisplayString
-      - labels: &id010
+      - labels:
         - vsvrName
         - vsvrServiceName
         labelname: vserverFullName
@@ -589,15 +654,21 @@ modules:
       - labelname: vsvrServiceName
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - vsvrName
+        - vsvrServiceName
         labelname: vsvrServiceName
         oid: 1.3.6.1.4.1.5951.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - vsvrName
+        - vsvrServiceName
         labelname: vsvrServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - vsvrName
+        - vsvrServiceName
         labelname: vserverFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.2.1.10
         type: DisplayString
@@ -618,14 +689,17 @@ modules:
       oid: 1.3.6.1.4.1.5951.4.1.1.46.2
       type: gauge
       help: tcpCurClientConn (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.46.2.0
+      lookups: []
     - name: snmp_tcpCurServerConnEstablished
       oid: 1.3.6.1.4.1.5951.4.1.1.46.10
       type: gauge
       help: tcpCurServerConnEstablished (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.46.10.0
+      lookups: []
     - name: snmp_sslTotSessions
       oid: 1.3.6.1.4.1.5951.4.1.1.47.204
       type: counter
       help: sslTotSessions (NS-ROOT-MIB) - 1.3.6.1.4.1.5951.4.1.1.47.204.0
+      lookups: []
     - name: snmp_lbvsvrLBMethod
       oid: 1.3.6.1.4.1.5951.4.1.3.6.1.1
       type: gauge
@@ -654,6 +728,7 @@ modules:
         18: sourceIPSourcePort
         19: lrtm
         20: callIDHashed
+      lookups: []
     - name: snmp_lbvsvrPersistanceType
       oid: 1.3.6.1.4.1.5951.4.1.3.6.1.2
       type: EnumAsInfo
@@ -684,6 +759,7 @@ modules:
         19: rtspSessionID
         20: diameter
         21: fixSession
+      lookups: []
     - name: snmp_lbvsvrPersistenceTimeOut
       oid: 1.3.6.1.4.1.5951.4.1.3.6.1.3
       type: gauge
@@ -691,6 +767,7 @@ modules:
       indexes:
       - labelname: vsvrName
         type: gauge
+      lookups: []
     - name: snmp_lbvsvrActiveConn
       oid: 1.3.6.1.4.1.5951.4.1.3.6.1.4
       type: gauge
@@ -698,6 +775,7 @@ modules:
       indexes:
       - labelname: vsvrName
         type: gauge
+      lookups: []
     - name: snmp_lbvsvrAvgSvrTTFB
       oid: 1.3.6.1.4.1.5951.4.1.3.6.1.5
       type: gauge
@@ -705,6 +783,7 @@ modules:
       indexes:
       - labelname: vsvrName
         type: gauge
+      lookups: []
     - name: snmp_svcgrpSvcGroupState
       oid: 1.3.6.1.4.1.5951.4.1.2.11.1.3
       type: gauge
@@ -757,7 +836,7 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: &id011
+      - labels:
         - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
@@ -770,7 +849,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -782,7 +862,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -794,7 +875,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -806,7 +888,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -818,7 +901,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -830,7 +914,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -842,7 +927,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -854,7 +940,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -866,7 +953,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -878,7 +966,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -890,7 +979,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -902,7 +992,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -914,7 +1005,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -926,7 +1018,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -938,7 +1031,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -950,7 +1044,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -966,7 +1061,8 @@ modules:
       - labelname: vsvrName
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - vsvrName
         labelname: vsvrFullName
         oid: 1.3.6.1.4.1.5951.4.1.3.1.1.59
         type: DisplayString
@@ -978,27 +1074,27 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: &id012
+      - labels:
         - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: &id013
+      - labels:
         - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: &id014
+      - labels:
         - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: &id015
+      - labels:
         - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: &id016
+      - labels:
         - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
@@ -1011,23 +1107,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1039,23 +1140,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1067,23 +1173,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1095,23 +1206,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1123,23 +1239,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1151,23 +1272,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1179,23 +1305,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1207,23 +1338,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1235,23 +1371,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1263,23 +1404,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1291,23 +1437,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1319,23 +1470,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1347,23 +1503,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1375,23 +1536,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString
@@ -1403,23 +1569,28 @@ modules:
       - labelname: svcServiceName
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - svcServiceName
         labelname: svcServiceName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.1
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - svcServiceName
         labelname: svcIpAddress
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.2
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - svcServiceName
         labelname: svcPort
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.3
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - svcServiceName
         labelname: svcServiceType
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.4
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - svcServiceName
         labelname: svcServiceFullName
         oid: 1.3.6.1.4.1.5951.4.1.2.1.1.54
         type: DisplayString

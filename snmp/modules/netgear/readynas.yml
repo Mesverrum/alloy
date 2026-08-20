@@ -12,7 +12,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -57,27 +58,27 @@ modules:
       - labelname: diskNumber
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - diskNumber
         labelname: diskID
         oid: 1.3.6.1.4.1.4526.22.3.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - diskNumber
         labelname: diskSlotName
         oid: 1.3.6.1.4.1.4526.22.3.1.3
         type: DisplayString
-      - labels: &id003
+      - labels:
         - diskNumber
         labelname: diskSerial
         oid: 1.3.6.1.4.1.4526.22.3.1.4
         type: DisplayString
-      - labels: &id004
+      - labels:
         - diskNumber
         labelname: diskModel
         oid: 1.3.6.1.4.1.4526.22.3.1.5
         type: DisplayString
-      - labels: &id005
+      - labels:
         - diskNumber
         labelname: diskInterface
         oid: 1.3.6.1.4.1.4526.22.3.1.8
@@ -90,23 +91,28 @@ modules:
       - labelname: diskNumber
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - diskNumber
         labelname: diskID
         oid: 1.3.6.1.4.1.4526.22.3.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - diskNumber
         labelname: diskSlotName
         oid: 1.3.6.1.4.1.4526.22.3.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - diskNumber
         labelname: diskSerial
         oid: 1.3.6.1.4.1.4526.22.3.1.4
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - diskNumber
         labelname: diskModel
         oid: 1.3.6.1.4.1.4526.22.3.1.5
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - diskNumber
         labelname: diskInterface
         oid: 1.3.6.1.4.1.4526.22.3.1.8
         type: DisplayString
@@ -118,23 +124,28 @@ modules:
       - labelname: diskNumber
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - diskNumber
         labelname: diskID
         oid: 1.3.6.1.4.1.4526.22.3.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - diskNumber
         labelname: diskSlotName
         oid: 1.3.6.1.4.1.4526.22.3.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - diskNumber
         labelname: diskSerial
         oid: 1.3.6.1.4.1.4526.22.3.1.4
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - diskNumber
         labelname: diskModel
         oid: 1.3.6.1.4.1.4526.22.3.1.5
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - diskNumber
         labelname: diskInterface
         oid: 1.3.6.1.4.1.4526.22.3.1.8
         type: DisplayString
@@ -149,23 +160,28 @@ modules:
       - labelname: diskNumber
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - diskNumber
         labelname: diskID
         oid: 1.3.6.1.4.1.4526.22.3.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - diskNumber
         labelname: diskSlotName
         oid: 1.3.6.1.4.1.4526.22.3.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - diskNumber
         labelname: diskSerial
         oid: 1.3.6.1.4.1.4526.22.3.1.4
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - diskNumber
         labelname: diskModel
         oid: 1.3.6.1.4.1.4526.22.3.1.5
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - diskNumber
         labelname: diskInterface
         oid: 1.3.6.1.4.1.4526.22.3.1.8
         type: DisplayString
@@ -177,7 +193,7 @@ modules:
       - labelname: fanNumber
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - fanNumber
         labelname: fanType
         oid: 1.3.6.1.4.1.4526.22.4.1.4
@@ -190,7 +206,8 @@ modules:
       - labelname: fanNumber
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - fanNumber
         labelname: fanType
         oid: 1.3.6.1.4.1.4526.22.4.1.4
         type: DisplayString
@@ -202,7 +219,7 @@ modules:
       - labelname: temperatureNumber
         type: gauge
       lookups:
-      - labels: &id007
+      - labels:
         - temperatureNumber
         labelname: temperatureType
         oid: 1.3.6.1.4.1.4526.22.5.1.3
@@ -215,7 +232,8 @@ modules:
       - labelname: temperatureNumber
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - temperatureNumber
         labelname: temperatureType
         oid: 1.3.6.1.4.1.4526.22.5.1.3
         type: DisplayString
@@ -227,7 +245,8 @@ modules:
       - labelname: temperatureNumber
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - temperatureNumber
         labelname: temperatureType
         oid: 1.3.6.1.4.1.4526.22.5.1.3
         type: DisplayString
@@ -239,7 +258,7 @@ modules:
       - labelname: volumeNumber
         type: gauge
       lookups:
-      - labels: &id008
+      - labels:
         - volumeNumber
         labelname: volumeName
         oid: 1.3.6.1.4.1.4526.22.7.1.2
@@ -252,7 +271,8 @@ modules:
       - labelname: volumeNumber
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - volumeNumber
         labelname: volumeName
         oid: 1.3.6.1.4.1.4526.22.7.1.2
         type: DisplayString
@@ -271,7 +291,8 @@ modules:
       - labelname: volumeNumber
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - volumeNumber
         labelname: volumeName
         oid: 1.3.6.1.4.1.4526.22.7.1.2
         type: DisplayString
@@ -283,7 +304,8 @@ modules:
       - labelname: volumeNumber
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - volumeNumber
         labelname: volumeName
         oid: 1.3.6.1.4.1.4526.22.7.1.2
         type: DisplayString

@@ -27,7 +27,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -73,14 +74,17 @@ modules:
       oid: 1.3.6.1.4.1.7779.3.1.1.2.1.8.1.1
       type: gauge
       help: ibSystemMonitorCpuUsage (IB-PLATFORMONE-MIB) - 1.3.6.1.4.1.7779.3.1.1.2.1.8.1.1.0
+      lookups: []
     - name: snmp_ibSystemMonitorMemUsage
       oid: 1.3.6.1.4.1.7779.3.1.1.2.1.8.2.1
       type: gauge
       help: ibSystemMonitorMemUsage (IB-PLATFORMONE-MIB) - 1.3.6.1.4.1.7779.3.1.1.2.1.8.2.1.0
+      lookups: []
     - name: snmp_ibDhcpDeferredQueueSize
       oid: 1.3.6.1.4.1.7779.3.1.1.4.1.4
       type: gauge
       help: ibDhcpDeferredQueueSize (IB-DHCPONE-MIB) - 1.3.6.1.4.1.7779.3.1.1.4.1.4.0
+      lookups: []
     - name: snmp_ibBindZoneSuccess
       oid: 1.3.6.1.4.1.7779.3.1.1.3.1.1.1.2
       type: counter
@@ -89,7 +93,7 @@ modules:
       - labelname: ibBindZoneName
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - ibBindZoneName
         labelname: ibBindZoneName
         oid: 1.3.6.1.4.1.7779.3.1.1.3.1.1.1.1
@@ -102,7 +106,8 @@ modules:
       - labelname: ibBindZoneName
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ibBindZoneName
         labelname: ibBindZoneName
         oid: 1.3.6.1.4.1.7779.3.1.1.3.1.1.1.1
         type: DisplayString
@@ -114,7 +119,8 @@ modules:
       - labelname: ibBindZoneName
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ibBindZoneName
         labelname: ibBindZoneName
         oid: 1.3.6.1.4.1.7779.3.1.1.3.1.1.1.1
         type: DisplayString
@@ -126,7 +132,8 @@ modules:
       - labelname: ibBindZoneName
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ibBindZoneName
         labelname: ibBindZoneName
         oid: 1.3.6.1.4.1.7779.3.1.1.3.1.1.1.1
         type: DisplayString
@@ -138,7 +145,8 @@ modules:
       - labelname: ibBindZoneName
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ibBindZoneName
         labelname: ibBindZoneName
         oid: 1.3.6.1.4.1.7779.3.1.1.3.1.1.1.1
         type: DisplayString
@@ -150,7 +158,8 @@ modules:
       - labelname: ibBindZoneName
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ibBindZoneName
         labelname: ibBindZoneName
         oid: 1.3.6.1.4.1.7779.3.1.1.3.1.1.1.1
         type: DisplayString
@@ -158,22 +167,27 @@ modules:
       oid: 1.3.6.1.4.1.7779.3.1.1.3.1.3.1
       type: counter
       help: ibDDNSUpdateSuccess (IB-DNSONE-MIB) - 1.3.6.1.4.1.7779.3.1.1.3.1.3.1.0
+      lookups: []
     - name: snmp_ibDDNSUpdateFailure
       oid: 1.3.6.1.4.1.7779.3.1.1.3.1.3.2
       type: counter
       help: ibDDNSUpdateFailure (IB-DNSONE-MIB) - 1.3.6.1.4.1.7779.3.1.1.3.1.3.2.0
+      lookups: []
     - name: snmp_ibDDNSUpdateReject
       oid: 1.3.6.1.4.1.7779.3.1.1.3.1.3.3
       type: counter
       help: ibDDNSUpdateReject (IB-DNSONE-MIB) - 1.3.6.1.4.1.7779.3.1.1.3.1.3.3.0
+      lookups: []
     - name: snmp_ibDDNSUpdatePrerequisiteReject
       oid: 1.3.6.1.4.1.7779.3.1.1.3.1.3.4
       type: counter
       help: ibDDNSUpdatePrerequisiteReject (IB-DNSONE-MIB) - 1.3.6.1.4.1.7779.3.1.1.3.1.3.4.0
+      lookups: []
     - name: snmp_ibDnsQueryRate
       oid: 1.3.6.1.4.1.7779.3.1.1.3.1.6
       type: counter
       help: ibDnsQueryRate (IB-DNSONE-MIB) - 1.3.6.1.4.1.7779.3.1.1.3.1.6.0
+      lookups: []
     - name: snmp_ibNodeQueueFromMaster
       oid: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.3
       type: gauge
@@ -182,12 +196,12 @@ modules:
       - labelname: ibNodeIPAddress
         type: InetAddress
       lookups:
-      - labels: &id002
+      - labels:
         - ibNodeIPAddress
         labelname: ibNodeIPAddress
         oid: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.1
         type: DisplayString
-      - labels: &id003
+      - labels:
         - ibNodeIPAddress
         labelname: ibNodeReplicationStatus
         oid: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.2
@@ -200,11 +214,13 @@ modules:
       - labelname: ibNodeIPAddress
         type: InetAddress
       lookups:
-      - labels: *id002
+      - labels:
+        - ibNodeIPAddress
         labelname: ibNodeIPAddress
         oid: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.1
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - ibNodeIPAddress
         labelname: ibNodeReplicationStatus
         oid: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.2
         type: DisplayString

@@ -18,6 +18,33 @@ func writeAuthsYAML(t *testing.T, body string) string {
 	return path
 }
 
+func TestLoadModuleNames(t *testing.T) {
+	path := writeAuthsYAML(t, `
+auths:
+  public_v2:
+    community: public
+    version: 2
+modules:
+  if_mib:
+    walk: ["1.3.6.1.2.1.2"]
+  nokia_srlinux:
+    walk: ["1.3.6.1.4.1.6527"]
+`)
+	got, err := loadModuleNames(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, ok := got["if_mib"]; !ok {
+		t.Fatalf("missing if_mib: %v", got)
+	}
+	if _, ok := got["nokia_srlinux"]; !ok {
+		t.Fatalf("missing nokia_srlinux: %v", got)
+	}
+	if _, ok := got["nokia_srlinux_hot"]; ok {
+		t.Fatalf("invented sidecar: %v", got)
+	}
+}
+
 func TestLoadAuthsV2Community(t *testing.T) {
 	path := writeAuthsYAML(t, `
 auths:

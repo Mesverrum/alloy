@@ -14,7 +14,7 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
@@ -27,7 +27,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -39,7 +40,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -51,7 +53,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -63,7 +66,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -75,7 +79,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -87,7 +92,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -99,7 +105,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -111,7 +118,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -123,7 +131,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -135,7 +144,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -147,7 +157,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -159,7 +170,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -171,7 +183,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -183,7 +196,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -195,7 +209,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -207,7 +222,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -219,7 +235,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -231,7 +248,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -243,7 +261,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -255,7 +274,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -267,7 +287,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -279,7 +300,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -291,7 +313,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -303,7 +326,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -315,7 +339,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -327,7 +352,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -339,7 +365,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -351,7 +378,8 @@ modules:
       - labelname: ipSystemStatsIPVersion
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ipSystemStatsIPVersion
         labelname: ip_version
         oid: 1.3.6.1.2.1.4.31.1.1.1
         type: EnumAsInfo
@@ -365,7 +393,7 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - ipIfStatsIPVersion
         - ipIfStatsIfIndex
         labelname: interface_name
@@ -381,7 +409,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -395,7 +425,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -409,7 +441,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -423,7 +457,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -437,7 +473,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -451,7 +489,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -465,7 +505,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -479,7 +521,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -493,7 +537,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -507,7 +553,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -521,7 +569,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -535,7 +585,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -549,7 +601,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -563,7 +617,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -577,7 +633,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -591,7 +649,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -605,7 +665,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -619,7 +681,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -633,7 +697,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -647,7 +713,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -661,7 +729,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -675,7 +745,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -689,7 +761,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -703,7 +777,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -717,7 +793,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -731,7 +809,9 @@ modules:
       - labelname: ipIfStatsIfIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - ipIfStatsIPVersion
+        - ipIfStatsIfIndex
         labelname: interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString

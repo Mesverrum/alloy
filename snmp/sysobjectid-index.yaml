@@ -88,6 +88,34 @@ modules:
     - bgp4_mib
     - 6wind_vsr
     module_chain_topology: []
+  cambium_mib:
+    profile: cambium-mib.yml
+    vendor: Cambium
+    provider: kentik-cambium-ap
+    sysobjectids:
+    - 1.3.6.1.4.1.17713.60.1
+    extends:
+    - if-mib.yml
+    - system-mib.yml
+    - ucd-mib.yml
+    unknown_table_indexes: []
+    identity_lookups: []
+    notes: Discovery module= chain from extends; identity inlined on fingerprint modules
+    extends_modules:
+    - if_mib
+    - ucd_mib
+    module_chain:
+    - if_mib
+    - ucd_mib
+    - cambium_mib
+    module_chain_hot:
+    - if_mib
+    module_chain_cold:
+    - if_mib_meta
+    - ip_addr
+    - ucd_mib
+    - cambium_mib
+    module_chain_topology: []
   bgp4_mib:
     profile: bgp4-mib.yml
     vendor: _general
@@ -1907,34 +1935,6 @@ modules:
     module_chain_hot: []
     module_chain_cold:
     - brother_net_printer
-    module_chain_topology: []
-  cambium_mib:
-    profile: cambium-mib.yml
-    vendor: Cambium
-    provider: kentik-cambium-ap
-    sysobjectids:
-    - 1.3.6.1.4.1.17713.60.1
-    extends:
-    - if-mib.yml
-    - system-mib.yml
-    - ucd-mib.yml
-    unknown_table_indexes: []
-    identity_lookups: []
-    notes: Discovery module= chain from extends; identity inlined on fingerprint modules
-    extends_modules:
-    - if_mib
-    - ucd_mib
-    module_chain:
-    - if_mib
-    - ucd_mib
-    - cambium_mib
-    module_chain_hot:
-    - if_mib
-    module_chain_cold:
-    - if_mib_meta
-    - ip_addr
-    - ucd_mib
-    - cambium_mib
     module_chain_topology: []
   checkpoint_firewall:
     profile: checkpoint-firewall.yml
@@ -8007,6 +8007,22 @@ modules:
     - ip_addr
     - riverbed_steelhead
     module_chain_topology: []
+  Ruckus_Contoller_SNMP:
+    profile: Ruckus_Contoller_SNMP.yml
+    vendor: ruckus
+    provider: null
+    sysobjectids: []
+    extends: []
+    unknown_table_indexes: []
+    identity_lookups: []
+    notes: Discovery module= chain from extends; identity inlined on fingerprint modules
+    extends_modules: []
+    module_chain:
+    - Ruckus_Contoller_SNMP
+    module_chain_hot: []
+    module_chain_cold:
+    - Ruckus_Contoller_SNMP
+    module_chain_topology: []
   ruckus_unleashed:
     profile: ruckus-unleashed.yml
     vendor: ruckus
@@ -8070,22 +8086,6 @@ modules:
     - ip_addr
     - ucd_mib
     - ruckus_wap
-    module_chain_topology: []
-  Ruckus_Contoller_SNMP:
-    profile: Ruckus_Contoller_SNMP.yml
-    vendor: ruckus
-    provider: null
-    sysobjectids: []
-    extends: []
-    unknown_table_indexes: []
-    identity_lookups: []
-    notes: Discovery module= chain from extends; identity inlined on fingerprint modules
-    extends_modules: []
-    module_chain:
-    - Ruckus_Contoller_SNMP
-    module_chain_hot: []
-    module_chain_cold:
-    - Ruckus_Contoller_SNMP
     module_chain_topology: []
   server_iron_switch:
     profile: server-iron-switch.yml
@@ -9132,6 +9132,21 @@ modules:
     module_chain_hot:
     - device_base
     module_chain_cold: []
+    module_chain_topology: []
+  ip_addr:
+    profile: ip-addr.yml
+    vendor: _general
+    sysobjectids: []
+    extends: []
+    identity_lookups: []
+    notes: Cold IP-MIB address inventory (ipAddrTable + ipAddressTable) for dashboard
+      joins on ifIndex. Not kentik ip-mib.yml (stats).
+    extends_modules: []
+    module_chain:
+    - ip_addr
+    module_chain_hot: []
+    module_chain_cold:
+    - ip_addr
     module_chain_topology: []
   huawei_all_devices_identity:
     profile: huawei-all-devices-identity.yml

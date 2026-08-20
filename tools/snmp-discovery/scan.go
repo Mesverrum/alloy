@@ -26,6 +26,10 @@ type scanParams struct {
 	statePath    string
 	pingFilter   func([]string) ([]string, error)
 	walkNeighbor func(addr string, port uint16, auths []snmpAuth) []string
+	// knownModules, when set, is the snmp.yml module catalog used to drop
+	// fingerprinter names that do not exist. runScan loads it from snmpCfg
+	// when this field is nil.
+	knownModules map[string]struct{}
 }
 
 type probeJob struct {
@@ -48,6 +52,14 @@ func runScan(cfg DiscoveryFile, p scanParams) error {
 	fpRaw, err := loadFingerprinters(p.fpPath)
 	if err != nil {
 		return err
+	}
+	if p.knownModules == nil && strings.TrimSpace(p.snmpCfg) != "" {
+		names, err := loadModuleNames(p.snmpCfg)
+		if err != nil {
+			log.Printf("warn: snmp.yml module catalog unavailable; emitting fingerprinter names unchecked path=%s err=%v", p.snmpCfg, err)
+		} else if len(names) > 0 {
+			p.knownModules = names
+		}
 	}
 
 	prev := []AlloyTarget{}
@@ -372,7 +384,10 @@ func probeAll(jobs []probeJob, p scanParams) []AlloyTarget {
 					"sysName":     res.SysName,
 					"sysDescr":    res.SysDescr,
 				}
-				tiers := j.fp.MatchTiers(labels)
+				tiers, dropped := filterTiersToKnown(j.fp.MatchTiers(labels), p.knownModules)
+				if len(dropped) > 0 {
+					log.Printf("warn: dropping fingerprinter modules missing from snmp.yml address=%s dropped=%v", j.ip, dropped)
+				}
 				name, deviceName := targetNames(res.SysName, res.Addr)
 				t := AlloyTarget{
 					Name:           name,

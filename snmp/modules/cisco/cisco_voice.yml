@@ -33,7 +33,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -72,6 +73,7 @@ modules:
       indexes:
       - labelname: hrSWRunIndex
         type: gauge
+      lookups: []
     - name: snmp_hrSWRunPerfCPU
       oid: 1.3.6.1.2.1.25.5.1.1.1
       type: gauge
@@ -79,6 +81,7 @@ modules:
       indexes:
       - labelname: hrSWRunIndex
         type: gauge
+      lookups: []
     - name: snmp_hrSWRunStatus
       oid: 1.3.6.1.2.1.25.4.2.1.7
       type: gauge
@@ -91,6 +94,7 @@ modules:
         2: runnable
         3: notRunnable
         4: invalid
+      lookups: []
     - name: snmp_ccvpSipIntAvgLatency1
       oid: 1.3.6.1.4.1.9.9.590.1.6.1.1.5
       type: gauge
@@ -98,6 +102,7 @@ modules:
       indexes:
       - labelname: ccvpServiceIndex
         type: gauge
+      lookups: []
     - name: snmp_ccvpSipIntAvgLatency2
       oid: 1.3.6.1.4.1.9.9.590.1.6.1.1.6
       type: gauge
@@ -105,6 +110,7 @@ modules:
       indexes:
       - labelname: ccvpServiceIndex
         type: gauge
+      lookups: []
     - name: snmp_ccvpSipIntConnectsRcv
       oid: 1.3.6.1.4.1.9.9.590.1.6.1.1.4
       type: gauge
@@ -112,6 +118,7 @@ modules:
       indexes:
       - labelname: ccvpServiceIndex
         type: gauge
+      lookups: []
     - name: snmp_ccvpSipIntNewCalls
       oid: 1.3.6.1.4.1.9.9.590.1.6.1.1.3
       type: gauge
@@ -119,6 +126,7 @@ modules:
       indexes:
       - labelname: ccvpServiceIndex
         type: gauge
+      lookups: []
     - name: snmp_ccvpSipRtActiveCalls
       oid: 1.3.6.1.4.1.9.9.590.1.6.1.1.1
       type: gauge
@@ -126,6 +134,7 @@ modules:
       indexes:
       - labelname: ccvpServiceIndex
         type: gauge
+      lookups: []
     - name: snmp_ccvpSipRtTotalCallLegs
       oid: 1.3.6.1.4.1.9.9.590.1.6.1.1.2
       type: gauge
@@ -133,34 +142,42 @@ modules:
       indexes:
       - labelname: ccvpServiceIndex
         type: gauge
+      lookups: []
     - name: snmp_ccvpLicAggMaxPortsInUse
       oid: 1.3.6.1.4.1.9.9.590.1.2.12
       type: counter
       help: ccvpLicAggMaxPortsInUse (CISCO-CVP-MIB) - 1.3.6.1.4.1.9.9.590.1.2.12.0
+      lookups: []
     - name: snmp_ccvpLicRtPortsInUse
       oid: 1.3.6.1.4.1.9.9.590.1.2.2
       type: gauge
       help: ccvpLicRtPortsInUse (CISCO-CVP-MIB) - 1.3.6.1.4.1.9.9.590.1.2.2.0
+      lookups: []
     - name: snmp_ccmRegisteredGateways
       oid: 1.3.6.1.4.1.9.9.156.1.5.8
       type: counter
       help: ccmRegisteredGateways (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.8.0
+      lookups: []
     - name: snmp_ccmRegisteredPhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.5
       type: counter
       help: ccmRegisteredPhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.5.0
+      lookups: []
     - name: snmp_ccmRejectedPhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.7
       type: counter
       help: ccmRejectedPhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.7.0
+      lookups: []
     - name: snmp_ccmUnregisteredPhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.6
       type: counter
       help: ccmUnregisteredPhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.6.0
+      lookups: []
     - name: snmp_cvCallVolConnTotalActiveConnections
       oid: 1.3.6.1.4.1.9.9.63.1.3.8.2
       type: gauge
       help: cvCallVolConnTotalActiveConnections (CISCO-VOICE-DIAL-CONTROL-MIB) - 1.3.6.1.4.1.9.9.63.1.3.8.2.0
+      lookups: []
     - name: snmp_cvCallRateMonitorEnable
       oid: 1.3.6.1.4.1.9.9.63.1.3.11.1
       type: gauge
@@ -168,18 +185,22 @@ modules:
       enum_values:
         1: 'on'
         2: 'off'
+      lookups: []
     - name: snmp_cvCallRateMonitorTime
       oid: 1.3.6.1.4.1.9.9.63.1.3.11.2
       type: gauge
       help: cvCallRateMonitorTime (CISCO-VOICE-DIAL-CONTROL-MIB) - 1.3.6.1.4.1.9.9.63.1.3.11.2.0
+      lookups: []
     - name: snmp_cvCallRate
       oid: 1.3.6.1.4.1.9.9.63.1.3.11.3
       type: gauge
       help: cvCallRate (CISCO-VOICE-DIAL-CONTROL-MIB) - 1.3.6.1.4.1.9.9.63.1.3.11.3.0
+      lookups: []
     - name: snmp_cvCallRateHiWaterMark
       oid: 1.3.6.1.4.1.9.9.63.1.3.11.4
       type: gauge
       help: cvCallRateHiWaterMark (CISCO-VOICE-DIAL-CONTROL-MIB) - 1.3.6.1.4.1.9.9.63.1.3.11.4.0
+      lookups: []
     - name: snmp_cvCallVolMediaIncomingCalls
       oid: 1.3.6.1.4.1.9.9.63.1.3.8.5.1.1
       type: gauge
@@ -188,7 +209,7 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - ifIndex
         labelname: if_interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
@@ -201,7 +222,8 @@ modules:
       - labelname: ifIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ifIndex
         labelname: if_interface_name
         oid: 1.3.6.1.2.1.31.1.1.1.1
         type: DisplayString
@@ -212,6 +234,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_cvCallVolPeerOutgoingCalls
       oid: 1.3.6.1.4.1.9.9.63.1.3.8.4.1.2
       type: gauge
@@ -219,6 +242,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_dialCtlPeerStatsAcceptCalls
       oid: 1.3.6.1.2.1.10.21.1.2.2.1.5
       type: counter
@@ -226,6 +250,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_dialCtlPeerStatsFailCalls
       oid: 1.3.6.1.2.1.10.21.1.2.2.1.4
       type: counter
@@ -233,6 +258,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_dialCtlPeerStatsRefuseCalls
       oid: 1.3.6.1.2.1.10.21.1.2.2.1.6
       type: counter
@@ -240,6 +266,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_dialCtlPeerStatsSuccessCalls
       oid: 1.3.6.1.2.1.10.21.1.2.2.1.3
       type: counter
@@ -247,6 +274,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_cccaPimStatus
       oid: 1.3.6.1.4.1.9.9.473.1.3.6.1.4
       type: gauge
@@ -277,6 +305,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_cccaRouterCallsInProgress
       oid: 1.3.6.1.4.1.9.9.473.1.3.1.1.4
       type: gauge
@@ -284,6 +313,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_cccaRouterCallsInQueue
       oid: 1.3.6.1.4.1.9.9.473.1.3.1.1.8
       type: gauge
@@ -291,3 +321,4 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []

@@ -2,6 +2,36 @@ package snmpdiscovery
 
 import "testing"
 
+func TestFilterTiersToKnownDropsMissingSidecar(t *testing.T) {
+	in := ModuleTiers{
+		Hot:  []string{"if_mib", "nokia_srlinux_hot", "nokia_srlinux"},
+		Cold: []string{"if_mib_meta", "ip_addr"},
+	}
+	known := map[string]struct{}{
+		"if_mib":        {},
+		"if_mib_meta":   {},
+		"nokia_srlinux": {},
+	}
+	got, dropped := filterTiersToKnown(in, known)
+	if len(got.Hot) != 2 || got.Hot[0] != "if_mib" || got.Hot[1] != "nokia_srlinux" {
+		t.Fatalf("hot: %v", got.Hot)
+	}
+	if len(got.Cold) != 1 || got.Cold[0] != "if_mib_meta" {
+		t.Fatalf("cold: %v", got.Cold)
+	}
+	if len(dropped) != 2 {
+		t.Fatalf("dropped: %v", dropped)
+	}
+}
+
+func TestFilterTiersToKnownSkipsEmptyCatalog(t *testing.T) {
+	in := ModuleTiers{Hot: []string{"nokia_srlinux_hot"}}
+	got, dropped := filterTiersToKnown(in, nil)
+	if len(got.Hot) != 1 || got.Hot[0] != "nokia_srlinux_hot" || len(dropped) != 0 {
+		t.Fatalf("got=%v dropped=%v", got, dropped)
+	}
+}
+
 func TestMatchTiersNokia(t *testing.T) {
 	fp := Fingerprinter{
 		DefaultModules: []string{"system_mib", "if_mib"},

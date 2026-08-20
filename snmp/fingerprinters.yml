@@ -14323,15 +14323,6 @@ fingerprinters:
       modules_topology: *id132
       comment: meraki_device 1.3.6.1.4.1.29671.2.356
     - label: sysObjectID
-      regex: ^\.?1\.3\.6\.1\.4\.1\.935\.1\.1\.1$
-      modules:
-      - ups_mib
-      - apc_ups
-      modules_hot: *id133
-      modules_cold: *id134
-      modules_topology: *id135
-      comment: apc_ups 1.3.6.1.4.1.935.1.1.1
-    - label: sysObjectID
       regex: ^\.?1\.3\.6\.1\.4\.1\.17713\.60\.1$
       modules:
       - if_mib
@@ -14346,6 +14337,15 @@ fingerprinters:
       - cambium_mib
       modules_topology: []
       comment: cambium_mib 1.3.6.1.4.1.17713.60.1
+    - label: sysObjectID
+      regex: ^\.?1\.3\.6\.1\.4\.1\.935\.1\.1\.1$
+      modules:
+      - ups_mib
+      - apc_ups
+      modules_hot: *id133
+      modules_cold: *id134
+      modules_topology: *id135
+      comment: apc_ups 1.3.6.1.4.1.935.1.1.1
     - label: sysObjectID
       regex: ^\.?1\.3\.6\.1\.4\.1\.20992\.2\.10$
       modules:

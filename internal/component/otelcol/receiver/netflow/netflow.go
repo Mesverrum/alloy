@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/grafana/alloy/internal/component"
+	"github.com/grafana/alloy/internal/component/common/dnscache"
 	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/component/otelcol"
 	otelcolConfig "github.com/grafana/alloy/internal/component/otelcol/config"
@@ -58,6 +59,12 @@ type Arguments struct {
 	// is joined to device_name at receive time without restarting the UDP listener.
 	Targets []discovery.Target `alloy:"targets,attr,optional"`
 
+	// UDPHostCacheSize is the LRU capacity for reverse-DNS of conversation
+	// IPs (src_host / dst_host). Same knob as loki.source.syslog. 0 disables
+	// PTR; catalog names still fill src_host / dst_host when targets match.
+	// Changing this does not restart the UDP listener.
+	UDPHostCacheSize int `alloy:"udp_host_cache_size,attr,optional"`
+
 	// DebugMetrics configures component internal metrics. Optional.
 	DebugMetrics otelcolConfig.DebugMetricsArguments `alloy:"debug_metrics,block,optional"`
 
@@ -80,6 +87,9 @@ func (a *Arguments) Validate() error {
 	if a.Workers <= 0 {
 		return fmt.Errorf("workers must be greater than 0")
 	}
+	if a.UDPHostCacheSize < 0 {
+		return fmt.Errorf("udp_host_cache_size must be >= 0")
+	}
 	return nil
 }
 
@@ -89,6 +99,7 @@ func (a *Arguments) SetToDefault() {
 	a.Sockets = 1
 	a.Workers = 2
 	a.QueueSize = 1000
+	a.UDPHostCacheSize = dnscache.DefaultSize
 	a.DebugMetrics.SetToDefault()
 }
 

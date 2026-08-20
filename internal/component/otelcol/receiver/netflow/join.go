@@ -8,6 +8,7 @@ import (
 
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/component/common/devicejoin"
+	"github.com/grafana/alloy/internal/component/common/dnscache"
 	"github.com/grafana/alloy/internal/component/otelcol"
 	"github.com/grafana/alloy/internal/component/otelcol/receiver"
 	"github.com/grafana/alloy/internal/util"
@@ -31,6 +32,7 @@ const (
 type Component struct {
 	inner   *receiver.Receiver
 	join    atomic.Pointer[devicejoin.Index]
+	hosts   atomic.Pointer[dnscache.Cache]
 	metrics *joinMetrics
 
 	mut        sync.Mutex
@@ -74,6 +76,7 @@ func New(opts component.Options, args Arguments) (*Component, error) {
 		metrics: newJoinMetrics(opts.Registerer),
 	}
 	c.join.Store(devicejoin.NewIndex(args.Targets))
+	c.hosts.Store(dnscache.New(args.UDPHostCacheSize))
 	inner, err := receiver.New(opts, netflowreceiver.NewFactory(), joiningArgs{comp: c, Arguments: args})
 	if err != nil {
 		return nil, err
@@ -93,6 +96,7 @@ func (c *Component) Run(ctx context.Context) error {
 func (c *Component) Update(args component.Arguments) error {
 	a := args.(Arguments)
 	c.join.Store(devicejoin.NewIndex(a.Targets))
+	c.hosts.Store(dnscache.New(a.UDPHostCacheSize))
 
 	c.mut.Lock()
 	defer c.mut.Unlock()
@@ -114,6 +118,8 @@ func (*Component) LiveDebugging() {}
 func listenConfigEqual(a, b Arguments) bool {
 	a.Targets = nil
 	b.Targets = nil
+	a.UDPHostCacheSize = 0
+	b.UDPHostCacheSize = 0
 	return reflect.DeepEqual(a, b)
 }
 
@@ -130,7 +136,12 @@ func (a joiningArgs) NextConsumers() *otelcol.ConsumerArguments {
 	}
 	logs := make([]otelcol.Consumer, 0, len(next.Logs))
 	for _, cons := range next.Logs {
-		logs = append(logs, &joinConsumer{next: cons, join: &a.comp.join, metrics: a.comp.metrics})
+		logs = append(logs, &joinConsumer{
+			next:    cons,
+			join:    &a.comp.join,
+			hosts:   &a.comp.hosts,
+			metrics: a.comp.metrics,
+		})
 	}
 	out := *next
 	out.Logs = logs
@@ -140,6 +151,7 @@ func (a joiningArgs) NextConsumers() *otelcol.ConsumerArguments {
 type joinConsumer struct {
 	next    otelcol.Consumer
 	join    *atomic.Pointer[devicejoin.Index]
+	hosts   *atomic.Pointer[dnscache.Cache]
 	metrics *joinMetrics
 }
 
@@ -166,15 +178,19 @@ func (c *joinConsumer) ConsumeLogs(ctx context.Context, ld plog.Logs) error {
 	if c.join != nil {
 		idx = c.join.Load()
 	}
-	stampFlowJoin(ld, idx, c.metrics)
+	var hosts *dnscache.Cache
+	if c.hosts != nil {
+		hosts = c.hosts.Load()
+	}
+	stampFlowJoin(ld, idx, hosts, c.metrics)
 	if c.next == nil {
 		return nil
 	}
 	return c.next.ConsumeLogs(ctx, ld)
 }
 
-func stampFlowJoin(ld plog.Logs, idx *devicejoin.Index, m *joinMetrics) {
-	if idx.Len() == 0 {
+func stampFlowJoin(ld plog.Logs, idx *devicejoin.Index, hosts *dnscache.Cache, m *joinMetrics) {
+	if idx.Len() == 0 && hosts == nil {
 		return
 	}
 	rls := ld.ResourceLogs()
@@ -183,38 +199,58 @@ func stampFlowJoin(ld plog.Logs, idx *devicejoin.Index, m *joinMetrics) {
 		for j := 0; j < sls.Len(); j++ {
 			recs := sls.At(j).LogRecords()
 			for k := 0; k < recs.Len(); k++ {
-				stampFlowRecord(recs.At(k).Attributes(), idx, m)
+				stampFlowRecord(recs.At(k).Attributes(), idx, hosts, m)
 			}
 		}
 	}
 }
 
-func stampFlowRecord(attrs pcommon.Map, idx *devicejoin.Index, m *joinMetrics) {
+func stampFlowRecord(attrs pcommon.Map, idx *devicejoin.Index, hosts *dnscache.Cache, m *joinMetrics) {
 	sampler := attrStr(attrs, attrSampler)
 	src := attrStr(attrs, attrSource)
 	dst := attrStr(attrs, attrDest)
 
-	if id, ok := idx.Lookup(sampler); ok {
-		if id.DeviceName != "" {
-			attrs.PutStr("device_name", id.DeviceName)
+	srcName, dstName := "", ""
+	if idx.Len() > 0 {
+		if id, ok := idx.Lookup(sampler); ok {
+			if id.DeviceName != "" {
+				attrs.PutStr("device_name", id.DeviceName)
+			}
+			if id.Group != "" {
+				attrs.PutStr("snmp_group", id.Group)
+			}
+			if m != nil && m.joined != nil {
+				m.joined.Inc()
+			}
+		} else if sampler != "" {
+			if m != nil && m.unjoined != nil {
+				m.unjoined.Inc()
+			}
 		}
-		if id.Group != "" {
-			attrs.PutStr("snmp_group", id.Group)
+		if id, ok := idx.Lookup(src); ok && id.DeviceName != "" {
+			srcName = id.DeviceName
+			attrs.PutStr("src_device", srcName)
 		}
-		if m != nil && m.joined != nil {
-			m.joined.Inc()
-		}
-	} else if sampler != "" {
-		if m != nil && m.unjoined != nil {
-			m.unjoined.Inc()
+		if id, ok := idx.Lookup(dst); ok && id.DeviceName != "" {
+			dstName = id.DeviceName
+			attrs.PutStr("dst_device", dstName)
 		}
 	}
-	if id, ok := idx.Lookup(src); ok && id.DeviceName != "" {
-		attrs.PutStr("src_device", id.DeviceName)
+	if hosts != nil || srcName != "" {
+		attrs.PutStr("src_host", resolveHost(src, srcName, hosts))
 	}
-	if id, ok := idx.Lookup(dst); ok && id.DeviceName != "" {
-		attrs.PutStr("dst_device", id.DeviceName)
+	if hosts != nil || dstName != "" {
+		attrs.PutStr("dst_host", resolveHost(dst, dstName, hosts))
 	}
+}
+
+func resolveHost(ip, catalogName string, hosts *dnscache.Cache) string {
+	if hosts != nil {
+		if h := hosts.Lookup(ip); h != "" {
+			return h
+		}
+	}
+	return catalogName
 }
 
 func attrStr(attrs pcommon.Map, key string) string {

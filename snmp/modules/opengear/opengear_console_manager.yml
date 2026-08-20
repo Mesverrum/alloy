@@ -21,7 +21,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -58,22 +59,27 @@ modules:
       type: gauge
       help: laLoadInt (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.10.1.5.1 [Unix load average,
         not utilization %]
+      lookups: []
     - name: snmp_MemoryTotal
       oid: 1.3.6.1.4.1.2021.4.5
       type: gauge
       help: memTotalReal (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.5.0
+      lookups: []
     - name: snmp_MemoryFree
       oid: 1.3.6.1.4.1.2021.4.11
       type: gauge
       help: memTotalFree (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.11.0
+      lookups: []
     - name: snmp_memBuffer
       oid: 1.3.6.1.4.1.2021.4.14
       type: gauge
       help: memBuffer (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.14.0
+      lookups: []
     - name: snmp_memCached
       oid: 1.3.6.1.4.1.2021.4.15
       type: gauge
       help: memCached (UCD-SNMP-MIB) - 1.3.6.1.4.1.2021.4.15.0
+      lookups: []
     - name: snmp_ogSerialPortRxBytes
       oid: 1.3.6.1.4.1.25049.17.2.1.10
       type: counter
@@ -82,67 +88,67 @@ modules:
       - labelname: ogSerialPortIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortLabel
         oid: 1.3.6.1.4.1.25049.17.2.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortSpeed
         oid: 1.3.6.1.4.1.25049.17.2.1.3
         type: DisplayString
-      - labels: &id003
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortDataBits
         oid: 1.3.6.1.4.1.25049.17.2.1.4
         type: DisplayString
-      - labels: &id004
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortPortParity
         oid: 1.3.6.1.4.1.25049.17.2.1.5
         type: EnumAsInfo
-      - labels: &id005
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortStopBits
         oid: 1.3.6.1.4.1.25049.17.2.1.6
         type: EnumAsInfo
-      - labels: &id006
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortFlowControl
         oid: 1.3.6.1.4.1.25049.17.2.1.7
         type: EnumAsInfo
-      - labels: &id007
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortMode
         oid: 1.3.6.1.4.1.25049.17.2.1.8
         type: EnumAsInfo
-      - labels: &id008
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortLogLevel
         oid: 1.3.6.1.4.1.25049.17.2.1.9
         type: EnumAsInfo
-      - labels: &id009
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortDCD
         oid: 1.3.6.1.4.1.25049.17.2.1.16
         type: EnumAsInfo
-      - labels: &id010
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortDTR
         oid: 1.3.6.1.4.1.25049.17.2.1.17
         type: EnumAsInfo
-      - labels: &id011
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortDSR
         oid: 1.3.6.1.4.1.25049.17.2.1.18
         type: EnumAsInfo
-      - labels: &id012
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortCTS
         oid: 1.3.6.1.4.1.25049.17.2.1.19
         type: EnumAsInfo
-      - labels: &id013
+      - labels:
         - ogSerialPortIndex
         labelname: ogSerialPortRTS
         oid: 1.3.6.1.4.1.25049.17.2.1.20
@@ -155,55 +161,68 @@ modules:
       - labelname: ogSerialPortIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortLabel
         oid: 1.3.6.1.4.1.25049.17.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortSpeed
         oid: 1.3.6.1.4.1.25049.17.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortDataBits
         oid: 1.3.6.1.4.1.25049.17.2.1.4
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortPortParity
         oid: 1.3.6.1.4.1.25049.17.2.1.5
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortStopBits
         oid: 1.3.6.1.4.1.25049.17.2.1.6
         type: EnumAsInfo
-      - labels: *id006
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortFlowControl
         oid: 1.3.6.1.4.1.25049.17.2.1.7
         type: EnumAsInfo
-      - labels: *id007
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortMode
         oid: 1.3.6.1.4.1.25049.17.2.1.8
         type: EnumAsInfo
-      - labels: *id008
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortLogLevel
         oid: 1.3.6.1.4.1.25049.17.2.1.9
         type: EnumAsInfo
-      - labels: *id009
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortDCD
         oid: 1.3.6.1.4.1.25049.17.2.1.16
         type: EnumAsInfo
-      - labels: *id010
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortDTR
         oid: 1.3.6.1.4.1.25049.17.2.1.17
         type: EnumAsInfo
-      - labels: *id011
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortDSR
         oid: 1.3.6.1.4.1.25049.17.2.1.18
         type: EnumAsInfo
-      - labels: *id012
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortCTS
         oid: 1.3.6.1.4.1.25049.17.2.1.19
         type: EnumAsInfo
-      - labels: *id013
+      - labels:
+        - ogSerialPortIndex
         labelname: ogSerialPortRTS
         oid: 1.3.6.1.4.1.25049.17.2.1.20
         type: EnumAsInfo
@@ -215,7 +234,7 @@ modules:
       - labelname: ogCellModemIndex
         type: gauge
       lookups:
-      - labels: &id014
+      - labels:
         - ogCellModemIndex
         labelname: ogCellModemEnabled
         oid: 1.3.6.1.4.1.25049.17.17.1.4
@@ -228,7 +247,8 @@ modules:
       - labelname: ogCellModemIndex
         type: gauge
       lookups:
-      - labels: *id014
+      - labels:
+        - ogCellModemIndex
         labelname: ogCellModemEnabled
         oid: 1.3.6.1.4.1.25049.17.17.1.4
         type: EnumAsInfo

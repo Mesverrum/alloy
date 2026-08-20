@@ -20,6 +20,7 @@ modules:
         5: interfaceName
         6: agentCircuitId
         7: local
+      lookups: []
     - name: snmp_lldpRemPortId
       oid: 1.0.8802.1.1.2.1.4.1.1.7
       type: gauge
@@ -27,6 +28,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_lldpRemSysName
       oid: 1.0.8802.1.1.2.1.4.1.1.9
       type: gauge
@@ -34,3 +36,4 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []

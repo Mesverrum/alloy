@@ -51,7 +51,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -87,82 +88,102 @@ modules:
       oid: 1.3.6.1.4.1.9.9.156.1.5.3
       type: counter
       help: ccmActiveGateways (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.3
+      lookups: []
     - name: snmp_ccmActivePhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.1
       type: counter
       help: ccmActivePhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.1
+      lookups: []
     - name: snmp_ccmInActiveGateways
       oid: 1.3.6.1.4.1.9.9.156.1.5.4
       type: counter
       help: ccmInActiveGateways (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.4
+      lookups: []
     - name: snmp_ccmInActivePhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.2
       type: counter
       help: ccmInActivePhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.2
+      lookups: []
     - name: snmp_ccmRejectedCTIDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.16
       type: counter
       help: ccmRejectedCTIDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.16
+      lookups: []
     - name: snmp_ccmRejectedGateways
       oid: 1.3.6.1.4.1.9.9.156.1.5.10
       type: counter
       help: ccmRejectedGateways (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.10
+      lookups: []
     - name: snmp_ccmRejectedMediaDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.13
       type: counter
       help: ccmRejectedMediaDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.13
+      lookups: []
     - name: snmp_ccmRejectedPhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.7
       type: counter
       help: ccmRejectedPhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.7
+      lookups: []
     - name: snmp_ccmRejectedVoiceMailDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.19
       type: counter
       help: ccmRejectedVoiceMailDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.19
+      lookups: []
     - name: snmp_ccmPartiallyRegisteredPhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.31
       type: counter
       help: ccmPartiallyRegisteredPhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.31
+      lookups: []
     - name: snmp_ccmRegisteredCTIDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.14
       type: counter
       help: ccmRegisteredCTIDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.14
+      lookups: []
     - name: snmp_ccmRegisteredGateways
       oid: 1.3.6.1.4.1.9.9.156.1.5.8
       type: counter
       help: ccmRegisteredGateways (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.8
+      lookups: []
     - name: snmp_ccmRegisteredMediaDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.11
       type: counter
       help: ccmRegisteredMediaDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.11
+      lookups: []
     - name: snmp_ccmRegisteredPhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.5
       type: counter
       help: ccmRegisteredPhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.5
+      lookups: []
     - name: snmp_ccmRegisteredVoiceMailDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.17
       type: counter
       help: ccmRegisteredVoiceMailDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.17
+      lookups: []
     - name: snmp_ccmUnregisteredCTIDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.15
       type: counter
       help: ccmUnregisteredCTIDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.15
+      lookups: []
     - name: snmp_ccmUnregisteredGateways
       oid: 1.3.6.1.4.1.9.9.156.1.5.9
       type: counter
       help: ccmUnregisteredGateways (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.9
+      lookups: []
     - name: snmp_ccmUnregisteredMediaDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.12
       type: counter
       help: ccmUnregisteredMediaDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.12
+      lookups: []
     - name: snmp_ccmUnregisteredPhones
       oid: 1.3.6.1.4.1.9.9.156.1.5.6
       type: counter
       help: ccmUnregisteredPhones (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.6
+      lookups: []
     - name: snmp_ccmUnregisteredVoiceMailDevices
       oid: 1.3.6.1.4.1.9.9.156.1.5.18
       type: counter
       help: ccmUnregisteredVoiceMailDevices (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.5.18
+      lookups: []
     - name: snmp_ccmAlarmSeverity
       oid: 1.3.6.1.4.1.9.9.156.1.10.1
       type: gauge
@@ -175,6 +196,7 @@ modules:
         5: warning
         6: notice
         7: informational
+      lookups: []
     - name: snmp_ccmFailCauseCode
       oid: 1.3.6.1.4.1.9.9.156.1.10.2
       type: gauge
@@ -192,6 +214,7 @@ modules:
         10: dbMgrInitFailed
         11: msgTranslatorInitFailed
         12: suppServicesInitFailed
+      lookups: []
     - name: snmp_ccmGatewayFailCauseCode
       oid: 1.3.6.1.4.1.9.9.156.1.10.5
       type: gauge
@@ -212,6 +235,7 @@ modules:
         2: noEntryInDatabase
         0: noError
         1: unknown
+      lookups: []
     - name: snmp_ccmTLSConnectionFailReasonCode
       oid: 1.3.6.1.4.1.9.9.156.1.10.27
       type: gauge
@@ -221,6 +245,7 @@ modules:
         2: authenticationerror
         3: invalidx509nameincertificate
         4: invalidtlscipher
+      lookups: []
     - name: snmp_ccmGatewayRegFailCauseCode
       oid: 1.3.6.1.4.1.9.9.156.1.10.28
       type: gauge
@@ -255,10 +280,12 @@ modules:
         25: registrationSequenceError
         28: securityMismatch
         1: unknown
+      lookups: []
     - name: snmp_ccmGatewayPhysIfIndex
       oid: 1.3.6.1.4.1.9.9.156.1.10.9
       type: gauge
       help: ccmGatewayPhysIfIndex (CISCO-CCM-MIB) - 1.3.6.1.4.1.9.9.156.1.10.9
+      lookups: []
     - name: snmp_ccmGatewayPhysIfL2Status
       oid: 1.3.6.1.4.1.9.9.156.1.10.10
       type: gauge
@@ -267,6 +294,7 @@ modules:
         1: unknown
         2: up
         3: down
+      lookups: []
     - name: snmp_ccmCTIDeviceStatus
       oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.5
       type: gauge
@@ -275,27 +303,27 @@ modules:
       - labelname: ccmCTIDeviceIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.1
         type: gauge
-      - labels: &id002
+      - labels:
         - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceName
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.2
         type: DisplayString
-      - labels: &id003
+      - labels:
         - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceType
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.3
         type: DisplayString
-      - labels: &id004
+      - labels:
         - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceDescription
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.4
         type: DisplayString
-      - labels: &id005
+      - labels:
         - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceInetAddress
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.8
@@ -314,23 +342,28 @@ modules:
       - labelname: ccmCTIDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceName
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceType
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceDescription
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.4
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceInetAddress
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.8
         type: DisplayString
@@ -342,23 +375,28 @@ modules:
       - labelname: ccmCTIDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceName
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceType
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceDescription
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.4
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceInetAddress
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.8
         type: DisplayString
@@ -386,23 +424,28 @@ modules:
       - labelname: ccmCTIDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceName
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceType
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceDescription
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.4
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceInetAddress
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.8
         type: DisplayString
@@ -414,23 +457,28 @@ modules:
       - labelname: ccmCTIDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceName
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceType
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceDescription
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.4
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceInetAddress
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.8
         type: DisplayString
@@ -472,23 +520,28 @@ modules:
       - labelname: ccmCTIDeviceIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceName
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceType
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceDescription
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.4
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - ccmCTIDeviceIndex
         labelname: ccmCTIDeviceInetAddress
         oid: 1.3.6.1.4.1.9.9.156.1.8.1.1.8
         type: DisplayString
@@ -530,12 +583,12 @@ modules:
       - labelname: ccmDevicePoolIndex
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - ccmDevicePoolIndex
         labelname: ccmDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.1.7.1.1
         type: gauge
-      - labels: &id007
+      - labels:
         - ccmDevicePoolIndex
         labelname: ccmDevicePoolName
         oid: 1.3.6.1.4.1.9.9.156.1.1.7.1.2
@@ -548,11 +601,13 @@ modules:
       - labelname: ccmDevicePoolIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - ccmDevicePoolIndex
         labelname: ccmDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.1.7.1.1
         type: gauge
-      - labels: *id007
+      - labels:
+        - ccmDevicePoolIndex
         labelname: ccmDevicePoolName
         oid: 1.3.6.1.4.1.9.9.156.1.1.7.1.2
         type: DisplayString
@@ -564,11 +619,13 @@ modules:
       - labelname: ccmDevicePoolIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - ccmDevicePoolIndex
         labelname: ccmDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.1.7.1.1
         type: gauge
-      - labels: *id007
+      - labels:
+        - ccmDevicePoolIndex
         labelname: ccmDevicePoolName
         oid: 1.3.6.1.4.1.9.9.156.1.1.7.1.2
         type: DisplayString
@@ -580,22 +637,22 @@ modules:
       - labelname: ccmGatewayIndex
         type: gauge
       lookups:
-      - labels: &id008
+      - labels:
         - ccmGatewayIndex
         labelname: ccmGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.1
         type: gauge
-      - labels: &id009
+      - labels:
         - ccmGatewayIndex
         labelname: ccmGatewayDChannelNumber
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.14
         type: DisplayString
-      - labels: &id010
+      - labels:
         - ccmGatewayIndex
         labelname: ccmGatewayDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.6
         type: gauge
-      - labels: &id011
+      - labels:
         - ccmGatewayIndex
         labelname: ccmGatewayProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.15
@@ -653,19 +710,23 @@ modules:
       - labelname: ccmGatewayIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDChannelNumber
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.14
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.6
         type: gauge
-      - labels: *id011
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.15
         type: gauge
@@ -683,19 +744,23 @@ modules:
       - labelname: ccmGatewayIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDChannelNumber
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.14
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.6
         type: gauge
-      - labels: *id011
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.15
         type: gauge
@@ -764,19 +829,23 @@ modules:
       - labelname: ccmGatewayIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDChannelNumber
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.14
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.6
         type: gauge
-      - labels: *id011
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.15
         type: gauge
@@ -793,19 +862,23 @@ modules:
       - labelname: ccmGatewayIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDChannelNumber
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.14
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.6
         type: gauge
-      - labels: *id011
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.15
         type: gauge
@@ -847,19 +920,23 @@ modules:
       - labelname: ccmGatewayIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDChannelNumber
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.14
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.6
         type: gauge
-      - labels: *id011
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.15
         type: gauge
@@ -901,19 +978,23 @@ modules:
       - labelname: ccmGatewayIndex
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.1
         type: gauge
-      - labels: *id009
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDChannelNumber
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.14
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.6
         type: gauge
-      - labels: *id011
+      - labels:
+        - ccmGatewayIndex
         labelname: ccmGatewayProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.3.1.1.15
         type: gauge
@@ -941,17 +1022,17 @@ modules:
       - labelname: ccmGatewayTrunkIndex
         type: gauge
       lookups:
-      - labels: &id012
+      - labels:
         - ccmGatewayTrunkIndex
         labelname: ccmGatewayTrunkIndex
         oid: 1.3.6.1.4.1.9.9.156.1.4.1.1.1
         type: gauge
-      - labels: &id013
+      - labels:
         - ccmGatewayTrunkIndex
         labelname: ccmGatewayTrunkName
         oid: 1.3.6.1.4.1.9.9.156.1.4.1.1.3
         type: DisplayString
-      - labels: &id014
+      - labels:
         - ccmGatewayTrunkIndex
         labelname: ccmTrunkGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.4.1.1.4
@@ -979,15 +1060,18 @@ modules:
       - labelname: ccmGatewayTrunkIndex
         type: gauge
       lookups:
-      - labels: *id012
+      - labels:
+        - ccmGatewayTrunkIndex
         labelname: ccmGatewayTrunkIndex
         oid: 1.3.6.1.4.1.9.9.156.1.4.1.1.1
         type: gauge
-      - labels: *id013
+      - labels:
+        - ccmGatewayTrunkIndex
         labelname: ccmGatewayTrunkName
         oid: 1.3.6.1.4.1.9.9.156.1.4.1.1.3
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - ccmGatewayTrunkIndex
         labelname: ccmTrunkGatewayIndex
         oid: 1.3.6.1.4.1.9.9.156.1.4.1.1.4
         type: gauge
@@ -1004,7 +1088,7 @@ modules:
       - labelname: ccmH323DevIndex
         type: gauge
       lookups:
-      - labels: &id015
+      - labels:
         - ccmH323DevIndex
         labelname: ccmH323DevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.11.1.1.11
@@ -1074,7 +1158,8 @@ modules:
       - labelname: ccmH323DevIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - ccmH323DevIndex
         labelname: ccmH323DevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.11.1.1.11
         type: gauge
@@ -1086,7 +1171,8 @@ modules:
       - labelname: ccmH323DevIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - ccmH323DevIndex
         labelname: ccmH323DevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.11.1.1.11
         type: gauge
@@ -1128,7 +1214,8 @@ modules:
       - labelname: ccmH323DevIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - ccmH323DevIndex
         labelname: ccmH323DevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.11.1.1.11
         type: gauge
@@ -1146,7 +1233,8 @@ modules:
       - labelname: ccmH323DevIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - ccmH323DevIndex
         labelname: ccmH323DevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.11.1.1.11
         type: gauge
@@ -1174,7 +1262,8 @@ modules:
       - labelname: ccmH323DevIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - ccmH323DevIndex
         labelname: ccmH323DevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.11.1.1.11
         type: gauge
@@ -1216,17 +1305,17 @@ modules:
       - labelname: ccmMediaDeviceIndex
         type: gauge
       lookups:
-      - labels: &id016
+      - labels:
         - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.1
         type: gauge
-      - labels: &id017
+      - labels:
         - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.12
         type: gauge
-      - labels: &id018
+      - labels:
         - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.6
@@ -1255,15 +1344,18 @@ modules:
       - labelname: ccmMediaDeviceIndex
         type: gauge
       lookups:
-      - labels: *id016
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.1
         type: gauge
-      - labels: *id017
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.12
         type: gauge
-      - labels: *id018
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.6
         type: gauge
@@ -1305,15 +1397,18 @@ modules:
       - labelname: ccmMediaDeviceIndex
         type: gauge
       lookups:
-      - labels: *id016
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.1
         type: gauge
-      - labels: *id017
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.12
         type: gauge
-      - labels: *id018
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.6
         type: gauge
@@ -1340,15 +1435,18 @@ modules:
       - labelname: ccmMediaDeviceIndex
         type: gauge
       lookups:
-      - labels: *id016
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.1
         type: gauge
-      - labels: *id017
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.12
         type: gauge
-      - labels: *id018
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.6
         type: gauge
@@ -1390,15 +1488,18 @@ modules:
       - labelname: ccmMediaDeviceIndex
         type: gauge
       lookups:
-      - labels: *id016
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.1
         type: gauge
-      - labels: *id017
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.12
         type: gauge
-      - labels: *id018
+      - labels:
+        - ccmMediaDeviceIndex
         labelname: ccmMediaDeviceDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.6.1.1.6
         type: gauge
@@ -1443,17 +1544,17 @@ modules:
       - labelname: ccmPhoneIndex
         type: gauge
       lookups:
-      - labels: &id019
+      - labels:
         - ccmPhoneIndex
         labelname: ccmPhoneIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.1
         type: gauge
-      - labels: &id020
+      - labels:
         - ccmPhoneIndex
         labelname: ccmPhoneDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.13
         type: gauge
-      - labels: &id021
+      - labels:
         - ccmPhoneIndex
         labelname: ccmPhoneProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.18
@@ -1496,15 +1597,18 @@ modules:
       - labelname: ccmPhoneIndex
         type: gauge
       lookups:
-      - labels: *id019
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.1
         type: gauge
-      - labels: *id020
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.13
         type: gauge
-      - labels: *id021
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.18
         type: gauge
@@ -1520,15 +1624,18 @@ modules:
       - labelname: ccmPhoneIndex
         type: gauge
       lookups:
-      - labels: *id019
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.1
         type: gauge
-      - labels: *id020
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.13
         type: gauge
-      - labels: *id021
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.18
         type: gauge
@@ -1557,15 +1664,18 @@ modules:
       - labelname: ccmPhoneIndex
         type: gauge
       lookups:
-      - labels: *id019
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.1
         type: gauge
-      - labels: *id020
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.13
         type: gauge
-      - labels: *id021
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.18
         type: gauge
@@ -1583,15 +1693,18 @@ modules:
       - labelname: ccmPhoneIndex
         type: gauge
       lookups:
-      - labels: *id019
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.1
         type: gauge
-      - labels: *id020
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.13
         type: gauge
-      - labels: *id021
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.18
         type: gauge
@@ -1633,15 +1746,18 @@ modules:
       - labelname: ccmPhoneIndex
         type: gauge
       lookups:
-      - labels: *id019
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.1
         type: gauge
-      - labels: *id020
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneDevicePoolIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.13
         type: gauge
-      - labels: *id021
+      - labels:
+        - ccmPhoneIndex
         labelname: ccmPhoneProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.2.1.1.18
         type: gauge
@@ -1669,7 +1785,7 @@ modules:
       - labelname: ccmProductTypeIndex
         type: gauge
       lookups:
-      - labels: &id022
+      - labels:
         - ccmProductTypeIndex
         labelname: ccmProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.1.8.1.1
@@ -1682,7 +1798,8 @@ modules:
       - labelname: ccmProductTypeIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - ccmProductTypeIndex
         labelname: ccmProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.1.8.1.1
         type: gauge
@@ -1694,7 +1811,8 @@ modules:
       - labelname: ccmProductTypeIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - ccmProductTypeIndex
         labelname: ccmProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.1.8.1.1
         type: gauge
@@ -1717,22 +1835,22 @@ modules:
       - labelname: ccmSIPDevIndex
         type: gauge
       lookups:
-      - labels: &id023
+      - labels:
         - ccmSIPDevIndex
         labelname: ccmSIPDevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.1
         type: gauge
-      - labels: &id024
+      - labels:
         - ccmSIPDevIndex
         labelname: ccmSIPDevName
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.2
         type: DisplayString
-      - labels: &id025
+      - labels:
         - ccmSIPDevIndex
         labelname: ccmSIPDevProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.3
         type: gauge
-      - labels: &id026
+      - labels:
         - ccmSIPDevIndex
         labelname: ccmSIPDevDescription
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.4
@@ -1745,19 +1863,23 @@ modules:
       - labelname: ccmSIPDevIndex
         type: gauge
       lookups:
-      - labels: *id023
+      - labels:
+        - ccmSIPDevIndex
         labelname: ccmSIPDevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.1
         type: gauge
-      - labels: *id024
+      - labels:
+        - ccmSIPDevIndex
         labelname: ccmSIPDevName
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.2
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - ccmSIPDevIndex
         labelname: ccmSIPDevProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.3
         type: gauge
-      - labels: *id026
+      - labels:
+        - ccmSIPDevIndex
         labelname: ccmSIPDevDescription
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.4
         type: DisplayString
@@ -1775,19 +1897,23 @@ modules:
       - labelname: ccmSIPDevIndex
         type: gauge
       lookups:
-      - labels: *id023
+      - labels:
+        - ccmSIPDevIndex
         labelname: ccmSIPDevIndex
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.1
         type: gauge
-      - labels: *id024
+      - labels:
+        - ccmSIPDevIndex
         labelname: ccmSIPDevName
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.2
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - ccmSIPDevIndex
         labelname: ccmSIPDevProductTypeIndex
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.3
         type: gauge
-      - labels: *id026
+      - labels:
+        - ccmSIPDevIndex
         labelname: ccmSIPDevDescription
         oid: 1.3.6.1.4.1.9.9.156.1.14.1.1.4
         type: DisplayString

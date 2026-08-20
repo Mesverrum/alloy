@@ -28,7 +28,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -93,7 +94,7 @@ modules:
       - labelname: rPDULoadStatusIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - rPDULoadStatusIndex
         labelname: load_index
         oid: 1.3.6.1.4.1.318.1.1.12.2.3.1.1.1
@@ -106,7 +107,8 @@ modules:
       - labelname: rPDULoadStatusIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - rPDULoadStatusIndex
         labelname: load_index
         oid: 1.3.6.1.4.1.318.1.1.12.2.3.1.1.1
         type: gauge
@@ -123,12 +125,12 @@ modules:
       - labelname: rPDUOutletStatusIndex
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - rPDUOutletStatusIndex
         labelname: outlet_index
         oid: 1.3.6.1.4.1.318.1.1.12.3.5.1.1.1
         type: gauge
-      - labels: &id003
+      - labels:
         - rPDUOutletStatusIndex
         labelname: outlet_name
         oid: 1.3.6.1.4.1.318.1.1.12.3.5.1.1.2
@@ -144,11 +146,13 @@ modules:
       - labelname: rPDUOutletStatusIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - rPDUOutletStatusIndex
         labelname: outlet_index
         oid: 1.3.6.1.4.1.318.1.1.12.3.5.1.1.1
         type: gauge
-      - labels: *id003
+      - labels:
+        - rPDUOutletStatusIndex
         labelname: outlet_name
         oid: 1.3.6.1.4.1.318.1.1.12.3.5.1.1.2
         type: DisplayString
@@ -159,6 +163,7 @@ modules:
       enum_values:
         1: powerSupplyOneOk
         2: powerSupplyOneFailed
+      lookups: []
     - name: snmp_rPDUPowerSupply2Status
       oid: 1.3.6.1.4.1.318.1.1.12.4.1.2
       type: gauge
@@ -167,10 +172,12 @@ modules:
         1: powerSupplyTwoOk
         2: powerSupplyTwoFailed
         3: powerSupplyTwoNotPresent
+      lookups: []
     - name: snmp_rPDUPowerSupplyAlarm
       oid: 1.3.6.1.4.1.318.1.1.12.4.1.3
       type: gauge
       help: rPDUPowerSupplyAlarm (PowerNet-MIB_PDU) - 1.3.6.1.4.1.318.1.1.12.4.1.3.0
+      lookups: []
     - name: snmp_rPDUStatusBankState
       oid: 1.3.6.1.4.1.318.1.1.12.5.2.1.3
       type: gauge
@@ -248,12 +255,12 @@ modules:
       - labelname: rPDU2SensorTempHumidityStatusIndex
         type: gauge
       lookups:
-      - labels: &id004
+      - labels:
         - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_name
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.3
         type: DisplayString
-      - labels: &id005
+      - labels:
         - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_type
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.5
@@ -266,11 +273,13 @@ modules:
       - labelname: rPDU2SensorTempHumidityStatusIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_name
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.3
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_type
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.5
         type: EnumAsInfo
@@ -282,11 +291,13 @@ modules:
       - labelname: rPDU2SensorTempHumidityStatusIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_name
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.3
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_type
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.5
         type: EnumAsInfo
@@ -305,11 +316,13 @@ modules:
       - labelname: rPDU2SensorTempHumidityStatusIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_name
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.3
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_type
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.5
         type: EnumAsInfo
@@ -321,11 +334,13 @@ modules:
       - labelname: rPDU2SensorTempHumidityStatusIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_name
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.3
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - rPDU2SensorTempHumidityStatusIndex
         labelname: humidity_sensor_type
         oid: 1.3.6.1.4.1.318.1.1.26.10.2.2.1.5
         type: EnumAsInfo

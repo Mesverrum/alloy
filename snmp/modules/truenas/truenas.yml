@@ -35,7 +35,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -75,7 +76,7 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
@@ -88,7 +89,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -100,7 +102,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -112,7 +115,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -124,7 +128,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -136,7 +141,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -148,7 +154,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -160,7 +167,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -172,7 +180,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -184,7 +193,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -196,7 +206,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -208,7 +219,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -220,7 +232,8 @@ modules:
       - labelname: zpoolIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - zpoolIndex
         labelname: zpoolDescr
         oid: 1.3.6.1.4.1.50536.1.1.1.1.2
         type: DisplayString
@@ -232,7 +245,7 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - zvolIndex
         labelname: datasetDescr
         oid: 1.3.6.1.4.1.50536.1.2.1.1.2
@@ -245,7 +258,8 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - zvolIndex
         labelname: datasetDescr
         oid: 1.3.6.1.4.1.50536.1.2.1.1.2
         type: DisplayString
@@ -257,7 +271,8 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - zvolIndex
         labelname: datasetDescr
         oid: 1.3.6.1.4.1.50536.1.2.1.1.2
         type: DisplayString
@@ -269,7 +284,8 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - zvolIndex
         labelname: datasetDescr
         oid: 1.3.6.1.4.1.50536.1.2.1.1.2
         type: DisplayString
@@ -281,7 +297,7 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - zvolIndex
         labelname: zvolDescr
         oid: 1.3.6.1.4.1.50536.1.3.1.1.2
@@ -294,7 +310,8 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - zvolIndex
         labelname: zvolDescr
         oid: 1.3.6.1.4.1.50536.1.3.1.1.2
         type: DisplayString
@@ -306,7 +323,8 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - zvolIndex
         labelname: zvolDescr
         oid: 1.3.6.1.4.1.50536.1.3.1.1.2
         type: DisplayString
@@ -318,7 +336,8 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - zvolIndex
         labelname: zvolDescr
         oid: 1.3.6.1.4.1.50536.1.3.1.1.2
         type: DisplayString
@@ -330,7 +349,8 @@ modules:
       - labelname: zvolIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - zvolIndex
         labelname: zvolDescr
         oid: 1.3.6.1.4.1.50536.1.3.1.1.2
         type: DisplayString
@@ -338,71 +358,89 @@ modules:
       oid: 1.3.6.1.4.1.50536.1.4.1
       type: counter
       help: zfsArcSize () - 1.3.6.1.4.1.50536.1.4.1
+      lookups: []
     - name: snmp_zfsArcCacheMissRatio
       oid: 1.3.6.1.4.1.50536.1.4.10
       type: gauge
       help: zfsArcCacheMissRatio () - 1.3.6.1.4.1.50536.1.4.10
+      lookups: []
     - name: snmp_zfsArcMeta
       oid: 1.3.6.1.4.1.50536.1.4.2
       type: counter
       help: zfsArcMeta () - 1.3.6.1.4.1.50536.1.4.2
+      lookups: []
     - name: snmp_zfsArcData
       oid: 1.3.6.1.4.1.50536.1.4.3
       type: counter
       help: zfsArcData () - 1.3.6.1.4.1.50536.1.4.3
+      lookups: []
     - name: snmp_zfsArcHits
       oid: 1.3.6.1.4.1.50536.1.4.4
       type: counter
       help: zfsArcHits () - 1.3.6.1.4.1.50536.1.4.4
+      lookups: []
     - name: snmp_zfsArcMisses
       oid: 1.3.6.1.4.1.50536.1.4.5
       type: gauge
       help: zfsArcMisses () - 1.3.6.1.4.1.50536.1.4.5
+      lookups: []
     - name: snmp_zfsArcC
       oid: 1.3.6.1.4.1.50536.1.4.6
       type: gauge
       help: zfsArcC () - 1.3.6.1.4.1.50536.1.4.6
+      lookups: []
     - name: snmp_zfsArcP
       oid: 1.3.6.1.4.1.50536.1.4.7
       type: gauge
       help: zfsArcP () - 1.3.6.1.4.1.50536.1.4.7
+      lookups: []
     - name: snmp_zfsArcMissPercent
       oid: 1.3.6.1.4.1.50536.1.4.8
       type: gauge
       help: zfsArcMissPercent () - 1.3.6.1.4.1.50536.1.4.8
+      lookups: []
     - name: snmp_zfsArcCacheHitRatio
       oid: 1.3.6.1.4.1.50536.1.4.9
       type: gauge
       help: zfsArcCacheHitRatio () - 1.3.6.1.4.1.50536.1.4.9
+      lookups: []
     - name: snmp_zfsL2ArcHits
       oid: 1.3.6.1.4.1.50536.1.5.1
       type: counter
       help: zfsL2ArcHits () - 1.3.6.1.4.1.50536.1.5.1
+      lookups: []
     - name: snmp_zfsL2ArcMisses
       oid: 1.3.6.1.4.1.50536.1.5.2
       type: counter
       help: zfsL2ArcMisses () - 1.3.6.1.4.1.50536.1.5.2
+      lookups: []
     - name: snmp_zfsL2ArcRead
       oid: 1.3.6.1.4.1.50536.1.5.3
       type: counter
       help: zfsL2ArcRead () - 1.3.6.1.4.1.50536.1.5.3
+      lookups: []
     - name: snmp_zfsL2ArcWrite
       oid: 1.3.6.1.4.1.50536.1.5.4
       type: counter
       help: zfsL2ArcWrite () - 1.3.6.1.4.1.50536.1.5.4
+      lookups: []
     - name: snmp_zfsL2ArcSize
       oid: 1.3.6.1.4.1.50536.1.5.5
       type: gauge
       help: zfsL2ArcSize () - 1.3.6.1.4.1.50536.1.5.5
+      lookups: []
     - name: snmp_zfsZilstatOps1sec
       oid: 1.3.6.1.4.1.50536.1.6.1
       type: counter
       help: zfsZilstatOps1sec () - 1.3.6.1.4.1.50536.1.6.1
+      lookups: []
     - name: snmp_zfsZilstatOps5sec
       oid: 1.3.6.1.4.1.50536.1.6.2
       type: counter
       help: zfsZilstatOps5sec () - 1.3.6.1.4.1.50536.1.6.2
+      lookups: []
     - name: snmp_zfsZilstatOps10sec
       oid: 1.3.6.1.4.1.50536.1.6.3
       type: counter
       help: zfsZilstatOps10sec () - 1.3.6.1.4.1.50536.1.6.3
+      lookups: []

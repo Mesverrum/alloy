@@ -39,7 +39,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -75,62 +76,77 @@ modules:
       oid: 1.3.6.1.4.1.12356.101.4.1.3
       type: gauge
       help: fgSysCpuUsage (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.3.0
+      lookups: []
     - name: snmp_fgSysMemUsage
       oid: 1.3.6.1.4.1.12356.101.4.1.4
       type: gauge
       help: fgSysMemUsage (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.4.0
+      lookups: []
     - name: snmp_fgSysMemCapacity
       oid: 1.3.6.1.4.1.12356.101.4.1.5
       type: gauge
       help: fgSysMemCapacity (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.5.0
+      lookups: []
     - name: snmp_fgSysDiskUsage
       oid: 1.3.6.1.4.1.12356.101.4.1.6
       type: gauge
       help: fgSysDiskUsage (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.6.0
+      lookups: []
     - name: snmp_fgSysDiskCapacity
       oid: 1.3.6.1.4.1.12356.101.4.1.7
       type: gauge
       help: fgSysDiskCapacity (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.7.0
+      lookups: []
     - name: snmp_fgSysSesCount
       oid: 1.3.6.1.4.1.12356.101.4.1.8
       type: gauge
       help: fgSysSesCount (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.8.0
+      lookups: []
     - name: snmp_fgSysLowMemUsage
       oid: 1.3.6.1.4.1.12356.101.4.1.9
       type: gauge
       help: fgSysLowMemUsage (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.9.0
+      lookups: []
     - name: snmp_fgSysLowMemCapacity
       oid: 1.3.6.1.4.1.12356.101.4.1.10
       type: gauge
       help: fgSysLowMemCapacity (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.10.0
+      lookups: []
     - name: snmp_fgSysSesRate1
       oid: 1.3.6.1.4.1.12356.101.4.1.11
       type: gauge
       help: fgSysSesRate1 (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.11.0
+      lookups: []
     - name: snmp_fgSysSes6Count
       oid: 1.3.6.1.4.1.12356.101.4.1.15
       type: gauge
       help: fgSysSes6Count (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.15.0
+      lookups: []
     - name: snmp_fgSysSes6Rate1
       oid: 1.3.6.1.4.1.12356.101.4.1.16
       type: gauge
       help: fgSysSes6Rate1 (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.16.0
+      lookups: []
     - name: snmp_fgVdNumber
       oid: 1.3.6.1.4.1.12356.101.3.1.1
       type: gauge
       help: fgVdNumber (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.3.1.1.0
+      lookups: []
     - name: snmp_fgVdMaxVdoms
       oid: 1.3.6.1.4.1.12356.101.3.1.2
       type: gauge
       help: fgVdMaxVdoms (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.3.1.2.0
+      lookups: []
     - name: snmp_fgSysUpTime
       oid: 1.3.6.1.4.1.12356.101.4.1.20
       type: counter
       help: fgSysUpTime (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.4.1.20
+      lookups: []
     - name: snmp_fgDhcpServerNumber
       oid: 1.3.6.1.4.1.12356.101.23.1.1
       type: gauge
       help: fgDhcpServerNumber (FORTINET-FORTIGATE-MIB) - 1.3.6.1.4.1.12356.101.23.1.1
+      lookups: []
     - name: snmp_fgHwSensorEntValue
       oid: 1.3.6.1.4.1.12356.101.4.3.2.1.3
       type: gauge
@@ -139,7 +155,7 @@ modules:
       - labelname: fgHwSensorEntIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - fgHwSensorEntIndex
         labelname: fgHwSensorEntName
         oid: 1.3.6.1.4.1.12356.101.4.3.2.1.2
@@ -152,7 +168,8 @@ modules:
       - labelname: fgHwSensorEntIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - fgHwSensorEntIndex
         labelname: fgHwSensorEntName
         oid: 1.3.6.1.4.1.12356.101.4.3.2.1.2
         type: DisplayString
@@ -167,7 +184,7 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
@@ -180,7 +197,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -195,7 +213,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -207,7 +226,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -219,7 +239,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -231,7 +252,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -243,7 +265,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -255,7 +278,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -267,7 +291,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -279,7 +304,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -291,7 +317,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -303,7 +330,8 @@ modules:
       - labelname: fgVWLHealthCheckLinkID
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - fgVWLHealthCheckLinkID
         labelname: healthcheck_service_link_name
         oid: 1.3.6.1.4.1.12356.101.4.9.2.1.2
         type: DisplayString
@@ -314,6 +342,7 @@ modules:
       indexes:
       - labelname: fgProcessorEntIndex
         type: gauge
+      lookups: []
     - name: snmp_fgProcessorPktRxCount
       oid: 1.3.6.1.4.1.12356.101.4.4.2.1.6
       type: counter
@@ -321,6 +350,7 @@ modules:
       indexes:
       - labelname: fgProcessorEntIndex
         type: gauge
+      lookups: []
     - name: snmp_fgProcessorPktTxCount
       oid: 1.3.6.1.4.1.12356.101.4.4.2.1.7
       type: counter
@@ -328,6 +358,7 @@ modules:
       indexes:
       - labelname: fgProcessorEntIndex
         type: gauge
+      lookups: []
     - name: snmp_fgProcessorPktDroppedCount
       oid: 1.3.6.1.4.1.12356.101.4.4.2.1.8
       type: counter
@@ -335,6 +366,7 @@ modules:
       indexes:
       - labelname: fgProcessorEntIndex
         type: gauge
+      lookups: []
     - name: snmp_fgProcessorSysUsage
       oid: 1.3.6.1.4.1.12356.101.4.4.2.1.10
       type: gauge
@@ -342,6 +374,7 @@ modules:
       indexes:
       - labelname: fgProcessorEntIndex
         type: gauge
+      lookups: []
     - name: snmp_fgApHTTPConnections
       oid: 1.3.6.1.4.1.12356.101.10.100.4.0
       type: gauge
@@ -349,6 +382,7 @@ modules:
       indexes:
       - labelname: fgProcessorEntIndex
         type: gauge
+      lookups: []
     - name: snmp_fgApHTTPMaxConnections
       oid: 1.3.6.1.4.1.12356.101.10.100.5.0
       type: gauge
@@ -356,6 +390,7 @@ modules:
       indexes:
       - labelname: fgProcessorEntIndex
         type: gauge
+      lookups: []
     - name: snmp_fgVdEntOpMode
       oid: 1.3.6.1.4.1.12356.101.3.2.1.1.3
       type: gauge
@@ -364,7 +399,7 @@ modules:
       - labelname: fgVdEntIndex
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - fgVdEntIndex
         labelname: virtual_domain_name
         oid: 1.3.6.1.4.1.12356.101.3.2.1.1.2
@@ -380,7 +415,8 @@ modules:
       - labelname: fgVdEntIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fgVdEntIndex
         labelname: virtual_domain_name
         oid: 1.3.6.1.4.1.12356.101.3.2.1.1.2
         type: DisplayString
@@ -396,7 +432,8 @@ modules:
       - labelname: fgVdEntIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fgVdEntIndex
         labelname: virtual_domain_name
         oid: 1.3.6.1.4.1.12356.101.3.2.1.1.2
         type: DisplayString
@@ -408,7 +445,8 @@ modules:
       - labelname: fgVdEntIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fgVdEntIndex
         labelname: virtual_domain_name
         oid: 1.3.6.1.4.1.12356.101.3.2.1.1.2
         type: DisplayString
@@ -420,7 +458,8 @@ modules:
       - labelname: fgVdEntIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fgVdEntIndex
         labelname: virtual_domain_name
         oid: 1.3.6.1.4.1.12356.101.3.2.1.1.2
         type: DisplayString
@@ -432,7 +471,8 @@ modules:
       - labelname: fgVdEntIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - fgVdEntIndex
         labelname: virtual_domain_name
         oid: 1.3.6.1.4.1.12356.101.3.2.1.1.2
         type: DisplayString
@@ -446,7 +486,7 @@ modules:
       - labelname: fgFwPolID
         type: gauge
       lookups:
-      - labels: &id004
+      - labels:
         - fgVdEntIndex
         - fgFwPolID
         labelname: firewall_policy_index
@@ -462,7 +502,9 @@ modules:
       - labelname: fgFwPolID
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - fgVdEntIndex
+        - fgFwPolID
         labelname: firewall_policy_index
         oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.1
         type: gauge
@@ -476,7 +518,7 @@ modules:
       - labelname: fgFwPol6ID
         type: gauge
       lookups:
-      - labels: &id005
+      - labels:
         - fgVdEntIndex
         - fgFwPol6ID
         labelname: firewall_policy6_index
@@ -492,7 +534,9 @@ modules:
       - labelname: fgFwPol6ID
         type: gauge
       lookups:
-      - labels: *id005
+      - labels:
+        - fgVdEntIndex
+        - fgFwPol6ID
         labelname: firewall_policy6_index
         oid: 1.3.6.1.4.1.12356.101.5.1.2.2.1.1
         type: gauge
@@ -503,6 +547,7 @@ modules:
       indexes:
       - labelname: fgVdEntIndex
         type: gauge
+      lookups: []
     - name: snmp_fgHaStatsSyncStatus
       oid: 1.3.6.1.4.1.12356.101.13.2.1.1.12
       type: gauge
@@ -511,12 +556,12 @@ modules:
       - labelname: fgHaStatsIndex
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - fgHaStatsIndex
         labelname: fgHaStatsSerial
         oid: 1.3.6.1.4.1.12356.101.13.2.1.1.2
         type: DisplayString
-      - labels: &id007
+      - labels:
         - fgHaStatsIndex
         labelname: fgHaStatsHostname
         oid: 1.3.6.1.4.1.12356.101.13.2.1.1.11
@@ -532,11 +577,13 @@ modules:
       - labelname: fgHaStatsIndex
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - fgHaStatsIndex
         labelname: fgHaStatsSerial
         oid: 1.3.6.1.4.1.12356.101.13.2.1.1.2
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - fgHaStatsIndex
         labelname: fgHaStatsHostname
         oid: 1.3.6.1.4.1.12356.101.13.2.1.1.11
         type: DisplayString
@@ -548,7 +595,7 @@ modules:
       - labelname: fgLinkMonitorID
         type: gauge
       lookups:
-      - labels: &id008
+      - labels:
         - fgLinkMonitorID
         labelname: fgLinkMonitorName
         oid: 1.3.6.1.4.1.12356.101.4.8.2.1.2
@@ -564,7 +611,8 @@ modules:
       - labelname: fgLinkMonitorID
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - fgLinkMonitorID
         labelname: fgLinkMonitorName
         oid: 1.3.6.1.4.1.12356.101.4.8.2.1.2
         type: DisplayString
@@ -576,7 +624,8 @@ modules:
       - labelname: fgLinkMonitorID
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - fgLinkMonitorID
         labelname: fgLinkMonitorName
         oid: 1.3.6.1.4.1.12356.101.4.8.2.1.2
         type: DisplayString
@@ -588,7 +637,8 @@ modules:
       - labelname: fgLinkMonitorID
         type: gauge
       lookups:
-      - labels: *id008
+      - labels:
+        - fgLinkMonitorID
         labelname: fgLinkMonitorName
         oid: 1.3.6.1.4.1.12356.101.4.8.2.1.2
         type: DisplayString
@@ -604,6 +654,7 @@ modules:
       enum_values:
         1: down
         2: up
+      lookups: []
     - name: snmp_fgVpnTunEntPhase1Name
       oid: 1.3.6.1.4.1.12356.101.12.2.2.1.2
       type: gauge
@@ -613,3 +664,4 @@ modules:
         type: gauge
       - labelname: fgVpnTunEntPhase2Index
         type: gauge
+      lookups: []

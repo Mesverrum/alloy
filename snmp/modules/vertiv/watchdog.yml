@@ -9,7 +9,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -69,12 +70,12 @@ modules:
       - labelname: internalIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - internalIndex
         labelname: internalSerial
         oid: 1.3.6.1.4.1.21239.5.1.2.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - internalIndex
         labelname: temperatureUnits
         oid: 1.3.6.1.4.1.21239.5.1.1.7.0
@@ -91,11 +92,13 @@ modules:
       - labelname: internalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - internalIndex
         labelname: internalSerial
         oid: 1.3.6.1.4.1.21239.5.1.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - internalIndex
         labelname: temperatureUnits
         oid: 1.3.6.1.4.1.21239.5.1.1.7.0
         type: EnumAsInfo
@@ -107,11 +110,13 @@ modules:
       - labelname: internalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - internalIndex
         labelname: internalSerial
         oid: 1.3.6.1.4.1.21239.5.1.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - internalIndex
         labelname: temperatureUnits
         oid: 1.3.6.1.4.1.21239.5.1.1.7.0
         type: EnumAsInfo
@@ -123,11 +128,13 @@ modules:
       - labelname: internalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - internalIndex
         labelname: internalSerial
         oid: 1.3.6.1.4.1.21239.5.1.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - internalIndex
         labelname: temperatureUnits
         oid: 1.3.6.1.4.1.21239.5.1.1.7.0
         type: EnumAsInfo
@@ -139,12 +146,12 @@ modules:
       - labelname: tempSensorIndex
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - tempSensorIndex
         labelname: tempSensorSerial
         oid: 1.3.6.1.4.1.21239.5.1.4.1.2
         type: DisplayString
-      - labels: &id004
+      - labels:
         - tempSensorIndex
         labelname: tempSensorName
         oid: 1.3.6.1.4.1.21239.5.1.4.1.3
@@ -161,11 +168,13 @@ modules:
       - labelname: tempSensorIndex
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - tempSensorIndex
         labelname: tempSensorSerial
         oid: 1.3.6.1.4.1.21239.5.1.4.1.2
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - tempSensorIndex
         labelname: tempSensorName
         oid: 1.3.6.1.4.1.21239.5.1.4.1.3
         type: DisplayString

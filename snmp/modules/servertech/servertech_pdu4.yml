@@ -26,7 +26,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -110,6 +111,7 @@ modules:
         21: nvmFail
         22: profileError
         23: conflict
+      lookups: []
     - name: snmp_st4InputCordState
       oid: 1.3.6.1.4.1.1718.4.1.3.3.1.1
       type: gauge
@@ -120,85 +122,85 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: &id003
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: &id004
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: &id005
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: &id006
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: &id007
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: &id008
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: &id009
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: &id010
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: &id011
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: &id012
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: &id013
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: &id014
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         labelname: st4InputCordOutletCount
@@ -218,59 +220,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -307,59 +337,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -373,59 +431,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -462,59 +548,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -528,59 +642,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -617,59 +759,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -683,59 +853,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -749,59 +947,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -838,59 +1064,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -904,59 +1158,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -970,59 +1252,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -1036,59 +1346,87 @@ modules:
       - labelname: st4InputCordIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordID
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordName
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordInletType
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.7
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMin
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.8
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordNominalVoltageMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.9
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.10
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordCurrentCapacityMax
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.11
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.12
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordLineCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.20
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordPhaseCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.21
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOcpCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.22
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordBranchCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.23
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
         labelname: st4InputCordOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.3.2.1.24
         type: DisplayString
@@ -1127,21 +1465,21 @@ modules:
       - labelname: st4LineIndex
         type: gauge
       lookups:
-      - labels: &id015
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4LineIndex
         labelname: st4LineID
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.2
         type: DisplayString
-      - labels: &id016
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4LineIndex
         labelname: st4LineLabel
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.4
         type: DisplayString
-      - labels: &id017
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4LineIndex
@@ -1164,15 +1502,24 @@ modules:
       - labelname: st4LineIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineID
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.2
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineLabel
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.4
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.6
         type: DisplayString
@@ -1211,15 +1558,24 @@ modules:
       - labelname: st4LineIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineID
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.2
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineLabel
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.4
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.6
         type: DisplayString
@@ -1235,15 +1591,24 @@ modules:
       - labelname: st4LineIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineID
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.2
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineLabel
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.4
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.6
         type: DisplayString
@@ -1282,15 +1647,24 @@ modules:
       - labelname: st4LineIndex
         type: gauge
       lookups:
-      - labels: *id015
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineID
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.2
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineLabel
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.4
         type: DisplayString
-      - labels: *id017
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4LineIndex
         labelname: st4LineCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.4.2.1.6
         type: DisplayString
@@ -1306,28 +1680,28 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: &id018
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: &id019
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: &id020
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: &id021
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4PhaseIndex
@@ -1350,19 +1724,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1401,19 +1787,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1429,19 +1827,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1480,19 +1890,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1508,19 +1930,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1536,19 +1970,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1564,19 +2010,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1592,19 +2050,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1620,19 +2090,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1648,19 +2130,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1699,19 +2193,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1732,19 +2238,31 @@ modules:
       - labelname: st4PhaseIndex
         type: gauge
       lookups:
-      - labels: *id018
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseID
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.2
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseLabel
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.4
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseNominalVoltage
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.6
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4PhaseIndex
         labelname: st4PhaseOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.5.2.1.21
         type: DisplayString
@@ -1844,42 +2362,42 @@ modules:
       - labelname: st4BranchIndex
         type: gauge
       lookups:
-      - labels: &id022
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4BranchIndex
         labelname: st4BranchID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.2
         type: DisplayString
-      - labels: &id023
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4BranchIndex
         labelname: st4BranchLabel
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.4
         type: DisplayString
-      - labels: &id024
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4BranchIndex
         labelname: st4BranchCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.6
         type: DisplayString
-      - labels: &id025
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4BranchIndex
         labelname: st4BranchPhaseID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.20
         type: DisplayString
-      - labels: &id026
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4BranchIndex
         labelname: st4BranchOcpID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.21
         type: DisplayString
-      - labels: &id027
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4BranchIndex
@@ -1902,27 +2420,45 @@ modules:
       - labelname: st4BranchIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.2
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchLabel
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.4
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.6
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchPhaseID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.20
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchOcpID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.21
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.30
         type: DisplayString
@@ -1961,27 +2497,45 @@ modules:
       - labelname: st4BranchIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.2
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchLabel
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.4
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.6
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchPhaseID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.20
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchOcpID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.21
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.30
         type: DisplayString
@@ -1997,27 +2551,45 @@ modules:
       - labelname: st4BranchIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.2
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchLabel
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.4
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.6
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchPhaseID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.20
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchOcpID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.21
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.30
         type: DisplayString
@@ -2056,27 +2628,45 @@ modules:
       - labelname: st4BranchIndex
         type: gauge
       lookups:
-      - labels: *id022
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.2
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchLabel
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.4
         type: DisplayString
-      - labels: *id024
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.6
         type: DisplayString
-      - labels: *id025
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchPhaseID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.20
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchOcpID
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.21
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4BranchIndex
         labelname: st4BranchOutletCount
         oid: 1.3.6.1.4.1.1718.4.1.7.2.1.30
         type: DisplayString
@@ -2092,70 +2682,70 @@ modules:
       - labelname: st4OutletIndex
         type: gauge
       lookups:
-      - labels: &id028
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletID
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.2
         type: DisplayString
-      - labels: &id029
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletName
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.3
         type: DisplayString
-      - labels: &id030
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletSocketType
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.6
         type: DisplayString
-      - labels: &id031
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.7
         type: DisplayString
-      - labels: &id032
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.8
         type: DisplayString
-      - labels: &id033
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletWakeupState
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.20
         type: EnumAsInfo
-      - labels: &id034
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletPostOnDelay
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.21
         type: DisplayString
-      - labels: &id035
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletPhaseID
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.30
         type: DisplayString
-      - labels: &id036
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
         labelname: st4OutletOcpID
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.31
         type: DisplayString
-      - labels: &id037
+      - labels:
         - st4UnitIndex
         - st4InputCordIndex
         - st4OutletIndex
@@ -2178,43 +2768,73 @@ modules:
       - labelname: st4OutletIndex
         type: gauge
       lookups:
-      - labels: *id028
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletID
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.2
         type: DisplayString
-      - labels: *id029
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletName
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.3
         type: DisplayString
-      - labels: *id030
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletSocketType
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.6
         type: DisplayString
-      - labels: *id031
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletCurrentCapacity
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.7
         type: DisplayString
-      - labels: *id032
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletPowerCapacity
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.8
         type: DisplayString
-      - labels: *id033
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletWakeupState
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.20
         type: EnumAsInfo
-      - labels: *id034
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletPostOnDelay
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.21
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletPhaseID
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.30
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletOcpID
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.31
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - st4UnitIndex
+        - st4InputCordIndex
+        - st4OutletIndex
         labelname: st4OutletBranchID
         oid: 1.3.6.1.4.1.1718.4.1.8.2.1.32
         type: DisplayString

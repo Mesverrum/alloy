@@ -14,7 +14,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -53,6 +54,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_MemoryTotal
       oid: 1.3.6.1.4.1.171.14.5.1.4.1.3
       type: gauge
@@ -61,7 +63,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - index
         labelname: dEntityExtMemUtilType
         oid: 1.3.6.1.4.1.171.14.5.1.4.1.2
@@ -74,7 +76,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: dEntityExtMemUtilType
         oid: 1.3.6.1.4.1.171.14.5.1.4.1.2
         type: EnumAsInfo
@@ -86,7 +89,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - index
         labelname: dEntityExtEnvTempDescr
         oid: 1.3.6.1.4.1.171.14.5.1.1.1.1.3
@@ -99,7 +102,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - index
         labelname: dEntityExtEnvTempDescr
         oid: 1.3.6.1.4.1.171.14.5.1.1.1.1.3
         type: DisplayString
@@ -130,7 +134,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - index
         labelname: dEntityExtEnvPowerDescr
         oid: 1.3.6.1.4.1.171.14.5.1.1.3.1.3
@@ -143,7 +147,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - index
         labelname: dEntityExtEnvPowerDescr
         oid: 1.3.6.1.4.1.171.14.5.1.1.3.1.3
         type: DisplayString
@@ -161,6 +166,7 @@ modules:
       enum_values:
         1: ok
         2: abnormal
+      lookups: []
     - name: snmp_dEntityExtUnitStatus
       oid: 1.3.6.1.4.1.171.14.5.1.3.1.2
       type: gauge
@@ -172,6 +178,7 @@ modules:
         1: ok
         2: failed
         3: empty
+      lookups: []
     get:
     - 1.3.6.1.2.1.1.1.0
     - 1.3.6.1.2.1.1.2.0

@@ -19,7 +19,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -55,6 +56,7 @@ modules:
       oid: 1.3.6.1.4.1.42229.1.2.2.2.2
       type: gauge
       help: systemPowerConsumptionCurrent (CORIANT-GROOVE-MIB) - 1.3.6.1.4.1.42229.1.2.2.2.2.0
+      lookups: []
     - name: snmp_shelfInletTemperature
       oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.3
       type: gauge
@@ -63,12 +65,12 @@ modules:
       - labelname: shelfId
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - shelfId
         labelname: shelfLocation
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.4
         type: DisplayString
-      - labels: &id002
+      - labels:
         - shelfId
         labelname: shelfAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.8
@@ -81,11 +83,13 @@ modules:
       - labelname: shelfId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - shelfId
         labelname: shelfLocation
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - shelfId
         labelname: shelfAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.8
         type: DisplayString
@@ -97,11 +101,13 @@ modules:
       - labelname: shelfId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - shelfId
         labelname: shelfLocation
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - shelfId
         labelname: shelfAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.8
         type: DisplayString
@@ -116,11 +122,13 @@ modules:
       - labelname: shelfId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - shelfId
         labelname: shelfLocation
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - shelfId
         labelname: shelfAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.8
         type: DisplayString
@@ -135,11 +143,13 @@ modules:
       - labelname: shelfId
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - shelfId
         labelname: shelfLocation
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - shelfId
         labelname: shelfAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.1.1.1.8
         type: DisplayString
@@ -174,19 +184,19 @@ modules:
       - labelname: slotId
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - shelfId
         - slotId
         labelname: cardRequiredType
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.1
         type: EnumAsInfo
-      - labels: &id004
+      - labels:
         - shelfId
         - slotId
         labelname: cardEquipmentName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.2
         type: DisplayString
-      - labels: &id005
+      - labels:
         - shelfId
         - slotId
         labelname: cardAliasName
@@ -205,15 +215,21 @@ modules:
       - labelname: slotId
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardRequiredType
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.1
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardEquipmentName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.2
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.6
         type: DisplayString
@@ -230,15 +246,21 @@ modules:
       - labelname: slotId
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardRequiredType
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.1
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardEquipmentName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.2
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.6
         type: DisplayString
@@ -273,15 +295,21 @@ modules:
       - labelname: slotId
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardRequiredType
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.1
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardEquipmentName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.2
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.6
         type: DisplayString
@@ -295,15 +323,21 @@ modules:
       - labelname: slotId
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardRequiredType
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.1
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardEquipmentName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.2
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.6
         type: DisplayString
@@ -317,15 +351,21 @@ modules:
       - labelname: slotId
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardRequiredType
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.1
         type: EnumAsInfo
-      - labels: *id004
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardEquipmentName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.2
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - shelfId
+        - slotId
         labelname: cardAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.3.1.1.6
         type: DisplayString
@@ -347,7 +387,7 @@ modules:
       - labelname: portId
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - shelfId
         - slotId
         - subslotId
@@ -355,7 +395,7 @@ modules:
         labelname: portName
         oid: 1.3.6.1.4.1.42229.1.2.3.6.1.1.16
         type: DisplayString
-      - labels: &id007
+      - labels:
         - shelfId
         - slotId
         - subslotId
@@ -363,7 +403,7 @@ modules:
         labelname: portAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.6.1.1.22
         type: DisplayString
-      - labels: &id008
+      - labels:
         - shelfId
         - slotId
         - subslotId
@@ -371,7 +411,7 @@ modules:
         labelname: portServiceLabel
         oid: 1.3.6.1.4.1.42229.1.2.3.6.1.1.23
         type: DisplayString
-      - labels: &id009
+      - labels:
         - shelfId
         - slotId
         - subslotId
@@ -393,19 +433,35 @@ modules:
       - labelname: portId
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - shelfId
+        - slotId
+        - subslotId
+        - portId
         labelname: portName
         oid: 1.3.6.1.4.1.42229.1.2.3.6.1.1.16
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - shelfId
+        - slotId
+        - subslotId
+        - portId
         labelname: portAliasName
         oid: 1.3.6.1.4.1.42229.1.2.3.6.1.1.22
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - shelfId
+        - slotId
+        - subslotId
+        - portId
         labelname: portServiceLabel
         oid: 1.3.6.1.4.1.42229.1.2.3.6.1.1.23
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - shelfId
+        - slotId
+        - subslotId
+        - portId
         labelname: portConnectedTo
         oid: 1.3.6.1.4.1.42229.1.2.3.6.1.1.24
         type: DisplayString
@@ -423,7 +479,7 @@ modules:
       - labelname: portId
         type: gauge
       lookups:
-      - labels: &id010
+      - labels:
         - shelfId
         - slotId
         - subslotId
@@ -445,7 +501,11 @@ modules:
       - labelname: portId
         type: gauge
       lookups:
-      - labels: *id010
+      - labels:
+        - shelfId
+        - slotId
+        - subslotId
+        - portId
         labelname: ochOsServiceLabel
         oid: 1.3.6.1.4.1.42229.1.2.4.1.19.1.1.21
         type: DisplayString

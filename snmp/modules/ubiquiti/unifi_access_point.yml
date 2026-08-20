@@ -19,7 +19,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -55,10 +56,12 @@ modules:
       oid: 1.3.6.1.4.1.10002.1.1.1.1.1
       type: gauge
       help: memTotal (FROGFOOT-RESOURCES-MIB) - 1.3.6.1.4.1.10002.1.1.1.1.1.0
+      lookups: []
     - name: snmp_MemoryFree
       oid: 1.3.6.1.4.1.10002.1.1.1.1.2
       type: gauge
       help: memFree (FROGFOOT-RESOURCES-MIB) - 1.3.6.1.4.1.10002.1.1.1.1.2.0
+      lookups: []
     - name: snmp_CPULoad
       oid: 1.3.6.1.4.1.10002.1.1.1.4.2.1.3.1
       type: gauge
@@ -86,17 +89,17 @@ modules:
       - labelname: unifiRadioIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - unifiRadioIndex
         labelname: unifiRadioIndex
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.1
         type: gauge
-      - labels: &id002
+      - labels:
         - unifiRadioIndex
         labelname: unifiRadioName
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.2
         type: DisplayString
-      - labels: &id003
+      - labels:
         - unifiRadioIndex
         labelname: unifiRadioRadio
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.3
@@ -109,15 +112,18 @@ modules:
       - labelname: unifiRadioIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioIndex
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioName
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioRadio
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.3
         type: DisplayString
@@ -129,15 +135,18 @@ modules:
       - labelname: unifiRadioIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioIndex
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioName
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioRadio
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.3
         type: DisplayString
@@ -149,15 +158,18 @@ modules:
       - labelname: unifiRadioIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioIndex
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioName
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioRadio
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.3
         type: DisplayString
@@ -169,15 +181,18 @@ modules:
       - labelname: unifiRadioIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioIndex
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioName
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioRadio
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.3
         type: DisplayString
@@ -189,15 +204,18 @@ modules:
       - labelname: unifiRadioIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioIndex
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.1
         type: gauge
-      - labels: *id002
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioName
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.2
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - unifiRadioIndex
         labelname: unifiRadioRadio
         oid: 1.3.6.1.4.1.41112.1.6.1.1.1.3
         type: DisplayString

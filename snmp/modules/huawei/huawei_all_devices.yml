@@ -18,7 +18,7 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - entPhysicalIndex
         labelname: hwEntityBoardName
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.43
@@ -39,7 +39,8 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: hwEntityBoardName
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.43
         type: DisplayString
@@ -61,7 +62,8 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: hwEntityBoardName
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.43
         type: DisplayString
@@ -78,7 +80,8 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: hwEntityBoardName
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.43
         type: DisplayString
@@ -90,7 +93,8 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: hwEntityBoardName
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.43
         type: DisplayString
@@ -102,7 +106,8 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: hwEntityBoardName
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.43
         type: DisplayString
@@ -114,7 +119,8 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: hwEntityBoardName
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.43
         type: DisplayString
@@ -126,7 +132,8 @@ modules:
       - labelname: entPhysicalIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - entPhysicalIndex
         labelname: hwEntityBoardName
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.1.1.43
         type: DisplayString
@@ -144,25 +151,25 @@ modules:
       - labelname: hwEntityFanSn
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - hwEntityFanSlot
         - hwEntityFanSn
         labelname: hwEntityFanSlot
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1
         type: DisplayString
-      - labels: &id003
+      - labels:
         - hwEntityFanSlot
         - hwEntityFanSn
         labelname: hwEntityFanSn
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.2
         type: DisplayString
-      - labels: &id004
+      - labels:
         - hwEntityFanSlot
         - hwEntityFanSn
         labelname: hwEntityFanReg
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.3
         type: EnumAsInfo
-      - labels: &id005
+      - labels:
         - hwEntityFanSlot
         - hwEntityFanSn
         labelname: hwEntityFanSpdAdjMode
@@ -178,19 +185,27 @@ modules:
       - labelname: hwEntityFanSn
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - hwEntityFanSlot
+        - hwEntityFanSn
         labelname: hwEntityFanSlot
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - hwEntityFanSlot
+        - hwEntityFanSn
         labelname: hwEntityFanSn
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.2
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - hwEntityFanSlot
+        - hwEntityFanSn
         labelname: hwEntityFanReg
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.3
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - hwEntityFanSlot
+        - hwEntityFanSn
         labelname: hwEntityFanSpdAdjMode
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.4
         type: EnumAsInfo
@@ -207,19 +222,27 @@ modules:
       - labelname: hwEntityFanSn
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - hwEntityFanSlot
+        - hwEntityFanSn
         labelname: hwEntityFanSlot
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.1
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - hwEntityFanSlot
+        - hwEntityFanSn
         labelname: hwEntityFanSn
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.2
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - hwEntityFanSlot
+        - hwEntityFanSn
         labelname: hwEntityFanReg
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.3
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - hwEntityFanSlot
+        - hwEntityFanSn
         labelname: hwEntityFanSpdAdjMode
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.10.1.4
         type: EnumAsInfo
@@ -234,7 +257,7 @@ modules:
       - labelname: hwSystemPowerDeviceID
         type: gauge
       lookups:
-      - labels: &id006
+      - labels:
         - hwSystemPowerDeviceID
         labelname: hwSystemPowerDeviceID
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.14.1.1
@@ -247,7 +270,8 @@ modules:
       - labelname: hwSystemPowerDeviceID
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - hwSystemPowerDeviceID
         labelname: hwSystemPowerDeviceID
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.14.1.1
         type: DisplayString
@@ -259,7 +283,8 @@ modules:
       - labelname: hwSystemPowerDeviceID
         type: gauge
       lookups:
-      - labels: *id006
+      - labels:
+        - hwSystemPowerDeviceID
         labelname: hwSystemPowerDeviceID
         oid: 1.3.6.1.4.1.2011.5.25.31.1.1.14.1.1
         type: DisplayString
@@ -277,7 +302,7 @@ modules:
       - labelname: hwOspfv2NbrIpAddrIndex
         type: gauge
       lookups:
-      - labels: &id007
+      - labels:
         - hwOspfv2ProcessIdIndex
         - hwOspfv2AreaIdIndex
         - hwOspfv2SelfIfnetIndex
@@ -285,7 +310,7 @@ modules:
         labelname: self_router_id
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.3
         type: DisplayString
-      - labels: &id008
+      - labels:
         - hwOspfv2ProcessIdIndex
         - hwOspfv2AreaIdIndex
         - hwOspfv2SelfIfnetIndex
@@ -293,7 +318,7 @@ modules:
         labelname: self_if_ip_address
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.4
         type: DisplayString
-      - labels: &id009
+      - labels:
         - hwOspfv2ProcessIdIndex
         - hwOspfv2AreaIdIndex
         - hwOspfv2SelfIfnetIndex
@@ -301,7 +326,7 @@ modules:
         labelname: self_if_name
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.5
         type: DisplayString
-      - labels: &id010
+      - labels:
         - hwOspfv2ProcessIdIndex
         - hwOspfv2AreaIdIndex
         - hwOspfv2SelfIfnetIndex
@@ -309,7 +334,7 @@ modules:
         labelname: designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.6
         type: DisplayString
-      - labels: &id011
+      - labels:
         - hwOspfv2ProcessIdIndex
         - hwOspfv2AreaIdIndex
         - hwOspfv2SelfIfnetIndex
@@ -331,23 +356,43 @@ modules:
       - labelname: hwOspfv2NbrIpAddrIndex
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_router_id
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.3
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_ip_address
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.4
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_name
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.5
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.6
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: backup_designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.7
         type: DisplayString
@@ -374,23 +419,43 @@ modules:
       - labelname: hwOspfv2NbrIpAddrIndex
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_router_id
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.3
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_ip_address
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.4
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_name
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.5
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.6
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: backup_designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.7
         type: DisplayString
@@ -411,23 +476,43 @@ modules:
       - labelname: hwOspfv2NbrIpAddrIndex
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_router_id
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.3
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_ip_address
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.4
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_name
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.5
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.6
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: backup_designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.7
         type: DisplayString
@@ -445,23 +530,43 @@ modules:
       - labelname: hwOspfv2NbrIpAddrIndex
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_router_id
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.3
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_ip_address
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.4
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_name
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.5
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.6
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: backup_designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.7
         type: DisplayString
@@ -479,23 +584,43 @@ modules:
       - labelname: hwOspfv2NbrIpAddrIndex
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_router_id
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.3
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_ip_address
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.4
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_name
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.5
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.6
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: backup_designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.7
         type: DisplayString
@@ -513,23 +638,43 @@ modules:
       - labelname: hwOspfv2NbrIpAddrIndex
         type: gauge
       lookups:
-      - labels: *id007
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_router_id
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.3
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_ip_address
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.4
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: self_if_name
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.5
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.6
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - hwOspfv2ProcessIdIndex
+        - hwOspfv2AreaIdIndex
+        - hwOspfv2SelfIfnetIndex
+        - hwOspfv2NbrIpAddrIndex
         labelname: backup_designated_router
         oid: 1.3.6.1.4.1.2011.5.25.155.6.1.7
         type: DisplayString
@@ -549,6 +694,7 @@ modules:
         type: gauge
       - labelname: hwCpuDevIndex
         type: gauge
+      lookups: []
     - name: snmp_hwMemoryDevSize
       oid: 1.3.6.1.4.1.2011.6.3.5.1.1.2
       type: counter
@@ -556,6 +702,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_hwMemoryDevFree
       oid: 1.3.6.1.4.1.2011.6.3.5.1.1.3
       type: counter
@@ -563,3 +710,4 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []

@@ -42,7 +42,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -88,6 +89,7 @@ modules:
       oid: 1.3.6.1.4.1.14179.1.1.5.1
       type: gauge
       help: agentCurrentCPUUtilization (AIRESPACE-SWITCHING-MIB) - 1.3.6.1.4.1.14179.1.1.5.1.0
+      lookups: []
     - name: snmp_agentSwitchInfoPowerSupply1Present
       oid: 1.3.6.1.4.1.14179.1.1.3.2
       type: gauge
@@ -95,6 +97,7 @@ modules:
       enum_values:
         0: 'off'
         1: 'on'
+      lookups: []
     - name: snmp_agentSwitchInfoPowerSupply1Operational
       oid: 1.3.6.1.4.1.14179.1.1.3.3
       type: gauge
@@ -102,6 +105,7 @@ modules:
       enum_values:
         0: 'off'
         1: 'on'
+      lookups: []
     - name: snmp_agentSwitchInfoPowerSupply2Present
       oid: 1.3.6.1.4.1.14179.1.1.3.4
       type: gauge
@@ -109,6 +113,7 @@ modules:
       enum_values:
         0: 'off'
         1: 'on'
+      lookups: []
     - name: snmp_agentSwitchInfoPowerSupply2Operational
       oid: 1.3.6.1.4.1.14179.1.1.3.5
       type: gauge
@@ -116,22 +121,27 @@ modules:
       enum_values:
         0: 'off'
         1: 'on'
+      lookups: []
     - name: snmp_clsSysApConnectCount
       oid: 1.3.6.1.4.1.9.9.618.1.8.4
       type: gauge
       help: clsSysApConnectCount (CISCO-LWAPP-SYS-MIB) - 1.3.6.1.4.1.9.9.618.1.8.4.0
+      lookups: []
     - name: snmp_clsSysCurrentMemoryUsage
       oid: 1.3.6.1.4.1.9.9.618.1.8.6
       type: gauge
       help: clsSysCurrentMemoryUsage (CISCO-LWAPP-SYS-MIB) - 1.3.6.1.4.1.9.9.618.1.8.6.0
+      lookups: []
     - name: snmp_clsMaxClientsCount
       oid: 1.3.6.1.4.1.9.9.618.1.8.12
       type: gauge
       help: clsMaxClientsCount (CISCO-LWAPP-SYS-MIB) - 1.3.6.1.4.1.9.9.618.1.8.12.0
+      lookups: []
     - name: snmp_bsnSensorTemperature
       oid: 1.3.6.1.4.1.14179.2.3.1.13
       type: gauge
       help: bsnSensorTemperature (AIRESPACE-WIRELESS-MIB) - 1.3.6.1.4.1.14179.2.3.1.13.0
+      lookups: []
     - name: snmp_cRFStatusUnitState
       oid: 1.3.6.1.4.1.9.9.176.1.1.2
       type: gauge
@@ -153,10 +163,12 @@ modules:
         14: active
         15: activeExtraload
         16: activeHandback
+      lookups: []
     - name: snmp_cRFStatusPeerUnitId
       oid: 1.3.6.1.4.1.9.9.176.1.1.3
       type: gauge
       help: cRFStatusPeerUnitId (CISCO-RF-MIB) - 1.3.6.1.4.1.9.9.176.1.1.3.0
+      lookups: []
     - name: snmp_cRFStatusPeerUnitState
       oid: 1.3.6.1.4.1.9.9.176.1.1.4
       type: gauge
@@ -178,6 +190,7 @@ modules:
         14: active
         15: activeExtraload
         16: activeHandback
+      lookups: []
     - name: snmp_cRFStatusLastSwactReasonCode
       oid: 1.3.6.1.4.1.9.9.176.1.1.8
       type: gauge
@@ -190,10 +203,12 @@ modules:
         5: userForced
         6: activeUnitFailed
         7: activeUnitRemoved
+      lookups: []
     - name: snmp_cRFStatusFailoverTime
       oid: 1.3.6.1.4.1.9.9.176.1.1.9
       type: gauge
       help: cRFStatusFailoverTime (CISCO-RF-MIB) - 1.3.6.1.4.1.9.9.176.1.1.9.0
+      lookups: []
     - name: snmp_cRFCfgRedundancyOperMode
       oid: 1.3.6.1.4.1.9.9.176.1.2.16
       type: gauge
@@ -207,10 +222,12 @@ modules:
         6: coldStandbyRedundant
         7: warmStandbyRedundant
         8: hotStandbyRedundant
+      lookups: []
     - name: snmp_cLHaAvgPeerReachLatency
       oid: 1.3.6.1.4.1.9.9.843.1.5.1
       type: gauge
       help: cLHaAvgPeerReachLatency (CISCO-LWAPP-HA-MIB) - 1.3.6.1.4.1.9.9.843.1.5.1
+      lookups: []
     - name: snmp_cLHaBulkSyncStatus
       oid: 1.3.6.1.4.1.9.9.843.1.5.3
       type: gauge
@@ -218,6 +235,7 @@ modules:
       enum_values:
         1: completed
         0: pending
+      lookups: []
     - name: snmp_cLWlanRowStatus
       oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.2
       type: gauge
@@ -251,7 +269,7 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
@@ -264,7 +282,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -276,7 +295,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -288,117 +308,117 @@ modules:
       - labelname: bsnAPDot3MacAddress
         type: InetAddress
       lookups:
-      - labels: &id002
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPDot3MacAddress
         oid: 1.3.6.1.4.1.14179.2.2.1.1.1
         type: DisplayString
-      - labels: &id003
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.3
         type: DisplayString
-      - labels: &id004
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPLocation
         oid: 1.3.6.1.4.1.14179.2.2.1.1.4
         type: DisplayString
-      - labels: &id005
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPMonitorOnlyMode
         oid: 1.3.6.1.4.1.14179.2.2.1.1.5
         type: EnumAsInfo
-      - labels: &id006
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPSoftwareVersion
         oid: 1.3.6.1.4.1.14179.2.2.1.1.8
         type: DisplayString
-      - labels: &id007
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPBootVersion
         oid: 1.3.6.1.4.1.14179.2.2.1.1.9
         type: DisplayString
-      - labels: &id008
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPPrimaryMwarName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.10
         type: DisplayString
-      - labels: &id009
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPPortNumber
         oid: 1.3.6.1.4.1.14179.2.2.1.1.13
         type: DisplayString
-      - labels: &id010
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPModel
         oid: 1.3.6.1.4.1.14179.2.2.1.1.16
         type: DisplayString
-      - labels: &id011
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPSerialNumber
         oid: 1.3.6.1.4.1.14179.2.2.1.1.17
         type: DisplayString
-      - labels: &id012
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnApIpAddress
         oid: 1.3.6.1.4.1.14179.2.2.1.1.19
         type: DisplayString
-      - labels: &id013
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPType
         oid: 1.3.6.1.4.1.14179.2.2.1.1.22
         type: EnumAsInfo
-      - labels: &id014
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPSecondaryMwarName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.23
         type: DisplayString
-      - labels: &id015
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPTertiaryMwarName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.24
         type: DisplayString
-      - labels: &id016
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPIsStaticIP
         oid: 1.3.6.1.4.1.14179.2.2.1.1.25
         type: EnumAsInfo
-      - labels: &id017
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPNetmask
         oid: 1.3.6.1.4.1.14179.2.2.1.1.26
         type: DisplayString
-      - labels: &id018
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPGateway
         oid: 1.3.6.1.4.1.14179.2.2.1.1.27
         type: DisplayString
-      - labels: &id019
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPStaticIPAddress
         oid: 1.3.6.1.4.1.14179.2.2.1.1.28
         type: DisplayString
-      - labels: &id020
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPBridgingSupport
         oid: 1.3.6.1.4.1.14179.2.2.1.1.29
         type: EnumAsInfo
-      - labels: &id021
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPGroupVlanName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.30
         type: DisplayString
-      - labels: &id022
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPIOSVersion
         oid: 1.3.6.1.4.1.14179.2.2.1.1.31
         type: DisplayString
-      - labels: &id023
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPCertificateType
         oid: 1.3.6.1.4.1.14179.2.2.1.1.32
         type: EnumAsInfo
-      - labels: &id024
+      - labels:
         - bsnAPDot3MacAddress
         labelname: bsnAPEthernetMacAddress
         oid: 1.3.6.1.4.1.14179.2.2.1.1.33
@@ -415,95 +435,118 @@ modules:
       - labelname: bsnAPDot3MacAddress
         type: InetAddress
       lookups:
-      - labels: *id002
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPDot3MacAddress
         oid: 1.3.6.1.4.1.14179.2.2.1.1.1
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.3
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPLocation
         oid: 1.3.6.1.4.1.14179.2.2.1.1.4
         type: DisplayString
-      - labels: *id005
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPMonitorOnlyMode
         oid: 1.3.6.1.4.1.14179.2.2.1.1.5
         type: EnumAsInfo
-      - labels: *id006
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPSoftwareVersion
         oid: 1.3.6.1.4.1.14179.2.2.1.1.8
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPBootVersion
         oid: 1.3.6.1.4.1.14179.2.2.1.1.9
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPPrimaryMwarName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.10
         type: DisplayString
-      - labels: *id009
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPPortNumber
         oid: 1.3.6.1.4.1.14179.2.2.1.1.13
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPModel
         oid: 1.3.6.1.4.1.14179.2.2.1.1.16
         type: DisplayString
-      - labels: *id011
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPSerialNumber
         oid: 1.3.6.1.4.1.14179.2.2.1.1.17
         type: DisplayString
-      - labels: *id012
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnApIpAddress
         oid: 1.3.6.1.4.1.14179.2.2.1.1.19
         type: DisplayString
-      - labels: *id013
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPType
         oid: 1.3.6.1.4.1.14179.2.2.1.1.22
         type: EnumAsInfo
-      - labels: *id014
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPSecondaryMwarName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.23
         type: DisplayString
-      - labels: *id015
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPTertiaryMwarName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.24
         type: DisplayString
-      - labels: *id016
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPIsStaticIP
         oid: 1.3.6.1.4.1.14179.2.2.1.1.25
         type: EnumAsInfo
-      - labels: *id017
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPNetmask
         oid: 1.3.6.1.4.1.14179.2.2.1.1.26
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPGateway
         oid: 1.3.6.1.4.1.14179.2.2.1.1.27
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPStaticIPAddress
         oid: 1.3.6.1.4.1.14179.2.2.1.1.28
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPBridgingSupport
         oid: 1.3.6.1.4.1.14179.2.2.1.1.29
         type: EnumAsInfo
-      - labels: *id021
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPGroupVlanName
         oid: 1.3.6.1.4.1.14179.2.2.1.1.30
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPIOSVersion
         oid: 1.3.6.1.4.1.14179.2.2.1.1.31
         type: DisplayString
-      - labels: *id023
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPCertificateType
         oid: 1.3.6.1.4.1.14179.2.2.1.1.32
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - bsnAPDot3MacAddress
         labelname: bsnAPEthernetMacAddress
         oid: 1.3.6.1.4.1.14179.2.2.1.1.33
         type: DisplayString
@@ -518,22 +561,22 @@ modules:
       - labelname: bsnDot11EssIndex
         type: gauge
       lookups:
-      - labels: &id025
+      - labels:
         - bsnDot11EssIndex
         labelname: bsnDot11EssSsid
         oid: 1.3.6.1.4.1.14179.2.1.1.1.2
         type: DisplayString
-      - labels: &id026
+      - labels:
         - bsnDot11EssIndex
         labelname: wlan_profile_name
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.3
         type: DisplayString
-      - labels: &id027
+      - labels:
         - bsnDot11EssIndex
         labelname: wlan_ssid
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.4
         type: DisplayString
-      - labels: &id028
+      - labels:
         - bsnDot11EssIndex
         labelname: cLApDot11IfAdminStatus
         oid: 1.3.6.1.4.1.9.9.513.1.2.1.1.14
@@ -549,19 +592,23 @@ modules:
       - labelname: bsnDot11EssIndex
         type: gauge
       lookups:
-      - labels: *id025
+      - labels:
+        - bsnDot11EssIndex
         labelname: bsnDot11EssSsid
         oid: 1.3.6.1.4.1.14179.2.1.1.1.2
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - bsnDot11EssIndex
         labelname: wlan_profile_name
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.3
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - bsnDot11EssIndex
         labelname: wlan_ssid
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.4
         type: DisplayString
-      - labels: *id028
+      - labels:
+        - bsnDot11EssIndex
         labelname: cLApDot11IfAdminStatus
         oid: 1.3.6.1.4.1.9.9.513.1.2.1.1.14
         type: DisplayString
@@ -581,19 +628,23 @@ modules:
       - labelname: bsnDot11EssIndex
         type: gauge
       lookups:
-      - labels: *id025
+      - labels:
+        - bsnDot11EssIndex
         labelname: bsnDot11EssSsid
         oid: 1.3.6.1.4.1.14179.2.1.1.1.2
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - bsnDot11EssIndex
         labelname: wlan_profile_name
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.3
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - bsnDot11EssIndex
         labelname: wlan_ssid
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.4
         type: DisplayString
-      - labels: *id028
+      - labels:
+        - bsnDot11EssIndex
         labelname: cLApDot11IfAdminStatus
         oid: 1.3.6.1.4.1.9.9.513.1.2.1.1.14
         type: DisplayString
@@ -610,19 +661,23 @@ modules:
       - labelname: bsnDot11EssIndex
         type: gauge
       lookups:
-      - labels: *id025
+      - labels:
+        - bsnDot11EssIndex
         labelname: bsnDot11EssSsid
         oid: 1.3.6.1.4.1.14179.2.1.1.1.2
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - bsnDot11EssIndex
         labelname: wlan_profile_name
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.3
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - bsnDot11EssIndex
         labelname: wlan_ssid
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.4
         type: DisplayString
-      - labels: *id028
+      - labels:
+        - bsnDot11EssIndex
         labelname: cLApDot11IfAdminStatus
         oid: 1.3.6.1.4.1.9.9.513.1.2.1.1.14
         type: DisplayString
@@ -634,19 +689,23 @@ modules:
       - labelname: bsnDot11EssIndex
         type: gauge
       lookups:
-      - labels: *id025
+      - labels:
+        - bsnDot11EssIndex
         labelname: bsnDot11EssSsid
         oid: 1.3.6.1.4.1.14179.2.1.1.1.2
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - bsnDot11EssIndex
         labelname: wlan_profile_name
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.3
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - bsnDot11EssIndex
         labelname: wlan_ssid
         oid: 1.3.6.1.4.1.9.9.512.1.1.1.1.4
         type: DisplayString
-      - labels: *id028
+      - labels:
+        - bsnDot11EssIndex
         labelname: cLApDot11IfAdminStatus
         oid: 1.3.6.1.4.1.9.9.513.1.2.1.1.14
         type: DisplayString
@@ -662,6 +721,7 @@ modules:
         type: InetAddress
       - labelname: bsnAPIfSlotId
         type: gauge
+      lookups: []
     - name: snmp_bsnAPIfOperStatus
       oid: 1.3.6.1.4.1.14179.2.2.2.1.12
       type: gauge
@@ -674,6 +734,7 @@ modules:
       enum_values:
         1: down
         2: up
+      lookups: []
     - name: snmp_bsnAPIfLoadChannelUtilization
       oid: 1.3.6.1.4.1.14179.2.2.13.1.3
       type: gauge
@@ -683,6 +744,7 @@ modules:
         type: InetAddress
       - labelname: bsnAPIfSlotId
         type: gauge
+      lookups: []
     - name: snmp_bsnAPIfLoadNumOfClients
       oid: 1.3.6.1.4.1.14179.2.2.13.1.4
       type: gauge
@@ -692,6 +754,7 @@ modules:
         type: InetAddress
       - labelname: bsnAPIfSlotId
         type: gauge
+      lookups: []
     - name: snmp_bsnAPIfPoorSNRClients
       oid: 1.3.6.1.4.1.14179.2.2.13.1.24
       type: gauge
@@ -701,6 +764,7 @@ modules:
         type: InetAddress
       - labelname: bsnAPIfSlotId
         type: gauge
+      lookups: []
     - name: snmp_bsnAPIfInterferenceUtilization
       oid: 1.3.6.1.4.1.14179.2.2.14.1.22
       type: gauge
@@ -712,6 +776,7 @@ modules:
         type: gauge
       - labelname: bsnAPIfInterferenceChannelNo
         type: gauge
+      lookups: []
     - name: snmp_bsnRadiusAuthClientRoundTripTime
       oid: 1.3.6.1.4.1.14179.2.5.3.1.6
       type: gauge
@@ -720,7 +785,7 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: &id029
+      - labels:
         - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
@@ -733,7 +798,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -745,7 +811,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -757,7 +824,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -769,7 +837,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -781,7 +850,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -794,7 +864,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -806,7 +877,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -818,7 +890,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -830,7 +903,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -842,7 +916,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -854,7 +929,8 @@ modules:
       - labelname: bsnRadiusAuthServerIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - bsnRadiusAuthServerIndex
         labelname: bsnRadiusAuthServerAddress
         oid: 1.3.6.1.4.1.14179.2.5.1.1.2
         type: DisplayString
@@ -865,6 +941,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_clmgmtLicenseUsageCountRemaining
       oid: 1.3.6.1.4.1.9.9.543.1.2.3.1.11
       type: gauge
@@ -872,6 +949,7 @@ modules:
       indexes:
       - labelname: index
         type: gauge
+      lookups: []
     - name: snmp_cLApDot11IfAdminStatus
       oid: 1.3.6.1.4.1.9.9.513.1.2.1.1.14
       type: gauge
@@ -881,3 +959,4 @@ modules:
         type: InetAddress
       - labelname: cLApDot11IfSlotId
         type: gauge
+      lookups: []

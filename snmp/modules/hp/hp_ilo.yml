@@ -40,7 +40,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -105,17 +106,17 @@ modules:
       - labelname: cpqSeCpuUnitIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - cpqSeCpuUnitIndex
         labelname: cpqSeCpuSlot
         oid: 1.3.6.1.4.1.232.1.2.2.1.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - cpqSeCpuUnitIndex
         labelname: cpqSeCpuName
         oid: 1.3.6.1.4.1.232.1.2.2.1.1.3
         type: DisplayString
-      - labels: &id003
+      - labels:
         - cpqSeCpuUnitIndex
         labelname: cpqSeCpuCore
         oid: 1.3.6.1.4.1.232.1.2.2.1.1.15
@@ -134,15 +135,18 @@ modules:
       - labelname: cpqSeCpuUnitIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - cpqSeCpuUnitIndex
         labelname: cpqSeCpuSlot
         oid: 1.3.6.1.4.1.232.1.2.2.1.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - cpqSeCpuUnitIndex
         labelname: cpqSeCpuName
         oid: 1.3.6.1.4.1.232.1.2.2.1.1.3
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - cpqSeCpuUnitIndex
         labelname: cpqSeCpuCore
         oid: 1.3.6.1.4.1.232.1.2.2.1.1.15
         type: DisplayString
@@ -160,6 +164,7 @@ modules:
         2: ok
         3: degraded
         4: failed
+      lookups: []
     - name: snmp_cpqDaCntlrStndIntr
       oid: 1.3.6.1.4.1.232.3.2.2.1.1.4
       type: gauge
@@ -168,27 +173,27 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: &id004
+      - labels:
         - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: &id005
+      - labels:
         - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: &id006
+      - labels:
         - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: &id007
+      - labels:
         - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: &id008
+      - labels:
         - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
@@ -207,23 +212,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -240,23 +250,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -274,23 +289,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -309,23 +329,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -343,23 +368,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -376,23 +406,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -409,23 +444,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -441,23 +481,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -476,23 +521,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -517,23 +567,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -553,23 +608,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -588,23 +648,28 @@ modules:
       - labelname: cpqDaCntlrIndex
         type: gauge
       lookups:
-      - labels: *id004
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrModel
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.2
         type: EnumAsInfo
-      - labels: *id005
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrFWRev
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.3
         type: DisplayString
-      - labels: *id006
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.15
         type: DisplayString
-      - labels: *id007
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrHwLocation
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.20
         type: DisplayString
-      - labels: *id008
+      - labels:
+        - cpqDaCntlrIndex
         labelname: cpqDaCntlrOperatingMode
         oid: 1.3.6.1.4.1.232.3.2.2.1.1.43
         type: EnumAsInfo
@@ -616,12 +681,12 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: &id009
+      - labels:
         - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: &id010
+      - labels:
         - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
@@ -644,11 +709,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -664,11 +731,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -713,11 +782,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -737,11 +808,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -753,11 +826,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -769,11 +844,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -790,11 +867,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -806,11 +885,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -822,11 +903,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -842,11 +925,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -858,11 +943,13 @@ modules:
       - labelname: cpqDaAccelCntlrIndex
         type: gauge
       lookups:
-      - labels: *id009
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelSerialNumber
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.11
         type: DisplayString
-      - labels: *id010
+      - labels:
+        - cpqDaAccelCntlrIndex
         labelname: cpqDaAccelTotalMemory
         oid: 1.3.6.1.4.1.232.3.2.2.2.1.12
         type: DisplayString
@@ -876,37 +963,37 @@ modules:
       - labelname: cpqDaLogDrvIndex
         type: gauge
       lookups:
-      - labels: &id011
+      - labels:
         - cpqDaLogDrvCntlrIndex
         - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvIndex
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.2
         type: gauge
-      - labels: &id012
+      - labels:
         - cpqDaLogDrvCntlrIndex
         - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvHasAccel
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.7
         type: EnumAsInfo
-      - labels: &id013
+      - labels:
         - cpqDaLogDrvCntlrIndex
         - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvSize
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.9
         type: DisplayString
-      - labels: &id014
+      - labels:
         - cpqDaLogDrvCntlrIndex
         - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvCacheVolAccelAssocType
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.21
         type: EnumAsInfo
-      - labels: &id015
+      - labels:
         - cpqDaLogDrvCntlrIndex
         - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvSSDSmartPathStatus
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.24
         type: EnumAsInfo
-      - labels: &id016
+      - labels:
         - cpqDaLogDrvCntlrIndex
         - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvEncryptionStatus
@@ -933,27 +1020,39 @@ modules:
       - labelname: cpqDaLogDrvIndex
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvIndex
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.2
         type: gauge
-      - labels: *id012
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvHasAccel
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.7
         type: EnumAsInfo
-      - labels: *id013
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvSize
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.9
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvCacheVolAccelAssocType
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.21
         type: EnumAsInfo
-      - labels: *id015
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvSSDSmartPathStatus
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.24
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.25
         type: EnumAsInfo
@@ -993,27 +1092,39 @@ modules:
       - labelname: cpqDaLogDrvIndex
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvIndex
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.2
         type: gauge
-      - labels: *id012
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvHasAccel
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.7
         type: EnumAsInfo
-      - labels: *id013
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvSize
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.9
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvCacheVolAccelAssocType
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.21
         type: EnumAsInfo
-      - labels: *id015
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvSSDSmartPathStatus
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.24
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.25
         type: EnumAsInfo
@@ -1032,27 +1143,39 @@ modules:
       - labelname: cpqDaLogDrvIndex
         type: gauge
       lookups:
-      - labels: *id011
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvIndex
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.2
         type: gauge
-      - labels: *id012
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvHasAccel
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.7
         type: EnumAsInfo
-      - labels: *id013
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvSize
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.9
         type: DisplayString
-      - labels: *id014
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvCacheVolAccelAssocType
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.21
         type: EnumAsInfo
-      - labels: *id015
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvSSDSmartPathStatus
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.24
         type: EnumAsInfo
-      - labels: *id016
+      - labels:
+        - cpqDaLogDrvCntlrIndex
+        - cpqDaLogDrvIndex
         labelname: cpqDaLogDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.3.1.1.25
         type: EnumAsInfo
@@ -1070,62 +1193,62 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id017
+      - labels:
         - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: &id018
+      - labels:
         - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: &id019
+      - labels:
         - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: &id020
+      - labels:
         - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: &id021
+      - labels:
         - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: &id022
+      - labels:
         - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: &id023
+      - labels:
         - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: &id024
+      - labels:
         - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: &id025
+      - labels:
         - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: &id026
+      - labels:
         - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: &id027
+      - labels:
         - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: &id028
+      - labels:
         - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
@@ -1148,51 +1271,63 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id017
+      - labels:
+        - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: *id023
+      - labels:
+        - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
         type: EnumAsInfo
@@ -1204,51 +1339,63 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id017
+      - labels:
+        - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: *id023
+      - labels:
+        - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
         type: EnumAsInfo
@@ -1265,51 +1412,63 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id017
+      - labels:
+        - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: *id023
+      - labels:
+        - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
         type: EnumAsInfo
@@ -1326,51 +1485,63 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id017
+      - labels:
+        - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: *id023
+      - labels:
+        - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
         type: EnumAsInfo
@@ -1386,51 +1557,63 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id017
+      - labels:
+        - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: *id023
+      - labels:
+        - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
         type: EnumAsInfo
@@ -1449,51 +1632,63 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id017
+      - labels:
+        - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: *id023
+      - labels:
+        - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
         type: EnumAsInfo
@@ -1505,51 +1700,63 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id017
+      - labels:
+        - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: *id023
+      - labels:
+        - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
         type: EnumAsInfo
@@ -1568,51 +1775,63 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id017
+      - labels:
+        - index
         labelname: cpqDaPhyDrvModel
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.3
         type: DisplayString
-      - labels: *id018
+      - labels:
+        - index
         labelname: cpqDaPhyDrvFWRev
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.4
         type: DisplayString
-      - labels: *id019
+      - labels:
+        - index
         labelname: cpqDaPhyDrvBay
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.5
         type: DisplayString
-      - labels: *id020
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSize
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.45
         type: DisplayString
-      - labels: *id021
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSerialNum
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.51
         type: DisplayString
-      - labels: *id022
+      - labels:
+        - index
         labelname: cpqDaPhyDrvRotationalSpeed
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.59
         type: EnumAsInfo
-      - labels: *id023
+      - labels:
+        - index
         labelname: cpqDaPhyDrvType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.60
         type: EnumAsInfo
-      - labels: *id024
+      - labels:
+        - index
         labelname: cpqDaPhyDrvSataVersion
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.61
         type: EnumAsInfo
-      - labels: *id025
+      - labels:
+        - index
         labelname: cpqDaPhyDrvHostConnector
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.62
         type: DisplayString
-      - labels: *id026
+      - labels:
+        - index
         labelname: cpqDaPhyDrvLocationString
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.64
         type: DisplayString
-      - labels: *id027
+      - labels:
+        - index
         labelname: cpqDaPhyDrvMediaType
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.69
         type: EnumAsInfo
-      - labels: *id028
+      - labels:
+        - index
         labelname: cpqDaPhyDrvEncryptionStatus
         oid: 1.3.6.1.4.1.232.3.2.5.1.1.80
         type: EnumAsInfo
@@ -1630,6 +1849,7 @@ modules:
         2: notAvailable
         3: disabled
         4: enabled
+      lookups: []
     - name: snmp_cpqHeAsrCondition
       oid: 1.3.6.1.4.1.232.6.2.5.17
       type: gauge
@@ -1639,6 +1859,7 @@ modules:
         2: ok
         3: degraded
         4: failed
+      lookups: []
     - name: snmp_cpqHeThermalCondition
       oid: 1.3.6.1.4.1.232.6.2.6.1
       type: gauge
@@ -1648,6 +1869,7 @@ modules:
         2: ok
         3: degraded
         4: failed
+      lookups: []
     - name: snmp_cpqHeThermalTempStatus
       oid: 1.3.6.1.4.1.232.6.2.6.3
       type: gauge
@@ -1657,6 +1879,7 @@ modules:
         2: ok
         3: degraded
         4: failed
+      lookups: []
     - name: snmp_cpqHeThermalSystemFanStatus
       oid: 1.3.6.1.4.1.232.6.2.6.4
       type: gauge
@@ -1666,6 +1889,7 @@ modules:
         2: ok
         3: degraded
         4: failed
+      lookups: []
     - name: snmp_cpqHeThermalCpuFanStatus
       oid: 1.3.6.1.4.1.232.6.2.6.5
       type: gauge
@@ -1674,6 +1898,7 @@ modules:
         1: other
         2: ok
         4: failed
+      lookups: []
     - name: snmp_cpqHeFltTolFanSpeed
       oid: 1.3.6.1.4.1.232.6.2.6.7.1.6
       type: gauge
@@ -1684,25 +1909,25 @@ modules:
       - labelname: cpqHeFltTolFanIndex
         type: gauge
       lookups:
-      - labels: &id029
+      - labels:
         - cpqHeFltTolFanChassis
         - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanLocale
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.3
         type: EnumAsInfo
-      - labels: &id030
+      - labels:
         - cpqHeFltTolFanChassis
         - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanPresent
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.4
         type: EnumAsInfo
-      - labels: &id031
+      - labels:
         - cpqHeFltTolFanChassis
         - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanType
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.5
         type: EnumAsInfo
-      - labels: &id032
+      - labels:
         - cpqHeFltTolFanChassis
         - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanRedundant
@@ -1722,19 +1947,27 @@ modules:
       - labelname: cpqHeFltTolFanIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - cpqHeFltTolFanChassis
+        - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanLocale
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.3
         type: EnumAsInfo
-      - labels: *id030
+      - labels:
+        - cpqHeFltTolFanChassis
+        - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanPresent
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.4
         type: EnumAsInfo
-      - labels: *id031
+      - labels:
+        - cpqHeFltTolFanChassis
+        - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanType
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.5
         type: EnumAsInfo
-      - labels: *id032
+      - labels:
+        - cpqHeFltTolFanChassis
+        - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanRedundant
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.7
         type: EnumAsInfo
@@ -1753,19 +1986,27 @@ modules:
       - labelname: cpqHeFltTolFanIndex
         type: gauge
       lookups:
-      - labels: *id029
+      - labels:
+        - cpqHeFltTolFanChassis
+        - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanLocale
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.3
         type: EnumAsInfo
-      - labels: *id030
+      - labels:
+        - cpqHeFltTolFanChassis
+        - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanPresent
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.4
         type: EnumAsInfo
-      - labels: *id031
+      - labels:
+        - cpqHeFltTolFanChassis
+        - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanType
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.5
         type: EnumAsInfo
-      - labels: *id032
+      - labels:
+        - cpqHeFltTolFanChassis
+        - cpqHeFltTolFanIndex
         labelname: cpqHeFltTolFanRedundant
         oid: 1.3.6.1.4.1.232.6.2.6.7.1.7
         type: EnumAsInfo
@@ -1783,7 +2024,7 @@ modules:
       - labelname: cpqHeTemperatureIndex
         type: gauge
       lookups:
-      - labels: &id033
+      - labels:
         - cpqHeTemperatureChassis
         - cpqHeTemperatureIndex
         labelname: cpqHeTemperatureLocale
@@ -1799,7 +2040,9 @@ modules:
       - labelname: cpqHeTemperatureIndex
         type: gauge
       lookups:
-      - labels: *id033
+      - labels:
+        - cpqHeTemperatureChassis
+        - cpqHeTemperatureIndex
         labelname: cpqHeTemperatureLocale
         oid: 1.3.6.1.4.1.232.6.2.6.8.1.3
         type: EnumAsInfo
@@ -1817,6 +2060,7 @@ modules:
         2: ok
         3: degraded
         4: failed
+      lookups: []
     - name: snmp_cpqHeFltTolPwrSupplyStatus
       oid: 1.3.6.1.4.1.232.6.2.9.2
       type: gauge
@@ -1826,6 +2070,7 @@ modules:
         2: notSupported
         3: notInstalled
         4: installed
+      lookups: []
     - name: snmp_cpqHeFltTolPowerSupplyPresent
       oid: 1.3.6.1.4.1.232.6.2.9.3.1.3
       type: gauge
@@ -1836,25 +2081,25 @@ modules:
       - labelname: cpqHeFltTolPowerSupplyBay
         type: gauge
       lookups:
-      - labels: &id034
+      - labels:
         - cpqHeFltTolPowerSupplyChassis
         - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyBay
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.2
         type: DisplayString
-      - labels: &id035
+      - labels:
         - cpqHeFltTolPowerSupplyChassis
         - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyCapacityMaximum
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.8
         type: DisplayString
-      - labels: &id036
+      - labels:
         - cpqHeFltTolPowerSupplyChassis
         - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyModel
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.10
         type: DisplayString
-      - labels: &id037
+      - labels:
         - cpqHeFltTolPowerSupplyChassis
         - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplySerialNumber
@@ -1874,19 +2119,27 @@ modules:
       - labelname: cpqHeFltTolPowerSupplyBay
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyBay
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.2
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyCapacityMaximum
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.8
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyModel
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.10
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplySerialNumber
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.11
         type: DisplayString
@@ -1905,19 +2158,27 @@ modules:
       - labelname: cpqHeFltTolPowerSupplyBay
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyBay
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.2
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyCapacityMaximum
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.8
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyModel
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.10
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplySerialNumber
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.11
         type: DisplayString
@@ -1948,19 +2209,27 @@ modules:
       - labelname: cpqHeFltTolPowerSupplyBay
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyBay
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.2
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyCapacityMaximum
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.8
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyModel
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.10
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplySerialNumber
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.11
         type: DisplayString
@@ -1974,19 +2243,27 @@ modules:
       - labelname: cpqHeFltTolPowerSupplyBay
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyBay
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.2
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyCapacityMaximum
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.8
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyModel
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.10
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplySerialNumber
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.11
         type: DisplayString
@@ -2000,19 +2277,27 @@ modules:
       - labelname: cpqHeFltTolPowerSupplyBay
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyBay
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.2
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyCapacityMaximum
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.8
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyModel
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.10
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplySerialNumber
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.11
         type: DisplayString
@@ -2030,19 +2315,27 @@ modules:
       - labelname: cpqHeFltTolPowerSupplyBay
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyBay
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.2
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyCapacityMaximum
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.8
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyModel
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.10
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplySerialNumber
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.11
         type: DisplayString
@@ -2060,19 +2353,27 @@ modules:
       - labelname: cpqHeFltTolPowerSupplyBay
         type: gauge
       lookups:
-      - labels: *id034
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyBay
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.2
         type: DisplayString
-      - labels: *id035
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyCapacityMaximum
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.8
         type: DisplayString
-      - labels: *id036
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplyModel
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.10
         type: DisplayString
-      - labels: *id037
+      - labels:
+        - cpqHeFltTolPowerSupplyChassis
+        - cpqHeFltTolPowerSupplyBay
         labelname: cpqHeFltTolPowerSupplySerialNumber
         oid: 1.3.6.1.4.1.232.6.2.9.3.1.11
         type: DisplayString
@@ -2110,6 +2411,7 @@ modules:
         11: onLineSpareRank
         12: mirroringIntrasocket
         13: mirroringIntersocket
+      lookups: []
     - name: snmp_cpqHeResilientMemStatus
       oid: 1.3.6.1.4.1.232.6.2.14.3
       type: gauge
@@ -2130,6 +2432,7 @@ modules:
         13: advancedEccWithFaults
         14: lockStep
         15: lockStepWithFaults
+      lookups: []
     - name: snmp_cpqHeResilientMemCondition
       oid: 1.3.6.1.4.1.232.6.2.14.4
       type: gauge
@@ -2138,6 +2441,7 @@ modules:
         1: other
         2: ok
         3: degraded
+      lookups: []
     - name: snmp_cpqHeResilientMemHotPlug
       oid: 1.3.6.1.4.1.232.6.2.14.5
       type: gauge
@@ -2146,3 +2450,4 @@ modules:
         1: other
         2: nonHotPluggable
         3: hotPluggable
+      lookups: []

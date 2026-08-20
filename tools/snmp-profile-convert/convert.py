@@ -14,7 +14,9 @@ Layout:
   snmp/fingerprinters.yml
 
 ``extends`` becomes a comma-separated ``module=`` list (snmp_exporter has no
-DAG). SNMPv2 identity is inlined as ``snmp_device_info`` on each fingerprint
+DAG). Fingerprinter names must be a subset of converted ``modules:`` keys —
+never invent sidecars such as ``nokia_srlinux_hot`` unless that file was written.
+SNMPv2 identity is inlined as ``snmp_device_info`` on each fingerprint
 module (``device_base`` for unknown sysObjectID). Ancestor 1:1 scalars fold
 onto that metric. Ship this library with ``config_merge_strategy = "replace"``.
 
@@ -58,8 +60,8 @@ SKIP_NAME_SUBSTRINGS = ("trap", "syslog")
 SKIP_PROFILE_FILES = frozenset({"system-mib.yml", "system_mib.yml"})
 
 # Scrape tiers:
-#   hot      — alerting / troubleshooting that fits ~60s (counters, CPU, oper)
-#   cold     — rarely changing metadata (names/descr) + walks that miss 60s
+#   hot      — alerting / troubleshooting that fits ~60s (octets, oper, CPU)
+#   cold     — names/descr + packets + errors + discards (not a 60s page)
 #   topology — optional experiments (LLDP/CDP); not BGP/OSPF
 TOPOLOGY_MODULES = frozenset({"lldp_mib"})
 TOPOLOGY_NAME_RE = re.compile(r"(lldp|cdp)", re.I)
@@ -73,10 +75,6 @@ IF_MIB_HOT_METRIC_NAMES = frozenset(
     {
         "snmp_ifHCInOctets",
         "snmp_ifHCOutOctets",
-        "snmp_ifInErrors",
-        "snmp_ifOutErrors",
-        "snmp_ifInDiscards",
-        "snmp_ifOutDiscards",
         "snmp_ifOperStatus",
         "snmp_ifHighSpeed",
     }
@@ -502,11 +500,9 @@ def ip_addr_module() -> dict[str, Any]:
 
     v4_idx = [{"labelname": "ipAdEntAddr", "type": "InetAddressIPv4"}]
     v4_labels = ["ipAdEntAddr"]
-    v6_idx = [
-        {"labelname": "ipAddressAddrType", "type": "InetAddressType"},
-        {"labelname": "ipAddressAddr", "type": "InetAddress"},
-    ]
-    v6_labels = ["ipAddressAddrType", "ipAddressAddr"]
+    # snmp_exporter 0.29: one combined InetAddress index, not InetAddressType + InetAddress.
+    v6_idx = [{"labelname": "ipAddressAddr", "type": "InetAddress"}]
+    v6_labels = ["ipAddressAddr"]
     return {
         "walk": [
             "1.3.6.1.2.1.4.20.1.2",
@@ -887,6 +883,108 @@ def lookup_type(column_name: str, tag: str, enum: dict[str, Any] | None = None) 
     return "DisplayString"
 
 
+# snmp_exporter collector.indexOidsAsString panics on unknown type strings and
+# kills the process (CrashLoopBackOff). MIB name PhysAddress is not in that
+# switch; the official generator emits PhysAddress48 for 6-byte MACs.
+EXPORTER_TYPE_ALIASES = {
+    "PhysAddress": "PhysAddress48",
+    "MacAddress": "PhysAddress48",
+    # Not in snmp_exporter 0.29 indexOidsAsString — panics the process.
+    # Pair with a following InetAddress index is collapsed in normalize_indexes.
+    "InetAddressType": "gauge",
+}
+
+
+def exporter_safe_type(typ: str) -> str:
+    t = str(typ or "").strip()
+    return EXPORTER_TYPE_ALIASES.get(t, t)
+
+
+def normalize_indexes(indexes: list[Any]) -> list[Any]:
+    """snmp_exporter 0.29 combined InetAddress consumes type+addr as one index.
+
+    Declaring InetAddressType then InetAddress panics: Unknown index type InetAddressType.
+    Keep the InetAddress index (combinedTypeMapping) and drop the type sibling.
+    """
+    items = [dict(x) if isinstance(x, dict) else x for x in indexes]
+    out: list[Any] = []
+    i = 0
+    while i < len(items):
+        cur = items[i]
+        if not isinstance(cur, dict):
+            out.append(cur)
+            i += 1
+            continue
+        nxt = items[i + 1] if i + 1 < len(items) else None
+        cur_t = str(cur.get("type") or "")
+        nxt_t = str(nxt.get("type") or "") if isinstance(nxt, dict) else ""
+        if cur_t == "InetAddressType" and nxt_t in {"InetAddress", "InetAddressMissingSize"}:
+            merged = dict(nxt)
+            merged["type"] = nxt_t
+            out.append(merged)
+            i += 2
+            continue
+        cur = dict(cur)
+        cur["type"] = exporter_safe_type(cur_t)
+        out.append(cur)
+        i += 1
+    return out
+
+
+def rewrite_exporter_types(obj: Any) -> Any:
+    """Rewrite illegal snmp.yml type strings in module/index/lookup trees."""
+    if isinstance(obj, dict):
+        out: dict[str, Any] = {}
+        for k, v in obj.items():
+            if k == "indexes" and isinstance(v, list):
+                out[k] = rewrite_exporter_types(normalize_indexes(v))
+            elif k == "type" and isinstance(v, str):
+                out[k] = exporter_safe_type(v)
+            else:
+                out[k] = rewrite_exporter_types(v)
+        return out
+    if isinstance(obj, list):
+        return [rewrite_exporter_types(x) for x in obj]
+    return obj
+
+
+def sanitize_module(module: dict[str, Any]) -> dict[str, Any]:
+    """Make a module safe for snmp_exporter 0.29 (types + lookup label arity)."""
+    module = rewrite_exporter_types(dict(module))
+    metrics: list[Any] = []
+    for metric in module.get("metrics") or []:
+        if not isinstance(metric, dict):
+            metrics.append(metric)
+            continue
+        metric = dict(metric)
+        idx_labels = {
+            i.get("labelname")
+            for i in (metric.get("indexes") or [])
+            if isinstance(i, dict) and i.get("labelname")
+        }
+        lookups = []
+        for lk in metric.get("lookups") or []:
+            if not isinstance(lk, dict):
+                lookups.append(lk)
+                continue
+            lk = dict(lk)
+            labs = []
+            for x in lk.get("labels") or []:
+                name = str(x)
+                addr_type = name.endswith("AddrType") or name.endswith("AddressType")
+                if addr_type and name not in idx_labels:
+                    continue
+                labs.append(x)
+            if labs:
+                lk["labels"] = labs
+            lookups.append(lk)
+        metric["lookups"] = lookups
+        metrics.append(metric)
+    if "metrics" in module:
+        module["metrics"] = metrics
+    return module
+
+
 OID_SYNTAX: dict[str, dict[str, str]] = {}
 TYPE_STATS: dict[str, int] = {
     "enum": 0,
@@ -1018,10 +1116,14 @@ def index_source(table_oid: str) -> str:
 
 def indexes_for_table(table_oid: str) -> list[dict[str, Any]]:
     table_oid = table_oid.strip().lstrip(".")
-    return MERGED_TABLE_INDEXES.get(
+    raw = MERGED_TABLE_INDEXES.get(
         table_oid,
         [{"labelname": "index", "type": "gauge"}],
     )
+    return [
+        {**dict(idx), "type": exporter_safe_type(str(idx.get("type") or "gauge"))}
+        for idx in raw
+    ]
 
 
 def lookups_from_tags(metric_tags: list[dict[str, Any]] | None, indexes: list[dict[str, str]]) -> list[dict[str, Any]]:
@@ -1041,7 +1143,9 @@ def lookups_from_tags(metric_tags: list[dict[str, Any]] | None, indexes: list[di
                 "labels": list(src),
                 "labelname": str(label),
                 "oid": str(oid).strip().lstrip("."),
-                "type": lookup_type(str(name or ""), str(label), col.get("enum")),
+                "type": exporter_safe_type(
+                    lookup_type(str(name or ""), str(label), col.get("enum"))
+                ),
             }
         )
     return out
@@ -1229,30 +1333,51 @@ def classify_module(name: str) -> str:
     return "cold"
 
 
-def apply_vendor_tier_splits(tiers: dict[str, list[str]]) -> dict[str, list[str]]:
+def apply_vendor_tier_splits(
+    tiers: dict[str, list[str]], known: set[str] | None = None
+) -> dict[str, list[str]]:
     """Split mixed vendor packs: CPU/chassis on hot; do not scrape BGP tables.
 
     BGP neighbor drop/flap is a trap/syslog event. Polling session state at
     60s or 5m is too slow to alert on.
+
+    Never invent module names. ``nokia_srlinux_hot`` is only added when that
+    sidecar exists in the converted library — otherwise ``nokia_srlinux`` stays
+    on hot by itself. Fingerprinters must be a subset of snmp.yml modules.
     """
     hot = list(tiers.get("hot") or [])
     cold = list(tiers.get("cold") or [])
     topo = list(tiers.get("topology") or [])
 
+    def exists(mod: str) -> bool:
+        return known is None or mod in known
+
     def add(bucket: list[str], mod: str) -> None:
-        if mod and mod not in bucket:
+        if mod and exists(mod) and mod not in bucket:
             bucket.append(mod)
 
     if "nokia_srlinux" in hot or "nokia_srlinux" in cold:
         cold = [m for m in cold if m not in {"nokia_srlinux", "nokia_srlinux_bgp"}]
         hot = [m for m in hot if m != "nokia_srlinux_bgp"]
         topo = [m for m in topo if m != "nokia_srlinux_bgp"]
-        add(hot, "nokia_srlinux_hot")
-        add(hot, "nokia_srlinux")
+        if exists("nokia_srlinux_hot"):
+            hot = [m for m in hot if m != "nokia_srlinux"]
+            add(hot, "nokia_srlinux_hot")
+            add(hot, "nokia_srlinux")
+        else:
+            add(hot, "nokia_srlinux")
     return {"hot": hot, "cold": cold, "topology": topo}
 
 
-def partition_module_chain(chain: list[str]) -> dict[str, list[str]]:
+def _keep_known(mods: list[str], known: set[str] | None) -> list[str]:
+    if known is None:
+        return list(mods)
+    return [m for m in mods if m in known]
+
+
+def partition_module_chain(
+    chain: list[str], known: set[str] | None = None
+) -> dict[str, list[str]]:
     """Split an extends chain into hot / cold / topology module lists."""
     hot: list[str] = []
     cold: list[str] = []
@@ -1281,7 +1406,14 @@ def partition_module_chain(chain: list[str]) -> dict[str, list[str]]:
         else:
             add(cold, mod)
 
-    return apply_vendor_tier_splits({"hot": hot, "cold": cold, "topology": topo})
+    tiers = apply_vendor_tier_splits(
+        {"hot": hot, "cold": cold, "topology": topo}, known=known
+    )
+    return {
+        "hot": _keep_known(tiers["hot"], known),
+        "cold": _keep_known(tiers["cold"], known),
+        "topology": _keep_known(tiers["topology"], known),
+    }
 
 
 def _thin_lookups(metric: dict[str, Any], keep: frozenset[str]) -> dict[str, Any]:
@@ -1318,7 +1450,7 @@ def _if_highspeed_metric(template: dict[str, Any] | None) -> dict[str, Any]:
 
 
 def split_if_mib_family(name: str, module: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    """Split if_mib / if32_mib into hot counters and cold if_*_meta enrichment."""
+    """Split if_mib / if32_mib into hot octets/oper and cold meta+errors+discards."""
     if name == "if_mib":
         meta_name = "if_mib_meta"
     elif name == "if32_mib":
@@ -1361,13 +1493,19 @@ def _if_mac_lookup() -> dict[str, Any]:
         "labels": ["ifIndex"],
         "labelname": "if_MAC",
         "oid": IF_PHYSADDRESS_OID,
-        "type": "PhysAddress",
+        "type": "PhysAddress48",
     }
 
 
 def _ensure_if_mac_lookup(metric: dict[str, Any]) -> dict[str, Any]:
     m = dict(metric)
     lookups = [dict(lk) for lk in (m.get("lookups") or [])]
+    for lk in lookups:
+        if (
+            str(lk.get("oid") or "").strip().lstrip(".") == IF_PHYSADDRESS_OID
+            or str(lk.get("labelname") or "") in {"if_MAC", "ifPhysAddress"}
+        ):
+            lk["type"] = exporter_safe_type(str(lk.get("type") or "PhysAddress48"))
     has = any(
         str(lk.get("oid") or "").strip().lstrip(".") == IF_PHYSADDRESS_OID
         or str(lk.get("labelname") or "") in {"if_MAC", "ifPhysAddress"}
@@ -1468,13 +1606,14 @@ def build_fingerprinters(index: dict[str, Any]) -> dict[str, Any]:
     """Fingerprinters emit tiered module chains from kentik extends.
 
     Example: nokia_srlinux extends system-mib + if-mib
-      → hot: [if_mib, nokia_srlinux_hot, nokia_srlinux]  # identity inlined on nokia_srlinux
+      → hot: [if_mib, nokia_srlinux] (+ nokia_srlinux_hot only if that sidecar exists)
       → cold: [if_mib_meta, ip_addr]
       → topology: [lldp_mib] when present (optional experiment)
       BGP tables are not scraped; neighbor events are traps/syslog.
       Unknown sysObjectID: device_base + if_mib (hot), if_mib_meta + ip_addr (cold).
     """
     modules_meta = index.get("modules") or {}
+    known = set(modules_meta)
     file_to_mod = {
         meta["profile"]: name
         for name, meta in modules_meta.items()
@@ -1524,7 +1663,7 @@ def build_fingerprinters(index: dict[str, Any]) -> dict[str, Any]:
         if sidecar and sidecar not in chain:
             chain = list(chain) + [sidecar]
         meta["module_chain"] = chain
-        tiers = partition_module_chain(chain)
+        tiers = partition_module_chain(chain, known)
         meta["module_chain_hot"] = tiers["hot"]
         meta["module_chain_cold"] = tiers["cold"]
         meta["module_chain_topology"] = tiers["topology"]
@@ -1532,7 +1671,7 @@ def build_fingerprinters(index: dict[str, Any]) -> dict[str, Any]:
     matchers: list[dict[str, Any]] = []
     for mod_name, meta in modules_meta.items():
         chain = meta.get("module_chain") or [mod_name]
-        tiers = partition_module_chain(chain)
+        tiers = partition_module_chain(chain, known)
         for glob in meta.get("sysobjectids") or []:
             matchers.append(
                 {
@@ -1552,7 +1691,7 @@ def build_fingerprinters(index: dict[str, Any]) -> dict[str, Any]:
             -len(m["regex"]),
         )
     )
-    default_tiers = partition_module_chain(["device_base", "if_mib"])
+    default_tiers = partition_module_chain(["device_base", "if_mib"], known)
     return {
         "fingerprinters": {
             "network": {
@@ -1562,8 +1701,8 @@ def build_fingerprinters(index: dict[str, Any]) -> dict[str, Any]:
                     "1.3.6.1.2.1.1.1.0",
                 ],
                 "default_modules": ["device_base", "if_mib"],
-                "default_modules_hot": default_tiers["hot"] or ["device_base", "if_mib"],
-                "default_modules_cold": default_tiers["cold"] or ["if_mib_meta", "ip_addr"],
+                "default_modules_hot": default_tiers["hot"],
+                "default_modules_cold": default_tiers["cold"],
                 "default_modules_topology": default_tiers["topology"],
                 "matchers": matchers,
             }
@@ -1680,7 +1819,7 @@ def write_module_file(modules_dir: Path, vendor: str, mod_name: str, module: dic
         header += (
             "# filters: ifAdminStatus=up only (drop admin-down ifIndex rows; list form).\n"
         )
-    body = {"modules": {mod_name: module}}
+    body = {"modules": {mod_name: sanitize_module(module)}}
     dest.write_text(header + dump_yaml(body), encoding="utf-8")
     return dest
 
@@ -1698,7 +1837,10 @@ def concat_snmp_network(
         "# the concatenation. Prefer editing split modules and re-running convert.py.\n"
         "# Load with config_merge_strategy = \"replace\" so stock embedded modules are not mixed in.\n"
     )
-    snmp = {"auths": auths, "modules": modules}
+    snmp = {
+        "auths": auths,
+        "modules": {k: sanitize_module(v) for k, v in modules.items()},
+    }
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(header + dump_yaml(snmp), encoding="utf-8")
 

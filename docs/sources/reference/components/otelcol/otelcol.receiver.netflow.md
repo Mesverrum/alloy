@@ -33,6 +33,8 @@ Parsed log attributes follow the upstream receiver (OpenTelemetry semantic conve
 
 When `targets` is set, a matching catalog IP (primary `address` or `snmp_aliases`) stamps `device_name` and `snmp_group` on the log record. Catalog refreshes do **not** restart the UDP listener — only listen settings (`scheme`, `hostname`, `port`, sockets/workers/queue, `send_raw`) or `output` do.
 
+`udp_host_cache_size` is the same LRU reverse-DNS cache as [`loki.source.syslog`](../../loki/loki.source.syslog.md). Conversation IPs are looked up with `net.LookupAddr` (80ms timeout, negative answers cached) and stamped as `src_host` / `dst_host`. A PTR hit wins over the catalog name; a miss falls back to `src_device` / `dst_device`. `0` disables PTR. Changing the cache size does not restart the UDP listener.
+
 `otelcol_receiver_netflow_joined_total` / `unjoined_total` increment only while a catalog is set.
 
 ## Usage
@@ -61,7 +63,8 @@ You can use the following arguments with `otelcol.receiver.netflow`:
 | `workers`    | `number` | Decode workers.                                                             | `2`         | no       |
 | `queue_size` | `number` | Inbound packet queue depth.                                                 | `1000`      | no       |
 | `send_raw`   | `bool`   | Forward the undecoded message as the log body instead of parsed attributes. | `false`     | no       |
-| `targets`    | `list(map(string))` | Optional discovery catalog (typically [`discovery.snmp`](../../discovery/discovery.snmp.md) `.targets` or file-SD with `address` / `device_name` / `snmp_aliases`). Joins `flow.sampler_address` to `device_name` without restarting the UDP listener. Matching `source.address` / `destination.address` stamp `src_device` / `dst_device`. | | no |
+| `targets`              | `list(map(string))` | Optional discovery catalog (typically [`discovery.snmp`](../../discovery/discovery.snmp.md) `.targets` or file-SD with `address` / `device_name` / `snmp_aliases`). Joins `flow.sampler_address` to `device_name` without restarting the UDP listener. Matching `source.address` / `destination.address` stamp `src_device` / `dst_device`. | | no |
+| `udp_host_cache_size`  | `number` | LRU capacity for reverse-DNS of conversation IPs (`src_host` / `dst_host`). Same pattern as [`loki.source.syslog`](../../loki/loki.source.syslog.md). `0` disables PTR; catalog names still fill `src_host` / `dst_host` when `targets` match. | `128` | no |
 
 ## Blocks
 
@@ -154,13 +157,24 @@ otelcol.connector.signaltometrics "netflow" {
       key = "flow.sampler_address"
     }
     attributes {
-      key = "device_name"
+      key      = "device_name"
+      optional = true
     }
     attributes {
-      key = "src_device"
+      key      = "src_device"
+      optional = true
     }
     attributes {
-      key = "dst_device"
+      key      = "dst_device"
+      optional = true
+    }
+    attributes {
+      key      = "src_host"
+      optional = true
+    }
+    attributes {
+      key      = "dst_host"
+      optional = true
     }
     sum {
       value = "Int(attributes[\"flow.io.bytes\"])"
@@ -190,13 +204,24 @@ otelcol.connector.signaltometrics "netflow" {
       key = "flow.sampler_address"
     }
     attributes {
-      key = "device_name"
+      key      = "device_name"
+      optional = true
     }
     attributes {
-      key = "src_device"
+      key      = "src_device"
+      optional = true
     }
     attributes {
-      key = "dst_device"
+      key      = "dst_device"
+      optional = true
+    }
+    attributes {
+      key      = "src_host"
+      optional = true
+    }
+    attributes {
+      key      = "dst_host"
+      optional = true
     }
     sum {
       value = "Int(attributes[\"flow.io.packets\"])"

@@ -20,7 +20,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -71,10 +72,12 @@ modules:
       oid: 1.3.6.1.4.1.23867.3.1.1.1.3
       type: gauge
       help: spsOperStatus (SILVERPEAK-MGMT-MIB) - 1.3.6.1.4.1.23867.3.1.1.1.3.0
+      lookups: []
     - name: snmp_spsActiveAlarmCount
       oid: 1.3.6.1.4.1.23867.3.1.1.1.4
       type: gauge
       help: spsActiveAlarmCount (SILVERPEAK-MGMT-MIB) - 1.3.6.1.4.1.23867.3.1.1.1.4.0
+      lookups: []
     - name: snmp_spsActiveAlarmSeverity
       oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.3
       type: gauge
@@ -83,22 +86,22 @@ modules:
       - labelname: spsActiveAlarmIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - spsActiveAlarmIndex
         labelname: spsActiveAlarmName
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.4
         type: DisplayString
-      - labels: &id002
+      - labels:
         - spsActiveAlarmIndex
         labelname: spsActiveAlarmDescr
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.5
         type: DisplayString
-      - labels: &id003
+      - labels:
         - spsActiveAlarmIndex
         labelname: spsActiveAlarmSource
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.6
         type: DisplayString
-      - labels: &id004
+      - labels:
         - spsActiveAlarmIndex
         labelname: spsActiveAlarmType
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.7
@@ -121,19 +124,23 @@ modules:
       - labelname: spsActiveAlarmIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmName
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmDescr
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.5
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmSource
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmType
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.7
         type: DisplayString
@@ -148,19 +155,23 @@ modules:
       - labelname: spsActiveAlarmIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmName
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmDescr
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.5
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmSource
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmType
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.7
         type: DisplayString
@@ -175,19 +186,23 @@ modules:
       - labelname: spsActiveAlarmIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmName
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmDescr
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.5
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmSource
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmType
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.7
         type: DisplayString
@@ -202,19 +217,23 @@ modules:
       - labelname: spsActiveAlarmIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmName
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.4
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmDescr
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.5
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmSource
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.6
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - spsActiveAlarmIndex
         labelname: spsActiveAlarmType
         oid: 1.3.6.1.4.1.23867.3.1.1.2.1.1.7
         type: DisplayString

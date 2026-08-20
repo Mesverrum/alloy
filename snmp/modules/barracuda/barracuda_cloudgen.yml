@@ -23,7 +23,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -81,6 +82,7 @@ modules:
       indexes:
       - labelname: firewallSessions
         type: gauge
+      lookups: []
     - name: snmp_packetThroughput
       oid: 1.3.6.1.4.1.10704.1.10.1.2
       type: gauge
@@ -88,6 +90,7 @@ modules:
       indexes:
       - labelname: firewallSessions
         type: gauge
+      lookups: []
     - name: snmp_dataThroughput
       oid: 1.3.6.1.4.1.10704.1.10.1.3
       type: gauge
@@ -95,10 +98,12 @@ modules:
       indexes:
       - labelname: firewallSessions
         type: gauge
+      lookups: []
     - name: snmp_vpnUsers
       oid: 1.3.6.1.4.1.10704.1.11
       type: gauge
       help: vpnUsers (PHION-MIB) - 1.3.6.1.4.1.10704.1.11.0
+      lookups: []
     - name: snmp_rate
       oid: 1.3.6.1.4.1.10704.1.12.1.2
       type: counter
@@ -107,7 +112,7 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: &id001
+      - labels:
         - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
@@ -120,7 +125,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -132,7 +138,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -144,7 +151,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -156,7 +164,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -168,7 +177,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -180,7 +190,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -192,7 +203,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -204,7 +216,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -216,7 +229,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -228,7 +242,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -240,7 +255,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -252,7 +268,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString
@@ -264,7 +281,8 @@ modules:
       - labelname: connectorName
         type: DisplayString
       lookups:
-      - labels: *id001
+      - labels:
+        - connectorName
         labelname: connectorName
         oid: 1.3.6.1.4.1.10704.1.12.1.1
         type: DisplayString

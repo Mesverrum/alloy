@@ -10,7 +10,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -91,22 +92,22 @@ modules:
       - labelname: hrSWRunIndex
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - hrSWRunIndex
         labelname: hrSWRunName
         oid: 1.3.6.1.2.1.25.4.2.1.2
         type: DisplayString
-      - labels: &id002
+      - labels:
         - hrSWRunIndex
         labelname: hrSWRunPath
         oid: 1.3.6.1.2.1.25.4.2.1.4
         type: DisplayString
-      - labels: &id003
+      - labels:
         - hrSWRunIndex
         labelname: hrSWRunParameters
         oid: 1.3.6.1.2.1.25.4.2.1.5
         type: DisplayString
-      - labels: &id004
+      - labels:
         - hrSWRunIndex
         labelname: hrSWRunType
         oid: 1.3.6.1.2.1.25.4.2.1.6
@@ -124,19 +125,23 @@ modules:
       - labelname: hrSWRunIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - hrSWRunIndex
         labelname: hrSWRunName
         oid: 1.3.6.1.2.1.25.4.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - hrSWRunIndex
         labelname: hrSWRunPath
         oid: 1.3.6.1.2.1.25.4.2.1.4
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - hrSWRunIndex
         labelname: hrSWRunParameters
         oid: 1.3.6.1.2.1.25.4.2.1.5
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - hrSWRunIndex
         labelname: hrSWRunType
         oid: 1.3.6.1.2.1.25.4.2.1.6
         type: EnumAsInfo
@@ -148,19 +153,23 @@ modules:
       - labelname: hrSWRunIndex
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - hrSWRunIndex
         labelname: hrSWRunName
         oid: 1.3.6.1.2.1.25.4.2.1.2
         type: DisplayString
-      - labels: *id002
+      - labels:
+        - hrSWRunIndex
         labelname: hrSWRunPath
         oid: 1.3.6.1.2.1.25.4.2.1.4
         type: DisplayString
-      - labels: *id003
+      - labels:
+        - hrSWRunIndex
         labelname: hrSWRunParameters
         oid: 1.3.6.1.2.1.25.4.2.1.5
         type: DisplayString
-      - labels: *id004
+      - labels:
+        - hrSWRunIndex
         labelname: hrSWRunType
         oid: 1.3.6.1.2.1.25.4.2.1.6
         type: EnumAsInfo

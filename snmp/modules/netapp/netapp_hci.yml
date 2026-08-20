@@ -30,7 +30,8 @@ modules:
     - name: snmp_Uptime
       oid: 1.3.6.1.2.1.1.3
       type: gauge
-      help: "sysUpTime (SNMPv2-MIB) TimeTicks \u2014 same stem as kentik_snmp_Uptime"
+      help: sysUpTime (SNMPv2-MIB) TimeTicks
+      lookups: []
     - name: snmp_device_info
       oid: 1.3.6.1.2.1.1.5
       type: DisplayString
@@ -82,6 +83,7 @@ modules:
         4: interlock
         8: powerFault
         16: powerControlFault
+      lookups: []
     - name: snmp_agentPowerControl
       oid: 1.3.6.1.4.1.7244.1.2.1.1.5
       type: gauge
@@ -92,6 +94,7 @@ modules:
         2: 'on'
         3: reset
         4: cycle
+      lookups: []
     - name: snmp_voltageStatusOverall
       oid: 1.3.6.1.4.1.7244.1.2.1.2.1
       type: gauge
@@ -103,6 +106,7 @@ modules:
         4: nonCritical
         5: critical
         6: nonRecoverable
+      lookups: []
     - name: snmp_fanStatusOverall
       oid: 1.3.6.1.4.1.7244.1.2.1.2.3
       type: gauge
@@ -114,6 +118,7 @@ modules:
         4: nonCritical
         5: critical
         6: nonRecoverable
+      lookups: []
     - name: snmp_temperatureStatusOverall
       oid: 1.3.6.1.4.1.7244.1.2.1.2.5
       type: gauge
@@ -125,6 +130,7 @@ modules:
         4: nonCritical
         5: critical
         6: nonRecoverable
+      lookups: []
     - name: snmp_powerSupplyRedundancy
       oid: 1.3.6.1.4.1.7244.1.2.1.2.7
       type: gauge
@@ -133,6 +139,7 @@ modules:
         1: other
         2: full
         3: lost
+      lookups: []
     - name: snmp_powerSupply0Status
       oid: 1.3.6.1.4.1.7244.1.2.1.2.8
       type: gauge
@@ -144,6 +151,7 @@ modules:
         8: inputLost
         16: lostOrOutOfRange
         32: outOfRange
+      lookups: []
     - name: snmp_powerSupply1Status
       oid: 1.3.6.1.4.1.7244.1.2.1.2.9
       type: gauge
@@ -155,6 +163,7 @@ modules:
         8: inputLost
         16: lostOrOutOfRange
         32: outOfRange
+      lookups: []
     - name: snmp_processorDeviceInfoStatus
       oid: 1.3.6.1.4.1.7244.1.2.1.3.1.1.2
       type: gauge
@@ -225,7 +234,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id001
+      - labels:
         - index
         labelname: fanDeviceInfoLocationName
         oid: 1.3.6.1.4.1.7244.1.2.1.3.3.1.3
@@ -249,7 +258,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id001
+      - labels:
+        - index
         labelname: fanDeviceInfoLocationName
         oid: 1.3.6.1.4.1.7244.1.2.1.3.3.1.3
         type: DisplayString
@@ -261,7 +271,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id002
+      - labels:
         - index
         labelname: temperatureDeviceInfoLocationName
         oid: 1.3.6.1.4.1.7244.1.2.1.3.4.1.3
@@ -285,7 +295,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id002
+      - labels:
+        - index
         labelname: temperatureDeviceInfoLocationName
         oid: 1.3.6.1.4.1.7244.1.2.1.3.4.1.3
         type: DisplayString
@@ -297,7 +308,7 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: &id003
+      - labels:
         - index
         labelname: voltageDeviceInfoLocationName
         oid: 1.3.6.1.4.1.7244.1.2.1.3.5.1.3
@@ -321,7 +332,8 @@ modules:
       - labelname: index
         type: gauge
       lookups:
-      - labels: *id003
+      - labels:
+        - index
         labelname: voltageDeviceInfoLocationName
         oid: 1.3.6.1.4.1.7244.1.2.1.3.5.1.3
         type: DisplayString
