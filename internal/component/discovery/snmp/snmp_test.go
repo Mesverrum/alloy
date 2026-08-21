@@ -15,6 +15,7 @@ import (
 	"github.com/grafana/alloy/internal/snmpdiscovery"
 	"github.com/grafana/alloy/internal/snmppaths"
 	"github.com/grafana/alloy/syntax"
+	"github.com/grafana/alloy/syntax/alloytypes"
 )
 
 func TestAlloyConfig(t *testing.T) {
@@ -148,6 +149,27 @@ func TestArgumentsValidate(t *testing.T) {
 		a.RefreshInterval = 0
 		require.Error(t, a.Validate())
 	})
+	t.Run("auths xor auths_file", func(t *testing.T) {
+		a := valid()
+		a.Auths = alloytypes.OptionalSecret{Value: "auths:\n  public_v2:\n    version: 2\n"}
+		a.AuthsFile = "/etc/alloy/auths.yml"
+		require.EqualError(t, a.Validate(), "auths and auths_file are mutually exclusive")
+	})
+}
+
+func TestAlloyConfigAuthsOverlay(t *testing.T) {
+	const src = `
+		auths = "auths:\n  public_v2:\n    version: 2\n    community: lab\n"
+		group {
+			name  = "hq"
+			cidrs = ["10.0.0.0/30"]
+			auths = ["public_v2"]
+		}
+	`
+	var args Arguments
+	require.NoError(t, syntax.Unmarshal([]byte(src), &args))
+	require.Contains(t, args.Auths.Value, "community: lab")
+	require.NoError(t, args.Validate())
 }
 
 func TestExpandTiers(t *testing.T) {

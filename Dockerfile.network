@@ -14,6 +14,7 @@ COPY --from=snmp-discovery /snmp-discovery /usr/bin/snmp-discovery
 # snmp/modules/ + snmp/auths.yml — regenerate via tools/snmp-profile-convert/convert.py.
 COPY snmp/snmp-network.yml /etc/alloy/snmp-network.yml
 COPY snmp/auths.yml /etc/alloy/auths.yml
+COPY snmp/auths.example.yml /etc/alloy/auths.example.yml
 COPY snmp/modules /etc/alloy/modules
 COPY snmp/sysobjectid-index.yaml /etc/alloy/sysobjectid-index.yaml
 COPY snmp/fingerprinters.yml /etc/alloy/fingerprinters.yml

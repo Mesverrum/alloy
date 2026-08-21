@@ -2,6 +2,7 @@
 package snmp_exporter
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"log/slog"
@@ -14,6 +15,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/snmp_exporter/collector"
 	snmp_config "github.com/prometheus/snmp_exporter/config"
+	"gopkg.in/yaml.v2"
 
 	"github.com/grafana/alloy/internal/static/integrations"
 	"github.com/grafana/alloy/internal/static/integrations/config"
@@ -49,6 +51,7 @@ type Config struct {
 	SnmpConcurrency         int                               `yaml:"concurrency,omitempty"`
 	SnmpTargets             []SNMPTarget                      `yaml:"snmp_targets"`
 	SnmpConfig              snmp_config.Config                `yaml:"snmp_config,omitempty"`
+	AuthsOverlay            []byte                            `yaml:"-"`
 }
 
 // UnmarshalYAML implements yaml.Unmarshaler for Config.
@@ -81,6 +84,9 @@ func init() {
 func New(log *slog.Logger, c *Config) (integrations.Integration, error) {
 	snmpCfg, err := LoadSNMPConfig(c.SnmpConfigFile, &c.SnmpConfig, c.SnmpConfigMergeStrategy)
 	if err != nil {
+		return nil, err
+	}
+	if err := ApplyAuthsOverlay(snmpCfg, c.AuthsOverlay); err != nil {
 		return nil, err
 	}
 	// The `name` and `address` fields are mandatory for the SNMP targets are mandatory.
@@ -139,6 +145,28 @@ func LoadSNMPConfig(snmpConfigFile string, customSnmpCfg *snmp_config.Config, st
 	default:
 		return nil, fmt.Errorf("unsupported snmp config merge strategy is used: '%s'", strategy)
 	}
+}
+
+// ApplyAuthsOverlay merges snmp_exporter `auths:` YAML onto cfg. Overlay
+// names replace the same keys; modules are unchanged. Empty overlay is a no-op.
+func ApplyAuthsOverlay(cfg *snmp_config.Config, overlay []byte) error {
+	if cfg == nil || len(bytes.TrimSpace(overlay)) == 0 {
+		return nil
+	}
+	var wrap struct {
+		Auths map[string]*snmp_config.Auth `yaml:"auths"`
+	}
+	if err := yaml.Unmarshal(overlay, &wrap); err != nil {
+		return fmt.Errorf("auths overlay: %w", err)
+	}
+	if len(wrap.Auths) == 0 {
+		return fmt.Errorf("auths overlay: missing or empty auths: map")
+	}
+	if cfg.Auths == nil {
+		cfg.Auths = map[string]*snmp_config.Auth{}
+	}
+	maps.Copy(cfg.Auths, wrap.Auths)
+	return nil
 }
 
 func NewSNMPMetrics(reg prometheus.Registerer) collector.Metrics {

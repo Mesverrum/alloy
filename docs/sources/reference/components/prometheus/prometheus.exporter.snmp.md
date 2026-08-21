@@ -49,13 +49,17 @@ You can use the following arguments with `prometheus.exporter.snmp`:
 | `concurrency`           | `int`                | SNMP exporter concurrency.                                                                                                   | `1`         | no       |
 | `config_file`           | `string`             | SNMP configuration file defining custom modules.                                                                             |             | no       |
 | `config_merge_strategy` | `string`             | A strategy defining how `config` or `config_file` contents merge with the embedded SNMP config. Can be `replace` or `merge`. | `"replace"` | no       |
-| `config`                | `string` or `secret` | SNMP configuration as inline string.                                                                                         |             | no       |
+| `config`                | `string` or `secret` | SNMP configuration as inline string. Mutually exclusive with `config_file`.                                                  |             | no       |
+| `auths`                 | `secret`             | snmp_exporter `auths:` YAML overlay. Merges onto the loaded library; does not replace modules. Mutually exclusive with `auths_file`. |             | no       |
+| `auths_file`            | `string`             | Path to the same overlay as a file.                                                                                          |             | no       |
 | `targets`               | `list(map(string))`  | SNMP targets.                                                                                                                |             | no       |
 
 The `config_file` argument points to a YAML file defining which snmp_exporter modules to use.
 Refer to [snmp_exporter](https://github.com/prometheus/snmp_exporter/tree/{{< param "SNMP_VERSION" >}}?tab=readme-ov-file#configuration) for details on how to generate a configuration file.
 
 When both `config_file` and `config` are omitted, Alloy loads `/etc/alloy/snmp-network.yml` if that file exists (Grafana network image). Otherwise the embedded stock `snmp.yml` is used. Set `config_file` only to load a different library.
+
+`auths` / `auths_file` overlay **only** the `auths:` map onto that library (overlay names win). Use this for collector credentials (`env("SNMP_AUTHS")` or a mounted Secret). Do not put communities in `config` with `config_merge_strategy = "merge"` — that overlays stock embedded `snmp.yml`, not the network library. A documented example is `/etc/alloy/auths.example.yml`.
 
 The `config` argument must be a YAML document as string defining which SNMP modules and authorizations to use.
 `config` is typically loaded by using the exports of another component.

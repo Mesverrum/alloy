@@ -37,6 +37,9 @@ type ScanParams struct {
 	// fingerprinter names that do not exist. RunScan loads it from SnmpCfg
 	// when this field is nil.
 	KnownModules map[string]struct{}
+	// AuthsOverlay is optional snmp_exporter `auths:` YAML. Named keys
+	// replace the same names from SnmpCfg; modules stay on the library file.
+	AuthsOverlay []byte
 }
 
 // ScanStats is filled by a successful RunScan (and zero on error).
@@ -284,7 +287,7 @@ func loadGroupRuntimes(cfg DiscoveryFile, p ScanParams, fps FingerprintersFile) 
 		if err := fp.compile(); err != nil {
 			return nil, fmt.Errorf("group %q fingerprinter: %w", g.Name, err)
 		}
-		auths, err := loadAuths(p.SnmpCfg, g.Auths)
+		auths, err := loadAuthsOverlay(p.SnmpCfg, p.AuthsOverlay, g.Auths)
 		if err != nil {
 			return nil, fmt.Errorf("group %q: %w", g.Name, err)
 		}

@@ -1,6 +1,7 @@
 package snmpdiscovery
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 	"sort"
@@ -43,25 +44,103 @@ type snmpFile struct {
 }
 
 func loadAuths(path string, names []string) ([]snmpAuth, error) {
-	b, err := os.ReadFile(path)
+	return loadAuthsOverlay(path, nil, names)
+}
+
+// ResolveAuthsOverlay returns YAML bytes for an auths-only overlay.
+// inline and file are mutually exclusive. Both empty is a no-op.
+func ResolveAuthsOverlay(inline, file string) ([]byte, error) {
+	inline = strings.TrimSpace(inline)
+	file = strings.TrimSpace(file)
+	if inline != "" && file != "" {
+		return nil, fmt.Errorf("auths and auths_file are mutually exclusive")
+	}
+	if file != "" {
+		b, err := os.ReadFile(file)
+		if err != nil {
+			return nil, fmt.Errorf("auths_file: %w", err)
+		}
+		if err := validateAuthsOverlay(b); err != nil {
+			return nil, err
+		}
+		return b, nil
+	}
+	if inline != "" {
+		b := []byte(inline)
+		if err := validateAuthsOverlay(b); err != nil {
+			return nil, err
+		}
+		return b, nil
+	}
+	return nil, nil
+}
+
+func validateAuthsOverlay(b []byte) error {
+	var cfg snmpFile
+	if err := yaml.Unmarshal(b, &cfg); err != nil {
+		return fmt.Errorf("auths overlay: %w", err)
+	}
+	if len(cfg.Auths) == 0 {
+		return fmt.Errorf("auths overlay: missing or empty auths: map")
+	}
+	return nil
+}
+
+func readAuthsMap(path string, overlay []byte) (map[string]snmpAuthYAML, string, error) {
+	merged := map[string]snmpAuthYAML{}
+	src := path
+	if path != "" {
+		b, err := os.ReadFile(path)
+		if err != nil {
+			if len(bytes.TrimSpace(overlay)) == 0 {
+				return nil, path, err
+			}
+		} else {
+			var cfg snmpFile
+			if err := yaml.Unmarshal(b, &cfg); err != nil {
+				return nil, path, err
+			}
+			for k, v := range cfg.Auths {
+				merged[k] = v
+			}
+		}
+	}
+	if len(bytes.TrimSpace(overlay)) > 0 {
+		var cfg snmpFile
+		if err := yaml.Unmarshal(overlay, &cfg); err != nil {
+			return nil, "auths overlay", fmt.Errorf("auths overlay: %w", err)
+		}
+		if len(cfg.Auths) == 0 {
+			return nil, "auths overlay", fmt.Errorf("auths overlay: missing or empty auths: map")
+		}
+		for k, v := range cfg.Auths {
+			merged[k] = v
+		}
+		if strings.TrimSpace(src) == "" {
+			src = "auths overlay"
+		} else {
+			src = path + " + auths overlay"
+		}
+	}
+	return merged, src, nil
+}
+
+func loadAuthsOverlay(path string, overlay []byte, names []string) ([]snmpAuth, error) {
+	cfg, src, err := readAuthsMap(path, overlay)
 	if err != nil {
 		return nil, err
 	}
-	var cfg snmpFile
-	if err := yaml.Unmarshal(b, &cfg); err != nil {
-		return nil, err
-	}
 	if len(names) == 0 {
-		for n := range cfg.Auths {
+		for n := range cfg {
 			names = append(names, n)
 		}
 		sort.Strings(names)
 	}
 	var out []snmpAuth
 	for _, n := range names {
-		a, ok := cfg.Auths[n]
+		a, ok := cfg[n]
 		if !ok {
-			return nil, fmt.Errorf("auth %q not in %s", n, path)
+			return nil, fmt.Errorf("auth %q not in %s", n, src)
 		}
 		parsed, err := parseAuth(n, a)
 		if err != nil {

@@ -16,6 +16,7 @@ import (
 	"github.com/grafana/alloy/internal/service/livedebugging"
 	"github.com/grafana/alloy/internal/snmpdiscovery"
 	"github.com/grafana/alloy/internal/snmppaths"
+	"github.com/grafana/alloy/syntax/alloytypes"
 )
 
 func init() {
@@ -40,8 +41,10 @@ type Arguments struct {
 	// or "all" (default) — one target per device per non-empty tier.
 	Tier string `alloy:"tier,attr,optional"`
 
-	SnmpConfig     string        `alloy:"snmp_config,attr,optional"`
-	Fingerprinters string        `alloy:"fingerprinters,attr,optional"`
+	SnmpConfig     string                    `alloy:"snmp_config,attr,optional"`
+	Auths          alloytypes.OptionalSecret `alloy:"auths,attr,optional"`
+	AuthsFile      string                    `alloy:"auths_file,attr,optional"`
+	Fingerprinters string                    `alloy:"fingerprinters,attr,optional"`
 	Fingerprinter  string        `alloy:"fingerprinter,attr,optional"`
 	ConfigPath     string        `alloy:"config_path,attr,optional"`
 	OverridesPath  string        `alloy:"overrides_path,attr,optional"`
@@ -116,6 +119,9 @@ func (args *Arguments) SetToDefault() {
 func (args Arguments) Validate() error {
 	if strings.TrimSpace(args.SnmpConfig) == "" {
 		return fmt.Errorf("snmp_config is empty (omit it to use %s)", snmppaths.NetworkConfigFile)
+	}
+	if strings.TrimSpace(args.Auths.Value) != "" && strings.TrimSpace(args.AuthsFile) != "" {
+		return fmt.Errorf("auths and auths_file are mutually exclusive")
 	}
 	if strings.TrimSpace(args.ConfigPath) == "" && len(args.Groups) == 0 {
 		return fmt.Errorf("provide config_path or at least one group block")
@@ -311,8 +317,17 @@ func (c *Component) scanOnce() error {
 		return err
 	}
 
+	overlay, err := snmpdiscovery.ResolveAuthsOverlay(args.Auths.Value, args.AuthsFile)
+	if err != nil {
+		c.m.scans.Inc()
+		c.m.failures.Inc()
+		c.setHealth(component.HealthTypeUnhealthy, fmt.Sprintf("auths overlay: %s", err))
+		return err
+	}
+
 	p := snmpdiscovery.ScanParams{
 		SnmpCfg:               args.SnmpConfig,
+		AuthsOverlay:          overlay,
 		FpPath:                args.Fingerprinters,
 		DefaultFP:             args.Fingerprinter,
 		Concurrency:           args.Concurrency,

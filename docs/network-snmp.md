@@ -16,7 +16,7 @@ Stock `prometheus.exporter.snmp` already polls. This library is **curated**, not
 
 The discovery contract is the one snmp_exporter already documents:
 
-- Named `auths:` in `snmp.yml` (community / v3 secret lives there).
+- Named `auths:` in an overlay (`auths` / `auths_file` / `SNMP_AUTHS`) or in `snmp.yml` (community / v3 secret lives there). See [`snmp/auths.example.yml`](../snmp/auths.example.yml).
 - Targets carry `module=` and `auth=` (Alloy) or `__param_module` / `__param_auth` (Prometheus `file_sd`).
 - `sysObjectID` → module via SuperQ **fingerprinters** ([snmp_exporter#1468](https://github.com/prometheus/snmp_exporter/issues/1468)), applied at **SD time** so the exporter stays stock until that PR lands.
 

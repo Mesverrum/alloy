@@ -15,6 +15,7 @@ import (
 	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/component/prometheus/exporter"
 	"github.com/grafana/alloy/internal/featuregate"
+	"github.com/grafana/alloy/internal/snmpdiscovery"
 	"github.com/grafana/alloy/internal/snmppaths"
 	"github.com/grafana/alloy/internal/static/integrations"
 	"github.com/grafana/alloy/internal/static/integrations/snmp_exporter"
@@ -153,9 +154,12 @@ type Arguments struct {
 	SnmpConcurrency     int                       `alloy:"concurrency,attr,optional"`
 	Config              alloytypes.OptionalSecret `alloy:"config,attr,optional"`
 	ConfigMergeStrategy string                    `alloy:"config_merge_strategy,attr,optional"`
+	Auths               alloytypes.OptionalSecret `alloy:"auths,attr,optional"`
+	AuthsFile           string                    `alloy:"auths_file,attr,optional"`
 	Targets             TargetBlock               `alloy:"target,block,optional"`
 	WalkParams          WalkParams                `alloy:"walk_param,block,optional"`
 	ConfigStruct        snmp_config.Config
+	AuthsOverlay        []byte
 
 	// New way of passing targets. This allows the component to receive targets from other components.
 	TargetsList TargetsList `alloy:"targets,attr,optional"`
@@ -226,6 +230,15 @@ func (a *Arguments) UnmarshalAlloy(f func(any) error) error {
 		return errors.New("config and config_file are mutually exclusive")
 	}
 
+	if strings.TrimSpace(a.Auths.Value) != "" && strings.TrimSpace(a.AuthsFile) != "" {
+		return errors.New("auths and auths_file are mutually exclusive")
+	}
+	overlay, err := snmpdiscovery.ResolveAuthsOverlay(a.Auths.Value, a.AuthsFile)
+	if err != nil {
+		return err
+	}
+	a.AuthsOverlay = overlay
+
 	if a.ConfigMergeStrategy != "replace" && a.ConfigMergeStrategy != "merge" {
 		return errors.New("config_merge_strategy must be `replace` or `merge`")
 	}
@@ -243,8 +256,7 @@ func (a *Arguments) UnmarshalAlloy(f func(any) error) error {
 		}
 	}
 
-	err := yaml.UnmarshalStrict([]byte(a.Config.Value), &a.ConfigStruct)
-	if err != nil {
+	if err := yaml.UnmarshalStrict([]byte(a.Config.Value), &a.ConfigStruct); err != nil {
 		return fmt.Errorf("invalid snmp_exporter config: %s", err)
 	}
 
@@ -285,6 +297,7 @@ func (a *Arguments) Convert() *snmp_exporter.Config {
 		SnmpTargets:             targets,
 		WalkParams:              a.WalkParams.Convert(),
 		SnmpConfig:              a.ConfigStruct,
+		AuthsOverlay:            a.AuthsOverlay,
 	}
 }
 

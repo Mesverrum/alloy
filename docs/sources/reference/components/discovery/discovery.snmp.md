@@ -20,7 +20,8 @@ crawling LLDP/CDP neighbors. It is a Prometheus-shaped **Discoverer**: named
 SNMPv3 secrets never appear on labels.
 
 Use it with stock [`prometheus.exporter.snmp`][prometheus.exporter.snmp].
-Secrets stay in the `auths:` section of `snmp.yml`.
+Secrets stay in an auths overlay (`auths` / `auths_file`) or the `auths:`
+section of `snmp.yml`. Group blocks list **names** only.
 
 [prometheus.exporter.snmp]: ../../prometheus/prometheus.exporter.snmp/
 
@@ -37,6 +38,8 @@ Alloy bool defaults apply only when the attribute is omitted. Write
 
 ```alloy
 discovery.snmp "<LABEL>" {
+  auths = env("SNMP_AUTHS")
+
   group {
     name  = "hq"
     cidrs = ["172.20.20.0/24"]
@@ -51,7 +54,9 @@ You can use the following arguments with `discovery.snmp`:
 
 | Name               | Type           | Description | Default | Required |
 | ------------------ | -------------- | ----------- | ------- | -------- |
-| `snmp_config`      | `string`       | Path to snmp_exporter `snmp.yml` (`auths` + modules). Omit to use the image library. | `"/etc/alloy/snmp-network.yml"` | no |
+| `snmp_config`      | `string`       | Path to snmp_exporter `snmp.yml` (modules + default auths). Omit to use the image library. | `"/etc/alloy/snmp-network.yml"` | no |
+| `auths`            | `secret`       | snmp_exporter `auths:` YAML overlay (env blob). Mutually exclusive with `auths_file`. | | no |
+| `auths_file`       | `string`       | Path to the same overlay as a file. Names replace keys from `snmp_config`. | | no |
 | `config_path`      | `string`       | Path to discovery groups YAML. Preferred over inline `group` blocks for the group list. | | no |
 | `overrides_path`   | `string`       | Optional overrides YAML merged into the config. | | no |
 | `fingerprinters`   | `string`       | Path to fingerprinters YAML. | `"/etc/alloy/fingerprinters.yml"` | no |
@@ -81,7 +86,7 @@ You can use the following blocks with `discovery.snmp`:
 
 ### `group`
 
-CIDR-scoped discovery group. Never put a community string here — name an auth from `snmp.yml`.
+CIDR-scoped discovery group. Never put a community string here — name an auth from the overlay or `snmp.yml`.
 
 | Name            | Type           | Description | Default | Required |
 | --------------- | -------------- | ----------- | ------- | -------- |
@@ -208,7 +213,8 @@ skips, and individual probe errors.
 | CIDR rejected as too wide | Default `/22` cap | Set `allow_large = true` on the component or the `group`. |
 | One router, two IPs, only one scrape target | Same `sysName` collapsed (lowest IP scraped; others on `snmp_aliases`) | Expected. Traps from the alias IP still join `device_name`. Set `allow_duplicate_sysname = true` only if those IPs are really different devices. |
 | Many IoT boxes share `sysName` and only one appears | Hostname collapse | Set `allow_duplicate_sysname = true`. |
-| Community string on a label | Misconfigured exporter, not this Discoverer | `discovery.snmp` only exports the **auth name**. Keep secrets in `snmp.yml` `auths:`. |
+| Community string on a label | Misconfigured exporter, not this Discoverer | `discovery.snmp` only exports the **auth name**. Keep secrets in `auths` / `auths_file`. |
+| `auth "x" not in …` | Overlay missing that name | Add the named block to `SNMP_AUTHS` / `auths_file`, or omit `auths` to use the image library. |
 
 ## Same `sysName`, multiple IPs
 

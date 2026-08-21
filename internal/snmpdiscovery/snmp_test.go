@@ -138,6 +138,102 @@ auths:
 	}
 }
 
+func TestResolveAuthsOverlay(t *testing.T) {
+	t.Run("empty", func(t *testing.T) {
+		b, err := ResolveAuthsOverlay("", "")
+		if err != nil {
+			t.Fatal(err)
+		}
+		if b != nil {
+			t.Fatalf("got %q", b)
+		}
+	})
+	t.Run("both set", func(t *testing.T) {
+		if _, err := ResolveAuthsOverlay("auths:\n  a:\n    version: 2\n", "/tmp/x"); err == nil {
+			t.Fatal("expected error")
+		}
+	})
+	t.Run("inline", func(t *testing.T) {
+		b, err := ResolveAuthsOverlay("auths:\n  site_v2:\n    version: 2\n    community: secret\n", "")
+		if err != nil {
+			t.Fatal(err)
+		}
+		if len(b) == 0 {
+			t.Fatal("empty")
+		}
+	})
+	t.Run("empty map", func(t *testing.T) {
+		if _, err := ResolveAuthsOverlay("auths: {}\n", ""); err == nil {
+			t.Fatal("expected error")
+		}
+	})
+	t.Run("file", func(t *testing.T) {
+		path := writeAuthsYAML(t, `
+auths:
+  file_v2:
+    community: from-file
+    version: 2
+`)
+		b, err := ResolveAuthsOverlay("", path)
+		if err != nil {
+			t.Fatal(err)
+		}
+		auths, err := loadAuthsOverlay("", b, []string{"file_v2"})
+		if err != nil {
+			t.Fatal(err)
+		}
+		if auths[0].Community != "from-file" {
+			t.Fatalf("got %+v", auths[0])
+		}
+	})
+}
+
+func TestLoadAuthsOverlayWins(t *testing.T) {
+	path := writeAuthsYAML(t, `
+auths:
+  public_v2:
+    community: image-public
+    version: 2
+  leftover:
+    community: unused
+    version: 2
+`)
+	overlay := []byte(`
+auths:
+  public_v2:
+    community: overlay-secret
+    version: 2
+`)
+	auths, err := loadAuthsOverlay(path, overlay, []string{"public_v2"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if auths[0].Community != "overlay-secret" {
+		t.Fatalf("overlay should win: %+v", auths[0])
+	}
+}
+
+func TestLoadAuthsOverlayOnly(t *testing.T) {
+	overlay := []byte(`
+auths:
+  dc1_v3:
+    version: 3
+    security_level: authPriv
+    username: netops
+    password: auth-secret
+    priv_password: priv-secret
+    auth_protocol: SHA
+    priv_protocol: AES
+`)
+	auths, err := loadAuthsOverlay("/no/such/snmp-network.yml", overlay, []string{"dc1_v3"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if auths[0].Username != "netops" {
+		t.Fatalf("got %+v", auths[0])
+	}
+}
+
 func TestLoadAuthsV3AuthPrivRequiresPrivPassword(t *testing.T) {
 	path := writeAuthsYAML(t, `
 auths:
