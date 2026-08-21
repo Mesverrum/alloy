@@ -55,6 +55,8 @@ You can use the following arguments with `prometheus.exporter.snmp`:
 The `config_file` argument points to a YAML file defining which snmp_exporter modules to use.
 Refer to [snmp_exporter](https://github.com/prometheus/snmp_exporter/tree/{{< param "SNMP_VERSION" >}}?tab=readme-ov-file#configuration) for details on how to generate a configuration file.
 
+When both `config_file` and `config` are omitted, Alloy loads `/etc/alloy/snmp-network.yml` if that file exists (Grafana network image). Otherwise the embedded stock `snmp.yml` is used. Set `config_file` only to load a different library.
+
 The `config` argument must be a YAML document as string defining which SNMP modules and authorizations to use.
 `config` is typically loaded by using the exports of another component.
 For example,

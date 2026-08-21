@@ -13,6 +13,7 @@ import (
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/service/livedebugging"
 	"github.com/grafana/alloy/internal/snmpdiscovery"
+	"github.com/grafana/alloy/internal/snmppaths"
 	"github.com/grafana/alloy/syntax"
 )
 
@@ -67,7 +68,6 @@ func TestAlloyConfig(t *testing.T) {
 
 func TestAlloyConfigDefaultsPingTrue(t *testing.T) {
 	const src = `
-		snmp_config = "/etc/alloy/snmp-network.yml"
 		group {
 			name  = "hq"
 			cidrs = ["10.0.0.0/30"]
@@ -81,7 +81,8 @@ func TestAlloyConfigDefaultsPingTrue(t *testing.T) {
 	require.Equal(t, "all", args.Tier)
 	require.Equal(t, 8, args.Concurrency)
 	require.Equal(t, 161, args.Port)
-	require.Equal(t, "/etc/alloy/fingerprinters.yml", args.Fingerprinters)
+	require.Equal(t, snmppaths.NetworkConfigFile, args.SnmpConfig)
+	require.Equal(t, snmppaths.FingerprintersFile, args.Fingerprinters)
 	require.False(t, args.AllowDuplicateSysName, "omitted allow_duplicate_sysname must default false")
 	require.NoError(t, args.Validate())
 }

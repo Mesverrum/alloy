@@ -87,9 +87,7 @@ local.file "snmp_targets_hot" {
 }
 
 prometheus.exporter.snmp "fabric_hot" {
-  config_file           = "/etc/alloy/snmp-network.yml"
-  config_merge_strategy = "replace"
-  targets               = encoding.from_yaml(local.file.snmp_targets_hot.content)
+  targets = encoding.from_yaml(local.file.snmp_targets_hot.content)
 }
 ```
 

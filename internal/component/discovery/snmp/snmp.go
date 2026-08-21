@@ -15,6 +15,7 @@ import (
 	"github.com/grafana/alloy/internal/featuregate"
 	"github.com/grafana/alloy/internal/service/livedebugging"
 	"github.com/grafana/alloy/internal/snmpdiscovery"
+	"github.com/grafana/alloy/internal/snmppaths"
 )
 
 func init() {
@@ -39,7 +40,7 @@ type Arguments struct {
 	// or "all" (default) — one target per device per non-empty tier.
 	Tier string `alloy:"tier,attr,optional"`
 
-	SnmpConfig     string        `alloy:"snmp_config,attr"`
+	SnmpConfig     string        `alloy:"snmp_config,attr,optional"`
 	Fingerprinters string        `alloy:"fingerprinters,attr,optional"`
 	Fingerprinter  string        `alloy:"fingerprinter,attr,optional"`
 	ConfigPath     string        `alloy:"config_path,attr,optional"`
@@ -94,7 +95,8 @@ type OverrideArguments struct {
 var DefaultArguments = Arguments{
 	RefreshInterval: 15 * time.Minute,
 	Tier:            "all",
-	Fingerprinters:  "/etc/alloy/fingerprinters.yml",
+	SnmpConfig:      snmppaths.NetworkConfigFile,
+	Fingerprinters:  snmppaths.FingerprintersFile,
 	Fingerprinter:   "network",
 	Concurrency:     8,
 	Timeout:         2 * time.Second,
@@ -113,7 +115,7 @@ func (args *Arguments) SetToDefault() {
 // Validate implements syntax.Validator.
 func (args Arguments) Validate() error {
 	if strings.TrimSpace(args.SnmpConfig) == "" {
-		return fmt.Errorf("snmp_config is required")
+		return fmt.Errorf("snmp_config is empty (omit it to use %s)", snmppaths.NetworkConfigFile)
 	}
 	if strings.TrimSpace(args.ConfigPath) == "" && len(args.Groups) == 0 {
 		return fmt.Errorf("provide config_path or at least one group block")

@@ -18,6 +18,7 @@ import (
 	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/runtime/componenttest"
 	"github.com/grafana/alloy/internal/runtime/logging"
+	"github.com/grafana/alloy/internal/snmppaths"
 	traplib "github.com/grafana/alloy/internal/snmptrap"
 	"github.com/grafana/alloy/syntax"
 )
@@ -58,6 +59,7 @@ func TestUnmarshalDefaultsAcceptAllCommunities(t *testing.T) {
 	`), &args)
 	require.NoError(t, err)
 	require.Equal(t, "0.0.0.0:1620", args.ListenAddress)
+	require.Equal(t, []string{snmppaths.MIBDir}, args.MIBPaths)
 	require.Empty(t, args.Communities)
 	require.True(t, communityAllowed(args.Communities, "anything"))
 	require.True(t, communityAllowed(args.Communities, ""))

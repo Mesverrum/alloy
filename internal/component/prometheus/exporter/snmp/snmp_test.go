@@ -1,12 +1,16 @@
 package snmp
 
 import (
+	"os"
+	"path/filepath"
 	"testing"
 	"time"
 
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/component/discovery"
+	"github.com/grafana/alloy/internal/snmppaths"
 	"github.com/grafana/alloy/syntax"
+	"github.com/grafana/alloy/syntax/alloytypes"
 
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/snmp_exporter/config"
@@ -473,4 +477,46 @@ func requireTargetLabel(t *testing.T, target discovery.Target, label, expectedVa
 	actual, ok := target.Get(label)
 	require.True(t, ok)
 	require.Equal(t, expectedValue, actual)
+}
+
+func TestResolveSNMPConfigFile(t *testing.T) {
+	t.Cleanup(func() { networkConfigFile = snmppaths.NetworkConfigFile })
+
+	t.Run("explicit config_file wins", func(t *testing.T) {
+		networkConfigFile = filepath.Join(t.TempDir(), "missing.yml")
+		got := resolveSNMPConfigFile(&Arguments{ConfigFile: "custom.yml"})
+		require.Equal(t, "custom.yml", got)
+	})
+
+	t.Run("inline config skips image default", func(t *testing.T) {
+		present := filepath.Join(t.TempDir(), "snmp-network.yml")
+		require.NoError(t, os.WriteFile(present, []byte("modules: {}\n"), 0o644))
+		networkConfigFile = present
+		got := resolveSNMPConfigFile(&Arguments{Config: alloytypes.OptionalSecret{Value: "modules: {}"}})
+		require.Empty(t, got)
+	})
+
+	t.Run("inline struct skips image default", func(t *testing.T) {
+		present := filepath.Join(t.TempDir(), "snmp-network.yml")
+		require.NoError(t, os.WriteFile(present, []byte("modules: {}\n"), 0o644))
+		networkConfigFile = present
+		got := resolveSNMPConfigFile(&Arguments{
+			ConfigStruct: config.Config{Modules: map[string]*config.Module{"if_mib": {}}},
+		})
+		require.Empty(t, got)
+	})
+
+	t.Run("omitted uses image file when present", func(t *testing.T) {
+		present := filepath.Join(t.TempDir(), "snmp-network.yml")
+		require.NoError(t, os.WriteFile(present, []byte("modules: {}\n"), 0o644))
+		networkConfigFile = present
+		got := resolveSNMPConfigFile(&Arguments{})
+		require.Equal(t, present, got)
+	})
+
+	t.Run("omitted stays empty when image file missing", func(t *testing.T) {
+		networkConfigFile = filepath.Join(t.TempDir(), "missing.yml")
+		got := resolveSNMPConfigFile(&Arguments{})
+		require.Empty(t, got)
+	})
 }

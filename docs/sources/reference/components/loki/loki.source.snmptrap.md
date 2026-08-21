@@ -42,7 +42,7 @@ loki.source.snmptrap "<LABEL>" {
 | `communities`       | `list(string)`       | Community allowlist for SNMPv1/v2c. Omit or empty to **accept all**. | | no |
 | `include_community` | `bool`               | Put the community string on the JSON body and a `community` label. Off by default (secret-adjacent). | `false` | no |
 | `drop_undefined`    | `bool`               | Drop traps whose trap OID is not in the MIB dictionary. Default is fail-open. | `false` | no |
-| `mib_paths`         | `list(string)`       | Directories of curated MIB files for gosmi name lookup. | | no |
+| `mib_paths`         | `list(string)`       | Directories of curated MIB files for gosmi name lookup. Omit to use the image tree. Set `[]` to skip. | `["/etc/alloy/mibs"]` | no |
 | `labels`            | `map(string)`        | Extra labels to attach before relabeling. | | no |
 | `relabel_rules`     | `RelabelRules`       | Relabel rules applied to each entry. | `{}` | no |
 | `targets`           | `list(map(string))`  | Optional discovery catalog (typically [`discovery.snmp`](../../discovery/discovery.snmp.md) `.targets`). Joins UDP source (then SNMPv1 `agent_address`) to `device_name`. | | no |
@@ -119,11 +119,13 @@ Each log line is compact JSON, for example:
 
 Informs are accepted and answered; the log `pdu_type` is `inform`.
 
-Mount a **small curated** MIB set on `mib_paths`. Distro or vendor mega-trees
-can hang or fail gosmi — do not dump `/usr/share/snmp/mibs` wholesale.
+A missing default MIB directory is skipped (OIDs stay numeric). Distro or
+vendor mega-trees can hang or fail gosmi — do not dump `/usr/share/snmp/mibs`
+wholesale. Override `mib_paths` only for a custom tree; set `mib_paths = []`
+to skip lookup.
 
-`drop_undefined` requires a loaded dictionary. With no `mib_paths` every trap
-looks unresolved and would be dropped.
+`drop_undefined` requires a loaded dictionary. With an empty `mib_paths` every
+trap looks unresolved and would be dropped.
 
 ## Blocks
 
@@ -170,8 +172,6 @@ the trap and increments `queue_full`. Watch `queue_length` before drops start.
 
 ```alloy
 discovery.snmp "fabric" {
-  snmp_config = "/etc/alloy/snmp-network.yml"
-
   group {
     name  = "hq"
     cidrs = ["172.20.20.0/24"]
@@ -195,8 +195,6 @@ loki.relabel "traps" {
 }
 
 loki.source.snmptrap "fabric" {
-  listen_address = "0.0.0.0:1620"
-  mib_paths      = ["/etc/alloy/mibs"]
   targets        = discovery.snmp.fabric.targets
   labels         = { job = "snmptrap", site = "hq" }
   relabel_rules  = loki.relabel.traps.rules

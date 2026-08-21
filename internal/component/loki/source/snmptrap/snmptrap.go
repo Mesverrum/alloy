@@ -24,6 +24,7 @@ import (
 	alloy_relabel "github.com/grafana/alloy/internal/component/common/relabel"
 	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/featuregate"
+	"github.com/grafana/alloy/internal/snmppaths"
 	traplib "github.com/grafana/alloy/internal/snmptrap"
 	"github.com/grafana/alloy/syntax/alloytypes"
 )
@@ -69,6 +70,7 @@ type V3Arguments struct {
 // DefaultArguments is the default listener config.
 var DefaultArguments = Arguments{
 	ListenAddress: "0.0.0.0:1620",
+	MIBPaths:      []string{snmppaths.MIBDir},
 }
 
 // SetToDefault implements syntax.Defaulter.

@@ -3,7 +3,9 @@ package snmp
 import (
 	"errors"
 	"fmt"
+	"os"
 	"slices"
+	"strings"
 	"time"
 
 	snmp_config "github.com/prometheus/snmp_exporter/config"
@@ -13,6 +15,7 @@ import (
 	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/component/prometheus/exporter"
 	"github.com/grafana/alloy/internal/featuregate"
+	"github.com/grafana/alloy/internal/snmppaths"
 	"github.com/grafana/alloy/internal/static/integrations"
 	"github.com/grafana/alloy/internal/static/integrations/snmp_exporter"
 	"github.com/grafana/alloy/syntax/alloytypes"
@@ -248,6 +251,25 @@ func (a *Arguments) UnmarshalAlloy(f func(any) error) error {
 	return nil
 }
 
+// networkConfigFile is the image-baked library. Tests override this.
+var networkConfigFile = snmppaths.NetworkConfigFile
+
+// resolveSNMPConfigFile returns the snmp.yml path to load. Omitted
+// config_file (and inline config) uses the network image library when that
+// file exists; otherwise the exporter keeps the embedded stock snmp.yml.
+func resolveSNMPConfigFile(a *Arguments) string {
+	if a.ConfigFile != "" || strings.TrimSpace(a.Config.Value) != "" {
+		return a.ConfigFile
+	}
+	if len(a.ConfigStruct.Modules) > 0 || len(a.ConfigStruct.Auths) > 0 {
+		return ""
+	}
+	if _, err := os.Stat(networkConfigFile); err == nil {
+		return networkConfigFile
+	}
+	return ""
+}
+
 // Convert converts the component's Arguments to the integration's Config.
 func (a *Arguments) Convert() *snmp_exporter.Config {
 	var targets []snmp_exporter.SNMPTarget
@@ -257,7 +279,7 @@ func (a *Arguments) Convert() *snmp_exporter.Config {
 		targets = a.TargetsList.Convert()
 	}
 	return &snmp_exporter.Config{
-		SnmpConfigFile:          a.ConfigFile,
+		SnmpConfigFile:          resolveSNMPConfigFile(a),
 		SnmpConfigMergeStrategy: a.ConfigMergeStrategy,
 		SnmpConcurrency:         a.SnmpConcurrency,
 		SnmpTargets:             targets,

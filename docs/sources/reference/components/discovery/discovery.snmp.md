@@ -37,8 +37,6 @@ Alloy bool defaults apply only when the attribute is omitted. Write
 
 ```alloy
 discovery.snmp "<LABEL>" {
-  snmp_config = "/etc/alloy/snmp-network.yml"
-
   group {
     name  = "hq"
     cidrs = ["172.20.20.0/24"]
@@ -53,7 +51,7 @@ You can use the following arguments with `discovery.snmp`:
 
 | Name               | Type           | Description | Default | Required |
 | ------------------ | -------------- | ----------- | ------- | -------- |
-| `snmp_config`      | `string`       | Path to snmp_exporter `snmp.yml` (`auths` + modules). | | yes |
+| `snmp_config`      | `string`       | Path to snmp_exporter `snmp.yml` (`auths` + modules). Omit to use the image library. | `"/etc/alloy/snmp-network.yml"` | no |
 | `config_path`      | `string`       | Path to discovery groups YAML. Preferred over inline `group` blocks for the group list. | | no |
 | `overrides_path`   | `string`       | Optional overrides YAML merged into the config. | | no |
 | `fingerprinters`   | `string`       | Path to fingerprinters YAML. | `"/etc/alloy/fingerprinters.yml"` | no |
@@ -235,8 +233,6 @@ hostname.
 
 ```alloy
 discovery.snmp "fabric" {
-  snmp_config      = "/etc/alloy/snmp-network.yml"
-  fingerprinters   = "/etc/alloy/fingerprinters.yml"
   refresh_interval = "15m"
   state_path       = "/var/lib/alloy/snmp-discovery.state.json"
 
@@ -266,13 +262,11 @@ discovery.relabel "snmp_cold" {
 }
 
 prometheus.exporter.snmp "hot" {
-  config_file = "/etc/alloy/snmp-network.yml"
-  targets     = discovery.relabel.snmp_hot.output
+  targets = discovery.relabel.snmp_hot.output
 }
 
 prometheus.exporter.snmp "cold" {
-  config_file = "/etc/alloy/snmp-network.yml"
-  targets     = discovery.relabel.snmp_cold.output
+  targets = discovery.relabel.snmp_cold.output
 }
 
 prometheus.scrape "snmp_hot" {
@@ -292,8 +286,7 @@ Pin a single tier on the discoverer instead of filtering with `discovery.relabel
 
 ```alloy
 discovery.snmp "hot" {
-  snmp_config = "/etc/alloy/snmp-network.yml"
-  tier        = "hot"
+  tier = "hot"
 
   group {
     name  = "hq"
@@ -303,8 +296,7 @@ discovery.snmp "hot" {
 }
 
 prometheus.exporter.snmp "fabric_hot" {
-  config_file = "/etc/alloy/snmp-network.yml"
-  targets     = discovery.snmp.hot.targets
+  targets = discovery.snmp.hot.targets
 }
 ```
 
