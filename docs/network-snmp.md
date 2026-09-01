@@ -171,7 +171,7 @@ Each group tries only its own named auths on its CIDRs. Overrides pin/ignore/ren
 |-------|-----------|--------|
 | 1 | Curated `snmp.yml` modules (converter exists; more vendors are mechanical) | this branch |
 | 2 | `discovery.snmp` (experimental) + `snmp-discovery` CLI / HTTP SD | **this branch** — slog, health, metrics, Live Debugging, unmarshal tests. Remaining GA items: [`docs/discovery-snmp-production-gaps.md`](discovery-snmp-production-gaps.md) |
-| 3 | `loki.source.snmptrap` — [alloy#440](https://github.com/grafana/alloy/issues/440) | **this branch** (experimental) — optional `targets` join to `device_name`. Prior art: [`docs/snmp-trap-prior-art.md`](snmp-trap-prior-art.md) |
+| 3 | `otelcol.receiver.snmptrap` — [alloy#440](https://github.com/grafana/alloy/issues/440) | **this branch** (experimental) — OTel logs (not Loki). Optional `targets` join to `device_name`. Prior art: [`docs/snmp-trap-prior-art.md`](snmp-trap-prior-art.md) |
 | 4 | `otelcol.receiver.netflow` — [alloy#6304](https://github.com/grafana/alloy/issues/6304) | **this branch** (experimental) — contrib receiver as-is (logs). Metrics via `otelcol.connector.signaltometrics`, not a metrics-emitting fork. Docs: [`otelcol.receiver.netflow.md`](sources/reference/components/otelcol/otelcol.receiver.netflow.md) |
 
 `discovery.snmp` is the Fleet-managed form of slice 2. Docs: [`docs/sources/reference/components/discovery/discovery.snmp.md`](sources/reference/components/discovery/discovery.snmp.md). The overlay `Dockerfile.network` still ships only the CLI on stock Alloy for fast MIB iteration.

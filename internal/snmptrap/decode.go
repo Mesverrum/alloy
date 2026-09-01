@@ -134,7 +134,7 @@ func (r Record) Resolved() bool {
 	return r.TrapName != "" && r.TrapName != r.TrapOID
 }
 
-// MarshalJSONLine is compact JSON for a Loki line.
+// MarshalJSONLine is compact JSON for the OTel log body.
 func (r Record) MarshalJSONLine() ([]byte, error) {
 	return json.Marshal(r)
 }

@@ -17,6 +17,6 @@ const (
 	// convert as NetworkConfigFile.
 	FingerprintersFile = "/etc/alloy/fingerprinters.yml"
 
-	// MIBDir is the curated trap MIB tree used by loki.source.snmptrap.
+	// MIBDir is the curated trap MIB tree used by otelcol.receiver.snmptrap.
 	MIBDir = "/etc/alloy/mibs"
 )

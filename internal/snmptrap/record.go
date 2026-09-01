@@ -2,11 +2,12 @@ package snmptrap
 
 import "time"
 
-// Record is one trap or inform, ready to marshal as a Loki log line.
+// Record is one trap or inform, ready to marshal as an OTel log body.
 type Record struct {
 	Time         time.Time `json:"time"`
 	Source       string    `json:"source"`
 	DeviceName   string    `json:"device_name,omitempty"`
+	SnmpGroup    string    `json:"snmp_group,omitempty"`
 	Version      string    `json:"version"`
 	PDUType      string    `json:"pdu_type"`
 	TrapOID      string    `json:"trap_oid"`

@@ -134,7 +134,7 @@ Each target includes the following labels:
 | `address`      | SNMP address (canonical IP). |
 | `module`       | Comma-separated snmp_exporter modules for this `snmp_tier`. |
 | `auth`         | Named auth from `snmp.yml`. Never a community string. |
-| `device_name`  | Device identity from `sysName`. Same hostname on multiple IPs is one identity unless `allow_duplicate_sysname`. Pass `.targets` to [`loki.source.snmptrap`](../loki/loki.source.snmptrap.md) to stamp this on traps. |
+| `device_name`  | Device identity from `sysName`. Same hostname on multiple IPs is one identity unless `allow_duplicate_sysname`. Pass `.targets` to [`otelcol.receiver.snmptrap`](../otelcol/otelcol.receiver.snmptrap.md) to stamp this on traps. |
 | `snmp_tier`    | `hot`, `cold`, or `topology`. |
 | `sysObjectID`  | Present when the probe returned one. |
 | `snmp_group`   | Discovery group name. |
@@ -227,7 +227,7 @@ they do not linger on the miss counter.
 Empty `sysName` (identity is the IP itself) is never collapsed.
 
 This is per discovery job, not a global CMDB merge. Extra IPs stay on
-`snmp_aliases` so [`loki.source.snmptrap`](../loki/loki.source.snmptrap.md)
+`snmp_aliases` so [`otelcol.receiver.snmptrap`](../otelcol/otelcol.receiver.snmptrap.md)
 (`targets = discovery.snmp.<label>.targets`) can join a trap from the
 non-scraped address to the same `device_name`.
 

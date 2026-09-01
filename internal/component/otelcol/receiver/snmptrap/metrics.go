@@ -1,9 +1,6 @@
 package snmptrap
 
 import (
-	"fmt"
-
-	"github.com/gosnmp/gosnmp"
 	"github.com/grafana/alloy/internal/util"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -15,8 +12,7 @@ const (
 	trapQueueCap    = 1024
 )
 
-// Metrics for loki.source.snmptrap.
-type Metrics struct {
+type recvMetrics struct {
 	received       *prometheus.CounterVec
 	entries        prometheus.Counter
 	errors         prometheus.Counter
@@ -28,42 +24,42 @@ type Metrics struct {
 	handleDuration prometheus.Histogram
 }
 
-func newMetrics(reg prometheus.Registerer) *Metrics {
-	m := &Metrics{
+func newRecvMetrics(reg prometheus.Registerer) *recvMetrics {
+	m := &recvMetrics{
 		received: prometheus.NewCounterVec(prometheus.CounterOpts{
-			Name: "loki_source_snmptrap_received_total",
+			Name: "otelcol_receiver_snmptrap_received_total",
 			Help: "SNMP trap/inform packets accepted by the UDP listener.",
 		}, []string{"pdu"}),
 		entries: prometheus.NewCounter(prometheus.CounterOpts{
-			Name: "loki_source_snmptrap_entries_total",
-			Help: "Total number of SNMP trap/inform entries forwarded",
+			Name: "otelcol_receiver_snmptrap_entries_total",
+			Help: "SNMP trap/inform logs forwarded to the OTel pipeline.",
 		}),
 		errors: prometheus.NewCounter(prometheus.CounterOpts{
-			Name: "loki_source_snmptrap_errors_total",
-			Help: "Total number of SNMP trap decode or marshal errors",
+			Name: "otelcol_receiver_snmptrap_errors_total",
+			Help: "SNMP trap decode or marshal errors.",
 		}),
 		joined: prometheus.NewCounter(prometheus.CounterOpts{
-			Name: "loki_source_snmptrap_joined_total",
+			Name: "otelcol_receiver_snmptrap_joined_total",
 			Help: "Traps whose source IP matched a discovery identity (device_name).",
 		}),
 		unjoined: prometheus.NewCounter(prometheus.CounterOpts{
-			Name: "loki_source_snmptrap_unjoined_total",
+			Name: "otelcol_receiver_snmptrap_unjoined_total",
 			Help: "Traps received while a discovery catalog was set but the source IP was unknown.",
 		}),
 		dropped: prometheus.NewCounterVec(prometheus.CounterOpts{
-			Name: "loki_source_snmptrap_dropped_total",
-			Help: "Total number of SNMP traps dropped before forwarding",
+			Name: "otelcol_receiver_snmptrap_dropped_total",
+			Help: "SNMP traps dropped before forwarding.",
 		}, []string{"reason"}),
 		queueLen: prometheus.NewGauge(prometheus.GaugeOpts{
-			Name: "loki_source_snmptrap_queue_length",
-			Help: "Log entries waiting to be forwarded (outbound channel depth).",
+			Name: "otelcol_receiver_snmptrap_queue_length",
+			Help: "OTel log batches waiting to be forwarded.",
 		}),
 		queueCap: prometheus.NewGauge(prometheus.GaugeOpts{
-			Name: "loki_source_snmptrap_queue_capacity",
+			Name: "otelcol_receiver_snmptrap_queue_capacity",
 			Help: "Outbound channel capacity. queue_length / queue_capacity is backlog.",
 		}),
 		handleDuration: prometheus.NewHistogram(prometheus.HistogramOpts{
-			Name:    "loki_source_snmptrap_handle_duration_seconds",
+			Name:    "otelcol_receiver_snmptrap_handle_duration_seconds",
 			Help:    "Time to decode and enqueue one trap/inform.",
 			Buckets: []float64{0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1},
 		}),
@@ -88,27 +84,16 @@ func newMetrics(reg prometheus.Registerer) *Metrics {
 	return m
 }
 
-func (m *Metrics) drop(reason string) {
+func (m *recvMetrics) drop(reason string) {
 	if m == nil || m.dropped == nil {
 		return
 	}
 	m.dropped.WithLabelValues(reason).Inc()
 }
 
-func (m *Metrics) noteQueue(n int) {
+func (m *recvMetrics) noteQueue(n int) {
 	if m == nil || m.queueLen == nil {
 		return
 	}
 	m.queueLen.Set(float64(n))
-}
-
-func trapPDULabel(t gosnmp.PDUType) string {
-	if t == gosnmp.InformRequest {
-		return "inform"
-	}
-	return "trap"
-}
-
-func unknownEnum(kind, v string) error {
-	return fmt.Errorf("unknown %s %q", kind, v)
 }

@@ -60,7 +60,6 @@ import (
 	_ "github.com/grafana/alloy/internal/component/loki/source/kubernetes"                   // Import loki.source.kubernetes
 	_ "github.com/grafana/alloy/internal/component/loki/source/kubernetes_events"            // Import loki.source.kubernetes_events
 	_ "github.com/grafana/alloy/internal/component/loki/source/podlogs"                      // Import loki.source.podlogs
-	_ "github.com/grafana/alloy/internal/component/loki/source/snmptrap"                     // Import loki.source.snmptrap
 	_ "github.com/grafana/alloy/internal/component/loki/source/syslog"                       // Import loki.source.syslog
 	_ "github.com/grafana/alloy/internal/component/loki/source/windowsevent"                 // Import loki.source.windowsevent
 	_ "github.com/grafana/alloy/internal/component/loki/write"                               // Import loki.write
@@ -121,6 +120,7 @@ import (
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/filelog"                 // Import otelcol.receiver.filelog
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/fluentforward"           // Import otelcol.receiver.fluentforward
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/netflow"                 // Import otelcol.receiver.netflow
+	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/snmptrap"                // Import otelcol.receiver.snmptrap
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/googlecloudpubsub"       // Import otelcol.receiver.googlecloudpubsub
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/influxdb"                // Import otelcol.receiver.influxdb
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/jaeger"                  // Import otelcol.receiver.jaeger

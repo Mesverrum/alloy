@@ -15,7 +15,7 @@ gaps below.
 | **Metrics** | `discovery_snmp_scans_total`, `scan_failures_total`, `scan_skipped_total`, `scan_duration_seconds`, `devices`, `targets`, `sweep_addresses`, `ping_up`, `dropped_total`, `probe_errors_total` on `opts.Registerer`. |
 | **Config tests** | `syntax.Unmarshal` (including `ping = false`), `Validate` ranges, failed-scan health, overlap skip. |
 | **Docs** | `docs/sources/reference/components/discovery/discovery.snmp.md` — `canonical` / `aliases`, CAP_NET_RAW / bool footgun, exported labels (`snmp_aliases`), health, debug metrics, troubleshooting, compatible components. |
-| **Identity join (traps / syslog / flow)** | Hostname collapse keeps loser IPs as `snmp_aliases`. Shared `devicejoin` indexes `address`, aliases, and `device_name`. `loki.source.snmptrap`, `loki.source.syslog`, and `otelcol.receiver.netflow` optional `targets` stamp `device_name` / `snmp_group` at receive time without restarting listeners on catalog refresh. Flow also stamps `src_device` / `dst_device` when those IPs are in the catalog. |
+| **Identity join (traps / syslog / flow)** | Hostname collapse keeps loser IPs as `snmp_aliases`. Shared `devicejoin` indexes `address`, aliases, and `device_name`. `otelcol.receiver.snmptrap`, `loki.source.syslog`, and `otelcol.receiver.netflow` optional `targets` stamp `device_name` / `snmp_group` at receive time without restarting listeners on catalog refresh. Flow also stamps `src_device` / `dst_device` when those IPs are in the catalog. |
 | **Concurrency** | `TryLock` overlap skip (same as the CLI). |
 | **Validate** | `concurrency`, `timeout`, `ping_timeout` > 0; `port` 1–65535; `retries`/`misses` ≥ 0. Missing files fail the **scan** (health), not Validate — Fleet may mount them after start. |
 
@@ -33,7 +33,7 @@ gaps below.
 
 - Component: `internal/component/discovery/snmp/`
 - Library: `internal/snmpdiscovery/`
-- Join: `internal/component/common/devicejoin/` → `loki.source.snmptrap` / `loki.source.syslog` / `otelcol.receiver.netflow` `targets`
+- Join: `internal/component/common/devicejoin/` → `otelcol.receiver.snmptrap` / `loki.source.syslog` / `otelcol.receiver.netflow` `targets`
 - CLI: `cmd/snmp-discovery/`
 - Docs: `docs/sources/reference/components/discovery/discovery.snmp.md`
 - Lab: `ALLOY_NETWORK_FROM_SOURCE=1` → `local/scripts/build-alloy-bin-overlay.sh`

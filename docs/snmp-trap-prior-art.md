@@ -1,8 +1,8 @@
 # SNMP trap receiver — prior art (ktranslate + Telegraf)
 
-**Status (2026-08-18):** experimental `loki.source.snmptrap` is in the Alloy `network-snmp` fork (`internal/snmptrap` + component). Default listen `:1620`, optional community allowlist (omit = accept all), gosmi enrichment fail-open, drop-on-full. Lab cutover of the SRL trap-group is still TODO.
+**Status (2026-09-01):** experimental `otelcol.receiver.snmptrap` is in the Alloy `network-snmp` fork (`internal/snmptrap` + OTel receiver). Traps are OTel **logs**, not Loki entries. Default listen `:1620`, optional community allowlist (omit = accept all), gosmi enrichment fail-open, drop-on-full.
 
-**Goal for Alloy:** a logging capability (`loki.source.snmptrap`, [alloy#440](https://github.com/grafana/alloy/issues/440)) that listens for SNMP traps/informs and forwards structured log entries — peer of `loki.source.syslog`, not a metrics scrape.
+**Goal for Alloy:** a logging capability (`otelcol.receiver.snmptrap`, [alloy#440](https://github.com/grafana/alloy/issues/440)) that listens for SNMP traps/informs and forwards structured OTel logs — peer of `otelcol.receiver.netflow`, not `loki.source.syslog`.
 
 This note captures how the two tools we already trust handle traps, so the Alloy design can borrow deliberately.
 
@@ -135,18 +135,18 @@ Do **not** use `rate(kentik_ktranslate_chf_kkc_snmp_traps[5m])` for event volume
 
 ---
 
-## Alloy design implications (`loki.source.snmptrap`)
+## Alloy design implications (`otelcol.receiver.snmptrap`)
 
-Mirror **`loki.source.syslog`**: listen → build `loki.Entry` → `forward_to`.
+Mirror **`otelcol.receiver.netflow`**: listen → build `plog.Logs` → `output.logs`.
 
 ### Suggested contract
 
 | Piece | Proposal |
 |-------|----------|
-| Component | `loki.source.snmptrap` (experimental), [alloy#440](https://github.com/grafana/alloy/issues/440) |
+| Component | `otelcol.receiver.snmptrap` (experimental), [alloy#440](https://github.com/grafana/alloy/issues/440) |
 | Listen | `listen_address` / UDP (default `:1620` in containers; doc `:162` + caps) |
 | Versions | `1`, `2c`, `3` blocks (secrets via `alloytypes.Secret`) |
-| Labels | `__snmptrap_source`, `__snmptrap_oid`, `__snmptrap_name`, `__snmptrap_mib`, `__snmptrap_version`; `device_name` / `snmp_group` when `targets` is set |
+| Attributes | `source`, `trap_oid`, `trap_name`, `trap_mib`, `snmp_version`, `pdu_type`; `device_name` / `snmp_group` when `targets` is set |
 | Body | JSON of varbinds (string/number) — ktranslate-like content, Telegraf-like names |
 | Community | Do **not** put on labels by default; optional `include_community` |
 | MIB | **gosmi** on a curated path first (optional enrichment). Fail-open to numeric OIDs if lookup misses. Later: manual dictionary enrichment and/or pivot to a curated library (ktranslate-style) — not a v1 blocker. |
@@ -167,10 +167,10 @@ Mirror **`loki.source.syslog`**: listen → build `loki.Entry` → `forward_to`.
 | 5 | **Undefined OID policy** | Fail-open default; optional `drop_undefined` later. |
 | 6 | **Informs** | Traps + informs. |
 | 7 | **Device enrichment** | Source IP (+ EngineID label when present). Optional `targets` from `discovery.snmp` stamps `device_name` at receive time (aliases from hostname collapse). Syslog/flow still open. |
-| 8 | **Relabel surface** | `__snmptrap_*` meta labels; promote via `discovery.relabel` / `loki.relabel`. |
+| 8 | **Relabel surface** | Log attributes on the OTel record. No Loki meta-label hop. |
 | 9 | **Backpressure** | Drop on full + counter; do not stall UDP. |
 | 10 | **Coexistence with ktranslate** | Lab cutover of SRL trap-group to Alloy when listener is up. |
-| 11 | **Component** | `loki.source.snmptrap`, experimental until syslog-parity polish. |
+| 11 | **Component** | `otelcol.receiver.snmptrap` (replaces `loki.source.snmptrap`). |
 | 12 | **v3 engine/context** | Always label when present. |
 
 **Community note:** filtering is a minority need. Default ingest-all matches ktranslate’s practical behaviour and field experience; do not make empty-allowlist mean “accept nothing.”
@@ -186,7 +186,7 @@ Mirror **`loki.source.syslog`**: listen → build `loki.Entry` → `forward_to`.
 | Today (ktranslate) | Later (Alloy) |
 |--------------------|---------------|
 | `snmp-trap-config.sh` → poller `:1620` | Point SRL trap-group at Alloy `:1620` |
-| Loki `eventType="KSnmpTrap"` | Loki labels from `loki.source.snmptrap` |
+| Loki `eventType="KSnmpTrap"` | OTel log attributes from `otelcol.receiver.snmptrap` |
 | CHF `snmp_traps` meter | Alloy component counters |
 
 ---
