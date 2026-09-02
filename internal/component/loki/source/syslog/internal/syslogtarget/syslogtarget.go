@@ -56,6 +56,7 @@ type SyslogTarget struct {
 	config        *scrapeconfig.SyslogTargetConfig
 	relabelConfig []*relabel.Config
 	dbgListener   DebugListener
+	enrichLabels  func(*labels.Builder)
 
 	transport Transport
 
@@ -76,6 +77,9 @@ type TargetParams struct {
 	Relabel       []*relabel.Config
 	Config        *scrapeconfig.SyslogTargetConfig
 	DebugListener DebugListener
+	// EnrichLabels runs after protocol labels are set and before relabel.
+	// Used to stamp device_name from a discovery catalog without restarting the listener.
+	EnrichLabels func(*labels.Builder)
 }
 
 // NewSyslogTarget configures a new SyslogTarget.
@@ -88,6 +92,7 @@ func NewSyslogTarget(params TargetParams) (*SyslogTarget, error) {
 		relabelConfig: params.Relabel,
 		messagesDone:  make(chan struct{}),
 		dbgListener:   params.DebugListener,
+		enrichLabels:  params.EnrichLabels,
 	}
 
 	if t.dbgListener == nil {
@@ -170,6 +175,8 @@ func (t *SyslogTarget) handleMessageRFC5424(connLabels labels.Labels, msg *rfc54
 	if v := msg.Sequence; v != nil {
 		lb.Set("__syslog_message_sequence", strconv.Itoa(int(*v)))
 	}
+
+	t.applyEnrich(lb)
 
 	if t.config.LabelStructuredData && msg.StructuredData != nil {
 		for id, params := range *msg.StructuredData {
@@ -259,6 +266,8 @@ func (t *SyslogTarget) handleMessageRFC3164(connLabels labels.Labels, msg *rfc31
 		lb.Set("__syslog_message_sequence", strconv.Itoa(int(*v)))
 	}
 
+	t.applyEnrich(lb)
+
 	originalLabels := lb.Labels()
 	relabel.ProcessBuilder(lb, t.relabelConfig...)
 	processed := lb.Labels()
@@ -305,6 +314,8 @@ func (t *SyslogTarget) handleMessageRaw(connLabels labels.Labels, msg *syslog.Ba
 		lb.Set("__syslog_message_facility", *v)
 	}
 
+	t.applyEnrich(lb)
+
 	originalLabels := lb.Labels()
 	relabel.ProcessBuilder(lb, t.relabelConfig...)
 	processed := lb.Labels()
@@ -330,6 +341,12 @@ func (t *SyslogTarget) handleMessageRaw(connLabels labels.Labels, msg *syslog.Ba
 		labels:    filtered,
 		message:   *msg.Message,
 		timestamp: ts,
+	}
+}
+
+func (t *SyslogTarget) applyEnrich(lb *labels.Builder) {
+	if t != nil && t.enrichLabels != nil && lb != nil {
+		t.enrichLabels(lb)
 	}
 }
 

@@ -17,6 +17,7 @@ import (
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/component/common/loki"
 	alloy_relabel "github.com/grafana/alloy/internal/component/common/relabel"
+	"github.com/grafana/alloy/internal/component/discovery"
 	scrapeconfig "github.com/grafana/alloy/internal/component/loki/source/syslog/config"
 	"github.com/grafana/alloy/internal/component/loki/source/syslog/internal/syslogtarget"
 	"github.com/grafana/alloy/internal/featuregate"
@@ -176,6 +177,58 @@ func TestWithRelabelRules(t *testing.T) {
 	case <-time.After(5 * time.Second):
 		require.FailNow(t, "failed waiting for log line")
 	}
+}
+
+func TestWithDeviceJoin(t *testing.T) {
+	opts := component.Options{
+		Logger:        logging.NewSlogNop(),
+		Registerer:    prometheus.NewRegistry(),
+		OnStateChange: func(e component.Exports) {},
+	}
+	ch1 := loki.NewLogsReceiver()
+	tcpListenerAddr := componenttest.GetFreeAddr(t)
+	l := DefaultListenerConfig
+	l.ListenAddress = tcpListenerAddr
+	l.ListenProtocol = syslogtarget.ProtocolTCP
+	args := Arguments{
+		SyslogListeners: []ListenerConfig{l},
+		ForwardTo:       []loki.LogsReceiver{ch1},
+		Targets: []discovery.Target{
+			discovery.NewTargetFromMap(map[string]string{
+				"address":     "127.0.0.1",
+				"device_name": "spine1",
+				"snmp_group":  "hq",
+			}),
+		},
+	}
+	c, err := New(opts, args)
+	require.NoError(t, err)
+	go c.Run(t.Context())
+	time.Sleep(200 * time.Millisecond)
+
+	msg := `<165>1 2023-01-05T09:13:17.001Z host1 app - id1 - An application event log entry...`
+	con, err := net.Dial(syslogtarget.ProtocolTCP, tcpListenerAddr)
+	require.NoError(t, err)
+	require.NoError(t, writeMessageToStream(con, msg, fmtNewline))
+	require.NoError(t, con.Close())
+
+	select {
+	case logEntry := <-ch1.Chan():
+		require.Equal(t, "spine1", string(logEntry.Labels["device_name"]))
+		require.Equal(t, "hq", string(logEntry.Labels["snmp_group"]))
+	case <-time.After(5 * time.Second):
+		require.FailNow(t, "failed waiting for joined syslog")
+	}
+
+	first := c.targets[0]
+	args.Targets = []discovery.Target{
+		discovery.NewTargetFromMap(map[string]string{
+			"address":     "10.0.0.2",
+			"device_name": "leaf1",
+		}),
+	}
+	require.NoError(t, c.Update(args))
+	require.Same(t, first, c.targets[0])
 }
 
 func writeMessageToStream(w io.Writer, msg string, formatter formatFunc) error {

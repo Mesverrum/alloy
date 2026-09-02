@@ -3,7 +3,9 @@ package snmp
 import (
 	"errors"
 	"fmt"
+	"os"
 	"slices"
+	"strings"
 	"time"
 
 	snmp_config "github.com/prometheus/snmp_exporter/config"
@@ -13,6 +15,8 @@ import (
 	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/component/prometheus/exporter"
 	"github.com/grafana/alloy/internal/featuregate"
+	"github.com/grafana/alloy/internal/snmpdiscovery"
+	"github.com/grafana/alloy/internal/snmppaths"
 	"github.com/grafana/alloy/internal/static/integrations"
 	"github.com/grafana/alloy/internal/static/integrations/snmp_exporter"
 	"github.com/grafana/alloy/syntax/alloytypes"
@@ -150,9 +154,12 @@ type Arguments struct {
 	SnmpConcurrency     int                       `alloy:"concurrency,attr,optional"`
 	Config              alloytypes.OptionalSecret `alloy:"config,attr,optional"`
 	ConfigMergeStrategy string                    `alloy:"config_merge_strategy,attr,optional"`
+	Auths               alloytypes.OptionalSecret `alloy:"auths,attr,optional"`
+	AuthsFile           string                    `alloy:"auths_file,attr,optional"`
 	Targets             TargetBlock               `alloy:"target,block,optional"`
 	WalkParams          WalkParams                `alloy:"walk_param,block,optional"`
 	ConfigStruct        snmp_config.Config
+	AuthsOverlay        []byte
 
 	// New way of passing targets. This allows the component to receive targets from other components.
 	TargetsList TargetsList `alloy:"targets,attr,optional"`
@@ -223,6 +230,15 @@ func (a *Arguments) UnmarshalAlloy(f func(any) error) error {
 		return errors.New("config and config_file are mutually exclusive")
 	}
 
+	if strings.TrimSpace(a.Auths.Value) != "" && strings.TrimSpace(a.AuthsFile) != "" {
+		return errors.New("auths and auths_file are mutually exclusive")
+	}
+	overlay, err := snmpdiscovery.ResolveAuthsOverlay(a.Auths.Value, a.AuthsFile)
+	if err != nil {
+		return err
+	}
+	a.AuthsOverlay = overlay
+
 	if a.ConfigMergeStrategy != "replace" && a.ConfigMergeStrategy != "merge" {
 		return errors.New("config_merge_strategy must be `replace` or `merge`")
 	}
@@ -240,12 +256,30 @@ func (a *Arguments) UnmarshalAlloy(f func(any) error) error {
 		}
 	}
 
-	err := yaml.UnmarshalStrict([]byte(a.Config.Value), &a.ConfigStruct)
-	if err != nil {
+	if err := yaml.UnmarshalStrict([]byte(a.Config.Value), &a.ConfigStruct); err != nil {
 		return fmt.Errorf("invalid snmp_exporter config: %s", err)
 	}
 
 	return nil
+}
+
+// networkConfigFile is the image-baked library. Tests override this.
+var networkConfigFile = snmppaths.NetworkConfigFile
+
+// resolveSNMPConfigFile returns the snmp.yml path to load. Omitted
+// config_file (and inline config) uses the network image library when that
+// file exists; otherwise the exporter keeps the embedded stock snmp.yml.
+func resolveSNMPConfigFile(a *Arguments) string {
+	if a.ConfigFile != "" || strings.TrimSpace(a.Config.Value) != "" {
+		return a.ConfigFile
+	}
+	if len(a.ConfigStruct.Modules) > 0 || len(a.ConfigStruct.Auths) > 0 {
+		return ""
+	}
+	if _, err := os.Stat(networkConfigFile); err == nil {
+		return networkConfigFile
+	}
+	return ""
 }
 
 // Convert converts the component's Arguments to the integration's Config.
@@ -257,12 +291,13 @@ func (a *Arguments) Convert() *snmp_exporter.Config {
 		targets = a.TargetsList.Convert()
 	}
 	return &snmp_exporter.Config{
-		SnmpConfigFile:          a.ConfigFile,
+		SnmpConfigFile:          resolveSNMPConfigFile(a),
 		SnmpConfigMergeStrategy: a.ConfigMergeStrategy,
 		SnmpConcurrency:         a.SnmpConcurrency,
 		SnmpTargets:             targets,
 		WalkParams:              a.WalkParams.Convert(),
 		SnmpConfig:              a.ConfigStruct,
+		AuthsOverlay:            a.AuthsOverlay,
 	}
 }
 

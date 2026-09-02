@@ -1,0 +1,90 @@
+# syntax=docker/dockerfile:1.23
+#
+# Full fork image: Alloy binary with experimental discovery.snmp + curated
+# snmp.yml + snmp-discovery CLI. Same build path as Dockerfile, plus network
+# assets. Slow; use when Fleet must push discovery.snmp River.
+#
+#   DOCKER_BUILDKIT=1 docker build -f Dockerfile.network-src -t srl-local/alloy:network-dev .
+# Lab: ALLOY_NETWORK_FROM_SOURCE=1 ./scripts/build-alloy-network-image.sh
+#
+# For a faster MIB-only overlay on stock Alloy (CLI discovery only), use
+# Dockerfile.network instead.
+
+FROM --platform=$BUILDPLATFORM grafana/alloy-build-image:v0.1.35 AS ui-build
+ARG BUILDPLATFORM
+COPY ./internal/web/ui /ui
+WORKDIR /ui
+RUN --mount=type=cache,target=/root/.npm,sharing=locked \
+    npm ci --no-audit --no-fund                         \
+    && npm run build
+
+FROM --platform=$BUILDPLATFORM grafana/alloy-build-image:v0.1.35 AS build
+
+ARG BUILDPLATFORM
+ARG TARGETPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
+ARG TARGETVARIANT
+ARG RELEASE_BUILD=1
+ARG VERSION=network-dev
+ARG GOEXPERIMENT
+
+COPY . /src/alloy
+WORKDIR /src/alloy
+
+COPY --from=ui-build /ui/dist /src/alloy/internal/web/ui/dist
+
+RUN --mount=type=cache,target=/root/.cache/go-build \
+    --mount=type=cache,target=/go/pkg/mod \
+    GOOS="$TARGETOS" GOARCH="$TARGETARCH" GOARM=${TARGETVARIANT#v} \
+    RELEASE_BUILD=${RELEASE_BUILD} VERSION=${VERSION} \
+    GO_TAGS="netgo embedalloyui promtail_journal_enabled" \
+    GOEXPERIMENT=${GOEXPERIMENT} \
+    SKIP_UI_BUILD=1 \
+    make alloy
+
+RUN --mount=type=cache,target=/root/.cache/go-build \
+    --mount=type=cache,target=/go/pkg/mod \
+    CGO_ENABLED=0 go build -o /snmp-discovery ./cmd/snmp-discovery
+
+FROM public.ecr.aws/ubuntu/ubuntu:noble
+
+ARG UID="473"
+ARG USERNAME="alloy"
+ARG DEBIAN_FRONTEND="noninteractive"
+
+LABEL org.opencontainers.image.source="https://github.com/Mesverrum/alloy"
+
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -qy --no-install-recommends \
+        ca-certificates \
+        libsystemd0 \
+        tzdata \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY --from=build --chown=${UID}:${UID} /src/alloy/build/alloy /bin/alloy
+COPY --from=build --chown=${UID}:${UID} /snmp-discovery /usr/bin/snmp-discovery
+COPY --chown=${UID}:${UID} example-config.alloy /etc/alloy/config.alloy
+
+COPY snmp/snmp-network.yml /etc/alloy/snmp-network.yml
+COPY snmp/auths.yml /etc/alloy/auths.yml
+COPY snmp/auths.example.yml /etc/alloy/auths.example.yml
+COPY snmp/modules /etc/alloy/modules
+COPY snmp/sysobjectid-index.yaml /etc/alloy/sysobjectid-index.yaml
+COPY snmp/fingerprinters.yml /etc/alloy/fingerprinters.yml
+COPY snmp/NOTICE /etc/alloy/NOTICE.snmp-profiles
+
+COPY --chmod=755 --chown=${UID}:${UID} packaging/docker/otelcol.sh /bin/otelcol
+COPY --chmod=755 --chown=${UID}:${UID} packaging/docker/otel-supervisor.sh /bin/otel-supervisor
+
+RUN groupadd --gid $UID $USERNAME \
+    && useradd -m -u $UID -g $UID $USERNAME \
+    && mkdir -p /var/lib/alloy/data /var/lib/alloy/supervisor \
+    && chown -R $USERNAME:$USERNAME /var/lib/alloy \
+    && chmod -R 770 /var/lib/alloy
+
+ENTRYPOINT ["/bin/alloy"]
+ENV ALLOY_DEPLOY_MODE=docker
+CMD ["run", "/etc/alloy/config.alloy", "--storage.path=/var/lib/alloy/data"]

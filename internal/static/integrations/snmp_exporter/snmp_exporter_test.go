@@ -119,3 +119,19 @@ func TestLoadSNMPConfig(t *testing.T) {
 		})
 	}
 }
+
+func TestApplyAuthsOverlay(t *testing.T) {
+	cfg, err := LoadSNMPConfig("common/snmp.yml", &snmp_config.Config{}, "replace")
+	require.NoError(t, err)
+	nModules := len(cfg.Modules)
+	require.NoError(t, ApplyAuthsOverlay(cfg, []byte(`
+auths:
+  site_v2:
+    community: overlay-secret
+    version: 2
+`)))
+	require.Equal(t, nModules, len(cfg.Modules), "overlay must not drop modules")
+	require.Equal(t, snmp_config.Secret("overlay-secret"), cfg.Auths["site_v2"].Community)
+	require.NoError(t, ApplyAuthsOverlay(cfg, nil))
+	require.Error(t, ApplyAuthsOverlay(cfg, []byte("auths: {}\n")))
+}

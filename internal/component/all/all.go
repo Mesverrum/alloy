@@ -34,6 +34,7 @@ import (
 	_ "github.com/grafana/alloy/internal/component/discovery/relabel"                        // Import discovery.relabel
 	_ "github.com/grafana/alloy/internal/component/discovery/scaleway"                       // Import discovery.scaleway
 	_ "github.com/grafana/alloy/internal/component/discovery/serverset"                      // Import discovery.serverset
+	_ "github.com/grafana/alloy/internal/component/discovery/snmp"                           // Import discovery.snmp
 	_ "github.com/grafana/alloy/internal/component/discovery/triton"                         // Import discovery.triton
 	_ "github.com/grafana/alloy/internal/component/discovery/uyuni"                          // Import discovery.uyuni
 	_ "github.com/grafana/alloy/internal/component/faro/receiver"                            // Import faro.receiver
@@ -118,6 +119,8 @@ import (
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/file_stats"              // Import otelcol.receiver.file_stats
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/filelog"                 // Import otelcol.receiver.filelog
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/fluentforward"           // Import otelcol.receiver.fluentforward
+	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/netflow"                 // Import otelcol.receiver.netflow
+	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/snmptrap"                // Import otelcol.receiver.snmptrap
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/googlecloudpubsub"       // Import otelcol.receiver.googlecloudpubsub
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/influxdb"                // Import otelcol.receiver.influxdb
 	_ "github.com/grafana/alloy/internal/component/otelcol/receiver/jaeger"                  // Import otelcol.receiver.jaeger

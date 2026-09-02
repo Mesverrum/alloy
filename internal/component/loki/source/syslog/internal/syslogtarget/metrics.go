@@ -16,6 +16,8 @@ type Metrics struct {
 	syslogEntries       prometheus.Counter
 	syslogParsingErrors prometheus.Counter
 	syslogEmptyMessages prometheus.Counter
+	joined              prometheus.Counter
+	unjoined            prometheus.Counter
 }
 
 // NewMetrics creates a new set of syslog metrics. If reg is non-nil, the
@@ -36,12 +38,38 @@ func NewMetrics(reg prometheus.Registerer) *Metrics {
 		Name: "loki_source_syslog_empty_messages_total",
 		Help: "Total number of empty messages received from syslog",
 	})
+	m.joined = prometheus.NewCounter(prometheus.CounterOpts{
+		Name: "loki_source_syslog_joined_total",
+		Help: "Syslog messages whose source IP or hostname matched a discovery identity (device_name).",
+	})
+	m.unjoined = prometheus.NewCounter(prometheus.CounterOpts{
+		Name: "loki_source_syslog_unjoined_total",
+		Help: "Syslog messages received while a discovery catalog was set but the source was unknown.",
+	})
 
 	if reg != nil {
 		m.syslogEntries = util.MustRegisterOrGet(reg, m.syslogEntries).(prometheus.Counter)
 		m.syslogParsingErrors = util.MustRegisterOrGet(reg, m.syslogParsingErrors).(prometheus.Counter)
 		m.syslogEmptyMessages = util.MustRegisterOrGet(reg, m.syslogEmptyMessages).(prometheus.Counter)
+		m.joined = util.MustRegisterOrGet(reg, m.joined).(prometheus.Counter)
+		m.unjoined = util.MustRegisterOrGet(reg, m.unjoined).(prometheus.Counter)
 	}
 
 	return &m
+}
+
+// Joined is the catalog-hit counter (nil-safe).
+func (m *Metrics) Joined() prometheus.Counter {
+	if m == nil {
+		return nil
+	}
+	return m.joined
+}
+
+// Unjoined is the catalog-miss counter (nil-safe).
+func (m *Metrics) Unjoined() prometheus.Counter {
+	if m == nil {
+		return nil
+	}
+	return m.unjoined
 }

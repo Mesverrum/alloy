@@ -1,12 +1,16 @@
 package snmp
 
 import (
+	"os"
+	"path/filepath"
 	"testing"
 	"time"
 
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/component/discovery"
+	"github.com/grafana/alloy/internal/snmppaths"
 	"github.com/grafana/alloy/syntax"
+	"github.com/grafana/alloy/syntax/alloytypes"
 
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/snmp_exporter/config"
@@ -445,6 +449,20 @@ func TestUnmarshalAlloyWithInvalidInlineConfig(t *testing.T) {
 			"invalid snmp_exporter config: yaml: unmarshal errors:\n  line 1: field versions not found in type config.plain",
 		},
 		{
+			"Define auths and auths_file",
+			`
+			auths = "auths:\n  site_v2:\n    version: 2\n    community: x\n"
+			auths_file = "auths.yml"
+
+			target "network_switch_1" {
+				address = "192.168.1.2"
+				module = "if_mib"
+				auth = "site_v2"
+			}
+			`,
+			`auths and auths_file are mutually exclusive`,
+		},
+		{
 			"Define config and config_file",
 			`
 			config_file = "config"
@@ -468,9 +486,71 @@ func TestUnmarshalAlloyWithInvalidInlineConfig(t *testing.T) {
 	}
 }
 
+func TestUnmarshalAlloyAuthsOverlayKeepsConfigFile(t *testing.T) {
+	alloyCfg := `
+		config_file = "modules.yml"
+		auths = "auths:\n  site_v2:\n    version: 2\n    community: overlay-secret\n"
+
+		target "network_switch_1" {
+			address = "192.168.1.2"
+			module = "if_mib"
+			auth = "site_v2"
+		}
+	`
+	var args Arguments
+	require.NoError(t, syntax.Unmarshal([]byte(alloyCfg), &args))
+	require.Equal(t, "modules.yml", args.ConfigFile)
+	require.Contains(t, string(args.AuthsOverlay), "overlay-secret")
+	cfg := args.Convert()
+	require.Equal(t, "modules.yml", cfg.SnmpConfigFile)
+	require.Contains(t, string(cfg.AuthsOverlay), "site_v2")
+}
+
 func requireTargetLabel(t *testing.T, target discovery.Target, label, expectedValue string) {
 	t.Helper()
 	actual, ok := target.Get(label)
 	require.True(t, ok)
 	require.Equal(t, expectedValue, actual)
+}
+
+func TestResolveSNMPConfigFile(t *testing.T) {
+	t.Cleanup(func() { networkConfigFile = snmppaths.NetworkConfigFile })
+
+	t.Run("explicit config_file wins", func(t *testing.T) {
+		networkConfigFile = filepath.Join(t.TempDir(), "missing.yml")
+		got := resolveSNMPConfigFile(&Arguments{ConfigFile: "custom.yml"})
+		require.Equal(t, "custom.yml", got)
+	})
+
+	t.Run("inline config skips image default", func(t *testing.T) {
+		present := filepath.Join(t.TempDir(), "snmp-network.yml")
+		require.NoError(t, os.WriteFile(present, []byte("modules: {}\n"), 0o644))
+		networkConfigFile = present
+		got := resolveSNMPConfigFile(&Arguments{Config: alloytypes.OptionalSecret{Value: "modules: {}"}})
+		require.Empty(t, got)
+	})
+
+	t.Run("inline struct skips image default", func(t *testing.T) {
+		present := filepath.Join(t.TempDir(), "snmp-network.yml")
+		require.NoError(t, os.WriteFile(present, []byte("modules: {}\n"), 0o644))
+		networkConfigFile = present
+		got := resolveSNMPConfigFile(&Arguments{
+			ConfigStruct: config.Config{Modules: map[string]*config.Module{"if_mib": {}}},
+		})
+		require.Empty(t, got)
+	})
+
+	t.Run("omitted uses image file when present", func(t *testing.T) {
+		present := filepath.Join(t.TempDir(), "snmp-network.yml")
+		require.NoError(t, os.WriteFile(present, []byte("modules: {}\n"), 0o644))
+		networkConfigFile = present
+		got := resolveSNMPConfigFile(&Arguments{})
+		require.Equal(t, present, got)
+	})
+
+	t.Run("omitted stays empty when image file missing", func(t *testing.T) {
+		networkConfigFile = filepath.Join(t.TempDir(), "missing.yml")
+		got := resolveSNMPConfigFile(&Arguments{})
+		require.Empty(t, got)
+	})
 }
