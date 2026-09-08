@@ -37,9 +37,13 @@ type Arguments struct {
 	// RefreshInterval is how often to re-scan. Prefer hours–days in production.
 	RefreshInterval time.Duration `alloy:"refresh_interval,attr,optional"`
 
-	// Tier selects which scrape modules to export: "hot", "cold", "topology",
-	// or "all" (default) — one target per device per non-empty tier.
+	// Tier is the legacy single-tier / "all" selector. Prefer Tiers when
+	// enabling a subset (hot-only is the minimum useful scrape).
 	Tier string `alloy:"tier,attr,optional"`
+	// Tiers is the optional subset to export: ["hot"], ["hot","cold"], …
+	// When set, it wins over Tier. Empty + tier="all" exports every
+	// non-empty tier.
+	Tiers []string `alloy:"tiers,attr,optional"`
 
 	SnmpConfig     string                    `alloy:"snmp_config,attr,optional"`
 	Auths          alloytypes.OptionalSecret `alloy:"auths,attr,optional"`
@@ -126,10 +130,8 @@ func (args Arguments) Validate() error {
 	if strings.TrimSpace(args.ConfigPath) == "" && len(args.Groups) == 0 {
 		return fmt.Errorf("provide config_path or at least one group block")
 	}
-	switch strings.ToLower(strings.TrimSpace(args.Tier)) {
-	case "", "all", "hot", "cold", "topology":
-	default:
-		return fmt.Errorf("tier must be hot, cold, topology, or all")
+	if _, err := args.enabledTiers(); err != nil {
+		return err
 	}
 	if args.RefreshInterval <= 0 {
 		return fmt.Errorf("refresh_interval must be > 0")
@@ -371,7 +373,12 @@ func (c *Component) scanOnce() error {
 		c.m.dedupesTot.Add(float64(stats.Dedupes))
 	}
 
-	tiered := expandTiers(published, args.Tier)
+	list, err := args.enabledTiers()
+	if err != nil {
+		c.setHealth(component.HealthTypeUnhealthy, err.Error())
+		return err
+	}
+	tiered := expandTiersList(published, list)
 	targets := make([]discovery.Target, 0, len(tiered))
 	for _, tt := range tiered {
 		targets = append(targets, toDiscoveryTarget(tt.target, tt.tier))
@@ -407,12 +414,22 @@ type tieredTarget struct {
 	tier   string
 }
 
-func expandTiers(catalog []snmpdiscovery.AlloyTarget, tier string) []tieredTarget {
-	tier = strings.TrimSpace(strings.ToLower(tier))
-	tiers := []string{"hot", "cold", "topology"}
-	if tier != "" && tier != "all" {
-		tiers = []string{tier}
+func (args Arguments) enabledTiers() ([]string, error) {
+	if len(args.Tiers) > 0 {
+		return snmpdiscovery.NormalizeTiers(args.Tiers)
 	}
+	return snmpdiscovery.ParseEnabledTiers(args.Tier)
+}
+
+func expandTiers(catalog []snmpdiscovery.AlloyTarget, tier string) []tieredTarget {
+	list, err := snmpdiscovery.ParseEnabledTiers(tier)
+	if err != nil {
+		return nil
+	}
+	return expandTiersList(catalog, list)
+}
+
+func expandTiersList(catalog []snmpdiscovery.AlloyTarget, tiers []string) []tieredTarget {
 	var out []tieredTarget
 	for _, t := range tiers {
 		for _, at := range snmpdiscovery.TierTargets(catalog, t) {

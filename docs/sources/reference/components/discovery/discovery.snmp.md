@@ -61,7 +61,8 @@ You can use the following arguments with `discovery.snmp`:
 | `overrides_path`   | `string`       | Optional overrides YAML merged into the config. | | no |
 | `fingerprinters`   | `string`       | Path to fingerprinters YAML. | `"/etc/alloy/fingerprinters.yml"` | no |
 | `fingerprinter`    | `string`       | Default fingerprinter name when a group omits one. | `"network"` | no |
-| `tier`             | `string`       | `hot`, `cold`, `topology`, or `all`. | `"all"` | no |
+| `tier`             | `string`       | Legacy single selector: `hot`, `cold`, `topology`, `all`, or a comma list (`hot,cold`). Prefer `tiers`. | `"all"` | no |
+| `tiers`            | `list(string)` | Subset to export, any combination of `hot`, `cold`, `topology`. When set, wins over `tier`. `["hot"]` is the minimum useful scrape (octets/oper/CPU/mem). | | no |
 | `refresh_interval` | `duration`     | Rescan period. Prefer hours–days in production. | `"15m"` | no |
 | `concurrency`      | `number`       | Parallel SNMP probes. Must be `> 0`. | `8` | no |
 | `timeout`          | `duration`     | Per-auth SNMP timeout. Must be `> 0`. | `"2s"` | no |
@@ -142,8 +143,22 @@ Each target includes the following labels:
 
 Community strings are never exported.
 
-With `tier = "all"` (default), one device becomes up to three targets — one per
-non-empty tier — so you can scrape hot/cold/topology on different intervals.
+Each device can become one target per **enabled** non-empty tier (`snmp_tier=hot|cold|topology`) so scrapes run on different intervals. Disable a tier by omitting it from `tiers` — discovery still finds the device (cheap `sysObjectID` GET); that tier’s modules are not exported and should not be scraped.
+
+```alloy
+// Minimum useful data: 60s octets / oper / CPU / mem only.
+discovery.snmp "fabric" {
+  tiers = ["hot"]
+  // …
+}
+
+// Default lab / fleet: hot + cold. Topology (LLDP/BGP/…) is a third opt-in.
+discovery.snmp "fabric" {
+  tiers = ["hot", "cold"]
+}
+```
+
+`tier = "all"` (default when `tiers` is omitted) still emits every non-empty tier.
 
 ## Component health
 

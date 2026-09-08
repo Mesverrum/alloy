@@ -62,7 +62,7 @@ Profiles are partitioned so Alloy can stagger walks:
 | **cold** | ~30m | `if_mib_meta` / `if32_mib_meta` (names/descr/`if_MAC` + **packet counters** + **errors** + **discards**), `ip_addr` (IPv4/IPv6 → ifIndex), vendor tables (identity is already on the fingerprint module, not a sibling `system_mib`) |
 | **topology** | ~15m (optional) | `lldp_mib`, `bgp4_mib`, `ospf_mib` (+ name match `lldp\|cdp\|bgp\|ospf\|isis`) |
 
-Fingerprinters emit `modules_hot` / `modules_cold` / `modules_topology`. Discovery writes three Alloy target files. Lab toggle: `LAB_ALLOY_SNMP_TOPOLOGY=1` for topology; hot+cold always on when `LAB_ALLOY_SNMP=1`.
+Fingerprinters emit `modules_hot` / `modules_cold` / `modules_topology`. Discovery writes three Alloy target files. Each tier is optional: `discovery.snmp` `tiers = ["hot"]` (minimum useful), `["hot","cold"]` (default), or `["hot","cold","topology"]`. Lab: `LAB_ALLOY_SNMP_TIERS=hot` / `hot,cold` / `hot,cold,topology`. `LAB_ALLOY_SNMP_TOPOLOGY=1` still adds topology when `LAB_ALLOY_SNMP_TIERS` is unset. CLI: `snmp-discovery --tiers=hot`. Disabled tiers are published as `[]` so leftover scrapes go idle.
 
 Converter maps kentik profile YAML (numeric OIDs) → snmp_exporter **runtime** format. It does **not** run the MIB generator (no vendor MIB sources required).
 

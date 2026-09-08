@@ -67,6 +67,23 @@ func TestAlloyConfig(t *testing.T) {
 	require.NoError(t, args.Validate())
 }
 
+func TestAlloyConfigTiersList(t *testing.T) {
+	const src = `
+		tiers = ["hot"]
+		group {
+			name  = "hq"
+			cidrs = ["10.0.0.0/30"]
+			auths = ["public_v2"]
+		}
+	`
+	var args Arguments
+	require.NoError(t, syntax.Unmarshal([]byte(src), &args))
+	require.Equal(t, []string{"hot"}, args.Tiers)
+	got, err := args.enabledTiers()
+	require.NoError(t, err)
+	require.Equal(t, []string{"hot"}, got)
+}
+
 func TestAlloyConfigDefaultsPingTrue(t *testing.T) {
 	const src = `
 		group {
@@ -112,6 +129,19 @@ func TestArgumentsValidate(t *testing.T) {
 	t.Run("bad tier", func(t *testing.T) {
 		a := valid()
 		a.Tier = "nope"
+		require.Error(t, a.Validate())
+	})
+	t.Run("tiers list hot only", func(t *testing.T) {
+		a := valid()
+		a.Tiers = []string{"hot"}
+		require.NoError(t, a.Validate())
+		got, err := a.enabledTiers()
+		require.NoError(t, err)
+		require.Equal(t, []string{"hot"}, got)
+	})
+	t.Run("bad tiers list", func(t *testing.T) {
+		a := valid()
+		a.Tiers = []string{"warm"}
 		require.Error(t, a.Validate())
 	})
 	t.Run("concurrency", func(t *testing.T) {
@@ -184,6 +214,8 @@ func TestExpandTiers(t *testing.T) {
 	require.Len(t, hot, 1)
 	require.Equal(t, "hot", hot[0].tier)
 	require.Equal(t, "if_mib", hot[0].target.Module)
+	pair := expandTiers(cat, "hot,cold")
+	require.Len(t, pair, 2)
 }
 
 func TestToDiscoveryTarget(t *testing.T) {
