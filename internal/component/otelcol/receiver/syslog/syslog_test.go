@@ -97,6 +97,76 @@ func Test(t *testing.T) {
 	}
 }
 
+// TestProtocolNone sends a non-RFC body and expects the receiver to keep it
+// (contrib syslog_parser protocol "none").
+func TestProtocolNone(t *testing.T) {
+	tcp := componenttest.GetFreeAddr(t)
+
+	ctx := componenttest.TestContext(t)
+	l := util.TestLogger(t)
+
+	ctrl, err := componenttest.NewControllerFromID(l, "otelcol.receiver.syslog")
+	require.NoError(t, err)
+
+	cfg := fmt.Sprintf(`
+		protocol = "none"
+		on_error = "send"
+		tcp {
+			listen_address = "%s"
+		}
+
+		output {
+			// no-op: will be overridden by test code.
+		}
+	`, tcp)
+
+	var args syslog.Arguments
+	require.NoError(t, syntax.Unmarshal([]byte(cfg), &args))
+	require.Equal(t, "none", string(args.Protocol))
+
+	logCh := make(chan plog.Logs)
+	args.Output = makeLogsOutput(logCh)
+
+	go func() {
+		err := ctrl.Run(ctx, args)
+		require.NoError(t, err)
+	}()
+
+	require.NoError(t, ctrl.WaitRunning(3*time.Second))
+	time.Sleep(1 * time.Second)
+
+	go func() {
+		request := func() error {
+			conn, err := net.Dial("tcp", tcp)
+			require.NoError(t, err)
+			defer conn.Close()
+
+			_, err = fmt.Fprint(conn, "<13>this is not rfc3164 or rfc5424 at all\n")
+			return err
+		}
+
+		bo := backoff.New(ctx, backoff.Config{
+			MinBackoff: 10 * time.Millisecond,
+			MaxBackoff: 100 * time.Millisecond,
+		})
+		for bo.Ongoing() {
+			if err := request(); err != nil {
+				l.Error("failed to send logs", "err", err)
+				bo.Wait()
+				continue
+			}
+			return
+		}
+	}()
+
+	select {
+	case <-time.After(time.Second):
+		require.FailNow(t, "failed waiting for unparsed syslog")
+	case log := <-logCh:
+		require.Equal(t, 1, log.LogRecordCount())
+	}
+}
+
 // makeLogsOutput returns ConsumerArguments which will forward logs to the
 // provided channel.
 func makeLogsOutput(ch chan plog.Logs) *otelcol.ConsumerArguments {
@@ -192,6 +262,22 @@ func TestUnmarshal(t *testing.T) {
 	require.NoError(t, syntax.Unmarshal([]byte(alloyUDP), &args))
 	_, err = args.Convert()
 	require.NoError(t, err)
+
+	alloyNone := `
+		protocol = "none"
+		allow_skip_pri_header = true
+		on_error = "send"
+		udp {
+			listen_address = "0.0.0.0:1514"
+			add_attributes = true
+		}
+		output {}
+	`
+	require.NoError(t, syntax.Unmarshal([]byte(alloyNone), &args))
+	require.Equal(t, "none", string(args.Protocol))
+	require.NoError(t, args.Validate())
+	_, err = args.Convert()
+	require.NoError(t, err)
 }
 
 func TestValidateOnError(t *testing.T) {
@@ -203,4 +289,17 @@ func TestValidateOnError(t *testing.T) {
 	var args syslog.Arguments
 	err := syntax.Unmarshal([]byte(alloyCfg), &args)
 	require.ErrorContains(t, err, "invalid on_error: invalid")
+}
+
+func TestValidateProtocol(t *testing.T) {
+	alloyCfg := `
+		protocol = "raw"
+		udp {
+			listen_address = "0.0.0.0:1514"
+		}
+		output {}
+	`
+	var args syslog.Arguments
+	err := syntax.Unmarshal([]byte(alloyCfg), &args)
+	require.ErrorContains(t, err, "unknown syslog format: raw")
 }

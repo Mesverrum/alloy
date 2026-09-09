@@ -2,6 +2,7 @@
 package syslog
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/grafana/alloy/internal/component"
@@ -46,7 +47,7 @@ type Arguments struct {
 	Endpoint string              `alloy:"endpoint,attr"`
 	Port     int                 `alloy:"port,attr,optional"`     // default: 514
 	Network  string              `alloy:"network,attr,optional"`  // default: "tcp", also supported "udp"
-	Protocol config.SysLogFormat `alloy:"protocol,attr,optional"` // default: "rfc5424", also supported "rfc3164"
+	Protocol config.SysLogFormat `alloy:"protocol,attr,optional"` // default: "rfc5424", also supported "rfc3164" (not "none")
 
 	// Whether or not to enable RFC 6587 Octet Counting.
 	EnableOctetCounting bool `alloy:"enable_octet_counting,attr,optional"`
@@ -66,6 +67,18 @@ func (args *Arguments) SetToDefault() {
 	args.Queue.SetToDefault()
 	args.Retry.SetToDefault()
 	args.DebugMetrics.SetToDefault()
+}
+
+// Validate implements syntax.Validator.
+func (args *Arguments) Validate() error {
+	switch args.Protocol {
+	case config.SyslogFormatRFC3164, config.SyslogFormatRFC5424, "":
+		return nil
+	case config.SyslogFormatNone:
+		return fmt.Errorf("protocol %q is receive-only; otelcol.exporter.syslog supports rfc3164 and rfc5424", args.Protocol)
+	default:
+		return fmt.Errorf("invalid protocol, must be one of 'rfc3164', 'rfc5424': %s", args.Protocol)
+	}
 }
 
 // Convert implements exporter.Arguments.

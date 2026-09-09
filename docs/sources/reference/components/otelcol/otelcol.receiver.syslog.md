@@ -13,7 +13,7 @@ title: otelcol.receiver.syslog
 {{< docs/shared lookup="stability/public_preview.md" source="alloy" version="<ALLOY_VERSION>" >}}
 
 `otelcol.receiver.syslog` accepts syslog messages over the network and forwards them as logs to other `otelcol.*` components.
-It supports syslog protocols [RFC5424][] and [RFC3164][] and can receive data over `TCP` or `UDP`.
+It supports syslog protocols [RFC5424][] and [RFC3164][], plus experimental `none` for non-conforming bodies, and can receive data over `TCP` or `UDP`.
 
 {{< admonition type="note" >}}
 `otelcol.receiver.syslog` is a wrapper over the upstream OpenTelemetry Collector [`syslog`][] receiver.
@@ -53,9 +53,16 @@ You can use the following arguments with `otelcol.receiver.syslog`:
 | `non_transparent_framing_trailer` | `string` | The framing trailer when using RFC6587 Non-Transparent-Framing.    |             | no       |
 | `on_error`                        | `string` | The action to take when an error occurs.                           | `"send"`    | no       |
 | `protocol`                        | `string` | The syslog protocol that the syslog server supports.               | `"rfc5424"` | no       |
+| `targets`                         | `list(map(string))` | Optional discovery catalog (`address` / `device_name` / `snmp_aliases`). Joins source IP, then hostname, to `device_name` without restarting the listener. | | no |
 
 The `protocol` argument specifies the syslog format supported by the receiver.
-`protocol` must be one of `rfc5424` or `rfc3164`
+`protocol` must be one of `rfc5424`, `rfc3164`, or experimental `none`.
+
+Use `protocol = "none"` when messages are delivered over the syslog transport but do not conform to RFC3164 or RFC5424 (vendor IOS extras, CEF, missing fields). The receiver still handles framing. A leading PRI header (`<13>`) is decoded into facility/severity when present; the rest of the body is kept verbatim in `message`. Combine with `on_error = "send"` (the default) so a failed parse never drops the record.
+
+`allow_skip_pri_header` accepts messages that omit the PRI header entirely.
+
+When `targets` is set, a matching catalog IP (primary `address` or `snmp_aliases`) or `device_name` equal to the syslog hostname stamps `device_name` and `snmp_group` on the log record. Enable `udp { add_attributes = true }` / `tcp { add_attributes = true }` so the source IP (`net.peer.ip`) is available for the join. Catalog refreshes do **not** restart the listener.
 
 The `location` argument specifies a Time Zone identifier. The available locations depend on the local IANA Time Zone database.
 Refer to the [list of tz database time zones][tz-wiki] in Wikipedia for a non-comprehensive list.
@@ -227,7 +234,10 @@ If `async` isn't set, a single goroutine will read and process messages synchron
 
 ## Debug metrics
 
-`otelcol.receiver.syslog` doesn't expose any component-specific debug metrics.
+`otelcol.receiver.syslog` exposes the following component-specific debug metrics when `targets` is set:
+
+* `otelcol_receiver_syslog_joined_total` `counter`: Messages whose source IP or hostname matched a `targets` identity.
+* `otelcol_receiver_syslog_unjoined_total` `counter`: Messages received while `targets` was set but the source was unknown.
 
 ## Example
 

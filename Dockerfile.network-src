@@ -45,7 +45,10 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 
 RUN --mount=type=cache,target=/root/.cache/go-build \
     --mount=type=cache,target=/go/pkg/mod \
-    CGO_ENABLED=0 go build -o /snmp-discovery ./cmd/snmp-discovery
+    CGO_ENABLED=0 go build -o /snmp-discovery github.com/Mesverrum/snmp-sd/cmd/snmp-discovery \
+    && SNMPSD="$(go list -m -f '{{.Dir}}' github.com/Mesverrum/snmp-sd)" \
+    && mkdir -p /snmp-lib \
+    && cp -a "${SNMPSD}/snmp/." /snmp-lib/
 
 FROM public.ecr.aws/ubuntu/ubuntu:noble
 
@@ -68,13 +71,8 @@ COPY --from=build --chown=${UID}:${UID} /src/alloy/build/alloy /bin/alloy
 COPY --from=build --chown=${UID}:${UID} /snmp-discovery /usr/bin/snmp-discovery
 COPY --chown=${UID}:${UID} example-config.alloy /etc/alloy/config.alloy
 
-COPY snmp/snmp-network.yml /etc/alloy/snmp-network.yml
-COPY snmp/auths.yml /etc/alloy/auths.yml
-COPY snmp/auths.example.yml /etc/alloy/auths.example.yml
-COPY snmp/modules /etc/alloy/modules
-COPY snmp/sysobjectid-index.yaml /etc/alloy/sysobjectid-index.yaml
-COPY snmp/fingerprinters.yml /etc/alloy/fingerprinters.yml
-COPY snmp/NOTICE /etc/alloy/NOTICE.snmp-profiles
+# Library comes from the snmp-sd module (see go.mod), copied in the build stage.
+COPY --from=build --chown=${UID}:${UID} /snmp-lib/ /etc/alloy/
 
 COPY --chmod=755 --chown=${UID}:${UID} packaging/docker/otelcol.sh /bin/otelcol
 COPY --chmod=755 --chown=${UID}:${UID} packaging/docker/otel-supervisor.sh /bin/otel-supervisor

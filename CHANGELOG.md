@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased (network-snmp fork)
+
+* `otelcol.receiver.syslog`: accept experimental `protocol = "none"` (contrib passthrough for non-RFC bodies) and optional `targets` device join. `otelcol.exporter.syslog` still rejects `none`.
+* Import [Mesverrum/snmp-sd](https://github.com/Mesverrum/snmp-sd) `v0.1.0` as the discovery library. Deleted the in-tree `internal/snmpdiscovery` / `cmd/snmp-discovery` copies. Image library is copied from the module.
+
 ## [1.18.0](https://github.com/grafana/alloy/compare/v1.17.0...v1.18.0) (2026-07-17)
 
 

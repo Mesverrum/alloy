@@ -12,8 +12,9 @@ import (
 
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/service/livedebugging"
-	"github.com/grafana/alloy/internal/snmpdiscovery"
 	"github.com/grafana/alloy/internal/snmppaths"
+
+	"github.com/Mesverrum/snmp-sd/snmpdiscovery"
 	"github.com/grafana/alloy/syntax"
 	"github.com/grafana/alloy/syntax/alloytypes"
 )

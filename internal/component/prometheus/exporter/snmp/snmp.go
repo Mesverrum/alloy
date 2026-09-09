@@ -15,8 +15,9 @@ import (
 	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/component/prometheus/exporter"
 	"github.com/grafana/alloy/internal/featuregate"
-	"github.com/grafana/alloy/internal/snmpdiscovery"
 	"github.com/grafana/alloy/internal/snmppaths"
+
+	"github.com/Mesverrum/snmp-sd/snmpdiscovery"
 	"github.com/grafana/alloy/internal/static/integrations"
 	"github.com/grafana/alloy/internal/static/integrations/snmp_exporter"
 	"github.com/grafana/alloy/syntax/alloytypes"

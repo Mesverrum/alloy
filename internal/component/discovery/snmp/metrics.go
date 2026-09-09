@@ -1,7 +1,7 @@
 package snmp
 
 import (
-	"github.com/grafana/alloy/internal/snmpdiscovery"
+	"github.com/Mesverrum/snmp-sd/snmpdiscovery"
 	"github.com/grafana/alloy/internal/util"
 	"github.com/prometheus/client_golang/prometheus"
 )

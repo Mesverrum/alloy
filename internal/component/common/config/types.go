@@ -457,6 +457,10 @@ const (
 	SyslogFormatRFC5424 SysLogFormat = "rfc5424"
 	// A legacy Syslog RFC also known as BSD-syslog
 	SyslogFormatRFC3164 SysLogFormat = "rfc3164"
+	// Passthrough: framing only. Message body is kept verbatim. A leading
+	// PRI header is still decoded when present. Receive-only (contrib
+	// syslog_parser protocol "none"); not valid on otelcol.exporter.syslog.
+	SyslogFormatNone SysLogFormat = "none"
 )
 
 // MarshalText implements encoding.TextMarshaler
@@ -472,6 +476,8 @@ func (s *SysLogFormat) UnmarshalText(text []byte) error {
 		*s = SyslogFormatRFC5424
 	case "rfc3164":
 		*s = SyslogFormatRFC3164
+	case "none":
+		*s = SyslogFormatNone
 	default:
 		return fmt.Errorf("unknown syslog format: %s", str)
 	}

@@ -26,12 +26,15 @@ Fleet can only push config for modules that exist in the running binary — so t
 
 ## Build the overlay image
 
-Does **not** compile Alloy. Overlays YAML + a small `snmp-discovery` binary onto `grafana/alloy:latest`:
+The discovery library is **[Mesverrum/snmp-sd](https://github.com/Mesverrum/snmp-sd)** (`go.mod` pin, currently `v0.1.0`). Do not keep a second copy under `internal/snmpdiscovery`. Bake `/etc/alloy/snmp-network.yml` from the module (`go list -m -f '{{.Dir}}'`).
+
+Thin overlay (stock Alloy + CLI + library, no `discovery.snmp` in the binary):
 
 ```bash
-python3 tools/snmp-profile-convert/convert.py
 docker build -f Dockerfile.network -t srl-local/alloy:network-dev .
 ```
+
+Fork binary (`discovery.snmp` + otelcol syslog/traps/netflow): `ALLOY_NETWORK_FROM_SOURCE=1 make -C local alloy-network-image`.
 
 Lab harness: `make -C local alloy-network-image` in [network-o11y-demo](https://github.com/Mesverrum/network-o11y-demo).
 
@@ -176,4 +179,4 @@ Each group tries only its own named auths on its CIDRs. Overrides pin/ignore/ren
 
 `discovery.snmp` is the Fleet-managed form of slice 2. Docs: [`docs/sources/reference/components/discovery/discovery.snmp.md`](sources/reference/components/discovery/discovery.snmp.md). The overlay `Dockerfile.network` still ships only the CLI on stock Alloy for fast MIB iteration.
 
-Syslog is already in upstream Alloy (`loki.source.syslog`, including Cisco `rfc3164_cisco_components`).
+Syslog on the network path is `otelcol.receiver.syslog` (contrib wrap). `protocol = "none"` keeps non-RFC bodies (PRI still decoded when present); `on_error = "send"` never drops a failed parse. Optional `targets` join stamps `device_name` the same way as traps and netflow. `loki.source.syslog` remains for Cisco `rfc3164_cisco_components` if those extra fields must be *parsed*, not just ingested.

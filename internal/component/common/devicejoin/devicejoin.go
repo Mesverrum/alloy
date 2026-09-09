@@ -1,6 +1,6 @@
 // Package devicejoin maps a packet/log source IP (or hostname) to a discovery
 // identity (device_name). Used by otelcol.receiver.snmptrap, loki.source.syslog,
-// and otelcol.receiver.netflow.
+// otelcol.receiver.syslog, and otelcol.receiver.netflow.
 package devicejoin
 
 import (

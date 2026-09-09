@@ -8,6 +8,7 @@ import (
 	"github.com/alecthomas/units"
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/component/common/config"
+	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/component/otelcol"
 	otelcolCfg "github.com/grafana/alloy/internal/component/otelcol/config"
 	"github.com/grafana/alloy/internal/component/otelcol/internal/textutils"
@@ -32,8 +33,7 @@ func init() {
 		Args:      Arguments{},
 
 		Build: func(opts component.Options, args component.Arguments) (component.Component, error) {
-			fact := syslogreceiver.NewFactory()
-			return receiver.New(opts, fact, args.(Arguments))
+			return New(opts, args.(Arguments))
 		},
 	})
 }
@@ -52,6 +52,11 @@ type Arguments struct {
 	UDP           *UDP                           `alloy:"udp,block,optional"`
 
 	OnError string `alloy:"on_error,attr,optional"`
+
+	// Targets is an optional discovery catalog (typically discovery.snmp.targets
+	// or file-SD YAML with address / device_name). Source IP, then hostname,
+	// is joined to device_name at receive time without restarting the listener.
+	Targets []discovery.Target `alloy:"targets,attr,optional"`
 
 	// DebugMetrics configures component internal metrics. Optional.
 	DebugMetrics otelcolCfg.DebugMetricsArguments `alloy:"debug_metrics,block,optional"`
@@ -239,8 +244,10 @@ func (args *Arguments) Validate() error {
 		errs = multierror.Append(errs, fmt.Errorf("at least one of 'tcp' or 'udp' must be configured"))
 	}
 
-	if args.Protocol != config.SyslogFormatRFC3164 && args.Protocol != config.SyslogFormatRFC5424 {
-		errs = multierror.Append(errs, fmt.Errorf("invalid protocol, must be one of 'rfc3164', 'rfc5424': %s", args.Protocol))
+	switch args.Protocol {
+	case config.SyslogFormatRFC3164, config.SyslogFormatRFC5424, config.SyslogFormatNone:
+	default:
+		errs = multierror.Append(errs, fmt.Errorf("invalid protocol, must be one of 'rfc3164', 'rfc5424', 'none': %s", args.Protocol))
 	}
 
 	if args.TCP != nil {
