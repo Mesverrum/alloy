@@ -9,10 +9,10 @@ gaps below.
 
 | Area | What landed |
 |------|-------------|
-| **Logging** | Library takes `ScanParams.Logger *slog.Logger` (nil → `slog.Default()`). Scan summary is `Info`; per-device finds, claimed skips, and probe errors are `Debug`. |
+| **Logging** | Library takes `ScanParams.Logger *slog.Logger` (nil → `slog.Default()`). Scan summary, catalog add/drop, unknown fingerprint, and `no_auth`/`no_sys`/empty probes are `Info`; CIDR timeouts stay `Debug`. Missing `snmp.yml` modules are `Warn`. |
 | **Health** | `component.HealthComponent`: Unknown → Healthy/Unhealthy. Failed scans keep last targets. Overlap skip does not change health. |
 | **Live debugging** | Publishes the current target list on each successful scan (`discovery.process` pattern). |
-| **Metrics** | `discovery_snmp_scans_total`, `scan_failures_total`, `scan_skipped_total`, `scan_duration_seconds`, `devices`, `targets`, `sweep_addresses`, `ping_up`, `dropped_total`, `probe_errors_total` on `opts.Registerer`. |
+| **Metrics** | `discovery_snmp_*` on `opts.Registerer` (scan pressure, probes by `reason`/`group`, fingerprint known vs unknown, catalog stale, `device_info`). CLI `--listen` serves the same names at `/metrics`. |
 | **Config tests** | `syntax.Unmarshal` (including `ping = false`), `Validate` ranges, failed-scan health, overlap skip. |
 | **Docs** | `docs/sources/reference/components/discovery/discovery.snmp.md` — `canonical` / `aliases`, CAP_NET_RAW / bool footgun, exported labels (`snmp_aliases`), health, debug metrics, troubleshooting, compatible components. |
 | **Identity join (traps / syslog / flow)** | Hostname collapse keeps loser IPs as `snmp_aliases`. Shared `devicejoin` indexes `address`, aliases, and `device_name`. `otelcol.receiver.snmptrap`, `otelcol.receiver.syslog`, and `otelcol.receiver.netflow` optional `targets` stamp `device_name` / `snmp_group` at receive time without restarting listeners on catalog refresh. Flow also stamps `src_device` / `dst_device` when those IPs are in the catalog. |

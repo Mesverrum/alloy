@@ -14,23 +14,29 @@ type metrics struct {
 	duration      prometheus.Histogram
 	scanInFlight  prometheus.Gauge
 	devices       prometheus.Gauge
+	devicesGroup  *prometheus.GaugeVec
 	targets       prometheus.Gauge
+	targetsTier   *prometheus.GaugeVec
 	sweep         prometheus.Gauge
 	pingUp        prometheus.Gauge
 	pingDead      prometheus.Gauge
 	dropped       prometheus.Counter
 	dedupes       prometheus.Gauge
 	dedupesTot    prometheus.Counter
+	stale         *prometheus.GaugeVec
 	probes        *prometheus.CounterVec
 	probeErrors   *prometheus.CounterVec
 	probeDuration prometheus.Histogram
 	inFlight      prometheus.Gauge
 	probeOK       prometheus.Gauge
 	probeErrs     prometheus.Gauge
-	firstAuth     prometheus.Counter
-	authFallback  prometheus.Counter
+	firstAuth     *prometheus.CounterVec
+	authFallback  *prometheus.CounterVec
 	authFailures  prometheus.Counter
 	probeRetries  prometheus.Counter
+	fingerprint   *prometheus.CounterVec
+	modDropped    *prometheus.CounterVec
+	deviceInfo    *prometheus.GaugeVec
 }
 
 func newMetrics(reg prometheus.Registerer) *metrics {
@@ -60,10 +66,18 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 			Name: "discovery_snmp_devices",
 			Help: "Devices in the last successful SNMP discovery catalog.",
 		}),
+		devicesGroup: prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Name: "discovery_snmp_devices_by_group",
+			Help: "Devices in the last successful catalog by discovery group.",
+		}, []string{"group"}),
 		targets: prometheus.NewGauge(prometheus.GaugeOpts{
 			Name: "discovery_snmp_targets",
 			Help: "Targets exported by the last successful SNMP discovery scan (after tier expansion).",
 		}),
+		targetsTier: prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Name: "discovery_snmp_targets_by_tier",
+			Help: "Targets exported last scan by scrape tier.",
+		}, []string{"tier"}),
 		sweep: prometheus.NewGauge(prometheus.GaugeOpts{
 			Name: "discovery_snmp_sweep_addresses",
 			Help: "Addresses considered by the last successful CIDR sweep (before ICMP filter).",
@@ -88,14 +102,18 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 			Name: "discovery_snmp_dedupes_total",
 			Help: "Total SNMP addresses folded into another identity because they shared a sysName.",
 		}),
+		stale: prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Name: "discovery_snmp_catalog_stale",
+			Help: "Catalog entries with Misses > 0 after the last successful scan.",
+		}, []string{"group"}),
 		probes: prometheus.NewCounterVec(prometheus.CounterOpts{
 			Name: "discovery_snmp_probes_total",
 			Help: "SNMP identity probes (one per address).",
-		}, []string{"result"}),
+		}, []string{"result", "group"}),
 		probeErrors: prometheus.NewCounterVec(prometheus.CounterOpts{
 			Name: "discovery_snmp_probe_errors_total",
 			Help: "SNMP identity probe failures by reason.",
-		}, []string{"reason"}),
+		}, []string{"reason", "group"}),
 		probeDuration: prometheus.NewHistogram(prometheus.HistogramOpts{
 			Name:    "discovery_snmp_probe_duration_seconds",
 			Help:    "Duration of a single SNMP identity probe (all auths and retries).",
@@ -113,14 +131,14 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 			Name: "discovery_snmp_probe_errors",
 			Help: "Failed identity probes on the last successful scan.",
 		}),
-		firstAuth: prometheus.NewCounter(prometheus.CounterOpts{
+		firstAuth: prometheus.NewCounterVec(prometheus.CounterOpts{
 			Name: "discovery_snmp_first_auth_success_total",
 			Help: "Probes that succeeded on the first named auth.",
-		}),
-		authFallback: prometheus.NewCounter(prometheus.CounterOpts{
+		}, []string{"group"}),
+		authFallback: prometheus.NewCounterVec(prometheus.CounterOpts{
 			Name: "discovery_snmp_auth_fallback_total",
 			Help: "Probes that succeeded only after an earlier named auth failed.",
-		}),
+		}, []string{"group", "auth"}),
 		authFailures: prometheus.NewCounter(prometheus.CounterOpts{
 			Name: "discovery_snmp_auth_failures_total",
 			Help: "Named-auth attempts that failed (connect, get, empty, or no sys*).",
@@ -129,6 +147,18 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 			Name: "discovery_snmp_probe_retries_total",
 			Help: "Extra SNMP Get attempts after the first try for an auth (configured retries).",
 		}),
+		fingerprint: prometheus.NewCounterVec(prometheus.CounterOpts{
+			Name: "discovery_snmp_fingerprint_total",
+			Help: "Fingerprint outcome: known matcher vs default/unknown chain.",
+		}, []string{"result", "group"}),
+		modDropped: prometheus.NewCounterVec(prometheus.CounterOpts{
+			Name: "discovery_snmp_modules_dropped_total",
+			Help: "Fingerprinter module names missing from snmp.yml.",
+		}, []string{"group"}),
+		deviceInfo: prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Name: "discovery_snmp_device_info",
+			Help: "Last-good catalog identity (1 per device).",
+		}, []string{"address", "device_name", "sysObjectID", "group", "auth"}),
 	}
 	if reg != nil {
 		m.scans = util.MustRegisterOrGet(reg, m.scans).(prometheus.Counter)
@@ -137,26 +167,33 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 		m.duration = util.MustRegisterOrGet(reg, m.duration).(prometheus.Histogram)
 		m.scanInFlight = util.MustRegisterOrGet(reg, m.scanInFlight).(prometheus.Gauge)
 		m.devices = util.MustRegisterOrGet(reg, m.devices).(prometheus.Gauge)
+		m.devicesGroup = util.MustRegisterOrGet(reg, m.devicesGroup).(*prometheus.GaugeVec)
 		m.targets = util.MustRegisterOrGet(reg, m.targets).(prometheus.Gauge)
+		m.targetsTier = util.MustRegisterOrGet(reg, m.targetsTier).(*prometheus.GaugeVec)
 		m.sweep = util.MustRegisterOrGet(reg, m.sweep).(prometheus.Gauge)
 		m.pingUp = util.MustRegisterOrGet(reg, m.pingUp).(prometheus.Gauge)
 		m.pingDead = util.MustRegisterOrGet(reg, m.pingDead).(prometheus.Gauge)
 		m.dropped = util.MustRegisterOrGet(reg, m.dropped).(prometheus.Counter)
 		m.dedupes = util.MustRegisterOrGet(reg, m.dedupes).(prometheus.Gauge)
 		m.dedupesTot = util.MustRegisterOrGet(reg, m.dedupesTot).(prometheus.Counter)
+		m.stale = util.MustRegisterOrGet(reg, m.stale).(*prometheus.GaugeVec)
 		m.probes = util.MustRegisterOrGet(reg, m.probes).(*prometheus.CounterVec)
 		m.probeErrors = util.MustRegisterOrGet(reg, m.probeErrors).(*prometheus.CounterVec)
 		m.probeDuration = util.MustRegisterOrGet(reg, m.probeDuration).(prometheus.Histogram)
 		m.inFlight = util.MustRegisterOrGet(reg, m.inFlight).(prometheus.Gauge)
 		m.probeOK = util.MustRegisterOrGet(reg, m.probeOK).(prometheus.Gauge)
 		m.probeErrs = util.MustRegisterOrGet(reg, m.probeErrs).(prometheus.Gauge)
-		m.firstAuth = util.MustRegisterOrGet(reg, m.firstAuth).(prometheus.Counter)
-		m.authFallback = util.MustRegisterOrGet(reg, m.authFallback).(prometheus.Counter)
+		m.firstAuth = util.MustRegisterOrGet(reg, m.firstAuth).(*prometheus.CounterVec)
+		m.authFallback = util.MustRegisterOrGet(reg, m.authFallback).(*prometheus.CounterVec)
 		m.authFailures = util.MustRegisterOrGet(reg, m.authFailures).(prometheus.Counter)
 		m.probeRetries = util.MustRegisterOrGet(reg, m.probeRetries).(prometheus.Counter)
+		m.fingerprint = util.MustRegisterOrGet(reg, m.fingerprint).(*prometheus.CounterVec)
+		m.modDropped = util.MustRegisterOrGet(reg, m.modDropped).(*prometheus.CounterVec)
+		m.deviceInfo = util.MustRegisterOrGet(reg, m.deviceInfo).(*prometheus.GaugeVec)
 	}
-	m.probes.WithLabelValues("success")
-	m.probes.WithLabelValues("error")
+	for _, r := range []string{"success", "error"} {
+		m.probes.WithLabelValues(r, "unknown")
+	}
 	for _, r := range []string{
 		snmpdiscovery.ProbeReasonTimeout,
 		snmpdiscovery.ProbeReasonRefused,
@@ -166,10 +203,14 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 		snmpdiscovery.ProbeReasonNoAuth,
 		snmpdiscovery.ProbeReasonOther,
 	} {
-		m.probeErrors.WithLabelValues(r)
+		m.probeErrors.WithLabelValues(r, "unknown")
 	}
+	m.fingerprint.WithLabelValues(snmpdiscovery.FingerprintKnown, "unknown")
+	m.fingerprint.WithLabelValues(snmpdiscovery.FingerprintUnknown, "unknown")
 	return m
 }
+
+var _ snmpdiscovery.DeviceObserver = probeHook{}
 
 type probeHook struct {
 	m *metrics
@@ -188,20 +229,21 @@ func (h probeHook) ProbeEnd(d snmpdiscovery.ProbeDetail) {
 	}
 	h.m.inFlight.Dec()
 	h.m.probeDuration.Observe(d.Duration.Seconds())
+	group := metricGroup(d.Group)
 	if d.Success {
-		h.m.probes.WithLabelValues("success").Inc()
+		h.m.probes.WithLabelValues("success", group).Inc()
 		if d.FirstAuth {
-			h.m.firstAuth.Inc()
+			h.m.firstAuth.WithLabelValues(group).Inc()
 		} else {
-			h.m.authFallback.Inc()
+			h.m.authFallback.WithLabelValues(group, metricGroup(d.Auth)).Inc()
 		}
 	} else {
-		h.m.probes.WithLabelValues("error").Inc()
+		h.m.probes.WithLabelValues("error", group).Inc()
 		reason := d.Reason
 		if reason == "" || reason == snmpdiscovery.ProbeReasonOK {
 			reason = snmpdiscovery.ProbeReasonOther
 		}
-		h.m.probeErrors.WithLabelValues(reason).Inc()
+		h.m.probeErrors.WithLabelValues(reason, group).Inc()
 	}
 	if d.AuthFails > 0 {
 		h.m.authFailures.Add(float64(d.AuthFails))
@@ -209,4 +251,65 @@ func (h probeHook) ProbeEnd(d snmpdiscovery.ProbeDetail) {
 	if d.Retries > 0 {
 		h.m.probeRetries.Add(float64(d.Retries))
 	}
+}
+
+func (h probeHook) DeviceFound(d snmpdiscovery.DeviceFoundDetail) {
+	if h.m == nil {
+		return
+	}
+	group := metricGroup(d.Group)
+	result := d.Fingerprint
+	if result == "" {
+		result = snmpdiscovery.FingerprintUnknown
+	}
+	h.m.fingerprint.WithLabelValues(result, group).Inc()
+	if n := len(d.DroppedModules); n > 0 {
+		h.m.modDropped.WithLabelValues(group).Add(float64(n))
+	}
+}
+
+func (m *metrics) observeCatalog(published []snmpdiscovery.AlloyTarget, cat *snmpdiscovery.Catalog, tiers []string, exported int) {
+	if m == nil {
+		return
+	}
+	m.devices.Set(float64(len(published)))
+	m.targets.Set(float64(exported))
+	m.devicesGroup.Reset()
+	m.stale.Reset()
+	m.deviceInfo.Reset()
+	m.targetsTier.Reset()
+	byGroup := map[string]int{}
+	if cat != nil {
+		for _, e := range cat.SnapshotEntries() {
+			g := metricGroup(e.Target.SnmpGroup)
+			byGroup[g]++
+			if e.Misses > 0 {
+				m.stale.WithLabelValues(g).Inc()
+			}
+			m.deviceInfo.WithLabelValues(
+				e.Target.Address,
+				e.Target.DeviceName,
+				e.Target.SysObjectID,
+				g,
+				metricGroup(e.Target.Auth),
+			).Set(1)
+		}
+	} else {
+		for _, t := range published {
+			byGroup[metricGroup(t.SnmpGroup)]++
+		}
+	}
+	for g, n := range byGroup {
+		m.devicesGroup.WithLabelValues(g).Set(float64(n))
+	}
+	for _, tier := range tiers {
+		m.targetsTier.WithLabelValues(tier).Set(float64(len(snmpdiscovery.TierTargets(published, tier))))
+	}
+}
+
+func metricGroup(s string) string {
+	if s == "" {
+		return "unknown"
+	}
+	return s
 }

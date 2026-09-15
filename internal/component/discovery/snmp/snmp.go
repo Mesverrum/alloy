@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -50,18 +51,18 @@ type Arguments struct {
 	Auths          alloytypes.OptionalSecret `alloy:"auths,attr,optional"`
 	AuthsFile      string                    `alloy:"auths_file,attr,optional"`
 	Fingerprinters string                    `alloy:"fingerprinters,attr,optional"`
-	Fingerprinter  string        `alloy:"fingerprinter,attr,optional"`
-	ConfigPath     string        `alloy:"config_path,attr,optional"`
-	OverridesPath  string        `alloy:"overrides_path,attr,optional"`
-	Concurrency    int           `alloy:"concurrency,attr,optional"`
-	Timeout        time.Duration `alloy:"timeout,attr,optional"`
-	Retries        int           `alloy:"retries,attr,optional"`
-	Port           int           `alloy:"port,attr,optional"`
-	Ping           bool          `alloy:"ping,attr,optional"`
-	PingTimeout    time.Duration `alloy:"ping_timeout,attr,optional"`
-	Misses         int           `alloy:"misses,attr,optional"`
-	StatePath      string        `alloy:"state_path,attr,optional"`
-	AllowLarge     bool          `alloy:"allow_large,attr,optional"`
+	Fingerprinter  string                    `alloy:"fingerprinter,attr,optional"`
+	ConfigPath     string                    `alloy:"config_path,attr,optional"`
+	OverridesPath  string                    `alloy:"overrides_path,attr,optional"`
+	Concurrency    int                       `alloy:"concurrency,attr,optional"`
+	Timeout        time.Duration             `alloy:"timeout,attr,optional"`
+	Retries        int                       `alloy:"retries,attr,optional"`
+	Port           int                       `alloy:"port,attr,optional"`
+	Ping           bool                      `alloy:"ping,attr,optional"`
+	PingTimeout    time.Duration             `alloy:"ping_timeout,attr,optional"`
+	Misses         int                       `alloy:"misses,attr,optional"`
+	StatePath      string                    `alloy:"state_path,attr,optional"`
+	AllowLarge     bool                      `alloy:"allow_large,attr,optional"`
 	// AllowDuplicateSysName keeps every SNMP address when several share a
 	// sysName (cloned IoT hostnames). Default false: one identity per
 	// hostname, lowest IP wins.
@@ -291,8 +292,8 @@ func (c *Component) applyArgs(args Arguments) error {
 		if entries, err := snmpdiscovery.ReadCatalogState(sp); err == nil && len(entries) > 0 {
 			c.cat.LoadEntries(entries)
 			c.log.Info("loaded SNMP discovery catalog state", "path", sp, "entries", len(entries))
-		} else if err != nil {
-			c.log.Debug("no SNMP discovery catalog state yet", "path", sp, "err", err)
+		} else if err != nil && !os.IsNotExist(err) {
+			c.log.Warn("SNMP discovery catalog state unreadable", "path", sp, "err", err)
 		}
 	}
 	return nil
@@ -356,7 +357,6 @@ func (c *Component) scanOnce() error {
 	}
 
 	c.m.duration.Observe(stats.Duration.Seconds())
-	c.m.devices.Set(float64(stats.Catalog))
 	c.m.sweep.Set(float64(stats.Sweep))
 	c.m.pingUp.Set(float64(stats.PingUp))
 	dead := stats.Sweep - stats.PingUp
@@ -384,7 +384,7 @@ func (c *Component) scanOnce() error {
 	for _, tt := range tiered {
 		targets = append(targets, toDiscoveryTarget(tt.target, tt.tier))
 	}
-	c.m.targets.Set(float64(len(targets)))
+	c.m.observeCatalog(published, c.cat, list, len(targets))
 	c.opts.OnStateChange(discovery.Exports{Targets: targets})
 	c.setHealth(component.HealthTypeHealthy, fmt.Sprintf("discovered %d devices, %d targets, %d dedupes", len(published), len(targets), stats.Dedupes))
 	c.log.Info("SNMP discovery refresh",
@@ -392,11 +392,16 @@ func (c *Component) scanOnce() error {
 		"devices", len(published),
 		"duration", stats.Duration,
 		"dropped", stats.Dropped,
+		"added", stats.Added,
+		"stale", stats.Stale,
 		"dedupes", stats.Dedupes,
 		"probe_success", stats.ProbeSuccess,
 		"probe_errors", stats.ProbeErrors,
 		"first_auth", stats.FirstAuth,
 		"retries", stats.ProbeRetries,
+		"fingerprint_known", stats.FingerprintKnown,
+		"fingerprint_unknown", stats.FingerprintUnknown,
+		"modules_dropped", stats.ModulesDropped,
 	)
 
 	if c.debugDataPublisher != nil {

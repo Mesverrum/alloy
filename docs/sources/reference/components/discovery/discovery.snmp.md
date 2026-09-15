@@ -196,6 +196,9 @@ the current target list.
 **Last successful scan**
 
 * `discovery_snmp_devices` / `discovery_snmp_targets` (gauges): Catalog size and exported targets.
+* `discovery_snmp_devices_by_group{group}` / `discovery_snmp_targets_by_tier{tier}` (gauges): Same counts split by discovery job and scrape tier.
+* `discovery_snmp_catalog_stale{group}` (gauge): Entries with `Misses > 0` (approaching drop).
+* `discovery_snmp_device_info{address,device_name,sysObjectID,group,auth}` (gauge): Last-good catalog identity (`1` per device).
 * `discovery_snmp_sweep_addresses` / `discovery_snmp_ping_up` / `discovery_snmp_ping_dead` (gauges): CIDR size, ICMP-alive, ICMP-dropped (`sweep - ping_up`).
 * `discovery_snmp_probe_successes` / `discovery_snmp_probe_errors` (gauges): Identity probes that worked / failed.
 * `discovery_snmp_dedupes` (gauge): Extra IPs folded into another `sysName` (lowest IP kept).
@@ -204,19 +207,20 @@ the current target list.
 
 **Per-probe (identity Get of sysObjectID/sysName/sysDescr)**
 
-* `discovery_snmp_probes_total{result}` (counter): `success` or `error`.
-* `discovery_snmp_probe_errors_total{reason}` (counter): `timeout`, `refused`, `connect`, `empty`, `no_sys`, `no_auth`, `other`.
+* `discovery_snmp_probes_total{result,group}` (counter): `success` or `error`.
+* `discovery_snmp_probe_errors_total{reason,group}` (counter): `timeout`, `refused`, `connect`, `empty`, `no_sys`, `no_auth`, `other`.
 * `discovery_snmp_probe_duration_seconds` (histogram): One address, including auth walk and retries.
 * `discovery_snmp_probes_in_flight` (gauge): Live probe concurrency (compare to `concurrency`).
-* `discovery_snmp_first_auth_success_total` (counter): First named auth worked.
-* `discovery_snmp_auth_fallback_total` (counter): A later auth worked after an earlier one failed.
+* `discovery_snmp_first_auth_success_total{group}` (counter): First named auth worked.
+* `discovery_snmp_auth_fallback_total{group,auth}` (counter): A later auth name worked after an earlier one failed.
 * `discovery_snmp_auth_failures_total` (counter): Per-auth attempts that failed.
 * `discovery_snmp_probe_retries_total` (counter): Extra SNMP Gets after the first try for an auth.
+* `discovery_snmp_fingerprint_total{result,group}` (counter): `known` matcher vs `unknown` default chain (`device_base` / `if_mib`).
+* `discovery_snmp_modules_dropped_total{group}` (counter): Fingerprinter names missing from `snmp.yml`.
 
 Device **walk** pressure (CPU/interface tables) is on stock `prometheus.exporter.snmp`: `snmp_request_in_flight`, `snmp_packet_retries_total`, `snmp_scrape_duration_seconds`, `up`.
 
-Enable debug logs on the component to see per-device finds, claimed-address
-skips, and individual probe errors.
+Info logs: scan complete, catalog add/drop, unknown fingerprint, `no_auth` / `no_sys` / empty probes, missing-module WARN. Timeout/refused on dead addresses stay Debug.
 
 ## Troubleshooting
 
