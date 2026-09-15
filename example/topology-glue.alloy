@@ -1,0 +1,70 @@
+// Copy of the Mesverrum topology-exporter glue river (network-snmp fork).
+// Canonical comments live in network-topology-exporter/examples/alloy/topology-glue.alloy
+//
+// Hot/cold → Grafana. Topology → transform → topology-exporter /v1/metrics.
+// encoding = "json" is required for the current ingest handler.
+
+discovery.snmp "lab" {
+	auths            = env("SNMP_AUTHS")
+	refresh_interval = "15m"
+	tiers            = ["hot", "cold", "topology"]
+
+	group {
+		name  = "hq"
+		cidrs = ["172.20.20.0/24"]
+		auths = ["public_v2"]
+	}
+}
+
+discovery.relabel "snmp_topology" {
+	targets = discovery.snmp.lab.targets
+	rule {
+		source_labels = ["snmp_tier"]
+		regex         = "topology"
+		action        = "keep"
+	}
+}
+
+prometheus.exporter.snmp "topology" {
+	auths   = env("SNMP_AUTHS")
+	targets = discovery.relabel.snmp_topology.output
+}
+
+prometheus.scrape "snmp_topology" {
+	targets         = prometheus.exporter.snmp.topology.targets
+	scrape_interval = "15m"
+	scrape_timeout  = "2m"
+	forward_to      = [otelcol.receiver.prometheus.topology.receiver]
+}
+
+otelcol.receiver.prometheus "topology" {
+	output {
+		metrics = [otelcol.processor.transform.topology.input]
+	}
+}
+
+otelcol.processor.transform "topology" {
+	error_mode = "ignore"
+
+	metric_statements {
+		context    = "datapoint"
+		statements = [
+			`set(attributes["device_name"], ConvertCase(attributes["device_name"], "lower")) where attributes["device_name"] != nil`,
+			`delete_key(attributes, "lldpRemSysName") where IsMatch(attributes["lldpRemSysName"], "(?i)(phone|ap-|wap-|sep)")`,
+		]
+	}
+
+	output {
+		metrics = [otelcol.exporter.otlphttp.topology.input]
+	}
+}
+
+otelcol.exporter.otlphttp "topology" {
+	encoding = "json"
+	client {
+		endpoint = env("TOPOLOGY_EXPORTER_OTLP")
+		tls {
+			insecure = true
+		}
+	}
+}

@@ -67,6 +67,8 @@ Profiles are partitioned so Alloy can stagger walks:
 
 Fingerprinters emit `modules_hot` / `modules_cold` / `modules_topology`. Discovery writes three Alloy target files. Each tier is optional: `discovery.snmp` `tiers = ["hot"]` (minimum useful), `["hot","cold"]` (default), or `["hot","cold","topology"]`. Lab: `LAB_ALLOY_SNMP_TIERS=hot` / `hot,cold` / `hot,cold,topology`. `LAB_ALLOY_SNMP_TOPOLOGY=1` still adds topology when `LAB_ALLOY_SNMP_TIERS` is unset. CLI: `snmp-discovery --tiers=hot`. Disabled tiers are published as `[]` so leftover scrapes go idle.
 
+Do **not** remote_write the topology tier. Scrape it into `otelcol.processor.transform`, then `otelcol.exporter.otlphttp` (`encoding = "json"`) to topology-exporter `/v1/metrics`. Catalog identity stays in snmp-sd / `discovery.snmp`. Example: [`example/topology-glue.alloy`](../example/topology-glue.alloy).
+
 Converter maps kentik profile YAML (numeric OIDs) → snmp_exporter **runtime** format. It does **not** run the MIB generator (no vendor MIB sources required).
 
 **Split modules:** snmp_exporter accepts multiple `--config.file` / globs; Alloy’s `prometheus.exporter.snmp` still has a **single** `config_file`. We keep one module per file under `snmp/modules/` and concatenate into `snmp-network.yml` for the running image. Prefer editing split files and re-running the converter.
