@@ -26,7 +26,7 @@ Fleet can only push config for modules that exist in the running binary — so t
 
 ## Build the overlay image
 
-The discovery library is **[Mesverrum/snmp-sd](https://github.com/Mesverrum/snmp-sd)** (`go.mod` pin, currently `v0.1.0`). Do not keep a second copy under `internal/snmpdiscovery`. Bake `/etc/alloy/snmp-network.yml` from the module (`go list -m -f '{{.Dir}}'`).
+The discovery library is **[Mesverrum/snmp-sd](https://github.com/Mesverrum/snmp-sd)** (`go.mod` pin, currently `v0.1.1-0.20260916160351-a2aca694910b`, `main`). Do not keep a second copy under `internal/snmpdiscovery`. Bake `/etc/alloy/snmp-network.yml` from the module (`go list -m -f '{{.Dir}}'`).
 
 Thin overlay (stock Alloy + CLI + library, no `discovery.snmp` in the binary):
 
