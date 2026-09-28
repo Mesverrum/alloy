@@ -37,11 +37,12 @@ func TestAlloyConfig(t *testing.T) {
 		allow_duplicate_sysname   = true
 
 		group {
-			name   = "hq"
-			cidrs  = ["172.20.20.0/24"]
-			auths  = ["public_v2"]
-			mode   = "sweep"
-			port   = 161
+			name        = "hq"
+			description = "HQ fabric switches. Same community on all of them."
+			cidrs       = ["172.20.20.0/24"]
+			auths       = ["public_v2"]
+			mode        = "sweep"
+			port        = 161
 		}
 
 		override {
@@ -62,6 +63,7 @@ func TestAlloyConfig(t *testing.T) {
 	require.True(t, args.AllowDuplicateSysName)
 	require.Len(t, args.Groups, 1)
 	require.Equal(t, "hq", args.Groups[0].Name)
+	require.Equal(t, "HQ fabric switches. Same community on all of them.", args.Groups[0].Description)
 	require.Equal(t, []string{"public_v2"}, args.Groups[0].Auths)
 	require.Len(t, args.Overrides, 1)
 	require.True(t, args.Overrides[0].Ignore)
@@ -272,6 +274,65 @@ func TestScanOnceSkipsWhenLocked(t *testing.T) {
 	require.NoError(t, c.scanOnce())
 	require.Equal(t, 1.0, counterValue(t, reg, "discovery_snmp_scan_skipped_total"))
 	require.Equal(t, component.HealthTypeUnknown, c.CurrentHealth().Health)
+}
+
+func TestGroupDescriptionValidate(t *testing.T) {
+	a := validTestArgs()
+	a.Groups[0].Description = "one line is fine"
+	require.NoError(t, a.Validate())
+
+	a.Groups[0].Description = "two\nlines"
+	require.Error(t, a.Validate())
+
+	a.Groups[0].Description = string(make([]byte, maxGroupDescription+1))
+	require.Error(t, a.Validate())
+}
+
+func TestGroupInfoMetricFollowsConfig(t *testing.T) {
+	reg := prometheus.NewRegistry()
+	args := validTestArgs()
+	args.Groups[0].Description = "lab fabric"
+	c, err := New(testOptions(t, reg, nil), args)
+	require.NoError(t, err)
+
+	// Published at config time, before any scan.
+	require.Equal(t, map[string]string{"hq": "lab fabric"}, groupInfoLabels(t, reg))
+
+	// A config update replaces the set: renamed group, edited description,
+	// and a second group with no description.
+	next := validTestArgs()
+	next.Groups = []GroupArguments{
+		{Name: "dc-fabric", Description: "edited", CIDRs: []string{"10.0.0.0/30"}, Auths: []string{"public_v2"}},
+		{Name: "edge", CIDRs: []string{"10.0.1.0/30"}, Auths: []string{"public_v2"}},
+	}
+	require.NoError(t, c.applyArgs(next))
+	require.Equal(t, map[string]string{"dc-fabric": "edited", "edge": ""}, groupInfoLabels(t, reg))
+}
+
+func groupInfoLabels(t *testing.T, reg *prometheus.Registry) map[string]string {
+	t.Helper()
+	mfs, err := reg.Gather()
+	require.NoError(t, err)
+	out := map[string]string{}
+	for _, mf := range mfs {
+		if mf.GetName() != "discovery_snmp_group_info" {
+			continue
+		}
+		for _, m := range mf.GetMetric() {
+			var group, desc string
+			for _, lp := range m.GetLabel() {
+				switch lp.GetName() {
+				case "group":
+					group = lp.GetValue()
+				case "description":
+					desc = lp.GetValue()
+				}
+			}
+			require.Equal(t, 1.0, m.GetGauge().GetValue())
+			out[group] = desc
+		}
+	}
+	return out
 }
 
 func TestNewRequiresLiveDebugging(t *testing.T) {

@@ -76,7 +76,12 @@ type Arguments struct {
 
 // GroupArguments is one CIDR-scoped discovery group (no community strings).
 type GroupArguments struct {
-	Name          string   `alloy:"name,attr"`
+	Name string `alloy:"name,attr"`
+	// Description is an operator note explaining what the group is for
+	// ("office access switches, one community on all of them"). It is not
+	// used by the scan and is not attached to targets; it is published on
+	// discovery_snmp_group_info so a UI can show it next to the group.
+	Description   string   `alloy:"description,attr,optional"`
 	CIDRs         []string `alloy:"cidrs,attr,optional"`
 	Exclude       []string `alloy:"exclude,attr,optional"`
 	Seeds         []string `alloy:"seeds,attr,optional"`
@@ -156,8 +161,20 @@ func (args Arguments) Validate() error {
 	if args.Misses < 0 {
 		return fmt.Errorf("misses must be >= 0")
 	}
+	for _, g := range args.Groups {
+		if len(g.Description) > maxGroupDescription {
+			return fmt.Errorf("group %q: description longer than %d characters", g.Name, maxGroupDescription)
+		}
+		if strings.ContainsAny(g.Description, "\r\n") {
+			return fmt.Errorf("group %q: description must be a single line", g.Name)
+		}
+	}
 	return nil
 }
+
+// maxGroupDescription bounds the description label so a pasted paragraph
+// cannot blow up series size on discovery_snmp_group_info.
+const maxGroupDescription = 256
 
 // Component implements discovery.snmp.
 type Component struct {
@@ -287,6 +304,7 @@ func (c *Component) applyArgs(args Arguments) error {
 	c.argsMu.Lock()
 	c.args = args
 	c.argsMu.Unlock()
+	c.m.observeGroups(args.Groups)
 
 	if sp := strings.TrimSpace(args.StatePath); sp != "" {
 		if entries, err := snmpdiscovery.ReadCatalogState(sp); err == nil && len(entries) > 0 {

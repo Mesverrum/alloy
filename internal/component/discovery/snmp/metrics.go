@@ -37,6 +37,7 @@ type metrics struct {
 	fingerprint   *prometheus.CounterVec
 	modDropped    *prometheus.CounterVec
 	deviceInfo    *prometheus.GaugeVec
+	groupInfo     *prometheus.GaugeVec
 }
 
 func newMetrics(reg prometheus.Registerer) *metrics {
@@ -159,6 +160,10 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 			Name: "discovery_snmp_device_info",
 			Help: "Last-good catalog identity (1 per device).",
 		}, []string{"address", "device_name", "sysObjectID", "group", "auth"}),
+		groupInfo: prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Name: "discovery_snmp_group_info",
+			Help: "Configured discovery groups and their operator description (1 per inline group block).",
+		}, []string{"group", "description"}),
 	}
 	if reg != nil {
 		m.scans = util.MustRegisterOrGet(reg, m.scans).(prometheus.Counter)
@@ -190,6 +195,7 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 		m.fingerprint = util.MustRegisterOrGet(reg, m.fingerprint).(*prometheus.CounterVec)
 		m.modDropped = util.MustRegisterOrGet(reg, m.modDropped).(*prometheus.CounterVec)
 		m.deviceInfo = util.MustRegisterOrGet(reg, m.deviceInfo).(*prometheus.GaugeVec)
+		m.groupInfo = util.MustRegisterOrGet(reg, m.groupInfo).(*prometheus.GaugeVec)
 	}
 	for _, r := range []string{"success", "error"} {
 		m.probes.WithLabelValues(r, "unknown")
@@ -304,6 +310,21 @@ func (m *metrics) observeCatalog(published []snmpdiscovery.AlloyTarget, cat *snm
 	}
 	for _, tier := range tiers {
 		m.targetsTier.WithLabelValues(tier).Set(float64(len(snmpdiscovery.TierTargets(published, tier))))
+	}
+}
+
+// observeGroups publishes the configured inline groups. It runs on every
+// successful config apply (not per scan) so the description is visible
+// before the first scan finishes and follows edits immediately. Groups
+// loaded from config_path are not listed here; only inline blocks carry a
+// description.
+func (m *metrics) observeGroups(groups []GroupArguments) {
+	if m == nil {
+		return
+	}
+	m.groupInfo.Reset()
+	for _, g := range groups {
+		m.groupInfo.WithLabelValues(metricGroup(g.Name), g.Description).Set(1)
 	}
 }
 

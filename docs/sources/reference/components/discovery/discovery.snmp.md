@@ -41,9 +41,10 @@ discovery.snmp "<LABEL>" {
   auths = env("SNMP_AUTHS")
 
   group {
-    name  = "hq"
-    cidrs = ["172.20.20.0/24"]
-    auths = ["public_v2"]
+    name        = "hq"
+    description = "HQ fabric switches. Same community on all of them."
+    cidrs       = ["172.20.20.0/24"]
+    auths       = ["public_v2"]
   }
 }
 ```
@@ -92,6 +93,7 @@ CIDR-scoped discovery group. Never put a community string here — name an auth 
 | Name            | Type           | Description | Default | Required |
 | --------------- | -------------- | ----------- | ------- | -------- |
 | `name`          | `string`       | Group name (also the `snmp_group` label). | | yes |
+| `description`   | `string`       | One-line operator note on what the group is for. Not used by the scan and not attached to targets; published on `discovery_snmp_group_info`. Max 256 characters. | | no |
 | `auths`         | `list(string)` | Auth names from `snmp.yml`. | | yes |
 | `cidrs`         | `list(string)` | Networks to sweep. | | no* |
 | `seeds`         | `list(string)` | Seed IPs for crawl mode. | | no |
@@ -199,6 +201,7 @@ the current target list.
 * `discovery_snmp_devices_by_group{group}` / `discovery_snmp_targets_by_tier{tier}` (gauges): Same counts split by discovery job and scrape tier.
 * `discovery_snmp_catalog_stale{group}` (gauge): Entries with `Misses > 0` (approaching drop).
 * `discovery_snmp_device_info{address,device_name,sysObjectID,group,auth}` (gauge): Last-good catalog identity (`1` per device).
+* `discovery_snmp_group_info{group,description}` (gauge): Configured inline `group` blocks and their `description` (`1` per group). Updated on config apply, not per scan, so it is present before the first scan and follows edits immediately. Groups loaded from `config_path` are not listed.
 * `discovery_snmp_sweep_addresses` / `discovery_snmp_ping_up` / `discovery_snmp_ping_dead` (gauges): CIDR size, ICMP-alive, ICMP-dropped (`sweep - ping_up`).
 * `discovery_snmp_probe_successes` / `discovery_snmp_probe_errors` (gauges): Identity probes that worked / failed.
 * `discovery_snmp_dedupes` (gauge): Extra IPs folded into another `sysName` (lowest IP kept).
