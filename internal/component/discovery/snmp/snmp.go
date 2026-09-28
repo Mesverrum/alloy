@@ -162,8 +162,8 @@ func (args Arguments) Validate() error {
 		return fmt.Errorf("misses must be >= 0")
 	}
 	for _, g := range args.Groups {
-		if len(g.Description) > maxGroupDescription {
-			return fmt.Errorf("group %q: description longer than %d characters", g.Name, maxGroupDescription)
+		if len(g.Description) > snmpdiscovery.MaxGroupDescription {
+			return fmt.Errorf("group %q: description longer than %d characters", g.Name, snmpdiscovery.MaxGroupDescription)
 		}
 		if strings.ContainsAny(g.Description, "\r\n") {
 			return fmt.Errorf("group %q: description must be a single line", g.Name)
@@ -171,10 +171,6 @@ func (args Arguments) Validate() error {
 	}
 	return nil
 }
-
-// maxGroupDescription bounds the description label so a pasted paragraph
-// cannot blow up series size on discovery_snmp_group_info.
-const maxGroupDescription = 256
 
 // Component implements discovery.snmp.
 type Component struct {
@@ -402,6 +398,7 @@ func (c *Component) scanOnce() error {
 	for _, tt := range tiered {
 		targets = append(targets, toDiscoveryTarget(tt.target, tt.tier))
 	}
+	c.m.observeDiscoveryGroups(cfg.Groups)
 	c.m.observeCatalog(published, c.cat, list, len(targets))
 	c.opts.OnStateChange(discovery.Exports{Targets: targets})
 	c.setHealth(component.HealthTypeHealthy, fmt.Sprintf("discovered %d devices, %d targets, %d dedupes", len(published), len(targets), stats.Dedupes))
@@ -523,6 +520,7 @@ func convertGroups(args Arguments) []snmpdiscovery.DiscoveryGroup {
 		}
 		out = append(out, snmpdiscovery.DiscoveryGroup{
 			Name:          g.Name,
+			Description:   g.Description,
 			CIDRs:         g.CIDRs,
 			Exclude:       g.Exclude,
 			Seeds:         g.Seeds,

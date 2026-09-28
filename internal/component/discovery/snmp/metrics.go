@@ -322,6 +322,20 @@ func (m *metrics) observeGroups(groups []GroupArguments) {
 	if m == nil {
 		return
 	}
+	out := make([]snmpdiscovery.DiscoveryGroup, 0, len(groups))
+	for _, g := range groups {
+		out = append(out, snmpdiscovery.DiscoveryGroup{Name: g.Name, Description: g.Description})
+	}
+	m.observeDiscoveryGroups(out)
+}
+
+// observeDiscoveryGroups publishes the groups the scan will actually use,
+// including groups loaded from config_path. Updated on config apply for
+// inline groups, and again after each successful scan.
+func (m *metrics) observeDiscoveryGroups(groups []snmpdiscovery.DiscoveryGroup) {
+	if m == nil {
+		return
+	}
 	m.groupInfo.Reset()
 	for _, g := range groups {
 		m.groupInfo.WithLabelValues(metricGroup(g.Name), g.Description).Set(1)

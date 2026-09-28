@@ -284,7 +284,7 @@ func TestGroupDescriptionValidate(t *testing.T) {
 	a.Groups[0].Description = "two\nlines"
 	require.Error(t, a.Validate())
 
-	a.Groups[0].Description = string(make([]byte, maxGroupDescription+1))
+	a.Groups[0].Description = string(make([]byte, snmpdiscovery.MaxGroupDescription+1))
 	require.Error(t, a.Validate())
 }
 
