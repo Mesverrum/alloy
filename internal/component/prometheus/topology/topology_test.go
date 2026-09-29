@@ -253,6 +253,8 @@ func TestComponentEmitsGraph(t *testing.T) {
 			require.Equal(t, "leaf1", l.Get("src_device"))
 			require.Equal(t, "ethernet-1/49", l.Get("src_port"))
 			require.Equal(t, "spine1", l.Get("dst_device"))
+			require.Equal(t, "network-topology", l.Get("job"))
+			require.Equal(t, "alloy", l.Get("instance"))
 		}
 	}
 	require.Equal(t, 1, edges)

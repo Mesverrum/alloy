@@ -300,6 +300,9 @@ func graphSeries(edges []edge, ts time.Time) []seriesPoint {
 				"model", "unknown",
 				"os_version", "unknown",
 				"site", "unknown",
+				// otelcol.receiver.prometheus rejects series without these.
+				"job", "network-topology",
+				"instance", "alloy",
 			),
 			t: t,
 			v: 1,
@@ -321,6 +324,8 @@ func graphSeries(edges []edge, ts time.Time) []seriesPoint {
 				"session_type", orEmpty(e.SessionType),
 				"remote_as", orEmpty(e.RemoteAS),
 				"peer_group", orEmpty(e.PeerGroup),
+				"job", "network-topology",
+				"instance", "alloy",
 			),
 			t: t,
 			v: 1,
