@@ -218,6 +218,87 @@ func TestBGPEstablishedString(t *testing.T) {
 	require.Empty(t, down)
 }
 
+// snmp_exporter renders an InetAddress column typed OctetString as 0x-hex;
+// the owner map must still match it against the textual peer address.
+func TestSessionAddressDecodesHex(t *testing.T) {
+	cases := map[string]string{
+		"10.0.0.1":                           "10.0.0.1",
+		" 0x0A000001 ":                       "10.0.0.1",
+		"0x20010DB8000000000000000000000001": "2001:db8::1",
+		"0x0A00":                             "0x0a00", // not an address length
+		"0xZZ":                               "0xzz",
+		"Leaf1":                              "leaf1",
+	}
+	for in, want := range cases {
+		if got := sessionAddress(in); got != want {
+			t.Errorf("sessionAddress(%q) = %q, want %q", in, got, want)
+		}
+	}
+}
+
+// Two devices each report their own local_address. The peer address on one
+// side is the local address on the other, so both edges resolve to device
+// names and reconcile collapses them into one bidirectional link.
+func TestBGPPeerResolvedByLocalAddress(t *testing.T) {
+	now := time.Now()
+	bgp := func(dev, local, peer, localAS, peerAS string) sample {
+		return sample{
+			Name: "snmp_tBgpPeerNgConnState",
+			Labels: map[string]string{
+				"device_name": dev, "tBgpPeerNgAddress": peer, "local_address": local,
+				"tBgpPeerNgConnState": "established", "local_as": localAS, "peer_as": peerAS,
+				"peer_group": "eBGPv4",
+			},
+			Value: 6, At: now,
+		}
+	}
+	samples := []sample{
+		bgp("spine1", "192.168.11.1", "192.168.11.0", "201", "101"),
+		bgp("leaf1", "192.168.11.0", "192.168.11.1", "101", "201"),
+		// Loopback overlay session: the same owner map names it.
+		bgp("spine1", "10.0.2.1", "10.0.1.1", "100", "100"),
+		bgp("leaf1", "10.0.1.1", "10.0.2.1", "100", "100"),
+		// Nobody claims this address: it stays an address.
+		bgp("spine1", "192.168.99.1", "192.168.99.0", "201", "999"),
+	}
+	built, st := observeSamples(samples)
+	require.Equal(t, 4, st.Resolved)
+	require.Equal(t, 1, st.Unresolved)
+	require.Len(t, built, 5)
+
+	got := reconcile(built)
+	require.Len(t, got, 3)
+
+	var ebgp, ibgp, lone *edge
+	for i := range got {
+		switch {
+		case got[i].DstDevice == "192.168.99.0":
+			lone = &got[i]
+		case got[i].SessionType == "ibgp":
+			ibgp = &got[i]
+		case got[i].SessionType == "ebgp":
+			ebgp = &got[i]
+		}
+	}
+	require.NotNil(t, ebgp)
+	require.NotNil(t, ibgp)
+	require.NotNil(t, lone)
+
+	require.ElementsMatch(t, []string{"leaf1", "spine1"}, []string{ebgp.SrcDevice, ebgp.DstDevice})
+	require.Equal(t, "bidirectional", ebgp.Direction)
+	require.ElementsMatch(t, []string{"192.168.11.0", "192.168.11.1"}, []string{ebgp.SrcPort, ebgp.DstPort})
+	require.Equal(t, "eBGPv4", ebgp.PeerGroup)
+
+	require.ElementsMatch(t, []string{"leaf1", "spine1"}, []string{ibgp.SrcDevice, ibgp.DstDevice})
+	require.Equal(t, "bidirectional", ibgp.Direction)
+	require.ElementsMatch(t, []string{"10.0.1.1", "10.0.2.1"}, []string{ibgp.SrcPort, ibgp.DstPort})
+
+	require.Equal(t, "spine1", lone.SrcDevice)
+	require.Equal(t, "192.168.99.1", lone.SrcPort)
+	require.Equal(t, "192.168.99.0", lone.DstPort)
+	require.Equal(t, "unidirectional", lone.Direction)
+}
+
 func TestComponentEmitsGraph(t *testing.T) {
 	var got []labels.Labels
 	sink := &capture{fn: func(l labels.Labels) { got = append(got, l) }}

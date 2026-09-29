@@ -71,6 +71,8 @@ Do **not** remote_write the raw topology tier. Scrape it into `prometheus.networ
 
 A sample is kept only when its metric name contains one of `lldp_interface_neighbor`, `lldpremsysname`, `lldpremportid`, `lldplocport`, `cdpcachedeviceid`, `cdpcachedeviceport`, `tbgppeerngconnstate`, or `bgppeerstate`. Every other series, including histograms, is discarded in this block and is not written to `forward_to`. A commit made only of discarded series increments `ignored_commits_total` and leaves the last graph in place.
 
+**BGP peers become device names from the walk itself.** A BGP row names the peer by address. Each device also names its own end of the session (`local_address`, from `tBgpPeerNgLocalAddress` on Nokia or `bgpPeerLocalAddr` on BGP4-MIB). The block collects every address a reporter claims as local, then resolves each peer address to the device that claimed it. `leaf1 → 192.168.11.1` and `spine1 → 192.168.11.0` collapse into one bidirectional `leaf1 ↔ spine1` edge with `src_port` / `dst_port` set to the two session addresses. No alias catalog is read. A peer nobody claims stays an address in `dst_device` and counts in `unresolved_sessions`; check that the device's topology module carries the local-address lookup (snmp-sd `nokia_srlinux_topo` does; SR Linux does not answer IP-MIB `ipAddrTable`, so the BGP table is the only source there).
+
 `prometheus.scrape` still copies each sample to every receiver in its `forward_to` list. Point the topology scrape at this block. Point hot, cold, node-exporter, and the rest of gnmic at the normal receiver. When this block is the only `forward_to` on a scrape, series outside that name list never leave the scrape. A metric whose name merely contains one of those substrings is treated as a neighbor sample and is also not forwarded raw.
 
 #### Debugging `prometheus.network_topology`
@@ -83,6 +85,7 @@ These series are on Alloy's own `/metrics` endpoint, with `component_path` and `
 | `alloy_prometheus_network_topology_edges` | Edges from the last commit that contained neighbor samples. A later commit with none does not zero this. |
 | `alloy_prometheus_network_topology_edges_by_evidence` | Those edges labeled `evidence` (`lldp_rem`, `gnmi_lldp`, `cdp_cache`, `nokia_bgp_peer`). A missing series means zero for that evidence. |
 | `alloy_prometheus_network_topology_unmatched_samples` | Samples in the last reconcile that were not local-port helpers and matched no family. |
+| `alloy_prometheus_network_topology_unresolved_sessions` | Established sessions whose peer address no reporter claims as its own `local_address`; `dst_device` stays the address. |
 | `alloy_prometheus_network_topology_last_reconcile_timestamp_seconds` | Unix time of the last commit that contained neighbor samples. |
 | `alloy_prometheus_network_topology_last_graph_timestamp_seconds` | Unix time of the last reconcile that produced at least one edge. |
 | `alloy_prometheus_network_topology_ignored_commits_total` | Commits with no neighbor samples. The previous graph is kept. |

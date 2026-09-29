@@ -81,6 +81,7 @@ type Component struct {
 	samplesGauge  prometheus.Gauge
 	edgesGauge    prometheus.Gauge
 	unmatched     prometheus.Gauge
+	unresolved    prometheus.Gauge
 	lastReconcile prometheus.Gauge
 	lastGraph     prometheus.Gauge
 	ignored       prometheus.Counter
@@ -109,6 +110,10 @@ func New(o component.Options, args Arguments) (*Component, error) {
 		Name: "alloy_prometheus_network_topology_unmatched_samples",
 		Help: "Samples in the last reconcile that were not local-port helpers and matched no family.",
 	})
+	c.unresolved = prometheus.NewGauge(prometheus.GaugeOpts{
+		Name: "alloy_prometheus_network_topology_unresolved_sessions",
+		Help: "Established sessions in the last reconcile whose peer address no reporter claims as its own; dst_device stays the address.",
+	})
 	c.lastReconcile = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "alloy_prometheus_network_topology_last_reconcile_timestamp_seconds",
 		Help: "Unix time of the last commit that contained neighbor samples.",
@@ -130,7 +135,7 @@ func New(o component.Options, args Arguments) (*Component, error) {
 		Help: "Edges from the last reconcile, by evidence. Series exist only for evidences present in that reconcile.",
 	}, []string{"evidence"})
 	for _, col := range []prometheus.Collector{
-		c.samplesGauge, c.edgesGauge, c.unmatched, c.lastReconcile, c.lastGraph,
+		c.samplesGauge, c.edgesGauge, c.unmatched, c.unresolved, c.lastReconcile, c.lastGraph,
 		c.ignored, c.staleDropped, c.byEvidence,
 	} {
 		if err := o.Registerer.Register(col); err != nil {
@@ -209,6 +214,7 @@ func (c *Component) ingest(batch []sample, now time.Time) (touched bool, points 
 	c.edges = reconcile(built)
 	c.edgesGauge.Set(float64(len(c.edges)))
 	c.unmatched.Set(float64(st.Unmatched))
+	c.unresolved.Set(float64(st.Unresolved))
 	c.byEvidence.Reset()
 	evidence := map[string]int{}
 	for _, e := range c.edges {
@@ -272,6 +278,8 @@ func (c *Component) logCommit(v commitView, kept bool) {
 		"no_neighbor", v.NoNeighbor,
 		"not_established", v.NotEstablished,
 		"self", v.Self,
+		"resolved", v.Resolved,
+		"unresolved", v.Unresolved,
 		"stale_dropped", v.stale,
 		"edges", v.edges,
 		"samples_held", len(c.samples),

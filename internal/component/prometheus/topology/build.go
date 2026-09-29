@@ -3,6 +3,7 @@ package topology
 import (
 	"encoding/hex"
 	"net"
+	"net/netip"
 	"strconv"
 	"strings"
 	"time"
@@ -216,11 +217,60 @@ type observeStats struct {
 	NoNeighbor     int
 	NotEstablished int
 	Self           int
+	// Session peers named by the device that reports that address as its own.
+	Resolved int
+	// Session peers no reporter claims; the address stays as dst_device.
+	Unresolved int
 }
 
 func edgesFromSamples(samples []sample) []edge {
 	edges, _ := observeSamples(samples)
 	return edges
+}
+
+// sessionOwners maps every address a reporter names as its own session end
+// to that reporter. A peer address in the same map resolves to a device name.
+// Conflicting claims keep the first reporter (sorted for determinism).
+func sessionOwners(samples []sample, fams []family) map[string]string {
+	owners := map[string]string{}
+	for _, s := range samples {
+		f := matchFamily(s.Name, fams)
+		if f == nil || !strings.EqualFold(f.Kind, "session") {
+			continue
+		}
+		src := pickReporter(s.Labels, f.Reporter)
+		local := sessionAddress(label(s.Labels, f.LocalAddress...))
+		if src == "" || local == "" || noisy(local) {
+			continue
+		}
+		if prev, ok := owners[local]; ok && prev != src && prev < src {
+			continue
+		}
+		owners[local] = src
+	}
+	return owners
+}
+
+// sessionAddress normalises an address label for owner matching. snmp_exporter
+// renders an InetAddress column typed OctetString as "0x" + hex; a 4- or
+// 16-byte blob is decoded to dotted / RFC 5952 text so it can match the
+// textual peer address on the other side. Anything else is lower-cased.
+func sessionAddress(v string) string {
+	v = strings.ToLower(strings.TrimSpace(v))
+	if !strings.HasPrefix(v, "0x") {
+		return v
+	}
+	raw, err := hex.DecodeString(v[2:])
+	if err != nil {
+		return v
+	}
+	switch len(raw) {
+	case 4, 16:
+		if ip, ok := netip.AddrFromSlice(raw); ok {
+			return ip.String()
+		}
+	}
+	return v
 }
 
 func observeSamples(samples []sample) ([]edge, observeStats) {
@@ -232,6 +282,7 @@ func observeSamples(samples []sample) ([]edge, observeStats) {
 	buckets := map[string]map[string]*row{}
 	var edges []edge
 	var st observeStats
+	owners := sessionOwners(samples, fams)
 
 	for _, s := range samples {
 		f := matchFamily(s.Name, fams)
@@ -259,10 +310,18 @@ func observeSamples(samples []sample) ([]edge, observeStats) {
 				st.NoNeighbor++
 				continue
 			}
-			dst := strings.ToLower(peer)
+			dst0 := sessionAddress(peer)
+			dst := dst0
 			if noisy(dst) {
 				st.Noisy++
 				continue
+			}
+			local := sessionAddress(label(s.Labels, f.LocalAddress...))
+			if owner, ok := owners[dst]; ok {
+				dst = owner
+				st.Resolved++
+			} else {
+				st.Unresolved++
 			}
 			if src == dst {
 				st.Self++
@@ -272,8 +331,10 @@ func observeSamples(samples []sample) ([]edge, observeStats) {
 			localAS := numericLabel(s.Labels, f.LocalAS...)
 			peerGroup := label(s.Labels, f.PeerGroup...)
 			edges = append(edges, edge{
-				SrcDevice:   src,
-				SrcPort:     peer,
+				SrcDevice: src,
+				// An IP session has addresses, not ports: our side, their side.
+				SrcPort:     local,
+				DstPort:     dst0,
 				DstDevice:   dst,
 				Proto:       f.Proto,
 				LinkKind:    "ip",

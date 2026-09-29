@@ -24,6 +24,7 @@ type family struct {
 	NeighborPort fieldPick   `yaml:"neighbor_port"`
 	Join         []string    `yaml:"join"`
 	Session      []string    `yaml:"session"`
+	LocalAddress []string    `yaml:"local_address"`
 	RemoteAS     []string    `yaml:"remote_as"`
 	LocalAS      []string    `yaml:"local_as"`
 	PeerGroup    []string    `yaml:"peer_group"`

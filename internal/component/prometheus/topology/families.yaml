@@ -62,6 +62,10 @@ families:
       name_contains: [tbgppeerngconnstate, bgppeerstate]
     reporter: [device_name, src_device, source]
     session: [tBgpPeerNgAddress, dst_device, peer]
+    # Each device names its own side of the session. The reconciler joins a
+    # peer address to the device that reports it as local_address, so the far
+    # end becomes a device name without an alias catalog.
+    local_address: [local_address, tBgpPeerNgLocalAddress, bgpPeerLocalAddr, snmp_bgpPeerLocalAddr]
     remote_as: [peer_as, tBgpPeerNgPeerAS]
     local_as: [local_as]
     peer_group: [peer_group]
