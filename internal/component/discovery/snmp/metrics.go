@@ -38,6 +38,8 @@ type metrics struct {
 	modDropped    *prometheus.CounterVec
 	deviceInfo    *prometheus.GaugeVec
 	groupInfo     *prometheus.GaugeVec
+	// One series per discovery.snmp instance: value is the profile count.
+	libraryInfo *prometheus.GaugeVec
 }
 
 func newMetrics(reg prometheus.Registerer) *metrics {
@@ -164,6 +166,10 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 			Name: "discovery_snmp_group_info",
 			Help: "Configured discovery groups and their operator description (1 per inline group block).",
 		}, []string{"group", "description"}),
+		libraryInfo: prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Name: "discovery_snmp_library_info",
+			Help: "Fingerprint library identity for this component. Value is the number of named profiles. One series per discovery.snmp instance.",
+		}, []string{"fingerprinter", "library_hash"}),
 	}
 	if reg != nil {
 		m.scans = util.MustRegisterOrGet(reg, m.scans).(prometheus.Counter)
@@ -196,6 +202,7 @@ func newMetrics(reg prometheus.Registerer) *metrics {
 		m.modDropped = util.MustRegisterOrGet(reg, m.modDropped).(*prometheus.CounterVec)
 		m.deviceInfo = util.MustRegisterOrGet(reg, m.deviceInfo).(*prometheus.GaugeVec)
 		m.groupInfo = util.MustRegisterOrGet(reg, m.groupInfo).(*prometheus.GaugeVec)
+		m.libraryInfo = util.MustRegisterOrGet(reg, m.libraryInfo).(*prometheus.GaugeVec)
 	}
 	for _, r := range []string{"success", "error"} {
 		m.probes.WithLabelValues(r, "unknown")
@@ -347,4 +354,18 @@ func metricGroup(s string) string {
 		return "unknown"
 	}
 	return s
+}
+
+// observeLibrary publishes one series for the loaded fingerprinter catalog.
+// library_hash changes when the file changes; custom customer catalogs are first-class.
+func (m *metrics) observeLibrary(lib FingerprintLibrary) {
+	if m == nil {
+		return
+	}
+	m.libraryInfo.Reset()
+	if lib.LibraryHash == "" {
+		return
+	}
+	fp := metricGroup(lib.Fingerprinter)
+	m.libraryInfo.WithLabelValues(fp, lib.LibraryHash).Set(float64(len(lib.Profiles)))
 }

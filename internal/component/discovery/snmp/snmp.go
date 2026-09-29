@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"net/http"
 	"os"
 	"strings"
 	"sync"
@@ -14,6 +15,7 @@ import (
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/component/discovery"
 	"github.com/grafana/alloy/internal/featuregate"
+	http_service "github.com/grafana/alloy/internal/service/http"
 	"github.com/grafana/alloy/internal/service/livedebugging"
 	"github.com/grafana/alloy/internal/snmppaths"
 
@@ -189,12 +191,15 @@ type Component struct {
 
 	healthMu sync.RWMutex
 	health   component.Health
+
+	library libraryState
 }
 
 var (
 	_ component.Component       = (*Component)(nil)
 	_ component.HealthComponent = (*Component)(nil)
 	_ component.LiveDebugging   = (*Component)(nil)
+	_ http_service.Component    = (*Component)(nil)
 )
 
 // New constructs a discovery.snmp component.
@@ -283,6 +288,16 @@ func (c *Component) CurrentHealth() component.Health {
 // LiveDebugging implements component.LiveDebugging.
 func (c *Component) LiveDebugging() {}
 
+// Handler implements http_service.Component. Serves the fingerprint catalog
+// under /fingerprints (and /) so a UI can list profiles without an active-series
+// dump. One library_info series carries the hash for skew detection.
+func (c *Component) Handler() http.Handler {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", c.library.serveHTTP)
+	mux.HandleFunc("/fingerprints", c.library.serveHTTP)
+	return mux
+}
+
 func (c *Component) setHealth(kind component.HealthType, msg string) {
 	c.healthMu.Lock()
 	defer c.healthMu.Unlock()
@@ -301,6 +316,7 @@ func (c *Component) applyArgs(args Arguments) error {
 	c.args = args
 	c.argsMu.Unlock()
 	c.m.observeGroups(args.Groups)
+	c.loadLibrary(args)
 
 	if sp := strings.TrimSpace(args.StatePath); sp != "" {
 		if entries, err := snmpdiscovery.ReadCatalogState(sp); err == nil && len(entries) > 0 {
@@ -311,6 +327,26 @@ func (c *Component) applyArgs(args Arguments) error {
 		}
 	}
 	return nil
+}
+
+func (c *Component) loadLibrary(args Arguments) {
+	path := strings.TrimSpace(args.Fingerprinters)
+	fp := strings.TrimSpace(args.Fingerprinter)
+	if path == "" || fp == "" {
+		c.library.set(FingerprintLibrary{})
+		c.m.observeLibrary(FingerprintLibrary{})
+		return
+	}
+	lib, err := loadFingerprintLibrary(path, fp)
+	if err != nil {
+		c.log.Warn("fingerprint library unavailable", "path", path, "fingerprinter", fp, "err", err)
+		c.library.set(FingerprintLibrary{})
+		c.m.observeLibrary(FingerprintLibrary{})
+		return
+	}
+	c.library.set(lib)
+	c.m.observeLibrary(lib)
+	c.log.Info("loaded fingerprint library", "path", path, "fingerprinter", fp, "library_hash", lib.LibraryHash, "profiles", len(lib.Profiles))
 }
 
 func (c *Component) scanOnce() error {
