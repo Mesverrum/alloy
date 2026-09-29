@@ -67,7 +67,46 @@ Profiles are partitioned so Alloy can stagger walks:
 
 Fingerprinters emit `modules_hot` / `modules_cold` / `modules_topology`. Discovery writes three Alloy target files. Each tier is optional: `discovery.snmp` `tiers = ["hot"]` (minimum useful), `["hot","cold"]` (default), or `["hot","cold","topology"]`. Lab: `LAB_ALLOY_SNMP_TIERS=hot` / `hot,cold` / `hot,cold,topology`. `LAB_ALLOY_SNMP_TOPOLOGY=1` still adds topology when `LAB_ALLOY_SNMP_TIERS` is unset. CLI: `snmp-discovery --tiers=hot`. Disabled tiers are published as `[]` so leftover scrapes go idle.
 
-Do **not** remote_write the topology tier. Scrape it into `otelcol.processor.transform`, then `otelcol.exporter.otlphttp` (`encoding = "json"`) to topology-exporter `/v1/metrics`. Catalog identity stays in snmp-sd / `discovery.snmp`. Example: [`example/topology-glue.alloy`](../example/topology-glue.alloy).
+Do **not** remote_write the raw topology tier. Scrape it into `prometheus.network_topology`, which turns LLDP, CDP, and BGP samples into `network_topology_device_info` and `network_topology_edge_info` and forwards only that graph. The same block accepts gnmic `*lldp_interface_neighbor*` series (`source`, `interface_name`, `neighbor_id`, `value`). Example: [`example/topology-glue.alloy`](../example/topology-glue.alloy).
+
+A sample is kept only when its metric name contains one of `lldp_interface_neighbor`, `lldpremsysname`, `lldpremportid`, `lldplocport`, `cdpcachedeviceid`, `cdpcachedeviceport`, `tbgppeerngconnstate`, or `bgppeerstate`. Every other series, including histograms, is discarded in this block and is not written to `forward_to`. A commit made only of discarded series increments `ignored_commits_total` and leaves the last graph in place.
+
+`prometheus.scrape` still copies each sample to every receiver in its `forward_to` list. Point the topology scrape at this block. Point hot, cold, node-exporter, and the rest of gnmic at the normal receiver. When this block is the only `forward_to` on a scrape, series outside that name list never leave the scrape. A metric whose name merely contains one of those substrings is treated as a neighbor sample and is also not forwarded raw.
+
+#### Debugging `prometheus.network_topology`
+
+These series are on Alloy's own `/metrics` endpoint, with `component_path` and `component_id`. They are not part of the graph forwarded to Grafana.
+
+| Metric | What it means |
+|--------|----------------|
+| `alloy_prometheus_network_topology_samples` | Neighbor samples held, including local-port helpers. They age out after `stale_after` (default 30m). |
+| `alloy_prometheus_network_topology_edges` | Edges from the last commit that contained neighbor samples. A later commit with none does not zero this. |
+| `alloy_prometheus_network_topology_edges_by_evidence` | Those edges labeled `evidence` (`lldp_rem`, `gnmi_lldp`, `cdp_cache`, `nokia_bgp_peer`). A missing series means zero for that evidence. |
+| `alloy_prometheus_network_topology_unmatched_samples` | Samples in the last reconcile that were not local-port helpers and matched no family. |
+| `alloy_prometheus_network_topology_last_reconcile_timestamp_seconds` | Unix time of the last commit that contained neighbor samples. |
+| `alloy_prometheus_network_topology_last_graph_timestamp_seconds` | Unix time of the last reconcile that produced at least one edge. |
+| `alloy_prometheus_network_topology_ignored_commits_total` | Commits with no neighbor samples. The previous graph is kept. |
+| `alloy_prometheus_network_topology_stale_samples_total` | Samples dropped because they were older than `stale_after`. |
+
+Each commit also logs on the component logger:
+
+| Level | Message | When |
+|-------|---------|------|
+| info | `reconciled network topology` | Neighbor samples reconciled into a graph. |
+| warn | `network topology samples produced no edges` | Samples arrived and matched, and the reconcile emitted nothing. |
+| warn | `network topology samples matched no family` | A sample was not a local-port helper and matched no family, while other samples still produced edges. |
+| debug | `network topology kept last graph` | The commit had no neighbor samples. |
+| error | `network topology forward failed` | The graph was built and `forward_to` rejected it. |
+
+Fields on the info/warn/debug lines: `received`, `matched`, `helpers`, `unmatched`, `no_reporter`, `noisy`, `no_neighbor`, `not_established`, `self`, `stale_dropped`, `edges`, `samples_held`.
+
+How to read a quiet graph:
+
+- `ignored_commits_total` climbs and `last_reconcile` stays put: the topology scrape, or the gnmic neighbor series, is not forwarded into this block.
+- `last_reconcile` is fresh, `unmatched_samples` is above zero, `last_graph` is old: the metric names are not in the family catalog.
+- `last_reconcile` is fresh, `matched` in the warn line is above zero, `edges` is 0: the join dropped the rows. `no_neighbor` is a missing remote name, `noisy` is a phone or AP name, `not_established` is a BGP session that is not up, `self` is a device reporting itself.
+- `samples` is 0 and `edges` is still above zero: the held samples aged out. `stale_samples_total` increased. The last graph is still what was forwarded.
+- `network topology forward failed`: the graph was built and did not leave the component.
 
 Converter maps kentik profile YAML (numeric OIDs) → snmp_exporter **runtime** format. It does **not** run the MIB generator (no vendor MIB sources required).
 

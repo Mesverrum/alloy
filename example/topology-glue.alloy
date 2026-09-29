@@ -1,8 +1,9 @@
-// Copy of the Mesverrum topology-exporter glue river (network-snmp fork).
-// Canonical comments live in network-topology-exporter/examples/alloy/topology-glue.alloy
-//
-// Hot/cold → Grafana. Topology → transform → topology-exporter /v1/metrics.
-// encoding = "json" is required for the current ingest handler.
+// Topology tier on the network-snmp fork.
+// Hot and cold scrapes forward to otelcol.receiver.prometheus.alloy_snmp.
+// The topology scrape stops at prometheus.network_topology, which forwards only the
+// reconciled graph (network_topology_device_info / network_topology_edge_info).
+// Series whose names are outside the neighbor list are dropped, not passed through.
+// Keep hot, cold, and node-exporter scrapes on a different forward_to.
 
 discovery.snmp "lab" {
 	auths            = env("SNMP_AUTHS")
@@ -34,37 +35,11 @@ prometheus.scrape "snmp_topology" {
 	targets         = prometheus.exporter.snmp.topology.targets
 	scrape_interval = "15m"
 	scrape_timeout  = "2m"
-	forward_to      = [otelcol.receiver.prometheus.topology.receiver]
+	forward_to      = [prometheus.network_topology.lab.receiver]
 }
 
-otelcol.receiver.prometheus "topology" {
-	output {
-		metrics = [otelcol.processor.transform.topology.input]
-	}
-}
-
-otelcol.processor.transform "topology" {
-	error_mode = "ignore"
-
-	metric_statements {
-		context    = "datapoint"
-		statements = [
-			`set(attributes["device_name"], ConvertCase(attributes["device_name"], "lower")) where attributes["device_name"] != nil`,
-			`delete_key(attributes, "lldpRemSysName") where IsMatch(attributes["lldpRemSysName"], "(?i)(phone|ap-|wap-|sep)")`,
-		]
-	}
-
-	output {
-		metrics = [otelcol.exporter.otlphttp.topology.input]
-	}
-}
-
-otelcol.exporter.otlphttp "topology" {
-	encoding = "json"
-	client {
-		endpoint = env("TOPOLOGY_EXPORTER_OTLP")
-		tls {
-			insecure = true
-		}
-	}
+// Raw neighbor walks stay here. Only the reconciled graph is forwarded.
+prometheus.network_topology "lab" {
+	forward_to  = [otelcol.receiver.prometheus.alloy_snmp.receiver]
+	stale_after  = "30m"
 }
