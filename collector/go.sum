@@ -444,6 +444,8 @@ github.com/Mesverrum/snmp-sd v0.1.1-0.20260915193545-11a6f990cd34 h1:K7M/mgaI4Sz
 github.com/Mesverrum/snmp-sd v0.1.1-0.20260915193545-11a6f990cd34/go.mod h1:sWCk4kyn5S7WuSipsgGiGz5BHY8fzuW/rPCxr+oYItE=
 github.com/Mesverrum/snmp-sd v0.1.1-0.20260916160351-a2aca694910b h1:LFV0f26SNIrGbpRkyZljeHWgjjnSLPe2KZKC3c6yQW0=
 github.com/Mesverrum/snmp-sd v0.1.1-0.20260916160351-a2aca694910b/go.mod h1:sWCk4kyn5S7WuSipsgGiGz5BHY8fzuW/rPCxr+oYItE=
+github.com/Mesverrum/snmp-sd v0.1.1-0.20261002231722-85818f697753 h1:YWm6x6+a3gQdpwZUZ0WzbzklsrV3pXnd/f6XobY8Uv4=
+github.com/Mesverrum/snmp-sd v0.1.1-0.20261002231722-85818f697753/go.mod h1:sWCk4kyn5S7WuSipsgGiGz5BHY8fzuW/rPCxr+oYItE=
 github.com/Microsoft/go-winio v0.5.0/go.mod h1:JPGBdM1cNvN/6ISo+n8V5iA4v8pBzdOpzfwIujj1a84=
 github.com/Microsoft/go-winio v0.5.2/go.mod h1:WpS1mjBmmwHBEWmogvA2mj8546UReBk4v8QkMxJ6pZY=
 github.com/Microsoft/go-winio v0.6.2 h1:F2VQgta7ecxGYO8k3ZZz3RS8fVIXVxONVUPlNERoyfY=

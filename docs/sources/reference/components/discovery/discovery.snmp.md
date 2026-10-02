@@ -137,7 +137,7 @@ Each target includes the following labels:
 | `address`      | SNMP address (canonical IP). |
 | `module`       | Comma-separated snmp_exporter modules for this `snmp_tier`. |
 | `auth`         | Named auth from `snmp.yml`. Never a community string. |
-| `device_name`  | Device identity from `sysName`. Same hostname on multiple IPs is one identity unless `allow_duplicate_sysname`. Pass `.targets` to [`otelcol.receiver.snmptrap`](../otelcol/otelcol.receiver.snmptrap.md) to stamp this on traps. |
+| `device_name`  | Join key from `sysName`: full name, controls stripped, lowercased, domain kept, capped at 255 bytes. Same string topology-exporter uses for `device_id`. The target `name` is still the short id before the first dot. Same sysName on multiple IPs is one identity unless `allow_duplicate_sysname`. Pass `.targets` to [`otelcol.receiver.snmptrap`](../otelcol/otelcol.receiver.snmptrap.md) to stamp this on traps. |
 | `snmp_tier`    | `hot`, `cold`, or `topology`. |
 | `sysObjectID`  | Present when the probe returned one. |
 | `snmp_group`   | Discovery group name. |
